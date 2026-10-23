@@ -35,7 +35,7 @@ export const Preloader = ({ onFinish }) => {
     <AnimatePresence>
       {!isCompleted && (
         <motion.div
-          className="fixed inset-0 z-[100000] flex flex-col justify-between p-8 md:p-16 bg-[#090a0d] text-[#f5f4f0]"
+          className="fixed inset-0 z-[100000] flex flex-col justify-between p-8 md:p-16 bg-[#0b1528] text-[#f4f7fc]"
           style={{
             position: 'fixed',
             inset: 0,
@@ -44,8 +44,9 @@ export const Preloader = ({ onFinish }) => {
             flexDirection: 'column',
             justifyContent: 'space-between',
             padding: '2.5rem',
-            backgroundColor: '#0a0b0e',
-            color: '#f5f4f0'
+            backgroundColor: '#0b1528',
+            color: '#f4f7fc',
+            borderBottom: '2px solid var(--accent-gold)'
           }}
           initial={{ y: 0 }}
           exit={{
@@ -58,10 +59,10 @@ export const Preloader = ({ onFinish }) => {
         >
           {/* Cabecera del preloader */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.12em', color: '#a7a9b8', textTransform: 'uppercase' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.12em', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
               Sofia Muñoz — Portafolio '26
             </span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.08em', color: 'var(--accent-gold)' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.08em', color: 'var(--accent-gold)', fontWeight: 700 }}>
               Iniciando Experiencia
             </span>
           </div>
@@ -75,29 +76,29 @@ export const Preloader = ({ onFinish }) => {
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(2rem, 5vw, 4rem)',
-                fontWeight: 400,
+                fontWeight: 500,
                 letterSpacing: '-0.02em',
                 marginBottom: '0.5rem'
               }}
             >
               Sofia Muñoz
             </motion.h1>
-            <p style={{ color: '#a7a9b8', fontSize: '0.95rem', letterSpacing: '0.05em' }}>
-              Asesora Comercial <span style={{ color: 'var(--accent-gold)' }}>&</span> Estrategia de Ventas
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', letterSpacing: '0.05em' }}>
+              Asesora Comercial <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>&</span> Estrategia de Ventas
             </p>
           </div>
 
           {/* Pie: Contador numérico y barra de progreso fina */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1rem' }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: '#6e7185' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                 Cargando proyectos y activos visuales
               </span>
               <span
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-                  fontWeight: 500,
+                  fontWeight: 700,
                   lineHeight: 1,
                   fontVariantNumeric: 'tabular-nums',
                   color: 'var(--accent-gold)'
@@ -107,7 +108,7 @@ export const Preloader = ({ onFinish }) => {
               </span>
             </div>
 
-            <div style={{ width: '100%', height: '2px', backgroundColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '2px', overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: '3px', backgroundColor: '#182b52', borderRadius: '0px', overflow: 'hidden' }}>
               <motion.div
                 style={{
                   height: '100%',

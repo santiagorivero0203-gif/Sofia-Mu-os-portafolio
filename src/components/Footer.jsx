@@ -70,18 +70,19 @@ export const Footer = ({ lenisInstance }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                padding: '0.45rem 0.95rem',
-                borderRadius: 'var(--radius-full)',
-                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                border: '1px solid var(--border-blue)',
-                color: 'var(--accent-blue-sky)',
-                fontSize: '0.82rem',
-                fontWeight: 600,
+                padding: '0.5rem 1rem',
+                borderRadius: '2px',
+                backgroundColor: 'var(--accent-blue)',
+                border: '1px solid var(--accent-blue)',
+                color: '#ffffff',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
             >
-              <FileDown size={14} />
+              <FileDown size={14} style={{ color: 'var(--accent-gold)' }} />
               <span>Dossier PDF</span>
             </button>
 
@@ -92,20 +93,24 @@ export const Footer = ({ lenisInstance }) => {
                 alignItems: 'center',
                 gap: '0.5rem',
                 padding: '0.5rem 1rem',
-                borderRadius: 'var(--radius-full)',
-                backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                borderRadius: '2px',
+                backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
-                color: 'var(--text-secondary)',
-                fontSize: '0.82rem',
+                color: 'var(--text-primary)',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = 'var(--text-primary)';
-                e.currentTarget.style.borderColor = 'var(--border-hover)';
+                e.currentTarget.style.color = '#0b1528';
+                e.currentTarget.style.backgroundColor = 'var(--accent-gold)';
+                e.currentTarget.style.borderColor = 'var(--accent-gold)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--text-secondary)';
+                e.currentTarget.style.color = 'var(--text-primary)';
+                e.currentTarget.style.backgroundColor = 'var(--bg-surface)';
                 e.currentTarget.style.borderColor = 'var(--border-subtle)';
               }}
               data-cursor="Arriba"

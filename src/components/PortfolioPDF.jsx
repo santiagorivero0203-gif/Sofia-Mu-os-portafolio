@@ -321,10 +321,10 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
             onClick={onClose}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 20 }}
+              initial={{ opacity: 0, scale: 0.96, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.94, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, scale: 0.96, y: 15 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
               style={{
                 position: 'relative',
@@ -333,11 +333,11 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                 maxHeight: '90vh',
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: '#0f1524',
-                border: '1px solid var(--border-gold)',
-                borderRadius: 'var(--radius-xl)',
+                backgroundColor: '#0b1528',
+                border: '1px solid var(--accent-gold)',
+                borderRadius: '2px',
                 overflow: 'hidden',
-                boxShadow: '0 30px 90px rgba(0, 0, 0, 0.85)'
+                boxShadow: '10px 10px 0px #060b16'
               }}
             >
               {/* Barra Superior del Modal */}
@@ -348,7 +348,7 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                   alignItems: 'center',
                   padding: '1.25rem 1.75rem',
                   borderBottom: '1px solid var(--border-subtle)',
-                  backgroundColor: 'rgba(10, 14, 23, 0.9)'
+                  backgroundColor: 'var(--bg-secondary)'
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
@@ -366,20 +366,10 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <button
                     onClick={handlePrint}
-                    className="btn-magnetic"
+                    className="btn-magnetic btn-gold"
                     style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
                       padding: '0.55rem 1.15rem',
-                      backgroundColor: 'var(--accent-gold)',
-                      color: '#0a0e17',
-                      fontSize: '0.85rem',
-                      fontWeight: 700,
-                      borderRadius: 'var(--radius-full)',
-                      border: 'none',
-                      cursor: 'pointer',
-                      boxShadow: '0 4px 15px rgba(245, 158, 11, 0.3)'
+                      fontSize: '0.82rem'
                     }}
                     data-cursor="Imprimir"
                   >
@@ -393,8 +383,8 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                     style={{
                       width: '36px',
                       height: '36px',
-                      borderRadius: '50%',
-                      backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                      borderRadius: '2px',
+                      backgroundColor: 'var(--bg-surface)',
                       border: '1px solid var(--border-subtle)',
                       color: 'var(--text-primary)',
                       display: 'flex',

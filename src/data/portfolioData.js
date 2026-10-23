@@ -37,7 +37,7 @@ export const projects = [
     year: "2026",
     link: "https://app-lemon.vercel.app",
     featuredCover: "/assets/mova/revista.jpg",
-    accentColor: "#3b82f6",
+    accentColor: "#2e6ff2",
     overview: "MOVA es una plataforma de impacto social que traduce en tiempo real el lenguaje de señas a texto y voz mediante algoritmos de visión por computadora. Creada para tender puentes directos de comunicación entre la comunidad no oyente y el entorno oyente.",
     challenges: [
       "Superar las barreras de comunicación e inserción cotidiana para personas sordas o hipoacúsicas.",
@@ -105,7 +105,7 @@ export const projects = [
     year: "2026",
     link: "https://www.instagram.com/meraki_marka",
     featuredCover: "/assets/meraki/clothing.jpg",
-    accentColor: "#e0a990",
+    accentColor: "#ffd60a",
     overview: "Meraki es una firma venezolana de moda contemporánea. A través de mi rol como embajadora y creadora de contenido, he articulado una estrategia de comunicación enfocada en social selling, construcción de comunidad y dinamización de ventas.",
     challenges: [
       "Destacar en un mercado de retail altamente competitivo mediante autenticidad y cercanía.",

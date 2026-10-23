@@ -6,35 +6,35 @@
  */
 
 :root {
-  /* Paleta Cromática: Azul Zafiro & Amarillo Ámbar (Profesionalismo & Creatividad) */
-  --bg-primary: #0a0e17;
-  --bg-secondary: #0f1524;
-  --bg-surface: rgba(18, 26, 44, 0.65);
-  --bg-surface-hover: rgba(28, 38, 62, 0.85);
-  --bg-surface-active: rgba(37, 99, 235, 0.12);
+  /* Paleta Cromática: Azul Institucional MOVA & Amarillo Vibrante Sólido (Sin Degradados Neón / Cero AI Slop) */
+  --bg-primary: #0b1528;
+  --bg-secondary: #101e38;
+  --bg-surface: #132342;
+  --bg-surface-hover: #182b52;
+  --bg-surface-active: #1e3563;
 
-  --border-subtle: rgba(59, 130, 246, 0.12);
-  --border-hover: rgba(59, 130, 246, 0.28);
-  --border-gold: rgba(245, 158, 11, 0.42);
-  --border-blue: rgba(59, 130, 246, 0.35);
+  --border-subtle: #243b67;
+  --border-hover: #3b5a94;
+  --border-gold: #ffd60a;
+  --border-blue: #2e6ff2;
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-primary: #f4f7fc;
+  --text-secondary: #b0c0de;
+  --text-muted: #7289b5;
 
-  /* Amarillos & Oros (Creatividad, Optimismo & Valor Comercial) */
-  --accent-gold: #f59e0b;
-  --accent-gold-hover: #fbbf24;
-  --accent-gold-soft: rgba(245, 158, 11, 0.14);
-  --accent-yellow-light: #fef08a;
+  /* Amarillo Vibrante Sólido (Creatividad, Energía & Conversión Comercial) */
+  --accent-gold: #ffd60a;
+  --accent-gold-hover: #ffe03d;
+  --accent-gold-soft: rgba(255, 214, 10, 0.1);
+  --accent-yellow-light: #fff078;
 
-  /* Azules (Profesionalismo, Estrategia & Tecnología) */
-  --accent-blue: #3b82f6;
-  --accent-blue-deep: #1d4ed8;
-  --accent-blue-soft: rgba(59, 130, 246, 0.14);
-  --accent-blue-sky: #38bdf8;
-  --accent-rose: #e0a990;
-  --accent-rose-soft: rgba(224, 169, 144, 0.14);
+  /* Azul Institucional MOVA (Profesionalismo, Estrategia & Tecnología) */
+  --accent-blue: #2e6ff2;
+  --accent-blue-deep: #1b4fd8;
+  --accent-blue-soft: rgba(46, 111, 242, 0.14);
+  --accent-blue-sky: #6ea0ff;
+  --accent-rose: #ffd60a;
+  --accent-rose-soft: rgba(255, 214, 10, 0.12);
 
   /* Tipografías Editoriales */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -50,13 +50,13 @@
   --text-caption: 0.85rem;
   --text-xs: 0.75rem;
 
-  /* Espaciado y Radios */
+  /* Espaciado y Geometría Editorial Arquitectónica (Evitando redondear todo) */
   --container-max: 1320px;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
-  --radius-full: 9999px;
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 4px;
+  --radius-full: 2px;
 
   /* Transiciones y Físicas */
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
@@ -209,14 +209,14 @@ body {
   }
 }
 
-/* Tarjeta Spotlight Bento con Iluminación Reactiva */
+/* Tarjeta Editorial Arquitectónica (Sólida, sin degradados neón) */
 .spotlight-card {
   position: relative;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: border-color 0.3s ease, transform 0.4s var(--ease-editorial), box-shadow 0.4s ease;
+  transition: border-color 0.25s ease, transform 0.35s var(--ease-editorial), background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .spotlight-card::before {
@@ -225,15 +225,13 @@ body {
   inset: -1px;
   border-radius: inherit;
   background: radial-gradient(
-    480px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-    rgba(245, 158, 11, 0.22),
-    rgba(59, 130, 246, 0.14) 35%,
-    rgba(255, 255, 255, 0.03) 55%,
-    transparent 75%
+    420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(255, 255, 255, 0.045),
+    transparent 65%
   );
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
   z-index: 1;
 }
 
@@ -242,11 +240,12 @@ body {
 }
 
 .spotlight-card:hover {
-  border-color: var(--border-hover);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  border-color: var(--accent-gold);
+  background: var(--bg-surface-hover);
+  box-shadow: 6px 6px 0px #060b16;
 }
 
-/* Botón Magnético / Editorial */
+/* Botón Magnético / Editorial Rectangular */
 .btn-magnetic {
   display: inline-flex;
   align-items: center;
@@ -254,80 +253,85 @@ body {
   gap: 0.6rem;
   padding: 0.85rem 1.75rem;
   font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   text-decoration: none;
-  border-radius: var(--radius-full);
-  transition: transform 0.25s var(--ease-spring), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  border-radius: var(--radius-md);
+  transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   position: relative;
   cursor: pointer;
-  border: none;
+  border: 1px solid transparent;
 }
 
 .btn-primary {
-  background: var(--text-primary);
-  color: var(--bg-primary);
+  background: var(--accent-blue);
+  color: #ffffff;
+  border-color: var(--accent-blue);
 }
 
 .btn-primary:hover {
-  background: #ffffff;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  background: var(--accent-blue-deep);
+  box-shadow: 4px 4px 0px var(--accent-gold);
+  transform: translate(-2px, -2px);
 }
 
 .btn-outline {
-  background: transparent;
+  background: var(--bg-secondary);
   color: var(--text-primary);
   border: 1px solid var(--border-subtle);
 }
 
 .btn-outline:hover {
-  border-color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background: var(--bg-surface);
+  box-shadow: 4px 4px 0px #060b16;
+  transform: translate(-2px, -2px);
 }
 
 .btn-gold {
   background: var(--accent-gold);
-  color: #0b0c10;
-  font-weight: 700;
+  color: #0b1528;
+  font-weight: 800;
+  border: 1px solid var(--accent-gold);
 }
 
 .btn-gold:hover {
-  background: #e5c158;
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
-  transform: translateY(-2px);
+  background: var(--accent-gold-hover);
+  box-shadow: 4px 4px 0px #2e6ff2;
+  transform: translate(-2px, -2px);
 }
 
-/* Badges Editoriales */
+/* Etiquetas Editoriales Rectangulares (Sin píldoras redondeadas) */
 .badge-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.35rem 0.9rem;
+  padding: 0.35rem 0.75rem;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.73rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
 }
 
 .badge-pill.status-active {
-  border-color: rgba(34, 197, 94, 0.3);
-  color: #86efac;
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background: rgba(255, 214, 10, 0.08);
 }
 
 .status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #22c55e;
-  box-shadow: 0 0 8px #22c55e;
-  animation: pulse-glow 2s infinite ease-in-out;
+  width: 7px;
+  height: 7px;
+  border-radius: 0px;
+  background-color: var(--accent-gold);
 }
 
 @keyframes pulse-glow {

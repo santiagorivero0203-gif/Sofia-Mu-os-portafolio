@@ -87,7 +87,7 @@ const AppContent = () => {
   }, [selectedProject, isPdfOpen]);
 
   return (
-    <div className="relative min-h-screen bg-[#0a0e17] text-[#f8fafc]">
+    <div className="relative min-h-screen bg-[#0b1528] text-[#f4f7fc]">
       {/* Capa de Grano Analógico SVG */}
       <NoiseOverlay />
 

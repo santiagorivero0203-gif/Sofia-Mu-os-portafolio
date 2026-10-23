@@ -40,16 +40,15 @@ export const Hero = ({ lenisInstance }) => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotX = -((y - centerY) / centerY) * 10;
-    const rotY = ((x - centerX) / centerX) * 10;
+    const rotX = -((y - centerY) / centerY) * 6;
+    const rotY = ((x - centerX) / centerX) * 6;
 
     setTiltStyle({
-      transform: `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`
+      transform: `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`
     });
 
     setGlareStyle({
-      opacity: 0.15,
-      background: `radial-gradient(circle at ${x}px ${y}px, rgba(212, 175, 55, 0.4), transparent 60%)`
+      opacity: 0
     });
   };
 
@@ -165,8 +164,7 @@ export const Hero = ({ lenisInstance }) => {
                     className="italic-serif"
                     style={{
                       color: 'var(--accent-gold)',
-                      fontWeight: 400,
-                      textShadow: '0 0 40px rgba(212, 175, 55, 0.2)'
+                      fontWeight: 400
                     }}
                   >
                     estrategia comercial
@@ -235,15 +233,10 @@ export const Hero = ({ lenisInstance }) => {
                   trackEvent('pdf_modal_open', { origin: 'hero' });
                   openPdfModal();
                 }}
-                className="btn-magnetic btn-outline"
-                style={{
-                  borderColor: 'var(--border-blue)',
-                  color: 'var(--accent-blue-sky)',
-                  backgroundColor: 'rgba(59, 130, 246, 0.08)'
-                }}
+                className="btn-magnetic btn-primary"
                 data-cursor="PDF"
               >
-                <FileDown size={15} />
+                <FileDown size={15} style={{ color: 'var(--accent-gold)' }} />
                 <span>Dossier PDF</span>
               </button>
             </motion.div>
@@ -265,11 +258,11 @@ export const Hero = ({ lenisInstance }) => {
                 <span>Validación en Vercel & Prensa</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-                <TrendingUp size={16} style={{ color: '#22c55e' }} />
+                <TrendingUp size={16} style={{ color: 'var(--accent-gold)' }} />
                 <span>Social Selling para Retail</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-                <Zap size={16} style={{ color: 'var(--accent-blue)' }} />
+                <Zap size={16} style={{ color: 'var(--accent-blue-sky)' }} />
                 <span>Visión Artificial en Tiempo Real</span>
               </div>
             </motion.div>
@@ -278,9 +271,9 @@ export const Hero = ({ lenisInstance }) => {
           {/* COLUMNA DERECHA: Tarjeta Insignia Editorial con 3D Tilt Perspectivado */}
           <div style={{ gridColumn: 'span 5', display: 'flex', justifyContent: 'center' }}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 30 }}
+              initial={{ opacity: 0, scale: 0.96, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               ref={cardRef}
               onMouseMove={handleCardMouseMove}
               onMouseLeave={handleCardMouseLeave}
@@ -289,48 +282,33 @@ export const Hero = ({ lenisInstance }) => {
                 position: 'relative',
                 width: '100%',
                 maxWidth: '420px',
-                borderRadius: 'var(--radius-xl)',
-                backgroundColor: 'rgba(18, 19, 25, 0.85)',
-                border: '1px solid var(--border-gold)',
-                boxShadow: '0 30px 80px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.1)',
+                borderRadius: '2px',
+                backgroundColor: '#101e38',
+                border: '1px solid var(--accent-gold)',
+                boxShadow: '8px 8px 0px #060b16',
                 padding: '2rem',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                transition: 'transform 0.15s ease-out, box-shadow 0.3s ease',
+                transition: 'transform 0.15s ease-out, box-shadow 0.25s ease',
                 cursor: 'pointer'
               }}
               data-cursor="Sofia"
             >
-              {/* Reflejo Especular Dinámico */}
-              <div
-                style={{
-                  ...glareStyle,
-                  position: 'absolute',
-                  inset: 0,
-                  borderRadius: 'inherit',
-                  pointerEvents: 'none',
-                  transition: 'opacity 0.2s ease',
-                  zIndex: 2
-                }}
-              />
-
               {/* Encabezado de la Tarjeta */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div
                     style={{
-                      width: '46px',
-                      height: '46px',
-                      borderRadius: '50%',
-                      background: 'linear-gradient(135deg, var(--accent-gold), #8c7322)',
-                      color: '#000',
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: '2px',
+                      backgroundColor: 'var(--accent-gold)',
+                      color: '#0b1528',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       fontFamily: 'var(--font-display)',
-                      fontWeight: 700,
+                      fontWeight: 800,
                       fontSize: '1.15rem',
-                      boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+                      border: '1px solid var(--accent-gold)'
                     }}
                   >
                     SM
@@ -339,13 +317,13 @@ export const Hero = ({ lenisInstance }) => {
                     <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 600 }}>
                       Sofia Muñoz
                     </div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontFamily: 'var(--font-mono)' }}>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
                       Asesora Comercial
                     </div>
                   </div>
                 </div>
 
-                <span className="badge-pill" style={{ fontSize: '0.7rem' }}>
+                <span className="badge-pill" style={{ fontSize: '0.7rem', borderColor: 'var(--accent-blue)', color: '#fff' }}>
                   '26
                 </span>
               </div>
@@ -356,11 +334,11 @@ export const Hero = ({ lenisInstance }) => {
                   position: 'relative',
                   width: '100%',
                   height: '220px',
-                  borderRadius: 'var(--radius-md)',
+                  borderRadius: '2px',
                   overflow: 'hidden',
                   marginBottom: '1.5rem',
                   border: '1px solid var(--border-subtle)',
-                  backgroundColor: '#000'
+                  backgroundColor: '#060b16'
                 }}
               >
                 <img
@@ -377,32 +355,29 @@ export const Hero = ({ lenisInstance }) => {
                 <div
                   style={{
                     position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(to top, rgba(11, 12, 16, 0.9) 0%, transparent 60%)'
-                  }}
-                />
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '0.75rem',
-                    left: '0.75rem',
-                    right: '0.75rem',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    backgroundColor: 'rgba(11, 21, 40, 0.92)',
+                    borderTop: '1px solid var(--border-subtle)',
+                    padding: '0.55rem 0.75rem',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center'
                   }}
                 >
-                  <span style={{ fontSize: '0.75rem', color: '#fff', fontWeight: 500 }}>
+                  <span style={{ fontSize: '0.75rem', color: '#fff', fontWeight: 600 }}>
                     Caso Destacado: MOVA
                   </span>
                   <span
                     style={{
                       fontSize: '0.7rem',
                       fontFamily: 'var(--font-mono)',
-                      color: 'var(--accent-gold)',
-                      backgroundColor: 'rgba(0,0,0,0.6)',
+                      color: '#0b1528',
+                      backgroundColor: 'var(--accent-gold)',
+                      fontWeight: 700,
                       padding: '0.15rem 0.5rem',
-                      borderRadius: '4px'
+                      borderRadius: '0px'
                     }}
                   >
                     Portada Prensa

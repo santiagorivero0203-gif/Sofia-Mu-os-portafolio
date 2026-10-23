@@ -159,3 +159,16 @@ Aparte quiero incluir las competencias en las que ella ha participado, revisa la
   3. Integración en `portfolioData.js` con una sección dedicada de `competitions` y reconocimientos.
   4. Creación del componente interactivo `CompetitionsSection.jsx` con Bento Spotlight y visor lightbox de evidencias.
   5. Actualización del dossier PDF imprimible y de la navegación.
+
+---
+
+### Prompt 15 — Dirección de Arte Anti-AI Slop: Azul MOVA, Amarillo Vibrante Sólido y Geometría Editorial Recta
+- **Fecha y Hora:** 2026-10-23 18:19:50 (-04:00)
+- **Contenido:**
+```text
+Quisiera que usaras un color azul mas parecido a el de mova y un amarillo un poco mas chillon evitando los degradados neon para mejorar la estetica de la pagina y evitar la ai slop, aparte de evitar redondear absolutamente todo ya que es otro sintoma de esto mismo.
+```
+- **Acción realizada:**
+  1. Redefinición cromática inspirada directamente en la interfaz de MOVA (`#0B1528`, `#111F3A`, `#162849`, azul sólido `#2E6FF2`) combinada con un amarillo vibrante, puro y sólido (`#FFD60A` / `#FFCC00`).
+  2. Eliminación total de degradados neón, resplandores difusos (`text-shadow`/`box-shadow` luminosos) y efectos genéricos de "AI slop".
+  3. Reestructuración geométrica hacia un diseño editorial arquitectónico de esquinas rectas y micro-biseladas (`0px`, `2px`, `4px`), eliminando las píldoras (`9999px`) y bordes hiper-redondeados en tarjetas, botones, navbar, badges y modales.

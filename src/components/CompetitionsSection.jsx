@@ -77,7 +77,7 @@ export const CompetitionsSection = () => {
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 minHeight: '520px',
-                backgroundColor: 'rgba(15, 21, 36, 0.75)',
+                backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)'
               }}
             >
@@ -87,9 +87,10 @@ export const CompetitionsSection = () => {
                   <span
                     className="badge-pill"
                     style={{
-                      borderColor: comp.id.includes('kurios') ? 'var(--border-gold)' : 'var(--border-blue)',
-                      color: comp.id.includes('kurios') ? 'var(--accent-gold)' : 'var(--accent-blue-sky)',
-                      backgroundColor: comp.id.includes('kurios') ? 'rgba(245, 158, 11, 0.12)' : 'rgba(59, 130, 246, 0.12)'
+                      borderColor: comp.id.includes('kurios') ? 'var(--accent-gold)' : 'var(--accent-blue)',
+                      color: comp.id.includes('kurios') ? '#0b1528' : '#ffffff',
+                      backgroundColor: comp.id.includes('kurios') ? 'var(--accent-gold)' : 'var(--accent-blue)',
+                      fontWeight: 700
                     }}
                   >
                     <Award size={13} />
@@ -233,10 +234,10 @@ export const CompetitionsSection = () => {
                 right: '1.5rem',
                 width: '44px',
                 height: '44px',
-                borderRadius: '50%',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                color: '#fff',
+                borderRadius: '2px',
+                backgroundColor: 'var(--accent-gold)',
+                border: '1px solid var(--accent-gold)',
+                color: '#0b1528',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

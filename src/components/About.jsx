@@ -172,7 +172,7 @@ export const About = () => {
               onMouseMove={handleMouseMove}
               style={{
                 padding: '2.25rem',
-                backgroundColor: 'rgba(18, 19, 25, 0.75)',
+                backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)'
               }}
             >
@@ -193,7 +193,7 @@ export const About = () => {
                     bottom: '15px',
                     left: '11px',
                     width: '1px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                    backgroundColor: 'var(--border-subtle)'
                   }}
                 />
 
@@ -206,13 +206,13 @@ export const About = () => {
                     transition={{ duration: 0.5, delay: idx * 0.15 }}
                     style={{ display: 'flex', gap: '1.25rem', position: 'relative' }}
                   >
-                    {/* Punto del timeline */}
+                    {/* Punto cuadrado arquitectónico del timeline */}
                     <div
                       style={{
                         width: '24px',
                         height: '24px',
-                        borderRadius: '50%',
-                        backgroundColor: '#0b0c10',
+                        borderRadius: '2px',
+                        backgroundColor: 'var(--bg-primary)',
                         border: `2px solid ${item.accent}`,
                         display: 'flex',
                         alignItems: 'center',
@@ -222,7 +222,7 @@ export const About = () => {
                         marginTop: '2px'
                       }}
                     >
-                      <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: item.accent }} />
+                      <div style={{ width: '8px', height: '8px', borderRadius: '0px', backgroundColor: item.accent }} />
                     </div>
 
                     {/* Contenido del hito */}

@@ -92,9 +92,9 @@ export const ContactSection = () => {
           className="spotlight-card"
           style={{
             padding: 'clamp(2rem, 5vw, 4.5rem)',
-            background: 'linear-gradient(135deg, rgba(15, 21, 36, 0.96), rgba(10, 14, 23, 0.98))',
-            borderColor: 'var(--border-gold)',
-            boxShadow: '0 30px 90px rgba(0, 0, 0, 0.7), 0 0 35px rgba(59, 130, 246, 0.08)'
+            backgroundColor: 'var(--bg-secondary)',
+            borderColor: 'var(--accent-gold)',
+            boxShadow: '10px 10px 0px #060b16'
           }}
         >
           <div style={{ maxWidth: '840px', margin: '0 auto' }}>
@@ -186,12 +186,12 @@ export const ContactSection = () => {
                       }}
                       style={{
                         padding: '0.55rem 1.1rem',
-                        borderRadius: 'var(--radius-full)',
-                        fontSize: '0.86rem',
-                        fontWeight: isSelected ? 600 : 400,
-                        backgroundColor: isSelected ? 'rgba(212, 175, 55, 0.16)' : 'rgba(255, 255, 255, 0.03)',
+                        borderRadius: '2px',
+                        fontSize: '0.84rem',
+                        fontWeight: isSelected ? 700 : 500,
+                        backgroundColor: isSelected ? 'var(--accent-gold)' : 'var(--bg-surface)',
                         border: `1px solid ${isSelected ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                        color: isSelected ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                        color: isSelected ? '#0b1528' : 'var(--text-secondary)',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease'
                       }}
@@ -207,9 +207,9 @@ export const ContactSection = () => {
             {/* Generador de Mensaje Rápido */}
             <div
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                backgroundColor: 'var(--bg-primary)',
                 border: '1px solid var(--border-subtle)',
-                borderRadius: 'var(--radius-lg)',
+                borderRadius: '2px',
                 padding: '1.5rem',
                 marginBottom: '2.5rem'
               }}
@@ -243,8 +243,8 @@ export const ContactSection = () => {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.9rem',
-                      borderRadius: 'var(--radius-md)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                      borderRadius: '2px',
+                      backgroundColor: 'var(--bg-secondary)',
                       border: '1px solid var(--border-subtle)',
                       color: 'var(--text-primary)',
                       fontSize: '0.88rem',
@@ -274,8 +274,8 @@ export const ContactSection = () => {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.9rem',
-                      borderRadius: 'var(--radius-md)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                      borderRadius: '2px',
+                      backgroundColor: 'var(--bg-secondary)',
                       border: '1px solid var(--border-subtle)',
                       color: 'var(--text-primary)',
                       fontSize: '0.88rem',
@@ -288,9 +288,9 @@ export const ContactSection = () => {
               {/* Vista Previa del Mensaje Estructurado */}
               <div
                 style={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                  border: '1px dashed var(--border-subtle)',
-                  borderRadius: 'var(--radius-md)',
+                  backgroundColor: '#060b16',
+                  border: '1px solid var(--border-subtle)',
+                  borderRadius: '2px',
                   padding: '0.85rem 1rem',
                   fontSize: '0.84rem',
                   color: 'var(--text-secondary)',
@@ -299,7 +299,7 @@ export const ContactSection = () => {
                   marginBottom: '1.25rem'
                 }}
               >
-                <span style={{ color: 'var(--accent-gold)' }}>Mensaje preparado: </span>
+                <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>Mensaje preparado: </span>
                 "{buildMessage()}"
               </div>
 
@@ -317,20 +317,11 @@ export const ContactSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleWhatsAppSubmit}
-                  className="btn-magnetic"
+                  className="btn-magnetic btn-gold"
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.6rem',
                     padding: '0.9rem 1.5rem',
-                    borderRadius: 'var(--radius-full)',
-                    backgroundColor: '#22c55e',
-                    color: '#000',
-                    fontWeight: 600,
-                    fontSize: '0.92rem',
-                    textDecoration: 'none',
-                    boxShadow: '0 4px 20px rgba(34, 197, 94, 0.3)'
+                    fontSize: '0.9rem',
+                    textDecoration: 'none'
                   }}
                   data-cursor="WhatsApp"
                 >
@@ -343,19 +334,10 @@ export const ContactSection = () => {
                 <a
                   href={generateMailtoUrl()}
                   onClick={handleEmailSubmit}
-                  className="btn-magnetic"
+                  className="btn-magnetic btn-primary"
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.6rem',
                     padding: '0.9rem 1.5rem',
-                    borderRadius: 'var(--radius-full)',
-                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                    border: '1px solid var(--border-subtle)',
-                    color: 'var(--text-primary)',
-                    fontWeight: 600,
-                    fontSize: '0.92rem',
+                    fontSize: '0.9rem',
                     textDecoration: 'none'
                   }}
                   data-cursor="Email"
@@ -386,20 +368,21 @@ export const ContactSection = () => {
                   alignItems: 'center',
                   gap: '0.6rem',
                   padding: '0.65rem 1.25rem',
-                  borderRadius: 'var(--radius-full)',
-                  backgroundColor: copiedEmail ? 'rgba(34, 197, 94, 0.15)' : 'rgba(255, 255, 255, 0.04)',
-                  border: `1px solid ${copiedEmail ? 'rgba(34, 197, 94, 0.4)' : 'var(--border-subtle)'}`,
-                  color: copiedEmail ? '#86efac' : 'var(--text-primary)',
+                  borderRadius: '2px',
+                  backgroundColor: copiedEmail ? 'var(--accent-gold)' : 'var(--bg-surface)',
+                  border: `1px solid ${copiedEmail ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
+                  color: copiedEmail ? '#0b1528' : 'var(--text-primary)',
                   fontSize: '0.86rem',
+                  fontWeight: copiedEmail ? 700 : 500,
                   cursor: 'pointer',
                   transition: 'all 0.2s ease'
                 }}
                 data-cursor="Copiar"
               >
-                <Mail size={15} style={{ color: 'var(--accent-gold)' }} />
+                <Mail size={15} style={{ color: copiedEmail ? '#0b1528' : 'var(--accent-gold)' }} />
                 <span style={{ fontFamily: 'var(--font-mono)' }}>{personalInfo.contact.email}</span>
                 {copiedEmail ? <Check size={14} /> : <Copy size={14} />}
-                <span style={{ fontSize: '0.78rem', color: copiedEmail ? '#86efac' : 'var(--text-muted)' }}>
+                <span style={{ fontSize: '0.78rem', color: copiedEmail ? '#0b1528' : 'var(--text-muted)' }}>
                   {copiedEmail ? '¡Copiado!' : 'Copiar'}
                 </span>
               </button>
@@ -413,8 +396,8 @@ export const ContactSection = () => {
                     alignItems: 'center',
                     gap: '0.5rem',
                     padding: '0.65rem 1.1rem',
-                    borderRadius: 'var(--radius-full)',
-                    backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                    borderRadius: '2px',
+                    backgroundColor: 'var(--bg-surface)',
                     border: '1px solid var(--border-subtle)',
                     color: 'var(--text-primary)',
                     fontSize: '0.86rem',
@@ -422,7 +405,7 @@ export const ContactSection = () => {
                   }}
                   data-cursor="Llamar"
                 >
-                  <Phone size={15} />
+                  <Phone size={15} style={{ color: 'var(--accent-gold)' }} />
                   <span>{personalInfo.contact.phoneFormatted}</span>
                 </a>
 
@@ -433,10 +416,10 @@ export const ContactSection = () => {
                   style={{
                     width: '38px',
                     height: '38px',
-                    borderRadius: '50%',
-                    backgroundColor: copiedPhone ? 'rgba(34, 197, 94, 0.15)' : 'rgba(255, 255, 255, 0.04)',
-                    border: `1px solid ${copiedPhone ? 'rgba(34, 197, 94, 0.4)' : 'var(--border-subtle)'}`,
-                    color: copiedPhone ? '#86efac' : 'var(--text-primary)',
+                    borderRadius: '2px',
+                    backgroundColor: copiedPhone ? 'var(--accent-gold)' : 'var(--bg-surface)',
+                    border: `1px solid ${copiedPhone ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
+                    color: copiedPhone ? '#0b1528' : 'var(--text-primary)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

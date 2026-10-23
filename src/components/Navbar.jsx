@@ -98,15 +98,13 @@ export const Navbar = ({ lenisInstance }) => {
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: '1rem',
-          padding: '0.6rem 1.15rem',
-          borderRadius: 'var(--radius-full)',
-          background: scrolled ? 'rgba(10, 14, 23, 0.92)' : 'rgba(15, 21, 36, 0.75)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          padding: '0.65rem 1.25rem',
+          borderRadius: '2px',
+          background: scrolled ? '#0b1528' : '#101e38',
           border: '1px solid var(--border-subtle)',
-          boxShadow: scrolled ? '0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.08)' : 'none',
-          transition: 'background 0.3s ease, box-shadow 0.3s ease',
-          maxWidth: '1060px',
+          boxShadow: scrolled ? '4px 4px 0px #060b16' : 'none',
+          transition: 'background 0.25s ease, box-shadow 0.25s ease',
+          maxWidth: '1120px',
           width: '100%'
         }}
       >
@@ -212,18 +210,20 @@ export const Navbar = ({ lenisInstance }) => {
               alignItems: 'center',
               gap: '0.4rem',
               padding: '0.45rem 0.85rem',
-              borderRadius: 'var(--radius-full)',
-              backgroundColor: 'rgba(59, 130, 246, 0.12)',
-              border: '1px solid var(--border-blue)',
-              color: 'var(--accent-blue-sky)',
-              fontSize: '0.8rem',
-              fontWeight: 600,
+              borderRadius: '2px',
+              backgroundColor: 'var(--bg-surface)',
+              border: '1px solid var(--accent-blue)',
+              color: '#ffffff',
+              fontSize: '0.78rem',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.04em',
               cursor: 'pointer',
               transition: 'all 0.2s ease'
             }}
             data-cursor="PDF"
           >
-            <FileDown size={14} />
+            <FileDown size={14} style={{ color: 'var(--accent-gold)' }} />
             <span className="desktop-nav-links">PDF</span>
           </button>
 
@@ -235,8 +235,8 @@ export const Navbar = ({ lenisInstance }) => {
             style={{
               width: '34px',
               height: '34px',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(255, 255, 255, 0.04)',
+              borderRadius: '2px',
+              backgroundColor: 'var(--bg-surface)',
               border: '1px solid var(--border-subtle)',
               color: soundEnabled ? 'var(--accent-gold)' : 'var(--text-muted)',
               display: 'flex',
@@ -255,17 +255,15 @@ export const Navbar = ({ lenisInstance }) => {
             href={personalInfo.contact.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-magnetic btn-primary desktop-nav-links"
+            className="btn-magnetic btn-gold desktop-nav-links"
             style={{
               padding: '0.45rem 0.95rem',
-              fontSize: '0.82rem',
-              backgroundColor: 'var(--text-primary)',
-              color: 'var(--bg-primary)'
+              fontSize: '0.78rem'
             }}
             onClick={() => trackEvent('whatsapp_click', { origin: 'navbar' })}
             data-cursor="Chat"
           >
-            <MessageCircle size={14} style={{ color: '#22c55e' }} />
+            <MessageCircle size={14} />
             <span>Contactar</span>
             <ArrowUpRight size={13} />
           </a>
@@ -280,8 +278,8 @@ export const Navbar = ({ lenisInstance }) => {
             style={{
               width: '36px',
               height: '36px',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              borderRadius: '2px',
+              backgroundColor: 'var(--bg-surface)',
               border: '1px solid var(--border-subtle)',
               color: 'var(--text-primary)',
               display: 'none',
@@ -300,23 +298,21 @@ export const Navbar = ({ lenisInstance }) => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.96 }}
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.96 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             style={{
               pointerEvents: 'auto',
               position: 'absolute',
               top: '4.2rem',
               left: '1rem',
               right: '1rem',
-              backgroundColor: 'rgba(10, 14, 23, 0.96)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-              border: '1px solid var(--border-gold)',
-              borderRadius: 'var(--radius-lg)',
+              backgroundColor: '#0b1528',
+              border: '1px solid var(--accent-gold)',
+              borderRadius: '2px',
               padding: '1.5rem',
-              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.85)',
+              boxShadow: '8px 8px 0px #060b16',
               zIndex: 49
             }}
           >
@@ -331,9 +327,9 @@ export const Navbar = ({ lenisInstance }) => {
                     color: activeSection === link.id ? 'var(--accent-gold)' : 'var(--text-primary)',
                     textDecoration: 'none',
                     fontSize: '1.1rem',
-                    fontWeight: 600,
+                    fontWeight: 700,
                     padding: '0.4rem 0',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+                    borderBottom: '1px solid var(--border-subtle)'
                   }}
                 >
                   {link.label}
@@ -352,16 +348,17 @@ export const Navbar = ({ lenisInstance }) => {
                   justifyContent: 'center',
                   gap: '0.5rem',
                   padding: '0.75rem',
-                  borderRadius: 'var(--radius-full)',
-                  backgroundColor: 'rgba(59, 130, 246, 0.15)',
-                  border: '1px solid var(--border-blue)',
-                  color: 'var(--accent-blue-sky)',
-                  fontWeight: 600,
-                  fontSize: '0.9rem',
+                  borderRadius: '2px',
+                  backgroundColor: 'var(--bg-surface)',
+                  border: '1px solid var(--accent-blue)',
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '0.88rem',
+                  textTransform: 'uppercase',
                   cursor: 'pointer'
                 }}
               >
-                <FileDown size={16} />
+                <FileDown size={16} style={{ color: 'var(--accent-gold)' }} />
                 <span>Descargar Portafolio (PDF)</span>
               </button>
 
@@ -380,11 +377,12 @@ export const Navbar = ({ lenisInstance }) => {
                   justifyContent: 'center',
                   gap: '0.5rem',
                   padding: '0.75rem',
-                  borderRadius: 'var(--radius-full)',
-                  backgroundColor: '#22c55e',
-                  color: '#000',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
+                  borderRadius: '2px',
+                  backgroundColor: 'var(--accent-gold)',
+                  color: '#0b1528',
+                  fontWeight: 800,
+                  fontSize: '0.88rem',
+                  textTransform: 'uppercase',
                   textDecoration: 'none'
                 }}
               >

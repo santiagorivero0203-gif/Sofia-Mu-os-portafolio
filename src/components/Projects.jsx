@@ -87,10 +87,10 @@ export const Projects = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: 'rgba(255, 255, 255, 0.04)',
+              backgroundColor: 'var(--bg-secondary)',
               border: '1px solid var(--border-subtle)',
-              borderRadius: 'var(--radius-full)',
-              padding: '0.25rem'
+              borderRadius: '2px',
+              padding: '0.2rem'
             }}
           >
             <button
@@ -100,12 +100,13 @@ export const Projects = () => {
                 alignItems: 'center',
                 gap: '0.4rem',
                 padding: '0.45rem 1rem',
-                borderRadius: 'var(--radius-full)',
+                borderRadius: '2px',
                 border: 'none',
-                background: viewMode === 'grid' ? 'var(--text-primary)' : 'transparent',
-                color: viewMode === 'grid' ? 'var(--bg-primary)' : 'var(--text-secondary)',
-                fontSize: '0.85rem',
-                fontWeight: 600,
+                background: viewMode === 'grid' ? 'var(--accent-gold)' : 'transparent',
+                color: viewMode === 'grid' ? '#0b1528' : 'var(--text-secondary)',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
@@ -122,12 +123,13 @@ export const Projects = () => {
                 alignItems: 'center',
                 gap: '0.4rem',
                 padding: '0.45rem 1rem',
-                borderRadius: 'var(--radius-full)',
+                borderRadius: '2px',
                 border: 'none',
-                background: viewMode === 'table' ? 'var(--text-primary)' : 'transparent',
-                color: viewMode === 'table' ? 'var(--bg-primary)' : 'var(--text-secondary)',
-                fontSize: '0.85rem',
-                fontWeight: 600,
+                background: viewMode === 'table' ? 'var(--accent-gold)' : 'transparent',
+                color: viewMode === 'table' ? '#0b1528' : 'var(--text-secondary)',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
@@ -159,14 +161,16 @@ export const Projects = () => {
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
                   style={{
-                    padding: '0.4rem 0.9rem',
-                    borderRadius: 'var(--radius-full)',
-                    fontSize: '0.82rem',
-                    fontWeight: isActive ? 600 : 400,
+                    padding: '0.45rem 0.95rem',
+                    borderRadius: '2px',
+                    fontSize: '0.8rem',
+                    fontWeight: isActive ? 700 : 500,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.03em',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
-                    backgroundColor: isActive ? 'rgba(212, 175, 55, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-                    color: isActive ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                    backgroundColor: isActive ? 'var(--accent-gold)' : 'var(--bg-secondary)',
+                    color: isActive ? '#0b1528' : 'var(--text-secondary)',
                     border: `1px solid ${isActive ? 'var(--accent-gold)' : 'var(--border-subtle)'}`
                   }}
                   data-cursor="Filtro"
@@ -203,14 +207,14 @@ export const Projects = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
-                padding: '0.45rem 2rem 0.45rem 2.25rem',
-                borderRadius: 'var(--radius-full)',
-                backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                padding: '0.5rem 2rem 0.5rem 2.25rem',
+                borderRadius: '2px',
+                backgroundColor: 'var(--bg-secondary)',
                 border: '1px solid var(--border-subtle)',
                 color: 'var(--text-primary)',
                 fontSize: '0.84rem',
                 outline: 'none',
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-sans)',
                 transition: 'border-color 0.2s ease'
               }}
               onFocus={(e) => (e.target.style.borderColor = 'var(--accent-gold)')}
@@ -400,16 +404,12 @@ export const Projects = () => {
                     <div
                       style={{
                         position: 'absolute',
-                        inset: 0,
-                        background: 'linear-gradient(to top, rgba(11,12,16,0.9) 0%, transparent 60%)'
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: '1rem',
-                        left: '1rem',
-                        right: '1rem',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        backgroundColor: 'rgba(11, 21, 40, 0.92)',
+                        borderTop: '1px solid var(--border-subtle)',
+                        padding: '0.6rem 0.85rem',
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center'
@@ -417,26 +417,24 @@ export const Projects = () => {
                     >
                       <span
                         style={{
-                          fontSize: '0.78rem',
+                          fontSize: '0.76rem',
                           fontFamily: 'var(--font-mono)',
-                          color: 'var(--text-secondary)',
-                          backgroundColor: 'rgba(0,0,0,0.6)',
-                          padding: '0.2rem 0.5rem',
-                          borderRadius: '4px'
+                          color: 'var(--text-primary)',
+                          fontWeight: 600
                         }}
                       >
                         {project.gallery.length} Evidencias
                       </span>
                       <div
                         style={{
-                          width: '32px',
-                          height: '32px',
-                          borderRadius: '50%',
-                          backgroundColor: 'rgba(255,255,255,0.12)',
+                          width: '30px',
+                          height: '30px',
+                          borderRadius: '2px',
+                          backgroundColor: 'var(--accent-gold)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          color: 'var(--text-primary)'
+                          color: '#0b1528'
                         }}
                       >
                         <ArrowUpRight size={16} />

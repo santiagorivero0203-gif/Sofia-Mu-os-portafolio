@@ -49,17 +49,15 @@ export const ProjectModal = () => {
           alignItems: 'center',
           justifyContent: 'center',
           padding: '1.5rem',
-          backgroundColor: 'rgba(5, 6, 9, 0.85)',
-          backdropFilter: 'blur(16px)',
-          WebkitBackdropFilter: 'blur(16px)'
+          backgroundColor: 'rgba(6, 11, 22, 0.92)'
         }}
         onClick={closeProjectModal}
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          initial={{ opacity: 0, scale: 0.97, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          exit={{ opacity: 0, scale: 0.97, y: 15 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           onClick={(e) => e.stopPropagation()}
           style={{
             position: 'relative',
@@ -67,12 +65,12 @@ export const ProjectModal = () => {
             maxWidth: '1020px',
             maxHeight: '90vh',
             overflowY: 'auto',
-            backgroundColor: '#0f1015',
-            border: '1px solid var(--border-hover)',
-            borderRadius: 'var(--radius-xl)',
+            backgroundColor: '#0b1528',
+            border: '1px solid var(--accent-gold)',
+            borderRadius: '2px',
             padding: '2.25rem',
             color: 'var(--text-primary)',
-            boxShadow: '0 30px 90px rgba(0, 0, 0, 0.85)'
+            boxShadow: '10px 10px 0px #060b16'
           }}
         >
           {/* Barra Superior de Control: Navegación de Proyectos + Botón Cerrar */}
@@ -95,13 +93,14 @@ export const ProjectModal = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.3rem',
-                  padding: '0.4rem 0.8rem',
-                  borderRadius: 'var(--radius-full)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  padding: '0.45rem 0.85rem',
+                  borderRadius: '2px',
+                  backgroundColor: 'var(--bg-surface)',
                   border: '1px solid var(--border-subtle)',
-                  color: 'var(--text-secondary)',
+                  color: 'var(--text-primary)',
                   cursor: 'pointer',
-                  fontSize: '0.8rem'
+                  fontSize: '0.8rem',
+                  fontWeight: 600
                 }}
                 data-cursor="Anterior"
               >
@@ -109,7 +108,7 @@ export const ProjectModal = () => {
                 <span>Anterior</span>
               </button>
 
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+              <span style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
                 {currentProjectIndex + 1} / {totalProjects}
               </span>
 
@@ -120,13 +119,14 @@ export const ProjectModal = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.3rem',
-                  padding: '0.4rem 0.8rem',
-                  borderRadius: 'var(--radius-full)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  padding: '0.45rem 0.85rem',
+                  borderRadius: '2px',
+                  backgroundColor: 'var(--bg-surface)',
                   border: '1px solid var(--border-subtle)',
-                  color: 'var(--text-secondary)',
+                  color: 'var(--text-primary)',
                   cursor: 'pointer',
-                  fontSize: '0.8rem'
+                  fontSize: '0.8rem',
+                  fontWeight: 600
                 }}
                 data-cursor="Siguiente"
               >
@@ -143,18 +143,16 @@ export const ProjectModal = () => {
               style={{
                 width: '38px',
                 height: '38px',
-                borderRadius: '50%',
-                backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                border: '1px solid var(--border-subtle)',
-                color: 'var(--text-primary)',
+                borderRadius: '2px',
+                backgroundColor: 'var(--accent-gold)',
+                border: '1px solid var(--accent-gold)',
+                color: '#0b1528',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                transition: 'background-color 0.2s ease, transform 0.2s ease'
+                fontWeight: 700
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
               data-cursor="Cerrar"
             >
               <X size={18} />
@@ -442,10 +440,10 @@ export const ProjectModal = () => {
                   right: '1.5rem',
                   width: '44px',
                   height: '44px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(255,255,255,0.1)',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  color: '#fff',
+                  borderRadius: '2px',
+                  backgroundColor: 'var(--accent-gold)',
+                  border: '1px solid var(--accent-gold)',
+                  color: '#0b1528',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
