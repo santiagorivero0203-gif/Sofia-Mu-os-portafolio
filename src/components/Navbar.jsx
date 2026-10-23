@@ -68,6 +68,7 @@ export const Navbar = ({ lenisInstance }) => {
 
   const navLinks = [
     { id: 'proyectos', label: 'Proyectos' },
+    { id: 'competencias-premios', label: 'Logros 2026' },
     { id: 'sobre-mi', label: 'Sobre Mí' },
     { id: 'habilidades', label: 'Competencias' },
     { id: 'contacto', label: 'Contacto' }

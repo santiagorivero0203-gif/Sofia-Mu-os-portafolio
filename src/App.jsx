@@ -18,6 +18,7 @@ import { Preloader } from './components/Preloader';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
+import { CompetitionsSection } from './components/CompetitionsSection';
 import { About } from './components/About';
 import { SkillsGrid } from './components/SkillsGrid';
 import { ContactSection } from './components/ContactSection';
@@ -38,7 +39,7 @@ const AppContent = () => {
 
   // ScrollSpy para detectar la sección activa en el menú
   useScrollSpy(
-    ['inicio', 'proyectos', 'sobre-mi', 'habilidades', 'contacto'],
+    ['inicio', 'proyectos', 'competencias-premios', 'sobre-mi', 'habilidades', 'contacto'],
     setActiveSection,
     180
   );
@@ -103,6 +104,7 @@ const AppContent = () => {
       <main>
         <Hero lenisInstance={lenis} />
         <Projects />
+        <CompetitionsSection />
         <About />
         <SkillsGrid />
         <ContactSection />

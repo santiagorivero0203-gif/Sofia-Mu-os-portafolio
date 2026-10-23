@@ -19,9 +19,9 @@ export const personalInfo = {
     availability: "Disponible para roles comerciales y alianzas estratégicas"
   },
   stats: [
+    { label: "Premio Nacional 2026", value: "2do Lugar", suffix: " (Kurios & BNC)" },
     { label: "Proyectos Clave", value: "2", suffix: "" },
     { label: "Idiomas Traducidos en MOVA", value: "3", suffix: " (LSV/ASL/LSE)" },
-    { label: "Versión de Producto", value: "Beta V2.0", suffix: "" },
     { label: "Enfoque Comercial", value: "100%", suffix: " orientado a metas" }
   ]
 };
@@ -187,6 +187,61 @@ export const skillCategories = [
       { name: "Canales Digitales (Instagram / WhatsApp)", level: "Dominio" },
       { name: "CRM & Seguimiento de Clientes", level: "Dominio" },
       { name: "Plataformas Web (Vercel, Notion, Canva)", level: "Dominio" }
+    ]
+  }
+];
+
+export const competitions = [
+  {
+    id: "kurios-bnc-2026",
+    title: "Torneo Nacional de Robótica y Tecnología 2026",
+    organization: "Kurios Competition & Banco Nacional de Crédito (BNC)",
+    award: "2do Lugar — División Marketplace",
+    badge: "Subcampeonas Nacionales",
+    team: "Team Consolación Caracas",
+    location: "Caracas, Venezuela",
+    year: "2026",
+    accentColor: "var(--accent-gold)",
+    summary: "Subcampeonas nacionales en la división comercial y de mercado ante decenas de delegaciones de todo el país, validando la propuesta comercial, viabilidad de negocio y valor de impacto de la solución tecnológica.",
+    defense: "Lideré la estructuración de la propuesta de valor comercial, el pitch ante el jurado calificador y la argumentación estratégica de mercado.",
+    coverImage: "/assets/competitions/kurios_podio_marketplace.jpg",
+    gallery: [
+      {
+        src: "/assets/competitions/kurios_podio_marketplace.jpg",
+        caption: "Podio Nacional — 2do Lugar División Marketplace (Kurios Competition: 'Donde las cosas pasan')"
+      },
+      {
+        src: "/assets/competitions/kurios_diplomas_2do_lugar.jpg",
+        caption: "Entrega de Diplomas Oficiales y Medallas de Reconocimiento — Kurios & BNC 2026"
+      },
+      {
+        src: "/assets/competitions/kurios_celebracion.jpg",
+        caption: "Celebración del equipo tras el anuncio del 2do lugar nacional en la división Marketplace"
+      }
+    ]
+  },
+  {
+    id: "pitchday-unimet-2026",
+    title: "Pitchday de Innovación & Emprendimiento UNIMET",
+    organization: "Universidad Metropolitana (UNIMET)",
+    award: "Defensa Comercial Ejecutiva",
+    badge: "Pitch & Negociación",
+    team: "Delegación Nuestra Señora de la Consolación",
+    location: "Campus UNIMET, Caracas",
+    year: "2026",
+    accentColor: "var(--accent-blue)",
+    summary: "Jornada de pitch ejecutivo en el campus de la Universidad Metropolitana ante evaluadores corporativos, mentores de negocio e inversionistas del ecosistema de innovación.",
+    defense: "Defensa presencial de la propuesta de valor comercial ante evaluadores del sector empresarial, resolviendo preguntas críticas de monetización y adopción de usuarios.",
+    coverImage: "/assets/competitions/unimet_pitch_ejecutivo.jpg",
+    gallery: [
+      {
+        src: "/assets/competitions/unimet_pitch_ejecutivo.jpg",
+        caption: "Pitch Directo — Sofia Muñoz en plena defensa y negociación comercial con evaluador corporativo"
+      },
+      {
+        src: "/assets/competitions/unimet_campus_letras.jpg",
+        caption: "Delegación en el emblemático campus de la Universidad Metropolitana (UNIMET) en Caracas"
+      }
     ]
   }
 ];

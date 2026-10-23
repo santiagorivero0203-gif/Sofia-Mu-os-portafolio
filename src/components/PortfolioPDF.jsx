@@ -7,8 +7,8 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Download, Printer, X, FileText, CheckCircle2, Mail, Phone, ExternalLink } from 'lucide-react';
-import { personalInfo, projects, skillCategories } from '../data/portfolioData';
+import { Download, Printer, X, FileText, CheckCircle2, Mail, Phone, ExternalLink, Trophy } from 'lucide-react';
+import { personalInfo, projects, skillCategories, competitions } from '../data/portfolioData';
 
 /**
  * Componente PortfolioPDF
@@ -183,6 +183,48 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                     ))}
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Competencias y Premios Nacionales (2026) */}
+        <div style={{ marginBottom: '1.5rem' }}>
+          <h2
+            style={{
+              fontFamily: 'Georgia, serif',
+              fontSize: '12pt',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              color: '#1e293b',
+              borderBottom: '1px solid #e2e8f0',
+              paddingBottom: '0.3rem',
+              marginBottom: '1rem'
+            }}
+          >
+            Validación en Competencias & Premios Nacionales (2026)
+          </h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+            {competitions.map((c) => (
+              <div
+                key={c.id}
+                style={{
+                  border: '1px solid #cbd5e1',
+                  borderRadius: '6px',
+                  padding: '0.85rem',
+                  backgroundColor: '#f8fafc'
+                }}
+              >
+                <div style={{ fontWeight: 700, fontSize: '10pt', color: '#0f172a', marginBottom: '0.2rem' }}>
+                  {c.award}
+                </div>
+                <div style={{ fontSize: '8.5pt', color: '#2563eb', fontWeight: 600, marginBottom: '0.4rem' }}>
+                  {c.title} ({c.organization})
+                </div>
+                <p style={{ fontSize: '8pt', color: '#334155', lineHeight: 1.45, margin: 0 }}>
+                  {c.summary}
+                </p>
               </div>
             ))}
           </div>
@@ -429,6 +471,9 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                     </li>
                     <li>
                       <strong style={{ color: 'var(--text-primary)' }}>Meraki — Moda & Retail:</strong> Embajadora de Marca & Creadora de Contenido, social selling, unboxing "Querida Sofia" y dinamización directa de ventas (2026).
+                    </li>
+                    <li>
+                      <strong style={{ color: 'var(--accent-gold)' }}>Torneo Kurios & BNC 2026:</strong> 2do Lugar Nacional en División Marketplace (Subcampeonas Nacionales) y defensa de modelo de negocio.
                     </li>
                   </ul>
                 </div>

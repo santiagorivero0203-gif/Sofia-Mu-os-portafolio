@@ -142,3 +142,20 @@ Aparte quisiera manejar una paleta de colores que denote creatividad y profesion
   1. Refinamiento cromático integral en `index.css`: paleta armónica de azules profundos, zafiro, cian suave con amarillos solares, oro ámbar y reflejos bicolores de creatividad y autoridad.
   2. Adaptabilidad móvil completa: menú responsive con navegación fluida para smartphones, ajustes de espaciado táctil y control de desbordamiento horizontal.
   3. Módulo de descarga de Portafolio / Dossier Ejecutivo en PDF estructurado con estilos de impresión editorial A4 (@media print), botón de descarga y modal de vista previa.
+
+---
+
+### Prompt 14 — Integración de Competencias y Reconocimientos Nacionales 2026
+- **Fecha y Hora:** 2026-10-23 17:32:19 (-04:00)
+- **Contenido:**
+```text
+Aparte quiero incluir las competencias en las que ella ha participado, revisa las imagenes que agregue
+```
+- **Acción realizada:**
+  1. Auditoría visual de las fotografías suministradas:
+     - **Torneo Nacional de Robótica y Tecnología 2026 (Kurios Competition & BNC):** 2do Lugar — División Marketplace (Team Consolación Caracas).
+     - **Pitchday UNIMET (Universidad Metropolitana):** Defensa comercial ejecutiva y validación de modelo de negocio ante líderes corporativos.
+  2. Organización y nombramiento descriptivo de las imágenes en `public/assets/competitions/`.
+  3. Integración en `portfolioData.js` con una sección dedicada de `competitions` y reconocimientos.
+  4. Creación del componente interactivo `CompetitionsSection.jsx` con Bento Spotlight y visor lightbox de evidencias.
+  5. Actualización del dossier PDF imprimible y de la navegación.

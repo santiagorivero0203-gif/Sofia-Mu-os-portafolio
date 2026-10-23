@@ -32,6 +32,7 @@ Sofia portafolio/
 ├── src/
 │   ├── components/                    # Componentes modulares desacoplados
 │   │   ├── About.jsx                  # Manifiesto, timeline y pilares comerciales
+│   │   ├── CompetitionsSection.jsx    # Torneos nacionales, 2do lugar Marketplace y pitchdays
 │   │   ├── ContactSection.jsx         # Formulario de alta conversión y enlaces WhatsApp/Email
 │   │   ├── CustomCursor.jsx           # Cursor contextual con blend mode difference
 │   │   ├── ErrorBoundary.jsx          # Límite de error con interfaz de recuperación
