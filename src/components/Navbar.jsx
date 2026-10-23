@@ -1,8 +1,7 @@
 /**
  * @file Navbar.jsx
- * @description Barra de navegación superior limpia y minimalista.
- * Muestra exclusivamente el nombre de Sofia Muñoz y el índice de navegación
- * (con menú desplegable para pantallas móviles), manteniendo las acciones secundarias en el pie de página.
+ * @description Barra de navegación superior minimalista, luminosa y suavemente redondeada.
+ * Muestra exclusivamente el nombre de Sofia Muñoz y el índice de secciones.
  */
 
 import React, { useState, useEffect } from 'react';
@@ -50,7 +49,7 @@ export const Navbar = ({ lenisInstance }) => {
     <header
       style={{
         position: 'fixed',
-        top: '1rem',
+        top: '1.1rem',
         left: 0,
         right: 0,
         zIndex: 50,
@@ -70,19 +69,21 @@ export const Navbar = ({ lenisInstance }) => {
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: '1.5rem',
-          padding: '0.75rem 1.5rem',
-          borderRadius: '14px',
-          background: scrolled ? 'rgba(43, 78, 122, 0.94)' : 'rgba(62, 104, 156, 0.88)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          border: '1px solid var(--border-subtle)',
-          boxShadow: scrolled ? '0 10px 28px rgba(24, 48, 82, 0.28)' : 'none',
+          padding: '0.65rem 1.45rem',
+          borderRadius: '999px',
+          background: scrolled ? 'rgba(255, 255, 255, 0.92)' : 'rgba(255, 255, 255, 0.78)',
+          backdropFilter: 'blur(14px)',
+          WebkitBackdropFilter: 'blur(14px)',
+          border: '1px solid rgba(255, 255, 255, 0.9)',
+          boxShadow: scrolled
+            ? '0 10px 30px rgba(20, 44, 76, 0.09)'
+            : '0 6px 20px rgba(20, 44, 76, 0.05)',
           transition: 'background 0.25s ease, box-shadow 0.25s ease',
-          maxWidth: '960px',
+          maxWidth: '900px',
           width: '100%'
         }}
       >
-        {/* Nombre Limpio de Sofia Muñoz */}
+        {/* Nombre de Sofia Muñoz */}
         <a
           href="#inicio"
           onClick={(e) => handleNavClick(e, '#inicio')}
@@ -90,9 +91,10 @@ export const Navbar = ({ lenisInstance }) => {
             textDecoration: 'none',
             color: 'var(--text-primary)',
             fontFamily: 'var(--font-display)',
-            fontSize: '1.25rem',
+            fontSize: '1.22rem',
             fontWeight: 600,
-            letterSpacing: '-0.02em'
+            letterSpacing: '-0.02em',
+            paddingLeft: '0.25rem'
           }}
           data-cursor="Inicio"
         >
@@ -104,7 +106,7 @@ export const Navbar = ({ lenisInstance }) => {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '2rem'
+            gap: '0.4rem'
           }}
           className="desktop-nav-links"
         >
@@ -117,36 +119,17 @@ export const Navbar = ({ lenisInstance }) => {
                 onClick={(e) => handleNavClick(e, `#${link.id}`)}
                 style={{
                   position: 'relative',
-                  color: isActive ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                  color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  backgroundColor: isActive ? 'var(--accent-yellow-fill)' : 'transparent',
                   textDecoration: 'none',
-                  fontSize: '0.9rem',
-                  fontWeight: isActive ? 600 : 500,
-                  transition: 'color 0.2s ease',
-                  padding: '0.2rem 0'
-                }}
-                onMouseEnter={(e) => {
-                  if (!isActive) e.target.style.color = 'var(--text-primary)';
-                }}
-                onMouseLeave={(e) => {
-                  if (!isActive) e.target.style.color = 'var(--text-secondary)';
+                  fontSize: '0.88rem',
+                  fontWeight: isActive ? 700 : 500,
+                  transition: 'all 0.2s ease',
+                  padding: '0.42rem 0.95rem',
+                  borderRadius: '999px'
                 }}
               >
                 {link.label}
-                {isActive && (
-                  <motion.span
-                    layoutId="activeNavIndicator"
-                    style={{
-                      position: 'absolute',
-                      bottom: '-4px',
-                      left: 0,
-                      right: 0,
-                      height: '2px',
-                      backgroundColor: 'var(--accent-gold)',
-                      borderRadius: '0px'
-                    }}
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
               </a>
             );
           })}
@@ -160,11 +143,11 @@ export const Navbar = ({ lenisInstance }) => {
           }}
           aria-label={mobileMenuOpen ? 'Cerrar índice' : 'Abrir índice'}
           style={{
-            width: '36px',
-            height: '36px',
-            borderRadius: '8px',
-            backgroundColor: 'var(--bg-surface)',
-            border: '1px solid var(--border-subtle)',
+            width: '38px',
+            height: '38px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--bg-secondary)',
+            border: 'none',
             color: 'var(--text-primary)',
             display: 'none',
             alignItems: 'center',
@@ -188,35 +171,39 @@ export const Navbar = ({ lenisInstance }) => {
             style={{
               pointerEvents: 'auto',
               position: 'absolute',
-              top: '4.2rem',
+              top: '4.4rem',
               left: '1rem',
               right: '1rem',
-              backgroundColor: 'var(--bg-secondary)',
-              border: '1px solid var(--accent-gold)',
-              borderRadius: '14px',
-              padding: '1.25rem 1.5rem',
-              boxShadow: '0 18px 40px rgba(24, 48, 82, 0.45)',
+              backgroundColor: 'rgba(255, 255, 255, 0.96)',
+              backdropFilter: 'blur(16px)',
+              borderRadius: '24px',
+              padding: '1.25rem',
+              boxShadow: '0 18px 40px rgba(20, 44, 76, 0.14)',
               zIndex: 49
             }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-              {navLinks.map((link) => (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={(e) => handleNavClick(e, `#${link.id}`)}
-                  style={{
-                    color: activeSection === link.id ? 'var(--accent-gold)' : 'var(--text-primary)',
-                    textDecoration: 'none',
-                    fontSize: '1.05rem',
-                    fontWeight: 600,
-                    padding: '0.4rem 0',
-                    borderBottom: '1px solid var(--border-subtle)'
-                  }}
-                >
-                  {link.label}
-                </a>
-              ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    onClick={(e) => handleNavClick(e, `#${link.id}`)}
+                    style={{
+                      color: 'var(--text-primary)',
+                      backgroundColor: isActive ? 'var(--accent-yellow-fill)' : 'transparent',
+                      textDecoration: 'none',
+                      fontSize: '1rem',
+                      fontWeight: isActive ? 700 : 600,
+                      padding: '0.65rem 1rem',
+                      borderRadius: '14px'
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
           </motion.div>
         )}

@@ -1,12 +1,12 @@
 /**
  * @file SkillsGrid.jsx
- * @description Matriz de competencias comerciales, habilidades duras y blandas
- * organizadas en categorías claras para evaluadores de talento y reclutadores comerciales.
+ * @description Habilidades comerciales y creativas presentadas en 3 tarjetas limpias,
+ * suavemente redondeadas y sin líneas divisorias internas.
  */
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check, Star, Briefcase, BarChart3, Wrench } from 'lucide-react';
+import { Star, Briefcase, BarChart3, Wrench } from 'lucide-react';
 import { skillCategories } from '../data/portfolioData';
 import { useSpotlight } from '../hooks/useSpotlight';
 
@@ -16,47 +16,44 @@ export const SkillsGrid = () => {
   const getCategoryIcon = (index) => {
     switch (index) {
       case 0:
-        return <BarChart3 size={20} style={{ color: 'var(--accent-gold)' }} />;
+        return <BarChart3 size={19} />;
       case 1:
-        return <Briefcase size={20} style={{ color: 'var(--accent-blue)' }} />;
+        return <Briefcase size={19} />;
       case 2:
-        return <Wrench size={20} style={{ color: 'var(--accent-rose)' }} />;
+        return <Wrench size={19} />;
       default:
-        return <Star size={20} />;
+        return <Star size={19} />;
     }
   };
 
   return (
-    <section id="habilidades" style={{ padding: '6rem 0', backgroundColor: 'rgba(255, 255, 255, 0.01)', borderTop: '1px solid var(--border-subtle)' }}>
+    <section id="habilidades" style={{ padding: '4.5rem 0' }}>
       <div className="site-container">
-        <div style={{ marginBottom: '3rem', textAlign: 'center', maxWidth: '640px', margin: '0 auto 3rem auto' }}>
-          <div className="badge-pill" style={{ marginBottom: '0.85rem' }}>
-            <Star size={13} style={{ color: 'var(--accent-gold)' }} />
-            Habilidades
+        <div style={{ marginBottom: '2.5rem' }}>
+          <div className="badge-pill status-active" style={{ marginBottom: '0.75rem' }}>
+            <Star size={14} />
+            <span>Habilidades</span>
           </div>
           <h2
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'var(--text-h2)',
               lineHeight: 1.2,
-              fontWeight: 500,
-              marginBottom: '0.65rem'
+              fontWeight: 600,
+              color: 'var(--text-primary)'
             }}
           >
             En qué puedo{' '}
-            <span className="italic-serif" style={{ color: 'var(--accent-gold)' }}>
+            <span className="italic-serif" style={{ color: 'var(--accent-blue)' }}>
               aportar valor
             </span>
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem', lineHeight: 1.6 }}>
-            Ventas directas, creación de contenido para redes y manejo de herramientas digitales.
-          </p>
         </div>
 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))',
             gap: '1.75rem'
           }}
         >
@@ -65,78 +62,65 @@ export const SkillsGrid = () => {
               key={catIdx}
               className="spotlight-card"
               onMouseMove={handleMouseMove}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: catIdx * 0.15 }}
+              transition={{ duration: 0.45, delay: catIdx * 0.12 }}
               style={{
-                padding: '2.25rem',
+                padding: '2rem',
+                borderRadius: '28px',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                gap: '1.25rem'
               }}
             >
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
                   <div
                     style={{
                       width: '42px',
                       height: '42px',
-                      borderRadius: '10px',
-                      backgroundColor: 'var(--bg-secondary)',
-                      border: '1px solid var(--border-subtle)',
+                      borderRadius: '50%',
+                      backgroundColor: catIdx % 2 === 0 ? 'var(--accent-yellow-fill)' : '#cfe4fc',
+                      color: 'var(--text-primary)',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      flexShrink: 0
                     }}
                   >
                     {getCategoryIcon(catIdx)}
                   </div>
-                  <div>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-                      {cat.title}
-                    </h3>
-                  </div>
+                  <h3 style={{ fontSize: '1.22rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    {cat.title}
+                  </h3>
                 </div>
 
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
                   {cat.description}
                 </p>
 
-                {/* Lista de Habilidades */}
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {/* Píldoras Suaves y Limpias en lugar de filas con bordes */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem' }}>
                   {cat.skills.map((skill, sIdx) => (
-                    <li
+                    <span
                       key={sIdx}
                       style={{
-                        display: 'flex',
+                        display: 'inline-flex',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
-                        paddingBottom: '0.75rem',
-                        borderBottom: sIdx !== cat.skills.length - 1 ? '1px solid rgba(255, 255, 255, 0.04)' : 'none'
+                        padding: '0.48rem 0.95rem',
+                        borderRadius: '999px',
+                        backgroundColor: 'var(--bg-secondary)',
+                        color: 'var(--text-primary)',
+                        fontSize: '0.86rem',
+                        fontWeight: 600
                       }}
                     >
-                      <span style={{ fontSize: '0.92rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <Check size={14} style={{ color: 'var(--accent-gold)' }} />
-                        {skill.name}
-                      </span>
-                      <span
-                        style={{
-                          fontSize: '0.75rem',
-                          fontFamily: 'var(--font-mono)',
-                          padding: '0.2rem 0.65rem',
-                          borderRadius: '999px',
-                          backgroundColor: 'var(--bg-secondary)',
-                          border: '1px solid var(--border-subtle)',
-                          color: 'var(--accent-gold)',
-                          fontWeight: 600
-                        }}
-                      >
-                        {skill.level}
-                      </span>
-                    </li>
+                      {skill.name}
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
             </motion.div>
           ))}

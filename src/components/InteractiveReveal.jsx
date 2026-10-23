@@ -1,28 +1,19 @@
 /**
  * @file InteractiveReveal.jsx
- * @description Sistema de formas geométricas interactivas que revelan imágenes al tocarlas o hacer clic.
- * Diseñado con la paleta Azul Institucional MOVA (#0B1528 / #2E6FF2) y Amarillo Vibrante (#FFD60A),
- * bordes arquitectónicos rectos (2px) y animaciones de cortina clip-path a 60fps.
+ * @description Elementos interactivos con formas suaves que revelan fotografías al tocarlas.
+ * Usa la paleta Azul Pastel Claro (#D9EAFA / #FFFFFF) y Amarillo Cálido (#FFE047)
+ * con bordes suavemente redondeados y transiciones clip-path fluidas.
  */
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, X, Sparkles, ArrowUpRight } from 'lucide-react';
+import { Eye, X } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 
 /**
  * 1. ShapeImageTag
- * Forma geométrica interactiva que se inserta junto a palabras clave.
- * Al tocarla (móvil o escritorio) o pasar el cursor, despliega una ventana arquitectónica
- * con revelado clip-path mostrando la imagen asociada.
- *
- * @param {{
- *   label: string,
- *   imageSrc: string,
- *   caption: string,
- *   shape?: 'diamond' | 'square' | 'triangle',
- *   accent?: 'gold' | 'blue'
- * }} props
+ * Píldora interactiva con figura geométrica que se inserta junto a palabras clave.
+ * Al tocarla o pasar el cursor, despliega una tarjeta redondeada con revelado clip-path.
  */
 export const ShapeImageTag = ({
   label,
@@ -35,8 +26,7 @@ export const ShapeImageTag = ({
   const { sound, trackEvent } = usePortfolio();
 
   const isGold = accent === 'gold';
-  const mainColor = isGold ? 'var(--accent-gold)' : 'var(--accent-blue-sky)';
-  const textColor = '#1c3557';
+  const activeBg = isGold ? 'var(--accent-yellow-fill)' : '#bdd8fa';
 
   const handleToggle = (e) => {
     e.stopPropagation();
@@ -54,7 +44,7 @@ export const ShapeImageTag = ({
         display: 'inline-flex',
         alignItems: 'center',
         verticalAlign: 'middle',
-        margin: '0 0.25rem'
+        margin: '0 0.2rem'
       }}
       onMouseEnter={() => {
         if (window.matchMedia('(pointer: fine)').matches) {
@@ -67,7 +57,7 @@ export const ShapeImageTag = ({
         }
       }}
     >
-      {/* Botón con Forma Geométrica Tocable */}
+      {/* Píldora Interactiva Redondeada */}
       <button
         type="button"
         onClick={handleToggle}
@@ -76,22 +66,21 @@ export const ShapeImageTag = ({
           display: 'inline-flex',
           alignItems: 'center',
           gap: '0.4rem',
-          padding: '0.2rem 0.6rem',
-          backgroundColor: isOpen ? mainColor : 'var(--bg-secondary)',
-          color: isOpen ? textColor : 'var(--text-primary)',
-          border: `1px solid ${mainColor}`,
-          borderRadius: '6px',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.78rem',
+          padding: '0.22rem 0.75rem',
+          backgroundColor: isOpen ? activeBg : 'rgba(255, 255, 255, 0.85)',
+          color: 'var(--text-primary)',
+          border: '1px solid rgba(45, 85, 135, 0.16)',
+          borderRadius: '999px',
+          fontFamily: 'var(--font-sans)',
+          fontSize: '0.84rem',
           fontWeight: 700,
           cursor: 'pointer',
-          boxShadow: isOpen ? '0 6px 16px rgba(24, 48, 82, 0.35)' : 'none',
+          boxShadow: isOpen ? '0 6px 16px rgba(20, 44, 76, 0.12)' : '0 2px 8px rgba(20, 44, 76, 0.04)',
           transition: 'all 0.2s ease',
           lineHeight: 1.3
         }}
         data-cursor="Ver Foto"
       >
-        {/* Figura geométrica que rota al activarse */}
         <motion.span
           animate={{ rotate: isOpen ? 135 : shape === 'diamond' ? 45 : 0, scale: isOpen ? 1.15 : 1 }}
           transition={{ type: 'spring', stiffness: 320, damping: 20 }}
@@ -99,7 +88,8 @@ export const ShapeImageTag = ({
             display: 'inline-block',
             width: '8px',
             height: '8px',
-            backgroundColor: isOpen ? textColor : mainColor,
+            borderRadius: shape === 'square' ? '2px' : '0px',
+            backgroundColor: isGold ? '#d98a00' : 'var(--accent-blue)',
             clipPath:
               shape === 'triangle'
                 ? 'polygon(50% 0%, 0% 100%, 100% 100%)'
@@ -107,30 +97,30 @@ export const ShapeImageTag = ({
           }}
         />
         <span>{label}</span>
-        <Eye size={12} style={{ opacity: 0.85 }} />
+        <Eye size={13} style={{ opacity: 0.7 }} />
       </button>
 
-      {/* Tarjeta de Imagen que emerge con transición de cortina Clip-Path */}
+      {/* Tarjeta Flotante Redondeada con Revelado Clip-Path */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{
               opacity: 0,
               y: 12,
-              scale: 0.92,
-              clipPath: 'inset(100% 0% 0% 0%)'
+              scale: 0.94,
+              clipPath: 'inset(100% 0% 0% 0% round 20px)'
             }}
             animate={{
               opacity: 1,
               y: 0,
               scale: 1,
-              clipPath: 'inset(0% 0% 0% 0%)'
+              clipPath: 'inset(0% 0% 0% 0% round 20px)'
             }}
             exit={{
               opacity: 0,
               y: 8,
               scale: 0.95,
-              clipPath: 'inset(100% 0% 0% 0%)'
+              clipPath: 'inset(100% 0% 0% 0% round 20px)'
             }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => {
@@ -142,16 +132,16 @@ export const ShapeImageTag = ({
               bottom: 'calc(100% + 10px)',
               left: '0',
               width: '260px',
-              backgroundColor: 'var(--bg-secondary)',
-              border: `2px solid ${mainColor}`,
-              borderRadius: '12px',
-              boxShadow: '0 18px 40px rgba(20, 40, 68, 0.45)',
+              backgroundColor: '#ffffff',
+              borderRadius: '20px',
+              boxShadow: '0 20px 45px rgba(20, 44, 76, 0.18)',
+              padding: '0.5rem',
               zIndex: 80,
               overflow: 'hidden',
               cursor: 'pointer'
             }}
           >
-            <div style={{ position: 'relative', width: '100%', height: '155px', backgroundColor: 'var(--bg-primary)' }}>
+            <div style={{ position: 'relative', width: '100%', height: '150px', borderRadius: '14px', overflow: 'hidden' }}>
               <img
                 src={imageSrc}
                 alt={caption}
@@ -165,17 +155,16 @@ export const ShapeImageTag = ({
               <span
                 style={{
                   position: 'absolute',
-                  top: '0.4rem',
-                  right: '0.4rem',
-                  backgroundColor: mainColor,
-                  color: textColor,
-                  width: '22px',
-                  height: '22px',
+                  top: '0.45rem',
+                  right: '0.45rem',
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  color: 'var(--text-primary)',
+                  width: '24px',
+                  height: '24px',
+                  borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '0.7rem',
-                  fontWeight: 800
+                  justifyContent: 'center'
                 }}
               >
                 <X size={13} />
@@ -183,13 +172,12 @@ export const ShapeImageTag = ({
             </div>
             <div
               style={{
-                padding: '0.6rem 0.75rem',
-                fontSize: '0.76rem',
+                padding: '0.55rem 0.45rem 0.25rem 0.45rem',
+                fontSize: '0.78rem',
                 fontFamily: 'var(--font-sans)',
-                fontWeight: 500,
+                fontWeight: 600,
                 lineHeight: 1.4,
                 color: 'var(--text-primary)',
-                borderTop: '1px solid var(--border-subtle)',
                 textAlign: 'left',
                 whiteSpace: 'normal'
               }}
@@ -205,14 +193,12 @@ export const ShapeImageTag = ({
 
 /**
  * 2. ShapeDrawerReveal
- * Botón geométrico para líneas de tiempo o tarjetas que al tocarlo
- * abre un panel de imagen con efecto de obturador diagonal/horizontal.
+ * Botón en forma de píldora suave para revelar una fotografía con transición fluida.
  */
 export const ShapeDrawerReveal = ({
-  buttonText = 'Toca la forma para ver foto',
+  buttonText = 'Ver foto',
   imageSrc,
-  caption,
-  accentColor = 'var(--accent-gold)'
+  caption
 }) => {
   const [revealed, setRevealed] = useState(false);
   const { sound, trackEvent } = usePortfolio();
@@ -226,57 +212,46 @@ export const ShapeDrawerReveal = ({
   };
 
   return (
-    <div style={{ marginTop: '0.75rem' }}>
+    <div style={{ marginTop: '0.65rem' }}>
       <button
         type="button"
         onClick={toggleReveal}
         style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '0.55rem',
-          padding: '0.4rem 0.85rem',
-          backgroundColor: revealed ? accentColor : 'var(--bg-secondary)',
-          color: revealed ? '#1c3557' : 'var(--text-primary)',
-          border: `1px solid ${revealed ? accentColor : 'var(--border-subtle)'}`,
-          borderRadius: '8px',
+          gap: '0.45rem',
+          padding: '0.38rem 0.9rem',
+          backgroundColor: revealed ? 'var(--accent-yellow-fill)' : 'var(--bg-secondary)',
+          color: 'var(--text-primary)',
+          border: 'none',
+          borderRadius: '999px',
           fontSize: '0.78rem',
-          fontFamily: 'var(--font-mono)',
+          fontFamily: 'var(--font-sans)',
           fontWeight: 700,
           cursor: 'pointer',
           transition: 'all 0.2s ease'
         }}
-        data-cursor="Revelar"
+        data-cursor="Foto"
       >
-        {/* Rombo geométrico animado */}
-        <motion.span
-          animate={{ rotate: revealed ? 225 : 45 }}
-          transition={{ duration: 0.3 }}
-          style={{
-            width: '8px',
-            height: '8px',
-            backgroundColor: revealed ? '#1c3557' : accentColor,
-            display: 'inline-block'
-          }}
-        />
-        <span>{revealed ? 'Ocultar imagen' : buttonText}</span>
+        <Eye size={13} />
+        <span>{revealed ? 'Ocultar foto' : buttonText}</span>
       </button>
 
       <AnimatePresence>
         {revealed && (
           <motion.div
-            initial={{ height: 0, opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
-            animate={{ height: 'auto', opacity: 1, clipPath: 'inset(0 0% 0 0)' }}
-            exit={{ height: 0, opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            style={{ overflow: 'hidden', marginTop: '0.75rem' }}
+            initial={{ height: 0, opacity: 0, clipPath: 'inset(0 100% 0 0 round 16px)' }}
+            animate={{ height: 'auto', opacity: 1, clipPath: 'inset(0 0% 0 0 round 16px)' }}
+            exit={{ height: 0, opacity: 0, clipPath: 'inset(0 100% 0 0 round 16px)' }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{ overflow: 'hidden', marginTop: '0.65rem' }}
           >
             <div
               style={{
-                border: `1px solid ${accentColor}`,
-                borderRadius: '10px',
-                backgroundColor: 'var(--bg-primary)',
-                overflow: 'hidden',
-                boxShadow: '0 10px 24px rgba(24, 48, 82, 0.3)'
+                borderRadius: '16px',
+                backgroundColor: '#ffffff',
+                padding: '0.45rem',
+                boxShadow: '0 8px 22px rgba(20, 44, 76, 0.08)'
               }}
             >
               <img
@@ -284,18 +259,18 @@ export const ShapeDrawerReveal = ({
                 alt={caption}
                 style={{
                   width: '100%',
-                  maxHeight: '210px',
+                  maxHeight: '195px',
                   objectFit: 'cover',
+                  borderRadius: '12px',
                   display: 'block'
                 }}
               />
               <div
                 style={{
-                  padding: '0.55rem 0.85rem',
-                  fontSize: '0.8rem',
+                  padding: '0.45rem 0.4rem 0.15rem 0.4rem',
+                  fontSize: '0.78rem',
                   color: 'var(--text-secondary)',
-                  backgroundColor: 'var(--bg-secondary)',
-                  borderTop: '1px solid var(--border-subtle)'
+                  fontWeight: 500
                 }}
               >
                 {caption}
@@ -304,287 +279,6 @@ export const ShapeDrawerReveal = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
-  );
-};
-
-/**
- * 3. ShutterShapeGallery
- * Mosaico interactivo de 4 formas geométricas numeradas.
- * Al tocar cualquiera de las formas, se expande con una transición de cortina
- * revelando la fotografía y el contexto del logro.
- */
-export const ShutterShapeGallery = () => {
-  const { sound, trackEvent } = usePortfolio();
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const items = [
-    {
-      id: '01',
-      shapeLabel: '◆ FOTO 01',
-      title: 'Portada de Revista MOVA',
-      subtitle: 'Prensa e Innovación 2026',
-      description: 'Reportaje especial sobre nuestra aplicación para traducir lengua de señas.',
-      image: '/assets/mova/revista.jpg',
-      accent: 'var(--accent-gold)'
-    },
-    {
-      id: '02',
-      shapeLabel: '■ FOTO 02',
-      title: '2do Lugar Nacional Kurios',
-      subtitle: 'Torneo Nacional 2026',
-      description: 'Premio nacional tras presentar y defender nuestra propuesta comercial frente al jurado.',
-      image: '/assets/competitions/kurios_podio_marketplace.jpg',
-      accent: 'var(--accent-blue)'
-    },
-    {
-      id: '03',
-      shapeLabel: '▲ FOTO 03',
-      title: 'Carta "Querida Sofia"',
-      subtitle: 'Embajadora de Meraki',
-      description: 'Creación de videos, modelaje de prendas y atención cercana para clientas.',
-      image: '/assets/meraki/querida_sofia.jpg',
-      accent: 'var(--accent-gold)'
-    },
-    {
-      id: '04',
-      shapeLabel: '◆ FOTO 04',
-      title: 'Presentación en la UNIMET',
-      subtitle: 'Universidad Metropolitana',
-      description: 'Explicación directa del proyecto frente a profesores y evaluadores invitados.',
-      image: '/assets/competitions/unimet_pitch_ejecutivo.jpg',
-      accent: 'var(--accent-blue)'
-    }
-  ];
-
-  const handleSelect = (idx) => {
-    sound.playClick();
-    trackEvent('shutter_shape_select', { id: items[idx].id, title: items[idx].title });
-    setActiveIndex(idx);
-  };
-
-  return (
-    <div
-      style={{
-        marginTop: '3.5rem',
-        padding: '2rem',
-        backgroundColor: 'var(--bg-secondary)',
-        border: '1px solid var(--border-subtle)',
-        borderRadius: '16px',
-        boxShadow: '0 16px 38px rgba(24, 48, 82, 0.3)'
-      }}
-    >
-      {/* Cabecera explicativa simple */}
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: '1rem',
-          marginBottom: '1.5rem'
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.75rem',
-              color: 'var(--accent-gold)',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.06em',
-              marginBottom: '0.25rem'
-            }}
-          >
-            Galería Interactiva
-          </div>
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.45rem', fontWeight: 500 }}>
-            Toca una figura para revelar cada momento clave
-          </h3>
-        </div>
-
-        {/* Selector de Formas Geométricas */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-          {items.map((item, idx) => {
-            const isSelected = activeIndex === idx;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => handleSelect(idx)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  padding: '0.5rem 0.9rem',
-                  borderRadius: '8px',
-                  backgroundColor: isSelected ? 'var(--accent-gold)' : 'var(--bg-surface)',
-                  color: isSelected ? '#1c3557' : 'var(--text-secondary)',
-                  border: `1px solid ${isSelected ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-                data-cursor="Tocar"
-              >
-                <span>{item.shapeLabel}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Contenedor de Revelado con Transición de Obturador (Clip-Path) */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1.5rem',
-          alignItems: 'center'
-        }}
-      >
-        {/* Imagen con Cortina Geométrica */}
-        <div
-          style={{
-            position: 'relative',
-            height: '290px',
-            backgroundColor: 'var(--bg-primary)',
-            border: '2px solid var(--accent-gold)',
-            borderRadius: '12px',
-            overflow: 'hidden'
-          }}
-        >
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={items[activeIndex].image}
-              src={items[activeIndex].image}
-              alt={items[activeIndex].title}
-              initial={{
-                clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)',
-                scale: 1.08
-              }}
-              animate={{
-                clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-                scale: 1
-              }}
-              exit={{
-                clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
-                scale: 1.04
-              }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block'
-              }}
-            />
-          </AnimatePresence>
-
-          <div
-            style={{
-              position: 'absolute',
-              top: '0.75rem',
-              left: '0.75rem',
-              backgroundColor: 'var(--accent-gold)',
-              color: '#0b1528',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.75rem',
-              fontWeight: 800,
-              padding: '0.2rem 0.55rem',
-              borderRadius: '2px'
-            }}
-          >
-            {items[activeIndex].shapeLabel}
-          </div>
-        </div>
-
-        {/* Texto de la Forma Seleccionada + Mini-Tarjetas Tocables */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={items[activeIndex].id}
-              initial={{ opacity: 0, x: 15 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -15 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                padding: '1.35rem',
-                backgroundColor: 'var(--bg-surface)',
-                borderLeft: '4px solid var(--accent-gold)',
-                borderRadius: '2px'
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
-                  color: 'var(--accent-gold)',
-                  fontWeight: 700,
-                  marginBottom: '0.3rem'
-                }}
-              >
-                {items[activeIndex].subtitle}
-              </div>
-              <h4
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.4rem',
-                  fontWeight: 500,
-                  marginBottom: '0.5rem',
-                  color: 'var(--text-primary)'
-                }}
-              >
-                {items[activeIndex].title}
-              </h4>
-              <p style={{ fontSize: '0.94rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
-                {items[activeIndex].description}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* 4 Figuras Geométricas Rápidas para Tocar */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.65rem' }}>
-            {items.map((item, idx) => {
-              const isSelected = activeIndex === idx;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleSelect(idx)}
-                  style={{
-                    textAlign: 'left',
-                    padding: '0.75rem',
-                    borderRadius: '2px',
-                    backgroundColor: isSelected ? 'var(--bg-surface-active)' : 'var(--bg-primary)',
-                    border: `1px solid ${isSelected ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                    color: 'var(--text-primary)',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: '0.72rem',
-                      fontFamily: 'var(--font-mono)',
-                      color: isSelected ? 'var(--accent-gold)' : 'var(--text-muted)',
-                      fontWeight: 700
-                    }}
-                  >
-                    {item.shapeLabel}
-                  </div>
-                  <div style={{ fontSize: '0.84rem', fontWeight: 600, marginTop: '0.15rem' }}>
-                    {item.title}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

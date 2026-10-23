@@ -1,10 +1,7 @@
 /**
  * @file About.jsx
- * @description Sección "Sobre Mí" y trayectoria profesional de Sofia Muñoz.
- * Diseñada como una doble página editorial:
- * - Columna de Manifiesto Comercial y Pilares Estratégicos.
- * - Línea de Tiempo Interactiva (Timeline de Hitos 2026).
- * - Spotlight reactivo en tarjetas Bento de autor.
+ * @description Sección "Sobre Mí" con estructura visual limpia, sin subdivisiones excesivas
+ * y con tarjetas suavemente redondeadas.
  */
 
 import React from 'react';
@@ -13,267 +10,219 @@ import {
   Sparkles,
   Target,
   HeartHandshake,
-  TrendingUp,
-  Compass,
-  Calendar,
-  CheckCircle2,
-  Award
+  Calendar
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import { useSpotlight } from '../hooks/useSpotlight';
-import { ShapeDrawerReveal, ShutterShapeGallery } from './InteractiveReveal';
+import { ShapeDrawerReveal } from './InteractiveReveal';
 
 export const About = () => {
   const { handleMouseMove } = useSpotlight();
 
-  // Hitos de la trayectoria profesional en 2026 con imagen asociada para revelar al tocar
   const timelineMilestones = [
     {
-      year: '2026',
-      badge: 'Inclusión y Tecnología',
       title: 'Co-fundadora y Marketing en MOVA',
       description:
-        'Creación del mensaje de la marca, aparición en portada de revista y lanzamiento de la página web con traducción en 3 lenguas de señas.',
-      accent: 'var(--accent-blue)',
+        'Creación del mensaje de la marca, aparición en portada de revista y lanzamiento de la web con traducción en 3 lenguas de señas.',
       imageSrc: '/assets/mova/detection.jpg',
       imageCaption: 'Reconocimiento de las manos con la cámara en MOVA'
     },
     {
-      year: '2026',
-      badge: 'Moda y Ventas',
       title: 'Embajadora y Creadora de Contenido en Meraki',
       description:
         'Grabación de videos para Instagram (@meraki_marka), atención a clientas y entregas con detalles personalizados ("Querida Sofia").',
-      accent: 'var(--accent-gold)',
       imageSrc: '/assets/meraki/unboxing.jpg',
       imageCaption: 'Empaque y presentación de entrega de @meraki_marka'
     },
     {
-      year: '2026',
-      badge: 'Premio Nacional',
       title: '2do Lugar Nacional en Torneo Kurios',
       description:
         'Ganadoras del 2do lugar nacional en la categoría comercial defendiendo la utilidad y propuesta de ventas del proyecto.',
-      accent: 'var(--accent-gold)',
       imageSrc: '/assets/competitions/kurios_celebracion.jpg',
       imageCaption: 'Celebración del 2do Lugar Nacional en el Torneo Kurios 2026'
     }
   ];
 
   return (
-    <section id="sobre-mi" style={{ padding: '6rem 0', position: 'relative' }}>
+    <section id="sobre-mi" style={{ padding: '4.5rem 0', position: 'relative' }}>
       <div className="site-container">
-        {/* Cabecera de la Sección */}
-        <div style={{ marginBottom: '3rem' }}>
-          <div className="badge-pill" style={{ marginBottom: '0.85rem' }}>
-            <Sparkles size={13} style={{ color: 'var(--accent-gold)' }} />
-            Sobre Mí
+        {/* Cabecera Limpia */}
+        <div style={{ marginBottom: '2.5rem' }}>
+          <div className="badge-pill status-active" style={{ marginBottom: '0.75rem' }}>
+            <Sparkles size={14} />
+            <span>Sobre Mí</span>
           </div>
           <h2
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'var(--text-h2)',
               lineHeight: 1.2,
-              fontWeight: 500,
-              maxWidth: '720px'
+              fontWeight: 600,
+              maxWidth: '680px',
+              color: 'var(--text-primary)'
             }}
           >
             Comunicación clara, trato cercano y{' '}
-            <span className="italic-serif" style={{ color: 'var(--accent-gold)' }}>
-              enfoque en ventas.
+            <span className="italic-serif" style={{ color: 'var(--accent-blue)' }}>
+              enfoque en ventas
             </span>
           </h2>
         </div>
 
-        {/* Doble Columna con Buen Espaciado */}
-        <div className="editorial-grid" style={{ alignItems: 'flex-start' }}>
-          {/* COLUMNA IZQUIERDA: Perfil y Pilares */}
-          <div style={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
-            <p style={{ fontSize: '1.04rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-              {personalInfo.bio}
-            </p>
-
-            {/* Tarjeta de Enfoque con Borde Amarillo */}
+        {/* Dos Tarjetas Limpias y Redondeadas (Sin subdividir en múltiples sub-cajas) */}
+        <div className="editorial-grid" style={{ alignItems: 'stretch' }}>
+          {/* COLUMNA IZQUIERDA: Perfil Unificado */}
+          <div style={{ gridColumn: 'span 6', display: 'flex' }}>
             <div
               className="spotlight-card"
               onMouseMove={handleMouseMove}
               style={{
-                padding: '1.6rem',
-                backgroundColor: 'var(--bg-secondary)',
-                borderColor: 'var(--accent-gold)'
+                padding: '2.25rem',
+                borderRadius: '28px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                gap: '1.75rem',
+                width: '100%'
               }}
             >
-              <div
-                style={{
-                  fontSize: '0.76rem',
-                  fontFamily: 'var(--font-mono)',
-                  color: 'var(--accent-gold)',
-                  fontWeight: 700,
-                  marginBottom: '0.5rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.06em'
-                }}
-              >
-                Mi Enfoque
-              </div>
-              <p
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontStyle: 'italic',
-                  color: 'var(--text-primary)',
-                  lineHeight: 1.55,
-                  fontSize: '1.15rem'
-                }}
-              >
-                "{personalInfo.statement}"
-              </p>
-            </div>
+              <div>
+                <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: '1.5rem' }}>
+                  {personalInfo.bio}
+                </p>
 
-            {/* Pilares Clave */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '1rem' }}>
-              <div
-                style={{
-                  padding: '1.25rem',
-                  borderRadius: '12px',
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1px solid var(--border-subtle)'
-                }}
-              >
-                <div style={{ color: 'var(--accent-blue-sky)', marginBottom: '0.5rem' }}>
-                  <HeartHandshake size={20} />
-                </div>
-                <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.35rem', color: 'var(--text-primary)' }}>
-                  Trato Cercano
-                </h3>
-                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-                  Escucho lo que el cliente necesita para ofrecer soluciones reales y generar confianza.
+                <p
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontStyle: 'italic',
+                    color: 'var(--text-primary)',
+                    lineHeight: 1.5,
+                    fontSize: '1.3rem',
+                    backgroundColor: 'var(--bg-secondary)',
+                    padding: '1.25rem 1.5rem',
+                    borderRadius: '20px'
+                  }}
+                >
+                  "{personalInfo.statement}"
                 </p>
               </div>
 
-              <div
-                style={{
-                  padding: '1.25rem',
-                  borderRadius: '12px',
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1px solid var(--border-subtle)'
-                }}
-              >
-                <div style={{ color: 'var(--accent-gold)', marginBottom: '0.5rem' }}>
-                  <Target size={20} />
+              {/* Dos Pilares Integrados sin bordes pesados */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
+                  <div
+                    style={{
+                      width: '38px',
+                      height: '38px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--accent-yellow-fill)',
+                      color: 'var(--text-primary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <HeartHandshake size={18} />
+                  </div>
+                  <div>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
+                      Trato Cercano
+                    </h3>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+                      Escucho lo que el cliente necesita para ofrecer soluciones reales y generar confianza.
+                    </p>
+                  </div>
                 </div>
-                <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.35rem', color: 'var(--text-primary)' }}>
-                  Enfoque en Metas
-                </h3>
-                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-                  Trabajo cada contenido y conversación con un objetivo claro: concretar ventas.
-                </p>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
+                  <div
+                    style={{
+                      width: '38px',
+                      height: '38px',
+                      borderRadius: '50%',
+                      backgroundColor: '#cfe4fc',
+                      color: 'var(--text-primary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Target size={18} />
+                  </div>
+                  <div>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
+                      Enfoque en Metas
+                    </h3>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+                      Trabajo cada contenido y conversación con un objetivo claro: concretar ventas.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* COLUMNA DERECHA: Línea de Tiempo de Hitos (Timeline) */}
-          <div style={{ gridColumn: 'span 6' }}>
+          {/* COLUMNA DERECHA: Recorrido en 2026 */}
+          <div style={{ gridColumn: 'span 6', display: 'flex' }}>
             <div
               className="spotlight-card"
               onMouseMove={handleMouseMove}
               style={{
-                padding: '2rem',
-                backgroundColor: 'var(--bg-surface)',
-                border: '1px solid var(--border-subtle)'
+                padding: '2.25rem',
+                borderRadius: '28px',
+                width: '100%'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
-                <Calendar size={18} style={{ color: 'var(--accent-gold)' }} />
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.35rem', fontWeight: 500 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.5rem' }}>
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--accent-yellow-fill)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--text-primary)'
+                  }}
+                >
+                  <Calendar size={17} />
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.35rem', fontWeight: 600 }}>
                   Recorrido en 2026
                 </h3>
               </div>
 
-              {/* Items del Timeline */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem', position: 'relative' }}>
-                {/* Línea vertical decorativa */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '15px',
-                    bottom: '15px',
-                    left: '11px',
-                    width: '1px',
-                    backgroundColor: 'var(--border-subtle)'
-                  }}
-                />
-
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 {timelineMilestones.map((item, idx) => (
                   <motion.div
                     key={idx}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.15 }}
-                    style={{ display: 'flex', gap: '1.25rem', position: 'relative' }}
+                    transition={{ duration: 0.45, delay: idx * 0.1 }}
                   >
-                    {/* Punto circular del timeline */}
-                    <div
-                      style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        backgroundColor: 'var(--bg-secondary)',
-                        border: `2px solid ${item.accent}`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                        zIndex: 2,
-                        marginTop: '2px'
-                      }}
-                    >
-                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: item.accent }} />
-                    </div>
+                    <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
+                      {item.title}
+                    </h4>
 
-                    {/* Contenido del hito */}
-                    <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.6rem', marginBottom: '0.35rem' }}>
-                        <span
-                          style={{
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: '0.82rem',
-                            fontWeight: 700,
-                            color: item.accent
-                          }}
-                        >
-                          {item.year}
-                        </span>
-                        <span className="badge-pill" style={{ padding: '0.15rem 0.5rem', fontSize: '0.68rem' }}>
-                          {item.badge}
-                        </span>
-                      </div>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                      {item.description}
+                    </p>
 
-                      <h4 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
-                        {item.title}
-                      </h4>
-
-                      <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                        {item.description}
-                      </p>
-
-                      {/* Forma Geométrica Interactiva que al tocarla despliega la foto del hito */}
-                      <ShapeDrawerReveal
-                        buttonText="Toca para ver foto"
-                        imageSrc={item.imageSrc}
-                        caption={item.imageCaption}
-                        accentColor={item.accent}
-                      />
-                    </div>
+                    <ShapeDrawerReveal
+                      buttonText="Ver foto"
+                      imageSrc={item.imageSrc}
+                      caption={item.imageCaption}
+                    />
                   </motion.div>
                 ))}
               </div>
             </div>
           </div>
         </div>
-
-        {/* Mosaico de Formas Geométricas Interactivas (Shutter Gallery) */}
-        <ShutterShapeGallery />
       </div>
     </section>
   );

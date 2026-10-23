@@ -1,7 +1,6 @@
 /**
  * @file Footer.jsx
- * @description Pie de página completo con las acciones de descarga en PDF, contacto rápido,
- * control opcional de sonido de interfaz y botón de retorno arriba.
+ * @description Pie de página limpio y suavemente redondeado con botones en formato píldora.
  */
 
 import React from 'react';
@@ -30,9 +29,7 @@ export const Footer = ({ lenisInstance }) => {
   return (
     <footer
       style={{
-        borderTop: '1px solid var(--border-subtle)',
-        padding: '3rem 0',
-        backgroundColor: 'var(--bg-primary)'
+        padding: '2.5rem 0 3.5rem 0'
       }}
     >
       <div className="site-container">
@@ -46,29 +43,29 @@ export const Footer = ({ lenisInstance }) => {
           }}
         >
           <div>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 600 }}>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>
               {personalInfo.name}
             </div>
-            <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-              © 2026 — Portafolio Profesional & Comercial • Hora local en Caracas: {caracasTime.timeString}
+            <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+              © 2026 — Portafolio Profesional • Caracas: {caracasTime.timeString}
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-            {/* Botón opcional de efectos de sonido al tocar botones */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
+            {/* Botón opcional de efectos de sonido */}
             <button
               onClick={toggleSound}
-              title="Activa o silencia los pequeños sonidos al tocar botones"
+              title="Activa o silencia los sonidos al tocar botones"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.4rem',
-                padding: '0.5rem 0.9rem',
-                borderRadius: '8px',
-                backgroundColor: 'var(--bg-surface)',
-                border: '1px solid var(--border-subtle)',
-                color: soundEnabled ? 'var(--accent-gold)' : 'var(--text-muted)',
-                fontSize: '0.78rem',
+                padding: '0.55rem 1rem',
+                borderRadius: '999px',
+                backgroundColor: soundEnabled ? 'var(--accent-yellow-fill)' : 'rgba(255, 255, 255, 0.8)',
+                border: 'none',
+                color: 'var(--text-primary)',
+                fontSize: '0.8rem',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
@@ -88,12 +85,11 @@ export const Footer = ({ lenisInstance }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                padding: '0.5rem 1rem',
-                borderRadius: '8px',
-                backgroundColor: 'var(--accent-gold)',
-                border: '1px solid var(--accent-gold)',
-                color: '#1c3557',
-                fontSize: '0.8rem',
+                padding: '0.55rem 1.1rem',
+                borderRadius: '999px',
+                backgroundColor: 'var(--accent-yellow-fill)',
+                color: 'var(--text-primary)',
+                fontSize: '0.82rem',
                 fontWeight: 700,
                 textDecoration: 'none',
                 cursor: 'pointer'
@@ -110,18 +106,18 @@ export const Footer = ({ lenisInstance }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                padding: '0.5rem 1rem',
-                borderRadius: '8px',
-                backgroundColor: 'var(--bg-secondary)',
-                border: '1px solid var(--border-blue)',
-                color: '#ffffff',
-                fontSize: '0.8rem',
+                padding: '0.55rem 1.1rem',
+                borderRadius: '999px',
+                backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                border: 'none',
+                color: 'var(--text-primary)',
+                fontSize: '0.82rem',
                 fontWeight: 700,
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
             >
-              <FileDown size={14} style={{ color: 'var(--accent-gold)' }} />
+              <FileDown size={14} />
               <span>Descargar PDF</span>
             </button>
 
@@ -131,26 +127,16 @@ export const Footer = ({ lenisInstance }) => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.5rem 1rem',
-                borderRadius: '8px',
-                backgroundColor: 'var(--bg-surface)',
-                border: '1px solid var(--border-subtle)',
+                gap: '0.4rem',
+                padding: '0.55rem 1rem',
+                borderRadius: '999px',
+                backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                border: 'none',
                 color: 'var(--text-primary)',
-                fontSize: '0.8rem',
+                fontSize: '0.82rem',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#1c3557';
-                e.currentTarget.style.backgroundColor = 'var(--accent-gold)';
-                e.currentTarget.style.borderColor = 'var(--accent-gold)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--text-primary)';
-                e.currentTarget.style.backgroundColor = 'var(--bg-surface)';
-                e.currentTarget.style.borderColor = 'var(--border-subtle)';
               }}
               data-cursor="Arriba"
             >

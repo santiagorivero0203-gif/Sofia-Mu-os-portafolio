@@ -1,26 +1,16 @@
 /**
  * @file ContactSection.jsx
- * @description Módulo de conversión comercial y contacto directo sin fricción.
- * Incluye:
- * - Selector interactivo de tipo de oportunidad (Asesoría Comercial, Embajada de Marca, Alianzas).
- * - Generador inteligente de mensajes estructurados para WhatsApp y correo electrónico.
- * - Copiado rápido con confirmación háptica/sonora para correo y teléfono.
- * - Indicador de disponibilidad horaria oficial en Caracas (VET).
+ * @description Sección de contacto limpia, sin cajas anidadas y con elementos suavemente redondeados.
  */
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import {
   MessageCircle,
   Mail,
   Phone,
   Copy,
   Check,
-  ArrowUpRight,
-  Send,
-  Sparkles,
-  Building2,
-  Clock
+  ArrowUpRight
 } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { personalInfo } from '../data/portfolioData';
@@ -36,7 +26,6 @@ export const ContactSection = () => {
     trackEvent
   } = usePortfolio();
 
-  // Opciones simples de contacto
   const opportunityTypes = [
     'Ventas & Asesoría Comercial',
     'Embajadora de Marca & Contenido',
@@ -48,7 +37,6 @@ export const ContactSection = () => {
   const [senderName, setSenderName] = useState('');
   const [senderNote, setSenderNote] = useState('');
 
-  // Generador de mensaje directo y natural
   const buildMessage = () => {
     const greeting = caracasTime.greeting || 'Hola';
     const author = senderName.trim() ? `, soy ${senderName.trim()}` : '';
@@ -56,20 +44,18 @@ export const ContactSection = () => {
     return `${greeting} Sofia${author}. Vi tu portafolio y me gustaría hablarte sobre "${selectedOpportunity}".${note}`;
   };
 
-  // Enlace codificado para WhatsApp
   const generateWhatsAppUrl = () => {
     const text = encodeURIComponent(buildMessage());
     return `https://wa.me/584242674572?text=${text}`;
   };
 
-  // Enlace codificado para Email
   const generateMailtoUrl = () => {
     const subject = encodeURIComponent(`Propuesta Comercial — ${selectedOpportunity} [Sofia Muñoz]`);
     const body = encodeURIComponent(buildMessage());
     return `mailto:${personalInfo.contact.email}?subject=${subject}&body=${body}`;
   };
 
-  const handleWhatsAppSubmit = (e) => {
+  const handleWhatsAppSubmit = () => {
     trackEvent('contact_submit_whatsapp', {
       opportunity: selectedOpportunity,
       hasSenderName: Boolean(senderName.trim())
@@ -77,7 +63,7 @@ export const ContactSection = () => {
     sound.playSuccess();
   };
 
-  const handleEmailSubmit = (e) => {
+  const handleEmailSubmit = () => {
     trackEvent('contact_submit_email', {
       opportunity: selectedOpportunity,
       hasSenderName: Boolean(senderName.trim())
@@ -86,349 +72,222 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contacto" style={{ padding: '7rem 0 5rem 0', position: 'relative' }}>
+    <section id="contacto" style={{ padding: '4.5rem 0', position: 'relative' }}>
       <div className="site-container">
         <div
           className="spotlight-card"
           style={{
-            padding: 'clamp(2rem, 5vw, 4.5rem)',
-            backgroundColor: 'var(--bg-secondary)',
-            borderColor: 'var(--accent-gold)',
-            boxShadow: '0 20px 50px rgba(24, 48, 82, 0.35)'
+            padding: 'clamp(2rem, 5vw, 3.75rem)',
+            borderRadius: '32px',
+            backgroundColor: 'rgba(255, 255, 255, 0.88)'
           }}
         >
-          <div style={{ maxWidth: '840px', margin: '0 auto' }}>
-            {/* Estado de Disponibilidad y Hora Local */}
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: '0.75rem',
-                marginBottom: '1.5rem'
-              }}
-            >
+          <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
+            {/* Disponibilidad */}
+            <div style={{ marginBottom: '1.25rem' }}>
               <div className="badge-pill status-active">
                 <span className="status-dot"></span>
                 <span>{personalInfo.contact.availability}</span>
               </div>
-              <div
-                className="badge-pill"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  color: 'var(--text-secondary)'
-                }}
-              >
-                <Clock size={13} style={{ color: 'var(--accent-gold)' }} />
-                <span>Caracas, Venezuela ({caracasTime.timeString})</span>
-              </div>
             </div>
 
-            <div style={{ textAlign: 'center', marginBottom: '2.25rem' }}>
-              <h2
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'var(--text-h1)',
-                  lineHeight: 1.18,
-                  fontWeight: 500,
-                  marginBottom: '1rem'
-                }}
-              >
-                ¿Trabajamos{' '}
-                <span className="italic-serif" style={{ color: 'var(--accent-gold)' }}>
-                  juntos?
-                </span>
-              </h2>
-
-              <p style={{ fontSize: '1.02rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: '0 auto', maxWidth: '560px' }}>
-                Escríbeme por WhatsApp o correo para hablar sobre ventas, creación de contenido o representación de tu marca.
-              </p>
-            </div>
-
-            {/* Selector de Tema */}
-            <div style={{ marginBottom: '1.75rem' }}>
-              <label
-                style={{
-                  display: 'block',
-                  fontSize: '0.8rem',
-                  color: 'var(--text-muted)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                  fontFamily: 'var(--font-mono)',
-                  marginBottom: '0.75rem',
-                  textAlign: 'center'
-                }}
-              >
-                Elige el tema de tu mensaje:
-              </label>
-
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '0.6rem',
-                  justifyContent: 'center'
-                }}
-              >
-                {opportunityTypes.map((type) => {
-                  const isSelected = selectedOpportunity === type;
-                  return (
-                    <button
-                      key={type}
-                      type="button"
-                      onClick={() => {
-                        sound.playClick();
-                        setSelectedOpportunity(type);
-                      }}
-                      style={{
-                        padding: '0.55rem 1.15rem',
-                        borderRadius: '999px',
-                        fontSize: '0.84rem',
-                        fontWeight: isSelected ? 700 : 500,
-                        backgroundColor: isSelected ? 'var(--accent-gold)' : 'var(--bg-surface)',
-                        border: `1px solid ${isSelected ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                        color: isSelected ? '#1c3557' : 'var(--text-secondary)',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease'
-                      }}
-                      data-cursor="Opción"
-                    >
-                      {type}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Generador de Mensaje Rápido */}
-            <div
+            <h2
               style={{
-                backgroundColor: 'var(--bg-primary)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: '14px',
-                padding: '1.5rem',
-                marginBottom: '2.5rem'
+                fontFamily: 'var(--font-display)',
+                fontSize: 'var(--text-h1)',
+                lineHeight: 1.18,
+                fontWeight: 600,
+                marginBottom: '0.75rem',
+                color: 'var(--text-primary)'
               }}
             >
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                  gap: '1rem',
-                  marginBottom: '1rem'
-                }}
-              >
-                <div>
-                  <label
+              ¿Trabajamos{' '}
+              <span className="italic-serif" style={{ color: 'var(--accent-blue)' }}>
+                juntos?
+              </span>
+            </h2>
+
+            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: '0 auto 2rem auto', maxWidth: '520px' }}>
+              Elige un tema y escríbeme directo por WhatsApp o correo electrónico.
+            </p>
+
+            {/* Píldoras de Tema */}
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '0.55rem',
+                justifyContent: 'center',
+                marginBottom: '1.75rem'
+              }}
+            >
+              {opportunityTypes.map((type) => {
+                const isSelected = selectedOpportunity === type;
+                return (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => {
+                      sound.playClick();
+                      setSelectedOpportunity(type);
+                    }}
                     style={{
-                      display: 'block',
-                      fontSize: '0.78rem',
-                      color: 'var(--text-muted)',
-                      textTransform: 'uppercase',
-                      fontFamily: 'var(--font-mono)',
-                      marginBottom: '0.4rem'
+                      padding: '0.58rem 1.15rem',
+                      borderRadius: '999px',
+                      fontSize: '0.86rem',
+                      fontWeight: isSelected ? 700 : 600,
+                      backgroundColor: isSelected ? 'var(--accent-yellow-fill)' : 'var(--bg-secondary)',
+                      border: 'none',
+                      color: 'var(--text-primary)',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease'
                     }}
                   >
-                    Tu Nombre o Empresa (Opcional)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Ej. María Pérez / Mi Marca"
-                    value={senderName}
-                    onChange={(e) => setSenderName(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '0.65rem 0.9rem',
-                      borderRadius: '8px',
-                      backgroundColor: 'var(--bg-secondary)',
-                      border: '1px solid var(--border-subtle)',
-                      color: 'var(--text-primary)',
-                      fontSize: '0.88rem',
-                      outline: 'none'
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    style={{
-                      display: 'block',
-                      fontSize: '0.78rem',
-                      color: 'var(--text-muted)',
-                      textTransform: 'uppercase',
-                      fontFamily: 'var(--font-mono)',
-                      marginBottom: '0.4rem'
-                    }}
-                  >
-                    Mensaje adicional (Opcional)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Ej. Quiero conversar sobre videos o ventas..."
-                    value={senderNote}
-                    onChange={(e) => setSenderNote(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '0.65rem 0.9rem',
-                      borderRadius: '8px',
-                      backgroundColor: 'var(--bg-secondary)',
-                      border: '1px solid var(--border-subtle)',
-                      color: 'var(--text-primary)',
-                      fontSize: '0.88rem',
-                      outline: 'none'
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* Vista Previa del Mensaje Estructurado */}
-              <div
-                style={{
-                  backgroundColor: 'var(--bg-secondary)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '8px',
-                  padding: '0.85rem 1rem',
-                  fontSize: '0.84rem',
-                  color: 'var(--text-secondary)',
-                  fontFamily: 'var(--font-mono)',
-                  lineHeight: 1.5,
-                  marginBottom: '1.25rem'
-                }}
-              >
-                <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>Mensaje preparado: </span>
-                "{buildMessage()}"
-              </div>
-
-              {/* Botones de Envío Inmediato */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                  gap: '1rem'
-                }}
-              >
-                {/* Enviar vía WhatsApp */}
-                <a
-                  href={generateWhatsAppUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleWhatsAppSubmit}
-                  className="btn-magnetic btn-gold"
-                  style={{
-                    padding: '0.9rem 1.5rem',
-                    fontSize: '0.9rem',
-                    textDecoration: 'none'
-                  }}
-                  data-cursor="WhatsApp"
-                >
-                  <MessageCircle size={18} />
-                  <span>Enviar por WhatsApp</span>
-                  <ArrowUpRight size={16} />
-                </a>
-
-                {/* Enviar vía Correo Electrónico */}
-                <a
-                  href={generateMailtoUrl()}
-                  onClick={handleEmailSubmit}
-                  className="btn-magnetic btn-primary"
-                  style={{
-                    padding: '0.9rem 1.5rem',
-                    fontSize: '0.9rem',
-                    textDecoration: 'none'
-                  }}
-                  data-cursor="Email"
-                >
-                  <Mail size={18} style={{ color: 'var(--accent-gold)' }} />
-                  <span>Abrir en Correo</span>
-                  <ArrowUpRight size={16} />
-                </a>
-              </div>
+                    {type}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Accesos Rápidos de Copiado Directo */}
+            {/* Inputs Redondeados Directos (Sin caja contenedora extra) */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                gap: '0.9rem',
+                marginBottom: '1.5rem',
+                textAlign: 'left'
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Tu nombre o marca (opcional)"
+                value={senderName}
+                onChange={(e) => setSenderName(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.85rem 1.15rem',
+                  borderRadius: '16px',
+                  backgroundColor: 'var(--bg-secondary)',
+                  border: '1px solid transparent',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.92rem',
+                  outline: 'none',
+                  fontFamily: 'var(--font-sans)'
+                }}
+              />
+
+              <input
+                type="text"
+                placeholder="Nota breve (opcional)"
+                value={senderNote}
+                onChange={(e) => setSenderNote(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.85rem 1.15rem',
+                  borderRadius: '16px',
+                  backgroundColor: 'var(--bg-secondary)',
+                  border: '1px solid transparent',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.92rem',
+                  outline: 'none',
+                  fontFamily: 'var(--font-sans)'
+                }}
+              />
+            </div>
+
+            {/* Botones Principales Redondeados */}
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                gap: '0.9rem',
+                marginBottom: '2rem'
+              }}
+            >
+              <a
+                href={generateWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleWhatsAppSubmit}
+                className="btn-magnetic btn-gold"
+                style={{ minWidth: '220px' }}
+                data-cursor="WhatsApp"
+              >
+                <MessageCircle size={18} />
+                <span>Enviar por WhatsApp</span>
+                <ArrowUpRight size={16} />
+              </a>
+
+              <a
+                href={generateMailtoUrl()}
+                onClick={handleEmailSubmit}
+                className="btn-magnetic btn-primary"
+                style={{ minWidth: '220px' }}
+                data-cursor="Email"
+              >
+                <Mail size={18} />
+                <span>Abrir en Correo</span>
+                <ArrowUpRight size={16} />
+              </a>
+            </div>
+
+            {/* Copiado Rápido de Correo y Teléfono */}
             <div
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: '1.25rem'
+                gap: '0.85rem'
               }}
             >
-              {/* Copiar Correo Oficial */}
               <button
                 type="button"
                 onClick={copyEmail}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.6rem',
-                  padding: '0.65rem 1.25rem',
+                  gap: '0.5rem',
+                  padding: '0.55rem 1.1rem',
                   borderRadius: '999px',
-                  backgroundColor: copiedEmail ? 'var(--accent-gold)' : 'var(--bg-surface)',
-                  border: `1px solid ${copiedEmail ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                  color: copiedEmail ? '#1c3557' : 'var(--text-primary)',
-                  fontSize: '0.86rem',
-                  fontWeight: copiedEmail ? 700 : 500,
+                  backgroundColor: copiedEmail ? 'var(--accent-yellow-fill)' : 'var(--bg-secondary)',
+                  border: 'none',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.84rem',
+                  fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all 0.2s ease'
                 }}
-                data-cursor="Copiar"
               >
-                <Mail size={15} style={{ color: copiedEmail ? '#1c3557' : 'var(--accent-gold)' }} />
-                <span style={{ fontFamily: 'var(--font-mono)' }}>{personalInfo.contact.email}</span>
+                <Mail size={14} />
+                <span>{personalInfo.contact.email}</span>
                 {copiedEmail ? <Check size={14} /> : <Copy size={14} />}
-                <span style={{ fontSize: '0.78rem', color: copiedEmail ? '#1c3557' : 'var(--text-muted)' }}>
-                  {copiedEmail ? '¡Copiado!' : 'Copiar'}
-                </span>
               </button>
 
-              {/* Copiar / Llamar Teléfono */}
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                <a
-                  href={`tel:${personalInfo.contact.phone}`}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.65rem 1.1rem',
-                    borderRadius: '999px',
-                    backgroundColor: 'var(--bg-surface)',
-                    border: '1px solid var(--border-subtle)',
-                    color: 'var(--text-primary)',
-                    fontSize: '0.86rem',
-                    textDecoration: 'none'
-                  }}
-                  data-cursor="Llamar"
-                >
-                  <Phone size={15} style={{ color: 'var(--accent-gold)' }} />
-                  <span>{personalInfo.contact.phoneFormatted}</span>
-                </a>
-
-                <button
-                  type="button"
-                  onClick={copyPhone}
-                  aria-label="Copiar número de teléfono"
-                  style={{
-                    width: '38px',
-                    height: '38px',
-                    borderRadius: '50%',
-                    backgroundColor: copiedPhone ? 'var(--accent-gold)' : 'var(--bg-surface)',
-                    border: `1px solid ${copiedPhone ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                    color: copiedPhone ? '#1c3557' : 'var(--text-primary)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer'
-                  }}
-                  data-cursor="Copiar"
-                >
-                  {copiedPhone ? <Check size={14} /> : <Copy size={14} />}
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={copyPhone}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.55rem 1.1rem',
+                  borderRadius: '999px',
+                  backgroundColor: copiedPhone ? 'var(--accent-yellow-fill)' : 'var(--bg-secondary)',
+                  border: 'none',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.84rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <Phone size={14} />
+                <span>{personalInfo.contact.phoneFormatted}</span>
+                {copiedPhone ? <Check size={14} /> : <Copy size={14} />}
+              </button>
             </div>
           </div>
         </div>

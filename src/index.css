@@ -1,47 +1,50 @@
 /**
  * @file index.css
- * @description Sistema de diseño editorial de alto nivel para el portafolio de Sofia Muñoz.
- * Incluye variables globales de color off-tone, tipografía con clamp(),
- * texturas analógicas (film grain), tarjetas Bento Spotlight y microanimaciones de 60fps.
+ * @description Sistema de diseño editorial limpio, luminoso y suave para el portafolio de Sofia Muñoz.
+ * Paleta: Azul Pastel Claro (#D9EAFA / #EAF3FD), tarjetas blancas translúcidas,
+ * tipografía azul marino profundo (#142C4C) y acentos en amarillo cálido (#FFE047).
  */
 
 :root {
-  /* Paleta Cromática: Azul Pastel Suave & Amarillo Luminoso (Cálida, Clara y Profesional) */
-  --bg-primary: #345b8c;
-  --bg-secondary: #2b4e7a;
-  --bg-surface: #3e689c;
-  --bg-surface-hover: #4875ad;
-  --bg-surface-active: #5282bd;
+  /* Paleta Cromática: Azul Pastel Claro, Luminoso y Aireado + Amarillo Cálido */
+  --bg-primary: #d9eafa;
+  --bg-secondary: #eaf3fd;
+  --bg-surface: rgba(255, 255, 255, 0.82);
+  --bg-surface-hover: rgba(255, 255, 255, 0.96);
+  --bg-surface-active: #ffffff;
 
-  --border-subtle: rgba(190, 220, 255, 0.34);
-  --border-hover: rgba(255, 225, 53, 0.75);
-  --border-gold: #ffe135;
-  --border-blue: #8cc0ff;
+  /* Bordes muy suaves para evitar subdivisiones visuales bruscas */
+  --border-subtle: rgba(45, 85, 135, 0.12);
+  --border-hover: rgba(45, 85, 135, 0.26);
+  --border-gold: #f5b800;
+  --border-blue: #6aa6f8;
 
-  --text-primary: #ffffff;
-  --text-secondary: #e6f0fd;
-  --text-muted: #C2D9F7;
+  /* Tipografía Azul Marino Profundo para lectura cómoda sobre fondo pastel claro */
+  --text-primary: #142c4c;
+  --text-secondary: #345278;
+  --text-muted: #5b799e;
 
-  /* Amarillo Luminoso y Pastel Cálido (Creatividad & Energía) */
-  --accent-gold: #ffe135;
-  --accent-gold-hover: #ffea66;
-  --accent-gold-soft: rgba(255, 225, 53, 0.18);
-  --accent-yellow-light: #fff394;
+  /* Amarillo Cálido y Dorado Legible */
+  --accent-yellow-fill: #ffe047;
+  --accent-yellow-hover: #ffd41f;
+  --accent-gold: #b87400;
+  --accent-gold-hover: #9e6300;
+  --accent-gold-soft: rgba(255, 224, 71, 0.35);
 
   /* Subtonos de Azul Pastel y Cielo */
-  --accent-blue: #68a8ff;
-  --accent-blue-deep: #4a90f0;
-  --accent-blue-soft: rgba(104, 168, 255, 0.22);
-  --accent-blue-sky: #a6ceff;
-  --accent-rose: #ffe135;
-  --accent-rose-soft: rgba(255, 225, 53, 0.18);
+  --accent-blue: #2563eb;
+  --accent-blue-deep: #1d4ed8;
+  --accent-blue-soft: rgba(59, 130, 246, 0.14);
+  --accent-blue-sky: #2563eb;
+  --accent-rose: #b87400;
+  --accent-rose-soft: rgba(255, 224, 71, 0.3);
 
   /* Tipografías Editoriales */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Escala Fluida Equilibrada con clamp() (Sin desbordes ni cortes de letras) */
+  /* Escala Fluida Equilibrada con clamp() */
   --text-hero: clamp(2.2rem, 3.8vw + 0.6rem, 3.85rem);
   --text-h1: clamp(1.9rem, 3vw + 0.4rem, 3.1rem);
   --text-h2: clamp(1.65rem, 2.4vw + 0.35rem, 2.5rem);
@@ -50,12 +53,12 @@
   --text-caption: 0.85rem;
   --text-xs: 0.75rem;
 
-  /* Jerarquía de Formas Equilibrada (Combinando curvas suaves, píldoras y bordes estructurados) */
-  --container-max: 1240px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
+  /* Curvas Suaves y Amigables (Sin rigidez cuadrada) */
+  --container-max: 1200px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
   --radius-full: 9999px;
 
   /* Transiciones y Físicas */
@@ -84,13 +87,14 @@ html {
 
 body {
   overflow-x: hidden;
-  background-color: var(--bg-primary);
+  background: linear-gradient(180deg, #d9eafa 0%, #e4f0fc 50%, #d9eafa 100%);
+  color: var(--text-primary);
   min-height: 100vh;
   position: relative;
   line-height: 1.6;
 }
 
-/* Ocultar barra de scroll nativa para mayor estética */
+/* Barra de scroll limpia en tonos pastel */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -98,11 +102,11 @@ body {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+  background: rgba(20, 44, 76, 0.2);
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-gold);
+  background: rgba(20, 44, 76, 0.38);
 }
 
 /* Tipografía de Utilidad */
@@ -123,7 +127,7 @@ body {
   padding-right: 0.12em;
 }
 
-/* Grano Analógico SVG (Film Grain) */
+/* Grano Analógico SVG Muy Sutil */
 .noise-overlay {
   position: fixed;
   inset: 0;
@@ -131,7 +135,7 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.038;
+  opacity: 0.025;
 }
 
 /* Cursor Contextual Personalizado */
@@ -141,7 +145,7 @@ body {
   left: 0;
   width: 8px;
   height: 8px;
-  background: var(--accent-gold);
+  background: var(--text-primary);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10001;
@@ -155,7 +159,7 @@ body {
   left: 0;
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(20, 44, 76, 0.3);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
@@ -164,14 +168,14 @@ body {
   align-items: center;
   justify-content: center;
   transition: width 0.3s var(--ease-spring), height 0.3s var(--ease-spring), border-color 0.3s ease, background-color 0.3s ease;
-  mix-blend-mode: difference;
 }
 
 .custom-cursor-ring.is-hovering {
-  width: 72px;
-  height: 72px;
-  background: rgba(255, 255, 255, 0.95);
+  width: 68px;
+  height: 68px;
+  background: var(--accent-yellow-fill);
   border-color: transparent;
+  box-shadow: 0 8px 24px rgba(20, 44, 76, 0.15);
 }
 
 .custom-cursor-ring .cursor-text {
@@ -179,8 +183,8 @@ body {
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #000;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
   opacity: 0;
   transform: scale(0.6);
   transition: opacity 0.2s ease, transform 0.2s var(--ease-spring);
@@ -210,12 +214,15 @@ body {
   }
 }
 
-/* Tarjeta Editorial Arquitectónica (Sólida, sin degradados neón) */
+/* Tarjeta Pastel Suave y Redondeada (Sin bordes pesados ni subdivisiones) */
 .spotlight-card {
   position: relative;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: var(--radius-lg);
+  box-shadow: 0 12px 34px rgba(20, 44, 76, 0.06);
   overflow: hidden;
   transition: border-color 0.25s ease, transform 0.35s var(--ease-editorial), background-color 0.25s ease, box-shadow 0.25s ease;
 }
@@ -227,7 +234,7 @@ body {
   border-radius: inherit;
   background: radial-gradient(
     420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-    rgba(255, 255, 255, 0.045),
+    rgba(255, 224, 71, 0.18),
     transparent 65%
   );
   opacity: 0;
@@ -241,24 +248,25 @@ body {
 }
 
 .spotlight-card:hover {
-  border-color: var(--accent-gold);
+  border-color: rgba(255, 255, 255, 0.95);
   background: var(--bg-surface-hover);
-  box-shadow: 0 14px 32px rgba(24, 48, 82, 0.35);
+  box-shadow: 0 18px 42px rgba(20, 44, 76, 0.11);
+  transform: translateY(-2px);
 }
 
-/* Botón Magnético / Editorial con Curva Equilibrada (10px) */
+/* Botón Redondeado en Píldora Suave */
 .btn-magnetic {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  padding: 0.8rem 1.45rem;
+  padding: 0.82rem 1.55rem;
   font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   text-decoration: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   position: relative;
   cursor: pointer;
@@ -267,80 +275,77 @@ body {
 }
 
 .btn-primary {
-  background: var(--bg-secondary);
-  color: #ffffff;
-  border-color: var(--border-blue);
+  background: #ffffff;
+  color: var(--text-primary);
+  border-color: rgba(45, 85, 135, 0.15);
+  box-shadow: 0 6px 18px rgba(20, 44, 76, 0.06);
 }
 
 .btn-primary:hover {
-  background: #234269;
-  border-color: var(--accent-gold);
-  box-shadow: 0 8px 20px rgba(24, 48, 82, 0.35);
+  background: var(--bg-secondary);
+  border-color: rgba(45, 85, 135, 0.3);
+  box-shadow: 0 10px 24px rgba(20, 44, 76, 0.1);
   transform: translateY(-2px);
 }
 
 .btn-outline {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.55);
   color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(45, 85, 135, 0.16);
 }
 
 .btn-outline:hover {
-  border-color: var(--accent-gold);
-  color: var(--accent-gold);
-  background: rgba(255, 255, 255, 0.14);
+  background: #ffffff;
+  border-color: rgba(45, 85, 135, 0.3);
   transform: translateY(-2px);
 }
 
 .btn-gold {
-  background: var(--accent-gold);
-  color: #1c3557;
+  background: var(--accent-yellow-fill);
+  color: var(--text-primary);
   font-weight: 800;
-  border: 1px solid var(--accent-gold);
+  border: 1px solid rgba(245, 184, 0, 0.45);
+  box-shadow: 0 8px 20px rgba(245, 184, 0, 0.22);
 }
 
 .btn-gold:hover {
-  background: var(--accent-gold-hover);
-  box-shadow: 0 8px 20px rgba(24, 48, 82, 0.3);
+  background: var(--accent-yellow-hover);
+  box-shadow: 0 12px 26px rgba(245, 184, 0, 0.32);
   transform: translateY(-2px);
 }
 
-/* Etiquetas tipo Píldora Suave (donde la forma redondeada luce mejor) */
+/* Etiquetas tipo Píldora Suave */
 .badge-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.35rem 0.85rem;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
+  padding: 0.38rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
   line-height: 1.2;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   color: var(--text-secondary);
+  box-shadow: 0 4px 12px rgba(20, 44, 76, 0.04);
 }
 
 .badge-pill.status-active {
-  border-color: var(--accent-gold);
-  color: var(--accent-gold);
-  background: rgba(255, 225, 53, 0.14);
+  background: var(--accent-yellow-fill);
+  border-color: rgba(245, 184, 0, 0.4);
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 .status-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: var(--accent-gold);
+  background-color: var(--text-primary);
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-/* Máscaras de Texto (Mask Reveal sin cortar descendentes) */
+/* Máscaras de Texto */
 .text-mask-wrapper {
   overflow: hidden;
   display: block;
@@ -458,7 +463,7 @@ body {
   }
 
   section {
-    padding: 4.5rem 0 !important;
+    padding: 4rem 0 !important;
   }
 
   #inicio {
@@ -467,7 +472,7 @@ body {
   }
 
   .btn-magnetic {
-    padding: 0.75rem 1.35rem;
+    padding: 0.78rem 1.35rem;
     font-size: 0.88rem;
     width: 100%;
     justify-content: center;
@@ -488,8 +493,8 @@ body {
   }
 
   body {
-    background: #345b8c !important;
-    color: #ffffff !important;
+    background: #d9eafa !important;
+    color: #142c4c !important;
     font-size: 10pt !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -520,13 +525,11 @@ body {
   }
 
   .pdf-dossier {
-    color: #ffffff !important;
-    background: #345b8c !important;
+    color: #142c4c !important;
+    background: #d9eafa !important;
     font-family: var(--font-sans);
     line-height: 1.45;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 }
-
-

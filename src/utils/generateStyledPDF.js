@@ -1,21 +1,15 @@
 /**
  * @file generateStyledPDF.js
  * @description Motor de generación y edición vectorial de PDF con jsPDF.
- * Construye un documento A4 de alta gama ("Portafolio_Sofia_Munoz_2026.pdf")
- * utilizando la paleta exacta de la web (Azul Pastel #345B8C / #2B4E7A / #3E689C y Amarillo Luminoso #FFE135),
- * incrustando fotografías reales y sintetizando toda la información clave en una sola vista ejecutiva.
+ * Construye un documento A4 limpio y luminoso ("Portafolio_Sofia_Munoz_2026.pdf")
+ * utilizando la paleta Azul Pastel Claro (#D9EAFA / #FFFFFF), Amarillo Cálido (#FFE047)
+ * y tipografía Azul Marino (#142C4C), con tarjetas redondeadas y fotografías reales.
  */
 
 import { personalInfo, projects, skillCategories, competitions } from '../data/portfolioData';
 
 /**
  * Convierte una imagen local en un DataURL JPEG optimizado con recorte "cover"
- * para incrustarla limpiamente en el PDF sin deformaciones.
- *
- * @param {string} url Ruta de la imagen
- * @param {number} targetWidth Ancho deseado en px
- * @param {number} targetHeight Alto deseado en px
- * @returns {Promise<string|null>} DataURL en formato image/jpeg
  */
 const loadImageAsCoverDataUrl = (url, targetWidth = 600, targetHeight = 340) => {
   return new Promise((resolve) => {
@@ -28,11 +22,9 @@ const loadImageAsCoverDataUrl = (url, targetWidth = 600, targetHeight = 340) => 
         canvas.height = targetHeight;
         const ctx = canvas.getContext('2d');
 
-        // Fondo de respaldo azul pastel
-        ctx.fillStyle = '#2b4e7a';
+        ctx.fillStyle = '#eaf3fd';
         ctx.fillRect(0, 0, targetWidth, targetHeight);
 
-        // Cálculo de recorte proporcional (object-fit: cover)
         const imgRatio = img.width / img.height;
         const targetRatio = targetWidth / targetHeight;
         let drawWidth = targetWidth;
@@ -61,7 +53,6 @@ const loadImageAsCoverDataUrl = (url, targetWidth = 600, targetHeight = 340) => 
 
 /**
  * Genera y descarga directamente el portafolio estilizado en PDF (A4 Vertical)
- * @returns {Promise<void>}
  */
 export const generateStyledPortfolioPDF = async () => {
   const { jsPDF } = await import('jspdf');
@@ -72,20 +63,18 @@ export const generateStyledPortfolioPDF = async () => {
     compress: true
   });
 
-  // Paleta de Colores Oficial de la Página (RGB)
+  // Paleta Azul Pastel Claro, Tarjetas Blancas y Amarillo Cálido (RGB)
   const COLORS = {
-    bgPrimary: [52, 91, 140],     // #345B8C (Azul Pastel Principal)
-    bgSecondary: [43, 78, 122],   // #2B4E7A (Azul Pastel Profundo)
-    bgCard: [62, 104, 156],       // #3E689C (Azul Pastel Superficie)
-    borderSubtle: [130, 178, 235],// #82B2EB (Borde Azul Cielo)
-    yellow: [255, 225, 53],       // #FFE135 (Amarillo Luminoso)
-    skyBlue: [166, 206, 255],     // #A6CEFF (Azul Cielo Pastel)
-    white: [255, 255, 255],       // #FFFFFF (Texto Principal)
-    iceBlue: [230, 240, 253],     // #E6F0FD (Texto Secundario)
-    darkNavyText: [28, 53, 87]    // #1C3557 (Texto Oscuro sobre Amarillo)
+    bgPastelBlue: [217, 234, 250],  // #D9EAFA (Fondo Azul Pastel Claro)
+    bgSoftCloud: [234, 243, 253],   // #EAF3FD (Azul Nube Suave)
+    cardWhite: [255, 255, 255],     // #FFFFFF (Tarjetas Limpias)
+    yellowFill: [255, 224, 71],     // #FFE047 (Amarillo Cálido)
+    accentBlue: [37, 99, 235],      // #2563EB (Azul Destacado)
+    textNavy: [20, 44, 76],         // #142C4C (Texto Principal)
+    textSecondary: [52, 82, 120],   // #345278 (Texto Secundario)
+    borderSoft: [195, 218, 244]     // #C3DAF4 (Borde Suave)
   };
 
-  // Cargar imágenes reales en paralelo para incrustarlas en las tarjetas del PDF
   const [movaImg, merakiImg, kuriosImg, unimetImg] = await Promise.all([
     loadImageAsCoverDataUrl('/assets/mova/revista.jpg', 560, 260),
     loadImageAsCoverDataUrl('/assets/meraki/clothing.jpg', 560, 260),
@@ -93,305 +82,243 @@ export const generateStyledPortfolioPDF = async () => {
     loadImageAsCoverDataUrl('/assets/competitions/unimet_pitch_ejecutivo.jpg', 480, 220)
   ]);
 
-  // 1. FONDO COMPLETO A4 EN AZUL PASTEL (#345B8C)
-  doc.setFillColor(...COLORS.bgPrimary);
+  // 1. FONDO COMPLETO A4 EN AZUL PASTEL CLARO (#D9EAFA)
+  doc.setFillColor(...COLORS.bgPastelBlue);
   doc.rect(0, 0, 210, 297, 'F');
 
-  // Franja superior decorativa en Amarillo Luminoso (#FFE135)
-  doc.setFillColor(...COLORS.yellow);
-  doc.rect(0, 0, 210, 3.5, 'F');
+  // 2. CABECERA PRINCIPAL REDONDEADA (TARJETA BLANCA)
+  doc.setFillColor(...COLORS.cardWhite);
+  doc.roundedRect(10, 10, 190, 38, 6, 6, 'F');
 
-  // 2. CABECERA PRINCIPAL (TARJETA SUPERIOR)
-  doc.setFillColor(...COLORS.bgSecondary);
-  doc.setDrawColor(...COLORS.yellow);
-  doc.setLineWidth(0.45);
-  doc.roundedRect(10, 8, 190, 38, 3.5, 3.5, 'FD');
-
-  // Monograma "SM" en cuadro amarillo con esquinas suaves
-  doc.setFillColor(...COLORS.yellow);
-  doc.roundedRect(15, 13, 16, 16, 2.5, 2.5, 'F');
+  // Círculo Amarillo con Monograma "SM"
+  doc.setFillColor(...COLORS.yellowFill);
+  doc.circle(23, 23, 8, 'F');
   doc.setFont('times', 'bold');
-  doc.setFontSize(15);
-  doc.setTextColor(...COLORS.darkNavyText);
-  doc.text('SM', 23, 23, { align: 'center' });
+  doc.setFontSize(14);
+  doc.setTextColor(...COLORS.textNavy);
+  doc.text('SM', 23, 24.8, { align: 'center' });
 
-  // Nombre y Titular de Sofia
+  // Nombre y Rol
   doc.setFont('times', 'bold');
   doc.setFontSize(20);
-  doc.setTextColor(...COLORS.white);
-  doc.text(personalInfo.name, 35, 19);
+  doc.setTextColor(...COLORS.textNavy);
+  doc.text(personalInfo.name, 35, 20);
 
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.5);
-  doc.setTextColor(...COLORS.yellow);
-  doc.text('ASESORA DE VENTAS  |  CREADORA DE CONTENIDO  |  EMBAJADORA DE MARCA', 35, 25);
+  doc.setFontSize(9.2);
+  doc.setTextColor(...COLORS.accentBlue);
+  doc.text('Asesora de Ventas  •  Creadora de Contenido  •  Embajadora de Marca', 35, 26);
 
-  // Bio sintetizada en la cabecera
+  // Resumen
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);
-  doc.setTextColor(...COLORS.iceBlue);
+  doc.setTextColor(...COLORS.textSecondary);
   const bioLines = doc.splitTextToSize(
-    `${personalInfo.statement} Especialista en impulsar proyectos de tecnología y moda mediante comunicación clara y trato cercano.`,
-    118
+    `${personalInfo.statement} Conecto marcas con personas a través de comunicación cercana, contenido y ventas reales.`,
+    116
   );
-  doc.text(bioLines, 15, 35);
+  doc.text(bioLines, 15, 36);
 
-  // Caja de Contacto Directo (Derecha de la cabecera)
-  doc.setFillColor(...COLORS.bgCard);
-  doc.setDrawColor(...COLORS.borderSubtle);
-  doc.setLineWidth(0.3);
-  doc.roundedRect(138, 12, 57, 30, 2.5, 2.5, 'FD');
+  // Píldora Suave de Contacto Directo (Derecha)
+  doc.setFillColor(...COLORS.bgSoftCloud);
+  doc.roundedRect(138, 14, 57, 30, 5, 5, 'F');
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(7.5);
-  doc.setTextColor(...COLORS.yellow);
-  doc.text('CONTACTO DIRECTO', 142, 17.5);
+  doc.setTextColor(...COLORS.accentBlue);
+  doc.text('CONTACTO DIRECTO', 143, 19.5);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
-  doc.setTextColor(...COLORS.white);
-  doc.text(personalInfo.contact.email, 142, 23.5);
-  doc.link(142, 20, 50, 5, { url: `mailto:${personalInfo.contact.email}` });
+  doc.setTextColor(...COLORS.textNavy);
+  doc.text(personalInfo.contact.email, 143, 25);
+  doc.link(143, 21.5, 48, 5, { url: `mailto:${personalInfo.contact.email}` });
 
-  doc.text(`WhatsApp: ${personalInfo.contact.phoneFormatted}`, 142, 29);
-  doc.link(142, 26, 50, 5, { url: personalInfo.contact.whatsappUrl });
+  doc.text(`WhatsApp: ${personalInfo.contact.phoneFormatted}`, 143, 30.5);
+  doc.link(143, 27, 48, 5, { url: personalInfo.contact.whatsappUrl });
 
-  // Píldora de disponibilidad
-  doc.setFillColor(...COLORS.yellow);
-  doc.roundedRect(142, 32.5, 49, 6, 3, 3, 'F');
+  doc.setFillColor(...COLORS.yellowFill);
+  doc.roundedRect(143, 34, 47, 6.2, 3, 3, 'F');
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(7);
-  doc.setTextColor(...COLORS.darkNavyText);
-  doc.text('Disponible para proyectos (2026)', 166.5, 36.5, { align: 'center' });
+  doc.setTextColor(...COLORS.textNavy);
+  doc.text('Disponible para proyectos 2026', 166.5, 38.2, { align: 'center' });
 
-  // 3. FILA DE 4 INDICADORES SINTETIZADOS
-  const statsY = 50;
-  const statWidth = 45.2;
-  personalInfo.stats.forEach((stat, idx) => {
-    const x = 10 + idx * (statWidth + 3);
-    doc.setFillColor(...COLORS.bgCard);
-    doc.setDrawColor(...COLORS.borderSubtle);
-    doc.setLineWidth(0.25);
-    doc.roundedRect(x, statsY, statWidth, 14, 2.5, 2.5, 'FD');
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10.5);
-    doc.setTextColor(...COLORS.yellow);
-    doc.text(`${stat.value}${stat.suffix}`, x + statWidth / 2, statsY + 6.5, { align: 'center' });
-
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7);
-    doc.setTextColor(...COLORS.iceBlue);
-    doc.text(stat.label.toUpperCase(), x + statWidth / 2, statsY + 11.5, { align: 'center' });
-  });
-
-  // 4. SECCIÓN: PROYECTOS DESTACADOS (2 COLUMNAS CON FOTOS E INFORMACIÓN SINTETIZADA)
-  const projSectionY = 70;
+  // 3. PROYECTOS DESTACADOS (2 TARJETAS BLANCAS REDONDEADAS)
+  const projSectionY = 56;
   doc.setFont('times', 'bold');
-  doc.setFontSize(12.5);
-  doc.setTextColor(...COLORS.white);
+  doc.setFontSize(13);
+  doc.setTextColor(...COLORS.textNavy);
   doc.text('Proyectos Destacados (2026)', 10, projSectionY);
 
-  doc.setFillColor(...COLORS.yellow);
-  doc.rect(68, projSectionY - 1.5, 132, 0.5, 'F');
-
   const cardWidth = 92.5;
-  const cardHeight = 96;
-  const projCardsY = 74;
+  const cardHeight = 104;
+  const projCardsY = 60;
 
   projects.slice(0, 2).forEach((proj, idx) => {
     const x = 10 + idx * (cardWidth + 5);
     const imgData = idx === 0 ? movaImg : merakiImg;
 
-    // Contenedor de la tarjeta
-    doc.setFillColor(...COLORS.bgCard);
-    doc.setDrawColor(...(idx === 0 ? COLORS.skyBlue : COLORS.yellow));
-    doc.setLineWidth(0.4);
-    doc.roundedRect(x, projCardsY, cardWidth, cardHeight, 3, 3, 'FD');
+    doc.setFillColor(...COLORS.cardWhite);
+    doc.roundedRect(x, projCardsY, cardWidth, cardHeight, 6, 6, 'F');
 
-    // Imagen de portada del proyecto
     if (imgData) {
-      doc.addImage(imgData, 'JPEG', x + 3, projCardsY + 3, cardWidth - 6, 32);
+      doc.addImage(imgData, 'JPEG', x + 4, projCardsY + 4, cardWidth - 8, 35);
     }
 
-    // Etiqueta de categoría sobre la tarjeta
-    doc.setFillColor(...COLORS.yellow);
-    doc.roundedRect(x + 5, projCardsY + 5, 36, 5.5, 2.5, 2.5, 'F');
+    // Píldora de Categoría
+    doc.setFillColor(...COLORS.yellowFill);
+    doc.roundedRect(x + 6, projCardsY + 6, 36, 5.8, 3, 3, 'F');
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(6.5);
-    doc.setTextColor(...COLORS.darkNavyText);
-    doc.text(proj.category.toUpperCase(), x + 23, projCardsY + 8.8, { align: 'center' });
+    doc.setTextColor(...COLORS.textNavy);
+    doc.text(proj.category.toUpperCase(), x + 24, projCardsY + 9.9, { align: 'center' });
 
-    // Título y Rol
-    let curY = projCardsY + 41;
+    let curY = projCardsY + 46;
     doc.setFont('times', 'bold');
     doc.setFontSize(12);
-    doc.setTextColor(...COLORS.white);
-    doc.text(proj.title, x + 4, curY);
+    doc.setTextColor(...COLORS.textNavy);
+    doc.text(proj.title, x + 5, curY);
 
-    curY += 4.8;
+    curY += 5;
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(8);
-    doc.setTextColor(...COLORS.yellow);
-    doc.text(`${proj.role}  •  ${proj.year}`, x + 4, curY);
+    doc.setTextColor(...COLORS.accentBlue);
+    doc.text(`${proj.role}  •  ${proj.year}`, x + 5, curY);
 
-    // Resumen sintetizado
-    curY += 5;
+    curY += 5.2;
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7.8);
-    doc.setTextColor(...COLORS.iceBlue);
-    const descLines = doc.splitTextToSize(proj.overview, cardWidth - 8);
-    doc.text(descLines.slice(0, 3), x + 4, curY);
+    doc.setTextColor(...COLORS.textSecondary);
+    const descLines = doc.splitTextToSize(proj.overview, cardWidth - 10);
+    doc.text(descLines.slice(0, 3), x + 5, curY);
 
-    // Puntos clave de aporte y resultados
-    curY += 13;
+    curY += 13.5;
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(7.5);
-    doc.setTextColor(...COLORS.white);
-    doc.text('Aportes y logros principales:', x + 4, curY);
+    doc.setTextColor(...COLORS.textNavy);
+    doc.text('Logros principales:', x + 5, curY);
 
-    curY += 4.2;
+    curY += 4.5;
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7.3);
-    doc.setTextColor(...COLORS.iceBlue);
+    doc.setFontSize(7.4);
+    doc.setTextColor(...COLORS.textSecondary);
 
     proj.achievements.slice(0, 3).forEach((ach) => {
-      const achLines = doc.splitTextToSize(`• ${ach}`, cardWidth - 8);
-      doc.text(achLines[0], x + 4, curY);
-      curY += 4.3;
+      const achLines = doc.splitTextToSize(`• ${ach}`, cardWidth - 10);
+      doc.text(achLines[0], x + 5, curY);
+      curY += 4.5;
     });
 
-    // Botón con enlace clicable al proyecto
     if (proj.link) {
-      const btnY = projCardsY + cardHeight - 9.5;
-      doc.setFillColor(...COLORS.bgSecondary);
-      doc.setDrawColor(...COLORS.yellow);
-      doc.setLineWidth(0.3);
-      doc.roundedRect(x + 4, btnY, cardWidth - 8, 6.5, 2, 2, 'FD');
+      const btnY = projCardsY + cardHeight - 10.5;
+      doc.setFillColor(...COLORS.yellowFill);
+      doc.roundedRect(x + 5, btnY, cardWidth - 10, 6.8, 3.4, 3.4, 'F');
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(7.2);
-      doc.setTextColor(...COLORS.yellow);
+      doc.setFontSize(7.4);
+      doc.setTextColor(...COLORS.textNavy);
       const linkLabel = proj.id === 'mova' ? 'Abrir página web de MOVA ↗' : 'Ver Instagram @meraki_marka ↗';
-      doc.text(linkLabel, x + cardWidth / 2, btnY + 4.4, { align: 'center' });
-      doc.link(x + 4, btnY, cardWidth - 8, 6.5, { url: proj.link });
+      doc.text(linkLabel, x + cardWidth / 2, btnY + 4.6, { align: 'center' });
+      doc.link(x + 5, btnY, cardWidth - 10, 6.8, { url: proj.link });
     }
   });
 
-  // 5. SECCIÓN: PREMIOS Y COMPETENCIAS NACIONALES (2026)
-  const compSectionY = 177;
+  // 4. PREMIOS Y COMPETENCIAS (2026)
+  const compSectionY = 173;
   doc.setFont('times', 'bold');
-  doc.setFontSize(12.5);
-  doc.setTextColor(...COLORS.white);
+  doc.setFontSize(13);
+  doc.setTextColor(...COLORS.textNavy);
   doc.text('Premios y Competencias (2026)', 10, compSectionY);
 
-  doc.setFillColor(...COLORS.yellow);
-  doc.rect(72, compSectionY - 1.5, 128, 0.5, 'F');
-
-  const compCardsY = 181;
+  const compCardsY = 177;
   const compHeight = 46;
 
   competitions.slice(0, 2).forEach((comp, idx) => {
     const x = 10 + idx * (cardWidth + 5);
     const compImg = idx === 0 ? kuriosImg : unimetImg;
 
-    doc.setFillColor(...COLORS.bgSecondary);
-    doc.setDrawColor(...COLORS.borderSubtle);
-    doc.setLineWidth(0.35);
-    doc.roundedRect(x, compCardsY, cardWidth, compHeight, 3, 3, 'FD');
+    doc.setFillColor(...COLORS.cardWhite);
+    doc.roundedRect(x, compCardsY, cardWidth, compHeight, 6, 6, 'F');
 
-    // Miniatura fotográfica a la izquierda de la tarjeta
     if (compImg) {
-      doc.addImage(compImg, 'JPEG', x + 3, compCardsY + 3, 32, compHeight - 6);
+      doc.addImage(compImg, 'JPEG', x + 4, compCardsY + 4, 32, compHeight - 8);
     }
 
-    const textX = x + 38;
-    const maxTextW = cardWidth - 41;
+    const textX = x + 39;
+    const maxTextW = cardWidth - 43;
 
-    // Badge de premio
-    doc.setFillColor(...COLORS.yellow);
-    doc.roundedRect(textX, compCardsY + 4, 34, 5, 2, 2, 'F');
+    doc.setFillColor(...COLORS.yellowFill);
+    doc.roundedRect(textX, compCardsY + 4.5, 34, 5.2, 2.6, 2.6, 'F');
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(6.3);
-    doc.setTextColor(...COLORS.darkNavyText);
-    doc.text(comp.badge.toUpperCase(), textX + 17, compCardsY + 7.5, { align: 'center' });
+    doc.setFontSize(6.4);
+    doc.setTextColor(...COLORS.textNavy);
+    doc.text(comp.badge.toUpperCase(), textX + 17, compCardsY + 8.1, { align: 'center' });
 
-    // Título y Premio
     doc.setFont('times', 'bold');
     doc.setFontSize(9.5);
-    doc.setTextColor(...COLORS.white);
+    doc.setTextColor(...COLORS.textNavy);
     const titleLines = doc.splitTextToSize(comp.title, maxTextW);
-    doc.text(titleLines.slice(0, 2), textX, compCardsY + 14);
+    doc.text(titleLines.slice(0, 2), textX, compCardsY + 14.5);
 
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(7.5);
-    doc.setTextColor(...COLORS.yellow);
-    doc.text(comp.award, textX, compCardsY + 23);
+    doc.setTextColor(...COLORS.accentBlue);
+    doc.text(comp.award, textX, compCardsY + 23.5);
 
-    // Resumen corto
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7.2);
-    doc.setTextColor(...COLORS.iceBlue);
+    doc.setFontSize(7.3);
+    doc.setTextColor(...COLORS.textSecondary);
     const sumLines = doc.splitTextToSize(comp.summary, maxTextW);
-    doc.text(sumLines.slice(0, 4), textX, compCardsY + 28);
+    doc.text(sumLines.slice(0, 4), textX, compCardsY + 28.5);
   });
 
-  // 6. SECCIÓN: HABILIDADES PRINCIPALES (3 COLUMNAS SINTETIZADAS)
-  const skillsSectionY = 234;
+  // 5. HABILIDADES PRINCIPALES (3 TARJETAS LIMPIAS)
+  const skillsSectionY = 232;
   doc.setFont('times', 'bold');
-  doc.setFontSize(12.5);
-  doc.setTextColor(...COLORS.white);
+  doc.setFontSize(13);
+  doc.setTextColor(...COLORS.textNavy);
   doc.text('Habilidades Principales', 10, skillsSectionY);
 
-  doc.setFillColor(...COLORS.yellow);
-  doc.rect(58, skillsSectionY - 1.5, 142, 0.5, 'F');
-
   const skillColW = 60.6;
-  const skillsY = 238;
+  const skillsY = 236;
 
   skillCategories.slice(0, 3).forEach((cat, idx) => {
     const x = 10 + idx * (skillColW + 4);
-    doc.setFillColor(...COLORS.bgCard);
-    doc.setDrawColor(...COLORS.borderSubtle);
-    doc.setLineWidth(0.3);
-    doc.roundedRect(x, skillsY, skillColW, 42, 3, 3, 'FD');
+    doc.setFillColor(...COLORS.cardWhite);
+    doc.roundedRect(x, skillsY, skillColW, 43, 6, 6, 'F');
 
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8.5);
-    doc.setTextColor(...COLORS.yellow);
-    doc.text(cat.title, x + 4, skillsY + 6.5);
+    doc.setFontSize(8.6);
+    doc.setTextColor(...COLORS.accentBlue);
+    doc.text(cat.title, x + 5, skillsY + 7.5);
 
-    let sy = skillsY + 12.5;
+    let sy = skillsY + 13.5;
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7.4);
-    doc.setTextColor(...COLORS.white);
+    doc.setFontSize(7.5);
+    doc.setTextColor(...COLORS.textNavy);
 
     cat.skills.slice(0, 5).forEach((s) => {
-      doc.setFillColor(...COLORS.yellow);
-      doc.circle(x + 5.2, sy - 1, 0.8, 'F');
-      doc.text(s.name, x + 8, sy);
+      doc.setFillColor(...COLORS.yellowFill);
+      doc.circle(x + 6, sy - 1, 1, 'F');
+      doc.text(s.name, x + 9, sy);
       sy += 5.5;
     });
   });
 
-  // 7. PIE DE PÁGINA DEL PDF
-  doc.setDrawColor(...COLORS.borderSubtle);
-  doc.setLineWidth(0.25);
-  doc.line(10, 285, 200, 285);
-
+  // 6. PIE DE PÁGINA
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(7.5);
-  doc.setTextColor(...COLORS.yellow);
-  doc.text('Sofia Muñoz — Portafolio Profesional & Creativo (2026)', 10, 290);
+  doc.setFontSize(7.8);
+  doc.setTextColor(...COLORS.textNavy);
+  doc.text('Sofia Muñoz — Portafolio Profesional (2026)', 10, 289);
 
   doc.setFont('helvetica', 'normal');
-  doc.setTextColor(...COLORS.iceBlue);
+  doc.setTextColor(...COLORS.textSecondary);
   doc.text(
     `Correo: ${personalInfo.contact.email}   |   WhatsApp: ${personalInfo.contact.phoneFormatted}`,
     200,
-    290,
+    289,
     { align: 'right' }
   );
 
-  // Descargar archivo PDF con nombre limpio
   doc.save('Portafolio_Sofia_Munoz_2026.pdf');
 };

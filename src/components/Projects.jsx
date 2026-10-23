@@ -1,45 +1,19 @@
 /**
  * @file Projects.jsx
- * @description Módulo de exhibición de proyectos estratégicos de Sofia Muñoz.
- * Integra:
- * - Filtros por categoría y barra de búsqueda en tiempo real.
- * - Conmutador interactivo: Galería Bento (con Spotlight radial) vs. Índice Editorial.
- * - Despliegue de modal deep-dive sin recarga de página.
+ * @description Exhibición limpia y directa de los proyectos principales de Sofia Muñoz (MOVA y Meraki).
+ * Sin barras de búsqueda ni subdivisiones innecesarias: tarjetas redondeadas, aireadas y fáciles de explorar.
  */
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  LayoutGrid,
-  List,
-  ArrowUpRight,
-  Award,
-  ExternalLink,
-  Search,
-  X,
-  Filter,
-  Sparkles
-} from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Award } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
+import { projects } from '../data/portfolioData';
 import { useSpotlight } from '../hooks/useSpotlight';
 
 export const Projects = () => {
-  const {
-    categories,
-    selectedCategory,
-    setSelectedCategory,
-    searchQuery,
-    setSearchQuery,
-    filteredProjects,
-    viewMode,
-    setViewMode,
-    openProjectModal,
-    sound,
-    trackEvent
-  } = usePortfolio();
-
+  const { openProjectModal, trackEvent } = usePortfolio();
   const { handleMouseMove } = useSpotlight();
-  const [hoveredProject, setHoveredProject] = useState(null);
 
   const handleSelect = (project) => {
     trackEvent('project_open', { projectId: project.id, title: project.title });
@@ -47,497 +21,160 @@ export const Projects = () => {
   };
 
   return (
-    <section id="proyectos" style={{ padding: '6rem 0', position: 'relative' }}>
+    <section id="proyectos" style={{ padding: '4.5rem 0', position: 'relative' }}>
       <div className="site-container">
-        {/* Cabecera de la Sección */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-            gap: '1.5rem',
-            marginBottom: '2.5rem',
-            borderBottom: '1px solid var(--border-subtle)',
-            paddingBottom: '1.5rem'
-          }}
-        >
-          <div>
-            <div className="badge-pill" style={{ marginBottom: '0.75rem' }}>
-              <Award size={13} style={{ color: 'var(--accent-gold)' }} />
-              Trabajo Real
-            </div>
-            <h2
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'var(--text-h2)',
-                lineHeight: 1.18,
-                fontWeight: 500
-              }}
-            >
-              Proyectos{' '}
-              <span className="italic-serif" style={{ color: 'var(--accent-gold)' }}>
-                Destacados
-              </span>
-            </h2>
+        {/* Cabecera Limpia sin líneas divisorias */}
+        <div style={{ marginBottom: '2.5rem' }}>
+          <div className="badge-pill status-active" style={{ marginBottom: '0.75rem' }}>
+            <Award size={14} />
+            <span>Proyectos Destacados</span>
           </div>
-
-          {/* Switch de Modo Galería / Lista (Forma de Píldora Suave) */}
-          <div
+          <h2
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: 'var(--bg-secondary)',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: '999px',
-              padding: '0.25rem'
+              fontFamily: 'var(--font-display)',
+              fontSize: 'var(--text-h2)',
+              lineHeight: 1.18,
+              fontWeight: 600,
+              color: 'var(--text-primary)'
             }}
           >
-            <button
-              onClick={() => setViewMode('grid')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.45rem 1rem',
-                borderRadius: '999px',
-                border: 'none',
-                background: viewMode === 'grid' ? 'var(--accent-gold)' : 'transparent',
-                color: viewMode === 'grid' ? '#1c3557' : 'var(--text-secondary)',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-              data-cursor="Tarjetas"
-            >
-              <LayoutGrid size={15} />
-              <span>Tarjetas</span>
-            </button>
-
-            <button
-              onClick={() => setViewMode('table')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.45rem 1rem',
-                borderRadius: '999px',
-                border: 'none',
-                background: viewMode === 'table' ? 'var(--accent-gold)' : 'transparent',
-                color: viewMode === 'table' ? '#1c3557' : 'var(--text-secondary)',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-              data-cursor="Lista"
-            >
-              <List size={15} />
-              <span>Lista</span>
-            </button>
-          </div>
+            Trabajo real en{' '}
+            <span className="italic-serif" style={{ color: 'var(--accent-blue)' }}>
+              tecnología y moda
+            </span>
+          </h2>
         </div>
 
-        {/* Barra de Filtros y Búsqueda Reactiva */}
+        {/* Grilla Limpia de 2 Tarjetas Redondeadas */}
         <div
           style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: '1rem',
-            marginBottom: '2.5rem'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))',
+            gap: '2rem'
           }}
         >
-          {/* Categorías (Píldoras Suaves) */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-            {categories.map((cat) => {
-              const isActive = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              layoutId={`card-${project.id}`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: index * 0.12 }}
+              className="spotlight-card"
+              onMouseMove={handleMouseMove}
+              onClick={() => handleSelect(project)}
+              style={{
+                padding: '1.5rem',
+                borderRadius: '28px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                gap: '1.35rem',
+                cursor: 'pointer'
+              }}
+              data-cursor="Ver"
+            >
+              {/* Fotografía Principal Redondeada sin barras superpuestas */}
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '250px',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  backgroundColor: 'var(--bg-secondary)'
+                }}
+              >
+                <motion.img
+                  whileHover={{ scale: 1.04 }}
+                  transition={{ duration: 0.45, ease: 'easeOut' }}
+                  src={project.featuredCover}
+                  alt={project.title}
                   style={{
-                    padding: '0.45rem 1rem',
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block'
+                  }}
+                  loading="lazy"
+                />
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '0.85rem',
+                    left: '0.85rem',
+                    backgroundColor: 'rgba(255, 255, 255, 0.92)',
+                    backdropFilter: 'blur(8px)',
+                    color: 'var(--text-primary)',
+                    padding: '0.35rem 0.85rem',
                     borderRadius: '999px',
-                    fontSize: '0.82rem',
-                    fontWeight: isActive ? 700 : 500,
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    backgroundColor: isActive ? 'var(--accent-gold)' : 'var(--bg-secondary)',
-                    color: isActive ? '#1c3557' : 'var(--text-secondary)',
-                    border: `1px solid ${isActive ? 'var(--accent-gold)' : 'var(--border-subtle)'}`
+                    fontSize: '0.76rem',
+                    fontWeight: 700,
+                    boxShadow: '0 4px 12px rgba(20, 44, 76, 0.08)'
                   }}
-                  data-cursor="Filtro"
                 >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
+                  {project.category}
+                </span>
+              </div>
 
-          {/* Input de Búsqueda Rápida (Bordes estructurados de 10px) */}
-          <div
-            style={{
-              position: 'relative',
-              minWidth: '240px',
-              maxWidth: '320px',
-              width: '100%'
-            }}
-          >
-            <Search
-              size={15}
-              style={{
-                position: 'absolute',
-                left: '0.85rem',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                color: 'var(--text-muted)'
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Buscar proyecto..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.5rem 2rem 0.5rem 2.25rem',
-                borderRadius: '10px',
-                backgroundColor: 'var(--bg-secondary)',
-                border: '1px solid var(--border-subtle)',
-                color: 'var(--text-primary)',
-                fontSize: '0.84rem',
-                outline: 'none',
-                fontFamily: 'var(--font-sans)',
-                transition: 'border-color 0.2s ease'
-              }}
-              onFocus={(e) => (e.target.style.borderColor = 'var(--accent-gold)')}
-              onBlur={(e) => (e.target.style.borderColor = 'var(--border-subtle)')}
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                aria-label="Limpiar búsqueda"
-                style={{
-                  position: 'absolute',
-                  right: '0.75rem',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  background: 'none',
-                  border: 'none',
-                  color: 'var(--text-muted)',
-                  cursor: 'pointer',
-                  padding: 0
-                }}
-              >
-                <X size={14} />
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Estado Vacío si ningún proyecto coincide */}
-        {filteredProjects.length === 0 && (
-          <div
-            style={{
-              textAlign: 'center',
-              padding: '4rem 1rem',
-              backgroundColor: 'rgba(255, 255, 255, 0.02)',
-              borderRadius: 'var(--radius-lg)',
-              border: '1px dashed var(--border-subtle)'
-            }}
-          >
-            <p style={{ color: 'var(--text-muted)', marginBottom: '1rem', fontSize: '1rem' }}>
-              No se encontraron proyectos con el criterio "{searchQuery}".
-            </p>
-            <button
-              onClick={() => {
-                setSelectedCategory('Todos');
-                setSearchQuery('');
-              }}
-              className="btn-magnetic"
-              style={{
-                padding: '0.5rem 1.25rem',
-                borderRadius: 'var(--radius-full)',
-                backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                border: '1px solid var(--border-subtle)',
-                color: 'var(--text-primary)',
-                cursor: 'pointer',
-                fontSize: '0.85rem'
-              }}
-            >
-              Restablecer filtros
-            </button>
-          </div>
-        )}
-
-        {/* 1. MODO GALERÍA BENTO CON SPOTLIGHT */}
-        {viewMode === 'grid' && filteredProjects.length > 0 && (
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-              gap: '2rem'
-            }}
-          >
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layoutId={`card-${project.id}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="spotlight-card"
-                onMouseMove={handleMouseMove}
-                onClick={() => handleSelect(project)}
-                style={{
-                  padding: '2rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  gap: '1.25rem',
-                  cursor: 'pointer'
-                }}
-                data-cursor="Ver"
-              >
-                {/* Cabecera de la Tarjeta */}
-                <div>
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      marginBottom: '1.1rem'
-                    }}
-                  >
-                    <span
-                      className="badge-pill"
-                      style={{
-                        borderColor: project.accentColor || 'var(--border-subtle)',
-                        color: project.accentColor || 'var(--text-primary)'
-                      }}
-                    >
-                      {project.category}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.8rem',
-                        color: 'var(--text-muted)'
-                      }}
-                    >
-                      {project.year}
-                    </span>
-                  </div>
-
-                  <h3
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.6rem',
-                      fontWeight: 500,
-                      lineHeight: 1.25,
-                      marginBottom: '0.45rem'
-                    }}
-                  >
-                    {project.title}
-                  </h3>
-
-                  <p
-                    style={{
-                      fontSize: '0.9rem',
-                      color: 'var(--accent-gold)',
-                      fontWeight: 600,
-                      marginBottom: '0.75rem'
-                    }}
-                  >
-                    {project.role}
-                  </p>
-
-                  <p
-                    style={{
-                      fontSize: '0.95rem',
-                      color: 'var(--text-secondary)',
-                      lineHeight: 1.6,
-                      marginBottom: '0.5rem'
-                    }}
-                  >
-                    {project.tagline}
-                  </p>
-                </div>
-
-                {/* Vista previa visual del caso con clip-path reveal */}
-                <div style={{ position: 'relative', marginTop: 'auto' }}>
-                  <div
-                    style={{
-                      position: 'relative',
-                      width: '100%',
-                      height: '240px',
-                      borderRadius: 'var(--radius-md)',
-                      overflow: 'hidden',
-                      backgroundColor: 'rgba(0,0,0,0.4)',
-                      border: '1px solid var(--border-subtle)'
-                    }}
-                  >
-                    <motion.img
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.5, ease: 'easeOut' }}
-                      src={project.featuredCover}
-                      alt={project.title}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover'
-                      }}
-                      loading="lazy"
-                    />
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        backgroundColor: 'rgba(43, 78, 122, 0.92)',
-                        borderTop: '1px solid var(--border-subtle)',
-                        padding: '0.6rem 0.85rem',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center'
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: '0.76rem',
-                          fontFamily: 'var(--font-mono)',
-                          color: 'var(--text-primary)',
-                          fontWeight: 600
-                        }}
-                      >
-                        Ver {project.gallery.length} fotos
-                      </span>
-                      <div
-                        style={{
-                          width: '32px',
-                          height: '32px',
-                          borderRadius: '50%',
-                          backgroundColor: 'var(--accent-gold)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#1c3557'
-                        }}
-                      >
-                        <ArrowUpRight size={16} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
-
-        {/* 2. MODO ÍNDICE EDITORIAL CON PREVIEW EN HOVER */}
-        {viewMode === 'table' && filteredProjects.length > 0 && (
-          <div style={{ position: 'relative' }}>
-            <div
-              style={{
-                borderTop: '1px solid var(--border-subtle)',
-                marginTop: '1rem'
-              }}
-            >
-              {filteredProjects.map((project, idx) => (
+              {/* Contenido Unificado sin Cajas Internas */}
+              <div style={{ padding: '0 0.35rem 0.25rem 0.35rem' }}>
                 <div
-                  key={project.id}
-                  onClick={() => handleSelect(project)}
-                  onMouseEnter={() => setHoveredProject(project)}
-                  onMouseLeave={() => setHoveredProject(null)}
                   style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'minmax(200px, 1.5fr) minmax(180px, 1.2fr) minmax(140px, 1fr) auto',
-                    alignItems: 'center',
-                    gap: '1.5rem',
-                    padding: '1.75rem 0',
-                    borderBottom: '1px solid var(--border-subtle)',
-                    cursor: 'pointer',
-                    transition: 'padding-left 0.2s ease, background 0.2s ease'
+                    fontSize: '0.84rem',
+                    color: 'var(--accent-blue)',
+                    fontWeight: 700,
+                    marginBottom: '0.35rem'
                   }}
-                  data-cursor="Explorar"
                 >
-                  <div>
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.78rem',
-                        color: 'var(--accent-gold)',
-                        marginRight: '0.75rem'
-                      }}
-                    >
-                      0{idx + 1}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: '1.35rem',
-                        fontWeight: 500
-                      }}
-                    >
-                      {project.title}
-                    </span>
-                  </div>
-
-                  <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                    {project.role}
-                  </div>
-
-                  <div style={{ color: 'var(--text-muted)', fontSize: '0.84rem' }}>
-                    {project.category}
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-                      {project.year}
-                    </span>
-                    <ArrowUpRight size={18} style={{ color: 'var(--accent-gold)' }} />
-                  </div>
+                  {project.role} • {project.year}
                 </div>
-              ))}
-            </div>
 
-            {/* Preview Flotante en Modo Tabla */}
-            <AnimatePresence>
-              {hoveredProject && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.2 }}
+                <h3
                   style={{
-                    position: 'fixed',
-                    right: '15%',
-                    bottom: '20%',
-                    width: '320px',
-                    height: '200px',
-                    borderRadius: 'var(--radius-lg)',
-                    overflow: 'hidden',
-                    pointerEvents: 'none',
-                    zIndex: 40,
-                    boxShadow: '0 25px 60px rgba(0,0,0,0.8)',
-                    border: '1px solid var(--border-gold)'
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.6rem',
+                    fontWeight: 600,
+                    lineHeight: 1.22,
+                    marginBottom: '0.6rem',
+                    color: 'var(--text-primary)'
                   }}
                 >
-                  <img
-                    src={hoveredProject.featuredCover}
-                    alt={hoveredProject.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        )}
+                  {project.title}
+                </h3>
+
+                <p
+                  style={{
+                    fontSize: '0.96rem',
+                    color: 'var(--text-secondary)',
+                    lineHeight: 1.65,
+                    marginBottom: '1.25rem'
+                  }}
+                >
+                  {project.tagline}
+                </p>
+
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    padding: '0.55rem 1.15rem',
+                    borderRadius: '999px',
+                    backgroundColor: 'var(--accent-yellow-fill)',
+                    color: 'var(--text-primary)',
+                    fontSize: '0.84rem',
+                    fontWeight: 700
+                  }}
+                >
+                  <span>Ver detalles y {project.gallery.length} fotos</span>
+                  <ArrowUpRight size={15} />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

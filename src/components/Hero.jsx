@@ -1,11 +1,8 @@
 /**
  * @file Hero.jsx
- * @description Sección de aterrizaje editorial y cinematográfica para Sofia Muñoz.
- * Aplica:
- * - Revelado kinetic por máscaras de texto (editorial-typography-kinetic-text).
- * - Tarjeta insignia con física de inclinación 3D perspectivada (3D Tilt / webgl-shader-image-effects).
- * - Físicas de resortes (motion-spring-architecture) en botones magnéticos.
- * - Marquesina infinita editorial (infinite ticker ribbon) no sobrecargada.
+ * @description Sección principal limpia, luminosa y sin subdivisiones innecesarias.
+ * Combina la paleta Azul Pastel Claro (#D9EAFA) con tarjetas blancas redondeadas,
+ * píldoras interactivas que revelan fotos y acentos en amarillo cálido (#FFE047).
  */
 
 import React, { useRef, useState } from 'react';
@@ -13,12 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowDown,
   MessageCircle,
-  Sparkles,
-  Award,
-  TrendingUp,
   ArrowUpRight,
-  ShieldCheck,
-  Zap,
   FileDown
 } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
@@ -29,36 +21,26 @@ export const Hero = ({ lenisInstance }) => {
   const { sound, trackEvent, openPdfModal } = usePortfolio();
   const cardRef = useRef(null);
 
-  // Imágenes interactivas que se revelan al tocar las formas en la tarjeta derecha
   const heroSlides = [
     {
-      shape: '◆',
       shortLabel: 'MOVA',
-      title: 'Proyecto: MOVA',
-      badge: 'Portada de Revista',
+      title: 'Proyecto MOVA — Portada de Revista',
       src: '/assets/mova/revista.jpg'
     },
     {
-      shape: '■',
       shortLabel: 'Meraki',
-      title: 'Embajadora: Meraki',
-      badge: 'Moda y Ventas',
+      title: 'Embajadora Meraki — Moda y Ventas',
       src: '/assets/meraki/clothing.jpg'
     },
     {
-      shape: '▲',
-      shortLabel: 'Premio',
-      title: '2do Lugar Nacional Kurios',
-      badge: 'Premio 2026',
+      shortLabel: 'Premio 2026',
+      title: '2do Lugar Nacional — Torneo Kurios',
       src: '/assets/competitions/kurios_podio_marketplace.jpg'
     }
   ];
 
   const [activeSlide, setActiveSlide] = useState(0);
-
-  // Estado para la inclinación 3D (Tilt) interactiva
   const [tiltStyle, setTiltStyle] = useState({ transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' });
-  const [glareStyle, setGlareStyle] = useState({ opacity: 0 });
 
   const handleCardMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -68,15 +50,11 @@ export const Hero = ({ lenisInstance }) => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotX = -((y - centerY) / centerY) * 6;
-    const rotY = ((x - centerX) / centerX) * 6;
+    const rotX = -((y - centerY) / centerY) * 4;
+    const rotY = ((x - centerX) / centerX) * 4;
 
     setTiltStyle({
       transform: `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`
-    });
-
-    setGlareStyle({
-      opacity: 0
     });
   };
 
@@ -84,7 +62,6 @@ export const Hero = ({ lenisInstance }) => {
     setTiltStyle({
       transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'
     });
-    setGlareStyle({ opacity: 0 });
   };
 
   const scrollToProjects = (e) => {
@@ -105,78 +82,59 @@ export const Hero = ({ lenisInstance }) => {
     trackEvent('hero_whatsapp_click');
   };
 
-  // Palabras clave directas para la cinta inferior
-  const tickerItems = [
-    'ASESORÍA COMERCIAL',
-    'VENTAS EN REDES',
-    'MOVA — TRADUCTOR DE SEÑAS',
-    'EMBAJADORA MERAKI',
-    '2DO LUGAR NACIONAL KURIOS 2026',
-    'ATENCIÓN AL CLIENTE',
-    'CREACIÓN DE CONTENIDO'
-  ];
-
   return (
     <section
       id="inicio"
       style={{
-        minHeight: '100vh',
+        minHeight: '92vh',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        paddingTop: '8rem',
-        paddingBottom: '2rem',
+        justifyContent: 'center',
+        paddingTop: '7.5rem',
+        paddingBottom: '3rem',
         position: 'relative',
         overflow: 'hidden'
       }}
     >
-      <div className="site-container" style={{ width: '100%', margin: 'auto 0', paddingBottom: '3rem' }}>
+      <div className="site-container" style={{ width: '100%' }}>
         <div className="editorial-grid" style={{ alignItems: 'center' }}>
-          {/* COLUMNA IZQUIERDA: Mensaje Claro y Directo */}
+          {/* COLUMNA IZQUIERDA: Mensaje Principal Limpio y Abierto */}
           <div style={{ gridColumn: 'span 7' }}>
-            {/* Etiquetas de Estado */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              style={{
-                marginBottom: '1.5rem',
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '0.65rem',
-                alignItems: 'center'
-              }}
+              style={{ marginBottom: '1.35rem' }}
             >
               <div className="badge-pill status-active">
                 <span className="status-dot"></span>
                 <span>{personalInfo.contact.availability}</span>
               </div>
-
-              <div className="badge-pill">
-                <Award size={13} style={{ color: 'var(--accent-gold)' }} />
-                <span>Co-fundadora de MOVA & Embajadora Meraki</span>
-              </div>
             </motion.div>
 
-            {/* Título Principal Claro, Bien Espaciado y sin Cortes */}
+            {/* Título Principal */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
               style={{
                 fontSize: 'var(--text-hero)',
-                lineHeight: 1.16,
+                lineHeight: 1.15,
                 fontWeight: 600,
                 letterSpacing: '-0.02em',
                 marginBottom: '1.35rem',
-                maxWidth: '640px'
+                maxWidth: '640px',
+                color: 'var(--text-primary)'
               }}
             >
               Hago que las marcas conecten con personas y logren{' '}
               <span
                 className="italic-serif"
                 style={{
-                  color: 'var(--accent-gold)',
+                  backgroundColor: 'var(--accent-yellow-fill)',
+                  padding: '0 0.35rem',
+                  borderRadius: '12px',
+                  color: 'var(--text-primary)',
                   fontWeight: 400
                 }}
               >
@@ -184,7 +142,7 @@ export const Hero = ({ lenisInstance }) => {
               </span>
             </motion.h1>
 
-            {/* Resumen Breve con Formas Interactivas que Revelan Fotos al Tocarlas */}
+            {/* Resumen con Píldoras Interactivas que Revelan Fotos */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -222,12 +180,9 @@ export const Hero = ({ lenisInstance }) => {
                 accent="gold"
               />
               .
-              <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontFamily: 'var(--font-mono)', marginTop: '0.45rem' }}>
-                ↑ Toca cualquiera de las formas para ver su foto
-              </div>
             </motion.div>
 
-            {/* Botones de Acción Directos */}
+            {/* Botones Redondeados */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -236,8 +191,7 @@ export const Hero = ({ lenisInstance }) => {
                 display: 'flex',
                 flexWrap: 'wrap',
                 gap: '0.85rem',
-                alignItems: 'center',
-                marginBottom: '2.25rem'
+                alignItems: 'center'
               }}
             >
               <a
@@ -253,16 +207,6 @@ export const Hero = ({ lenisInstance }) => {
                 <ArrowUpRight size={15} />
               </a>
 
-              <a
-                href="#proyectos"
-                onClick={scrollToProjects}
-                className="btn-magnetic btn-outline"
-                data-cursor="Ver"
-              >
-                <span>Ver Proyectos</span>
-                <ArrowDown size={15} />
-              </a>
-
               <button
                 type="button"
                 onClick={() => {
@@ -273,39 +217,23 @@ export const Hero = ({ lenisInstance }) => {
                 className="btn-magnetic btn-primary"
                 data-cursor="PDF"
               >
-                <FileDown size={15} style={{ color: 'var(--accent-gold)' }} />
+                <FileDown size={16} />
                 <span>Descargar PDF</span>
               </button>
-            </motion.div>
 
-            {/* Puntos Clave Cortos */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '1.5rem',
-                alignItems: 'center'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
-                <ShieldCheck size={16} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
-                <span>2do Lugar Nacional Kurios 2026</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
-                <TrendingUp size={16} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
-                <span>Ventas y Contenido en Redes</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
-                <Zap size={16} style={{ color: 'var(--accent-blue-sky)', flexShrink: 0 }} />
-                <span>Traductor de Lengua de Señas MOVA</span>
-              </div>
+              <a
+                href="#proyectos"
+                onClick={scrollToProjects}
+                className="btn-magnetic btn-outline"
+                data-cursor="Ver"
+              >
+                <span>Ver Proyectos</span>
+                <ArrowDown size={15} />
+              </a>
             </motion.div>
           </div>
 
-          {/* COLUMNA DERECHA: Tarjeta Insignia Editorial con 3D Tilt Perspectivado */}
+          {/* COLUMNA DERECHA: Tarjeta Visual Única, Limpia y Redondeada */}
           <div style={{ gridColumn: 'span 5', display: 'flex', justifyContent: 'center' }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 20 }}
@@ -318,61 +246,123 @@ export const Hero = ({ lenisInstance }) => {
                 ...tiltStyle,
                 position: 'relative',
                 width: '100%',
-                maxWidth: '420px',
-                borderRadius: '18px',
-                backgroundColor: 'var(--bg-secondary)',
-                border: '1px solid var(--accent-gold)',
-                boxShadow: '0 18px 42px rgba(24, 48, 82, 0.35)',
-                padding: '1.85rem',
-                transition: 'transform 0.15s ease-out, box-shadow 0.25s ease',
-                cursor: 'pointer'
+                maxWidth: '410px',
+                borderRadius: '28px',
+                backgroundColor: 'rgba(255, 255, 255, 0.86)',
+                backdropFilter: 'blur(14px)',
+                border: '1px solid rgba(255, 255, 255, 0.95)',
+                boxShadow: '0 20px 45px rgba(20, 44, 76, 0.08)',
+                padding: '1.35rem',
+                transition: 'transform 0.15s ease-out, box-shadow 0.25s ease'
               }}
-              data-cursor="Sofia"
             >
-              {/* Encabezado de la Tarjeta */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
+              {/* Cabecera Simple sin cajas anidadas */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', padding: '0 0.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div
                     style={{
-                      width: '44px',
-                      height: '44px',
-                      borderRadius: '12px',
-                      backgroundColor: 'var(--accent-gold)',
-                      color: '#1c3557',
+                      width: '42px',
+                      height: '42px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--accent-yellow-fill)',
+                      color: 'var(--text-primary)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       fontFamily: 'var(--font-display)',
-                      fontWeight: 800,
-                      fontSize: '1.15rem',
-                      border: '1px solid var(--accent-gold)'
+                      fontWeight: 700,
+                      fontSize: '1.05rem'
                     }}
                   >
                     SM
                   </div>
                   <div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 600 }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                       Sofia Muñoz
                     </div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
-                      Asesora Comercial
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+                      Ventas & Contenido
                     </div>
                   </div>
                 </div>
 
-                <span className="badge-pill" style={{ fontSize: '0.7rem', borderColor: 'var(--border-blue)', color: '#fff' }}>
-                  '26
+                <span
+                  style={{
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    backgroundColor: 'var(--bg-secondary)',
+                    color: 'var(--text-secondary)',
+                    padding: '0.3rem 0.75rem',
+                    borderRadius: '999px'
+                  }}
+                >
+                  2026
                 </span>
               </div>
 
-              {/* Selector de Formas Geométricas para Cambiar la Imagen con Transición */}
+              {/* Imagen Redondeada con Transición Clip-Path al tocar */}
               <div
-                style={{
-                  display: 'flex',
-                  gap: '0.45rem',
-                  marginBottom: '0.85rem'
+                onClick={() => {
+                  sound.playClick();
+                  setActiveSlide((prev) => (prev + 1) % heroSlides.length);
                 }}
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '250px',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  marginBottom: '1rem',
+                  cursor: 'pointer',
+                  backgroundColor: 'var(--bg-secondary)'
+                }}
+                title="Toca para ver la siguiente foto"
+                data-cursor="Cambiar"
               >
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={heroSlides[activeSlide].src}
+                    src={heroSlides[activeSlide].src}
+                    alt={heroSlides[activeSlide].title}
+                    initial={{ clipPath: 'inset(0 100% 0 0)', scale: 1.06 }}
+                    animate={{ clipPath: 'inset(0 0% 0 0)', scale: 1 }}
+                    exit={{ clipPath: 'inset(0 0 0 100%)', scale: 1.03 }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block'
+                    }}
+                    loading="eager"
+                  />
+                </AnimatePresence>
+
+                {/* Píldora flotante limpia en lugar de barra pesada */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '0.75rem',
+                    left: '0.75rem',
+                    right: '0.75rem',
+                    backgroundColor: 'rgba(255, 255, 255, 0.92)',
+                    backdropFilter: 'blur(8px)',
+                    padding: '0.5rem 0.9rem',
+                    borderRadius: '999px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    boxShadow: '0 6px 18px rgba(20, 44, 76, 0.12)'
+                  }}
+                >
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-primary)', fontWeight: 700 }}>
+                    {heroSlides[activeSlide].title}
+                  </span>
+                </div>
+              </div>
+
+              {/* Píldoras suaves para cambiar la foto */}
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
                 {heroSlides.map((slide, idx) => {
                   const isCurrent = activeSlide === idx;
                   return (
@@ -386,157 +376,24 @@ export const Hero = ({ lenisInstance }) => {
                       }}
                       style={{
                         flex: 1,
-                        padding: '0.4rem 0.5rem',
-                        borderRadius: '8px',
-                        backgroundColor: isCurrent ? 'var(--accent-gold)' : 'var(--bg-surface)',
-                        color: isCurrent ? '#1c3557' : 'var(--text-secondary)',
-                        border: `1px solid ${isCurrent ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.72rem',
-                        fontWeight: 700,
+                        padding: '0.5rem 0.6rem',
+                        borderRadius: '999px',
+                        backgroundColor: isCurrent ? 'var(--accent-yellow-fill)' : 'var(--bg-secondary)',
+                        color: 'var(--text-primary)',
+                        border: 'none',
+                        fontSize: '0.78rem',
+                        fontWeight: isCurrent ? 700 : 600,
                         cursor: 'pointer',
                         transition: 'all 0.2s ease'
                       }}
-                      data-cursor="Cambiar"
                     >
-                      {slide.shape} {slide.shortLabel}
+                      {slide.shortLabel}
                     </button>
                   );
                 })}
               </div>
-
-              {/* Preview Visual Editorial con Cortina Clip-Path al Tocar */}
-              <div
-                onClick={() => {
-                  sound.playClick();
-                  setActiveSlide((prev) => (prev + 1) % heroSlides.length);
-                }}
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  height: '220px',
-                  borderRadius: '12px',
-                  overflow: 'hidden',
-                  marginBottom: '1.35rem',
-                  border: '1px solid var(--border-subtle)',
-                  backgroundColor: 'var(--bg-primary)'
-                }}
-                title="Toca la imagen para cambiar a la siguiente foto"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={heroSlides[activeSlide].src}
-                    src={heroSlides[activeSlide].src}
-                    alt={heroSlides[activeSlide].title}
-                    initial={{ clipPath: 'inset(0 100% 0 0)', scale: 1.08 }}
-                    animate={{ clipPath: 'inset(0 0% 0 0)', scale: 1 }}
-                    exit={{ clipPath: 'inset(0 0 0 100%)', scale: 1.04 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      filter: 'contrast(1.03)',
-                      display: 'block'
-                    }}
-                    loading="eager"
-                  />
-                </AnimatePresence>
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    backgroundColor: 'rgba(43, 78, 122, 0.92)',
-                    borderTop: '1px solid var(--border-subtle)',
-                    padding: '0.55rem 0.75rem',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                  }}
-                >
-                  <span style={{ fontSize: '0.75rem', color: '#fff', fontWeight: 600 }}>
-                    {heroSlides[activeSlide].title}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: '0.7rem',
-                      fontFamily: 'var(--font-mono)',
-                      color: '#1c3557',
-                      backgroundColor: 'var(--accent-gold)',
-                      fontWeight: 700,
-                      padding: '0.15rem 0.55rem',
-                      borderRadius: '999px'
-                    }}
-                  >
-                    {heroSlides[activeSlide].badge}
-                  </span>
-                </div>
-              </div>
-
-              {/* Fila de Métricas Clave de Sofia */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(2, 1fr)',
-                  gap: '1rem',
-                  borderTop: '1px solid var(--border-subtle)',
-                  paddingTop: '1.25rem'
-                }}
-              >
-                <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                    2do Lugar
-                  </div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
-                    Torneo Kurios & BNC 2026
-                  </div>
-                </div>
-
-                <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--accent-gold)' }}>
-                    3 Idiomas
-                  </div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
-                    Señas LSV / ASL / LSE
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </div>
-        </div>
-      </div>
-
-      {/* MARQUESINA INFINITA EDITORIAL (TICKER) */}
-      <div
-        className="marquee-container"
-        style={{
-          borderTop: '1px solid var(--border-subtle)',
-          borderBottom: '1px solid var(--border-subtle)',
-          padding: '0.85rem 0',
-          backgroundColor: 'rgba(255, 255, 255, 0.015)'
-        }}
-      >
-        <div className="marquee-content">
-          {[...tickerItems, ...tickerItems].map((item, idx) => (
-            <div
-              key={idx}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '1.25rem',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.82rem',
-                letterSpacing: '0.12em',
-                color: idx % 2 === 0 ? 'var(--text-secondary)' : 'var(--accent-gold)',
-                textTransform: 'uppercase'
-              }}
-            >
-              <span>{item}</span>
-              <span style={{ fontSize: '0.6rem', opacity: 0.5 }}>✦</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
 /**
  * @file Preloader.jsx
- * @description Pantalla de carga coreografiada con contador numérico 00% - 100%
- * y levantamiento de cortina vertical hacia arriba con curva Bézier pronunciada.
+ * @description Pantalla de carga inicial en Azul Pastel Claro (#D9EAFA) con barra redondeada.
  */
 
 import React, { useEffect, useState } from 'react';
@@ -19,14 +18,13 @@ export const Preloader = ({ onFinish }) => {
           setTimeout(() => {
             setIsCompleted(true);
             if (onFinish) onFinish();
-          }, 400);
+          }, 350);
           return 100;
         }
-        // Incremento no lineal para mayor sensación orgánica
-        const jump = Math.floor(Math.random() * 8) + 3;
+        const jump = Math.floor(Math.random() * 8) + 4;
         return Math.min(prev + jump, 100);
       });
-    }, 45);
+    }, 40);
 
     return () => clearInterval(timer);
   }, [onFinish]);
@@ -35,7 +33,6 @@ export const Preloader = ({ onFinish }) => {
     <AnimatePresence>
       {!isCompleted && (
         <motion.div
-          className="fixed inset-0 z-[100000] flex flex-col justify-between p-8 md:p-16"
           style={{
             position: 'fixed',
             inset: 0,
@@ -44,75 +41,81 @@ export const Preloader = ({ onFinish }) => {
             flexDirection: 'column',
             justifyContent: 'space-between',
             padding: '2.5rem',
-            backgroundColor: 'var(--bg-secondary)',
-            color: 'var(--text-primary)',
-            borderBottom: '3px solid var(--accent-gold)'
+            backgroundColor: '#d9eafa',
+            color: 'var(--text-primary)'
           }}
           initial={{ y: 0 }}
           exit={{
             y: '-100%',
             transition: {
-              duration: 0.85,
+              duration: 0.75,
               ease: [0.76, 0, 0.24, 1]
             }
           }}
         >
-          {/* Cabecera del preloader */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.12em', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
-              Sofia Muñoz — Portafolio '26
+            <span style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+              Sofia Muñoz — Portafolio 2026
             </span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.08em', color: 'var(--accent-gold)', fontWeight: 700 }}>
-              Iniciando Experiencia
+            <span
+              style={{
+                fontSize: '0.78rem',
+                backgroundColor: 'var(--accent-yellow-fill)',
+                color: 'var(--text-primary)',
+                padding: '0.3rem 0.85rem',
+                borderRadius: '999px',
+                fontWeight: 700
+              }}
+            >
+              Cargando
             </span>
           </div>
 
-          {/* Centro: Nombre editorial y rol */}
           <div style={{ textAlign: 'center' }}>
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
-                fontWeight: 500,
+                fontSize: 'clamp(2.2rem, 5vw, 4rem)',
+                fontWeight: 600,
                 letterSpacing: '-0.02em',
-                marginBottom: '0.5rem'
+                marginBottom: '0.4rem',
+                color: 'var(--text-primary)'
               }}
             >
               Sofia Muñoz
             </motion.h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', letterSpacing: '0.05em' }}>
-              Asesora Comercial <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>&</span> Estrategia de Ventas
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem' }}>
+              Asesora Comercial & Creadora de Contenido
             </p>
           </div>
 
-          {/* Pie: Contador numérico y barra de progreso fina */}
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1rem' }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                Cargando proyectos y activos visuales
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '0.85rem' }}>
+              <span style={{ fontSize: '0.84rem', color: 'var(--text-muted)' }}>
+                Preparando portafolio
               </span>
               <span
                 style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                  fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)',
                   fontWeight: 700,
                   lineHeight: 1,
-                  fontVariantNumeric: 'tabular-nums',
-                  color: 'var(--accent-gold)'
+                  color: 'var(--text-primary)'
                 }}
               >
-                {count.toString().padStart(3, '0')}%
+                {count}%
               </span>
             </div>
 
-            <div style={{ width: '100%', height: '3px', backgroundColor: '#182b52', borderRadius: '0px', overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: '6px', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderRadius: '999px', overflow: 'hidden' }}>
               <motion.div
                 style={{
                   height: '100%',
-                  backgroundColor: 'var(--accent-gold)',
+                  backgroundColor: 'var(--accent-yellow-fill)',
+                  borderRadius: '999px',
                   width: `${count}%`,
                   transition: 'width 0.1s ease'
                 }}

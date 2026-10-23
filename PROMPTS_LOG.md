@@ -262,3 +262,21 @@ Y el pdf debe salir con estilo , sintetisando todo lo necesario utilizando la pa
      - Sintetiza toda la información esencial en un diseño limpio y visual (Perfil, 4 Métricas Clave, Proyectos MOVA y Meraki, Premios 2026 y Habilidades).
      - Incluye enlaces interactivos clicables dentro del PDF (WhatsApp, Correo, Web de MOVA e Instagram de Meraki).
   3. Actualización de `src/components/PortfolioPDF.jsx` con vista previa fiel al diseño del PDF y descarga directa en 1 clic sin depender únicamente del cuadro de impresión del navegador.
+
+---
+
+### Prompt 22 — Paleta Azul Pastel Realmente Clara, Menos Subdivisiones Visuales y Formas Suavemente Redondeadas
+- **Fecha y Hora:** 2026-10-23 18:59:54 (-04:00)
+- **Contenido:**
+```text
+Ahora todo es demasiado cuadrado, que te parece si mejor hacemos una estructura visual mas limpia y con menos sub dividiones visuales,y redondear algunas cosas, como dije antes un azul mas pastel no tan oscuro.
+```
+- **Acción realizada:**
+  1. **Paleta Azul Pastel Verdaderamente Clara y Luminosa (`src/index.css` y componentes):**
+     - Transición de los tonos azul pizarra medios (`#345B8C` / `#2B4E7A`) a un **Azul Pastel Cielo Luminoso** (`--bg-primary: #D9EAFA`, `--bg-secondary: #EAF3FD`, superficies de tarjeta blancas translúcidas `rgba(255, 255, 255, 0.82)`), con tipografía azul marino profundo (`#142C4C` / `#345278`) de altísima legibilidad y acentos en amarillo cálido (`#FFE047` para rellenos y `#C47D00` para textos destacados).
+  2. **Estructura Visual Más Limpia y con Menos Subdivisiones Visuales:**
+     - Eliminación de cajas anidadas dentro de cajas (box-inside-box), líneas divisorias innecesarias, barras de búsqueda redundantes y bloques recargados en `Hero.jsx`, `Projects.jsx`, `CompetitionsSection.jsx`, `About.jsx`, `SkillsGrid.jsx` y `ContactSection.jsx`.
+  3. **Formas Suavemente Redondeadas:**
+     - Tarjetas principales y modales con bordes suaves (`24px`–`28px`), fotografías internas e inputs redondeados (`16px`–`20px`), y botones, etiquetas y barra de navegación en formato píldora (`9999px`).
+  4. **Actualización Sincronizada del PDF (`src/utils/generateStyledPDF.js` y `src/components/PortfolioPDF.jsx`):**
+     - El PDF descargable refleja la nueva paleta Azul Pastel clara (`#D9EAFA` / `#EAF3FD`), tarjetas blancas redondeadas, acentos amarillos (`#FFE047`) y texto azul marino (`#142C4C`).
