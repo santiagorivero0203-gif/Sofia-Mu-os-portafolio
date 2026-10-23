@@ -56,6 +56,8 @@ Sofia portafolio/
 │   │   ├── useScrollSpy.js            # Detección de sección activa en el scroll
 │   │   ├── useSoundFeedback.js        # Síntesis Web Audio para clics y confirmaciones
 │   │   └── useSpotlight.js            # Cálculo de coordenadas del cursor en tarjetas Bento
+│   ├── utils/
+│   │   └── generateStyledPDF.js       # Generador vectorial de PDF con jsPDF, fotos y paleta Azul Pastel/Amarillo
 │   ├── App.jsx                        # Orquestador raíz con Lenis y ErrorBoundary
 │   ├── index.css                      # Variables CSS, tokens tipográficos y bento styles
 │   └── main.jsx                       # Montaje de ReactDOM
@@ -114,7 +116,8 @@ El siguiente esquema representa cómo interactúan los componentes, el contexto 
 | **`Hero.jsx`** | `usePortfolio()`, `portfolioData.js`, `InteractiveReveal.jsx` | Título editorial, formas tocables en texto (`ShapeImageTag`) y tarjeta con selector geométrico de imágenes. |
 | **`InteractiveReveal.jsx`** | `framer-motion`, `usePortfolio()` | Provee `ShapeImageTag`, `ShapeDrawerReveal` y `ShutterShapeGallery` con transiciones `clip-path`. |
 | **`CompetitionsSection.jsx`** | `portfolioData.js`, `useSpotlight`, `usePortfolio()` | Exhibe el 2do Lugar Nacional en Kurios & BNC 2026 y el Pitchday UNIMET con visor de fotos. |
-| **`PortfolioPDF.jsx`** | `portfolioData.js`, `framer-motion` | Genera el dossier ejecutivo imprimible en A4 (`@media print`) y modal de exportación PDF. |
+| **`PortfolioPDF.jsx`** | `portfolioData.js`, `generateStyledPDF.js`, `framer-motion` | Muestra vista previa estilizada y descarga directa del portafolio en PDF (1 página A4 con paleta Azul Pastel y Amarillo). |
+| **`generateStyledPDF.js`** | `jspdf`, `portfolioData.js` | Construye y descarga `Portafolio_Sofia_Munoz_2026.pdf` con fotos recortadas en Canvas, tarjetas vectoriales y enlaces activos. |
 | **`Projects.jsx`** | `usePortfolio()`, `useSpotlight` | Muestra proyectos en Bento o Índice, gestiona filtros por categoría y barra de búsqueda. |
 | **`ProjectModal.jsx`** | `usePortfolio()` | Muestra caso completo, retos, soluciones, enlaces en vivo, navegación (`←`/`→`/`Esc`) y lightbox de fotos. |
 | **`ContactSection.jsx`** | `usePortfolio()`, `portfolioData.js` | Genera enlaces de WhatsApp y mailto pre-redactados según el tipo de oportunidad seleccionado; copia datos. |

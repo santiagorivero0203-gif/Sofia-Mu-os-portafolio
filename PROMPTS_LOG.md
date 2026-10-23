@@ -245,3 +245,20 @@ Y aun creo que el color es muy oscuro quisiera un azul mas pastel, y cuando dije
      - **Elementos circulares / píldora (`50%` / `999px`):** Puntos de estado (`.status-dot`), etiquetas pequeñas (`.badge-pill`), botones de cierre (`X`), íconos flotantes (`ArrowUpRight`) y filtros rápidos.
      - **Contenedores con curva editorial suave (`14px`–`18px`):** Tarjetas principales de proyectos (`.spotlight-card`), barra de navegación (`14px`), modales y marcos de fotos principales.
      - **Elementos estructurados / geométricos (`6px`–`10px` y figuras):** Botones de acción principales (`10px`), bloques de citas, inputs y las figuras geométricas interactivas (`InteractiveReveal.jsx`) que conservan sus rombos, cuadrados y triángulos con las animaciones de cortina que le gustaron al usuario.
+
+---
+
+### Prompt 21 — Generación y Edición de PDF con Estilo Editorial, Paleta Azul Pastel/Amarillo y Síntesis Visual
+- **Fecha y Hora:** 2026-10-23 18:36:24 (-04:00)
+- **Contenido:**
+```text
+Y el pdf debe salir con estilo , sintetisando todo lo necesario utilizando la paleta de colores de la pag etc.Usa herramientas de edicion de pdf para mejorarlo .
+```
+- **Acción realizada:**
+  1. Integración de la librería de edición y generación vectorial de PDF **`jspdf`** (`src/utils/generateStyledPDF.js`).
+  2. Diseño programático de un PDF editorial de alta gama (`Portafolio_Sofia_Munoz_2026.pdf`) que:
+     - Utiliza exactamente la **paleta de colores de la página** (Azul Pastel `#345B8C` / `#2B4E7A` / `#3E689C`, Amarillo Luminoso `#FFE135`, Azul Cielo `#A6CEFF` y Blanco `#FFFFFF`).
+     - Incrusta las **fotografías reales** optimizadas (MOVA, Meraki y 2do Lugar Nacional Kurios).
+     - Sintetiza toda la información esencial en un diseño limpio y visual (Perfil, 4 Métricas Clave, Proyectos MOVA y Meraki, Premios 2026 y Habilidades).
+     - Incluye enlaces interactivos clicables dentro del PDF (WhatsApp, Correo, Web de MOVA e Instagram de Meraki).
+  3. Actualización de `src/components/PortfolioPDF.jsx` con vista previa fiel al diseño del PDF y descarga directa en 1 clic sin depender únicamente del cuadro de impresión del navegador.

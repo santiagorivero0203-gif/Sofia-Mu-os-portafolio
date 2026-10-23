@@ -1,308 +1,388 @@
 /**
  * @file PortfolioPDF.jsx
- * @description Módulo de generación y exportación del portafolio en PDF estructurado.
- * Genera un dossier ejecutivo imprimible con vectorización nativa (A4),
- * tipografía editorial de alto contraste, enlaces verificados y diseño corporativo limpio.
+ * @description Vista previa y descarga directa del Portafolio en PDF con estilo editorial.
+ * Combina:
+ * - Descarga directa en 1 clic mediante jsPDF (`generateStyledPortfolioPDF`) con la paleta Azul Pastel y Amarillo,
+ *   fotos incrustadas, enlaces activos y toda la información sintetizada en una sola hoja A4.
+ * - Vista previa interactiva fiel al documento PDF y soporte de impresión directa (`@media print`).
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Download, Printer, X, FileText, CheckCircle2, Mail, Phone, ExternalLink, Trophy } from 'lucide-react';
+import {
+  Download,
+  Printer,
+  X,
+  FileText,
+  Check,
+  Loader2,
+  Award,
+  Mail,
+  Phone,
+  Sparkles
+} from 'lucide-react';
 import { personalInfo, projects, skillCategories, competitions } from '../data/portfolioData';
+import { generateStyledPortfolioPDF } from '../utils/generateStyledPDF';
+import { usePortfolio } from '../context/PortfolioContext';
 
 /**
  * Componente PortfolioPDF
  * @param {{ isOpen: boolean, onClose: () => void }} props
  */
 export const PortfolioPDF = ({ isOpen, onClose }) => {
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
+  const { sound, trackEvent } = usePortfolio();
+
+  const handleDirectDownload = async () => {
+    try {
+      setIsGenerating(true);
+      sound.playClick();
+      trackEvent('pdf_direct_download');
+      await generateStyledPortfolioPDF();
+      setIsGenerating(false);
+      setDownloaded(true);
+      sound.playSuccess();
+      setTimeout(() => setDownloaded(false), 3500);
+    } catch (err) {
+      console.error('Error generando PDF:', err);
+      setIsGenerating(false);
+      window.print();
+    }
+  };
+
   const handlePrint = () => {
+    sound.playClick();
     window.print();
   };
 
-  return (
-    <>
-      {/* 1. DOCUMENTO IMPRIMIBLE ESTRUCTURADO (@media print) */}
-      <div className="print-only pdf-dossier" style={{ padding: '0.5cm', color: '#0f172a' }}>
-        {/* Cabecera del Dossier A4 */}
-        <div
-          style={{
-            borderBottom: '2.5px solid #2563eb',
-            paddingBottom: '1.25rem',
-            marginBottom: '1.5rem',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start'
-          }}
-        >
+  /**
+   * Hoja visual sintetizada (usada tanto en la vista previa del modal como en @media print)
+   */
+  const StyledSheetContent = () => (
+    <div
+      style={{
+        backgroundColor: '#345b8c',
+        color: '#ffffff',
+        padding: '1.5rem',
+        borderRadius: '14px',
+        border: '2px solid #ffe135',
+        fontFamily: 'var(--font-sans)',
+        boxShadow: '0 16px 40px rgba(20, 40, 68, 0.4)'
+      }}
+    >
+      {/* 1. Cabecera con Monograma SM, Nombre y Contacto */}
+      <div
+        style={{
+          backgroundColor: '#2b4e7a',
+          border: '1px solid #ffe135',
+          borderRadius: '12px',
+          padding: '1.25rem',
+          marginBottom: '1.1rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '1rem'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: '1 1 300px' }}>
+          <div
+            style={{
+              width: '52px',
+              height: '52px',
+              borderRadius: '12px',
+              backgroundColor: '#ffe135',
+              color: '#1c3557',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.4rem',
+              fontWeight: 800,
+              flexShrink: 0
+            }}
+          >
+            SM
+          </div>
           <div>
-            <h1
+            <h2
               style={{
-                fontFamily: 'Georgia, serif',
-                fontSize: '26pt',
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.6rem',
                 fontWeight: 700,
-                color: '#0f172a',
-                lineHeight: 1.1,
-                margin: 0
+                margin: 0,
+                lineHeight: 1.15,
+                color: '#ffffff'
               }}
             >
               {personalInfo.name}
-            </h1>
-            <p
+            </h2>
+            <div
               style={{
-                fontSize: '12pt',
-                fontWeight: 600,
-                color: '#2563eb',
-                marginTop: '0.3rem',
-                marginBottom: '0.4rem'
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                color: '#ffe135',
+                letterSpacing: '0.03em',
+                marginTop: '0.2rem'
               }}
             >
-              Asesora Comercial | Estrategia de Ventas | Creadora de Contenido & Embajadora de Marca
-            </p>
-            <p style={{ fontSize: '9pt', color: '#475569', maxWidth: '580px', fontStyle: 'italic', margin: 0 }}>
-              "{personalInfo.statement}"
-            </p>
-          </div>
-
-          <div
-            style={{
-              textAlign: 'right',
-              fontSize: '8.5pt',
-              color: '#334155',
-              borderLeft: '1px solid #cbd5e1',
-              paddingLeft: '1rem'
-            }}
-          >
-            <div style={{ fontWeight: 600, color: '#0f172a' }}>Contacto Directo:</div>
-            <div>{personalInfo.contact.email}</div>
-            <div>{personalInfo.contact.phoneFormatted}</div>
-            <div>Caracas, Venezuela</div>
-            <div style={{ color: '#16a34a', fontWeight: 600, marginTop: '0.2rem' }}>
-              Disponible para alianzas & ventas
+              ASESORA DE VENTAS | CREADORA DE CONTENIDO | EMBAJADORA DE MARCA
             </div>
+            <p style={{ fontSize: '0.84rem', color: '#e6f0fd', margin: '0.35rem 0 0 0', lineHeight: 1.45 }}>
+              {personalInfo.statement}
+            </p>
           </div>
         </div>
 
-        {/* Resumen Ejecutivo */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <h2
-            style={{
-              fontFamily: 'Georgia, serif',
-              fontSize: '12pt',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              color: '#1e293b',
-              borderBottom: '1px solid #e2e8f0',
-              paddingBottom: '0.3rem',
-              marginBottom: '0.6rem'
-            }}
-          >
-            Perfil & Propuesta de Valor
-          </h2>
-          <p style={{ fontSize: '9.5pt', color: '#334155', lineHeight: 1.6, margin: 0 }}>
-            {personalInfo.bio}
-          </p>
-        </div>
-
-        {/* Casos de Estudio Reales (2026) */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <h2
-            style={{
-              fontFamily: 'Georgia, serif',
-              fontSize: '12pt',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              color: '#1e293b',
-              borderBottom: '1px solid #e2e8f0',
-              paddingBottom: '0.3rem',
-              marginBottom: '1rem'
-            }}
-          >
-            Casos de Estudio & Proyectos Clave (2026)
-          </h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {projects.map((proj) => (
-              <div
-                key={proj.id}
-                style={{
-                  border: '1px solid #cbd5e1',
-                  borderRadius: '6px',
-                  padding: '1rem',
-                  backgroundColor: '#f8fafc'
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
-                  <h3 style={{ fontSize: '11pt', fontWeight: 700, color: '#0f172a', margin: 0 }}>
-                    {proj.title}
-                  </h3>
-                  <span style={{ fontSize: '8.5pt', fontWeight: 600, color: '#2563eb' }}>
-                    {proj.role} • 2026
-                  </span>
-                </div>
-
-                <p style={{ fontSize: '9pt', color: '#475569', fontStyle: 'italic', marginBottom: '0.6rem' }}>
-                  "{proj.tagline}"
-                </p>
-
-                <p style={{ fontSize: '9pt', color: '#334155', lineHeight: 1.5, marginBottom: '0.6rem' }}>
-                  {proj.overview}
-                </p>
-
-                {/* Aporte Comercial */}
-                <div style={{ marginBottom: '0.6rem' }}>
-                  <div style={{ fontSize: '8.5pt', fontWeight: 700, color: '#0f172a', marginBottom: '0.3rem' }}>
-                    Aporte Comercial & Estratégico:
-                  </div>
-                  <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '8.5pt', color: '#334155' }}>
-                    {proj.commercialContribution.map((c, i) => (
-                      <li key={i} style={{ marginBottom: '0.2rem' }}>
-                        <strong>{c.title}:</strong> {c.description}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Logros */}
-                <div>
-                  <div style={{ fontSize: '8.5pt', fontWeight: 700, color: '#16a34a', marginBottom: '0.2rem' }}>
-                    Logros Verificados:
-                  </div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', fontSize: '8pt' }}>
-                    {proj.achievements.map((ach, i) => (
-                      <span
-                        key={i}
-                        style={{
-                          backgroundColor: '#e2e8f0',
-                          padding: '0.15rem 0.5rem',
-                          borderRadius: '4px',
-                          color: '#0f172a'
-                        }}
-                      >
-                        ✓ {ach}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+        <div
+          style={{
+            backgroundColor: '#3e689c',
+            border: '1px solid rgba(190, 220, 255, 0.4)',
+            borderRadius: '10px',
+            padding: '0.75rem 1rem',
+            fontSize: '0.8rem',
+            minWidth: '210px'
+          }}
+        >
+          <div style={{ color: '#ffe135', fontWeight: 700, fontSize: '0.72rem', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+            Contacto Directo
           </div>
-        </div>
-
-        {/* Competencias y Premios Nacionales (2026) */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <h2
-            style={{
-              fontFamily: 'Georgia, serif',
-              fontSize: '12pt',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              color: '#1e293b',
-              borderBottom: '1px solid #e2e8f0',
-              paddingBottom: '0.3rem',
-              marginBottom: '1rem'
-            }}
-          >
-            Validación en Competencias & Premios Nacionales (2026)
-          </h2>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
-            {competitions.map((c) => (
-              <div
-                key={c.id}
-                style={{
-                  border: '1px solid #cbd5e1',
-                  borderRadius: '6px',
-                  padding: '0.85rem',
-                  backgroundColor: '#f8fafc'
-                }}
-              >
-                <div style={{ fontWeight: 700, fontSize: '10pt', color: '#0f172a', marginBottom: '0.2rem' }}>
-                  {c.award}
-                </div>
-                <div style={{ fontSize: '8.5pt', color: '#2563eb', fontWeight: 600, marginBottom: '0.4rem' }}>
-                  {c.title} ({c.organization})
-                </div>
-                <p style={{ fontSize: '8pt', color: '#334155', lineHeight: 1.45, margin: 0 }}>
-                  {c.summary}
-                </p>
-              </div>
-            ))}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem' }}>
+            <Mail size={13} style={{ color: '#ffe135' }} />
+            <span>{personalInfo.contact.email}</span>
           </div>
-        </div>
-
-        {/* Salto de página para A4 */}
-        <div style={{ pageBreakBefore: 'always', paddingTop: '1rem' }}>
-          <h2
-            style={{
-              fontFamily: 'Georgia, serif',
-              fontSize: '12pt',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              color: '#1e293b',
-              borderBottom: '1px solid #e2e8f0',
-              paddingBottom: '0.3rem',
-              marginBottom: '1rem'
-            }}
-          >
-            Matriz de Competencias Profesionales
-          </h2>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
-            {skillCategories.map((cat, idx) => (
-              <div
-                key={idx}
-                style={{
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '6px',
-                  padding: '0.85rem',
-                  backgroundColor: '#ffffff'
-                }}
-              >
-                <h4 style={{ fontSize: '9.5pt', fontWeight: 700, color: '#2563eb', marginBottom: '0.4rem' }}>
-                  {cat.title}
-                </h4>
-                <p style={{ fontSize: '8pt', color: '#64748b', marginBottom: '0.6rem' }}>
-                  {cat.description}
-                </p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '8pt' }}>
-                  {cat.skills.map((s, si) => (
-                    <li
-                      key={si}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        padding: '0.2rem 0',
-                        borderBottom: '1px dotted #e2e8f0'
-                      }}
-                    >
-                      <span style={{ color: '#1e293b' }}>{s.name}</span>
-                      <span style={{ fontWeight: 600, color: '#64748b' }}>{s.level}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
+            <Phone size={13} style={{ color: '#ffe135' }} />
+            <span>WhatsApp: {personalInfo.contact.phoneFormatted}</span>
           </div>
-
-          {/* Pie del Dossier */}
           <div
             style={{
-              borderTop: '1px solid #cbd5e1',
-              paddingTop: '0.75rem',
-              fontSize: '8pt',
-              color: '#64748b',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
+              backgroundColor: '#ffe135',
+              color: '#1c3557',
+              fontWeight: 700,
+              fontSize: '0.7rem',
+              padding: '0.2rem 0.6rem',
+              borderRadius: '999px',
+              textAlign: 'center'
             }}
           >
-            <div>Sofia Muñoz — Portafolio Profesional & Comercial (Edición 2026)</div>
-            <div>Contacto: sofiamunozvale@gmail.com | WhatsApp: +58 424 2674572</div>
+            Disponible para proyectos (2026)
           </div>
         </div>
       </div>
 
-      {/* 2. MODAL DE VISTA PREVIA Y DESCARGA EN PANTALLA */}
+      {/* 2. Fila de 4 Indicadores Sintetizados */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+          gap: '0.65rem',
+          marginBottom: '1.25rem'
+        }}
+      >
+        {personalInfo.stats.map((stat, idx) => (
+          <div
+            key={idx}
+            style={{
+              backgroundColor: '#3e689c',
+              border: '1px solid rgba(190, 220, 255, 0.35)',
+              borderRadius: '10px',
+              padding: '0.6rem 0.75rem',
+              textAlign: 'center'
+            }}
+          >
+            <div style={{ fontSize: '1rem', fontWeight: 800, color: '#ffe135' }}>
+              {stat.value}
+              <span style={{ fontSize: '0.78rem', fontWeight: 600 }}>{stat.suffix}</span>
+            </div>
+            <div style={{ fontSize: '0.7rem', color: '#e6f0fd', textTransform: 'uppercase', marginTop: '0.15rem' }}>
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* 3. Proyectos Destacados (MOVA & Meraki) con Fotos */}
+      <div style={{ marginBottom: '1.25rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', margin: 0, color: '#ffffff' }}>
+            Proyectos Destacados (2026)
+          </h3>
+          <div style={{ flex: 1, height: '2px', backgroundColor: '#ffe135' }} />
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '0.9rem' }}>
+          {projects.map((proj) => (
+            <div
+              key={proj.id}
+              style={{
+                backgroundColor: '#3e689c',
+                border: '1px solid #a6ceff',
+                borderRadius: '12px',
+                padding: '0.9rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.55rem'
+              }}
+            >
+              <div style={{ position: 'relative', height: '115px', borderRadius: '8px', overflow: 'hidden' }}>
+                <img
+                  src={proj.featuredCover}
+                  alt={proj.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '0.45rem',
+                    left: '0.45rem',
+                    backgroundColor: '#ffe135',
+                    color: '#1c3557',
+                    fontSize: '0.68rem',
+                    fontWeight: 800,
+                    padding: '0.15rem 0.55rem',
+                    borderRadius: '999px'
+                  }}
+                >
+                  {proj.category}
+                </span>
+              </div>
+
+              <div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 700, color: '#ffffff' }}>
+                  {proj.title}
+                </div>
+                <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#ffe135', marginBottom: '0.3rem' }}>
+                  {proj.role} • {proj.year}
+                </div>
+                <p style={{ fontSize: '0.8rem', color: '#e6f0fd', lineHeight: 1.45, margin: '0 0 0.45rem 0' }}>
+                  {proj.overview}
+                </p>
+                <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '0.76rem', color: '#ffffff', lineHeight: 1.45 }}>
+                  {proj.achievements.map((ach, i) => (
+                    <li key={i} style={{ marginBottom: '0.15rem' }}>
+                      {ach}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 4. Premios y Competencias (2026) */}
+      <div style={{ marginBottom: '1.25rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', margin: 0, color: '#ffffff' }}>
+            Premios y Competencias (2026)
+          </h3>
+          <div style={{ flex: 1, height: '2px', backgroundColor: '#ffe135' }} />
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '0.9rem' }}>
+          {competitions.map((comp) => (
+            <div
+              key={comp.id}
+              style={{
+                backgroundColor: '#2b4e7a',
+                border: '1px solid rgba(190, 220, 255, 0.38)',
+                borderRadius: '12px',
+                padding: '0.85rem',
+                display: 'flex',
+                gap: '0.85rem',
+                alignItems: 'center'
+              }}
+            >
+              <img
+                src={comp.coverImage}
+                alt={comp.title}
+                style={{
+                  width: '84px',
+                  height: '84px',
+                  objectFit: 'cover',
+                  borderRadius: '8px',
+                  border: '1px solid #ffe135',
+                  flexShrink: 0
+                }}
+              />
+              <div>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    backgroundColor: '#ffe135',
+                    color: '#1c3557',
+                    fontSize: '0.65rem',
+                    fontWeight: 800,
+                    padding: '0.12rem 0.5rem',
+                    borderRadius: '999px',
+                    marginBottom: '0.25rem'
+                  }}
+                >
+                  {comp.badge}
+                </span>
+                <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#ffffff', lineHeight: 1.2 }}>
+                  {comp.title}
+                </div>
+                <div style={{ fontSize: '0.76rem', color: '#ffe135', fontWeight: 700, margin: '0.15rem 0' }}>
+                  {comp.award}
+                </div>
+                <p style={{ fontSize: '0.75rem', color: '#e6f0fd', lineHeight: 1.4, margin: 0 }}>
+                  {comp.summary}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 5. Habilidades Principales Sintetizadas */}
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', margin: 0, color: '#ffffff' }}>
+            Habilidades Principales
+          </h3>
+          <div style={{ flex: 1, height: '2px', backgroundColor: '#ffe135' }} />
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '0.75rem' }}>
+          {skillCategories.map((cat, idx) => (
+            <div
+              key={idx}
+              style={{
+                backgroundColor: '#3e689c',
+                border: '1px solid rgba(190, 220, 255, 0.35)',
+                borderRadius: '10px',
+                padding: '0.8rem'
+              }}
+            >
+              <div style={{ fontSize: '0.84rem', fontWeight: 700, color: '#ffe135', marginBottom: '0.45rem' }}>
+                {cat.title}
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.76rem', color: '#ffffff' }}>
+                {cat.skills.map((s, si) => (
+                  <li key={si} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.25rem' }}>
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#ffe135', flexShrink: 0 }} />
+                    <span>{s.name}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      {/* 1. VERSIÓN IMPRIMIBLE CON ESTILO (@media print) */}
+      <div className="print-only pdf-dossier">
+        <StyledSheetContent />
+      </div>
+
+      {/* 2. MODAL DE VISTA PREVIA Y DESCARGA DIRECTA DEL PDF */}
       <AnimatePresence>
         {isOpen && (
           <div
@@ -314,9 +394,9 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
               alignItems: 'center',
               justifyContent: 'center',
               padding: '1rem',
-              backgroundColor: 'rgba(7, 10, 18, 0.88)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)'
+              backgroundColor: 'rgba(30, 56, 91, 0.88)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)'
             }}
             onClick={onClose}
           >
@@ -329,61 +409,95 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
               style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '820px',
-                maxHeight: '90vh',
+                maxWidth: '920px',
+                maxHeight: '92vh',
                 display: 'flex',
                 flexDirection: 'column',
                 backgroundColor: 'var(--bg-primary)',
                 border: '1px solid var(--accent-gold)',
                 borderRadius: '18px',
                 overflow: 'hidden',
-                boxShadow: '0 24px 60px rgba(20, 40, 68, 0.5)'
+                boxShadow: '0 24px 60px rgba(20, 40, 68, 0.55)'
               }}
             >
               {/* Barra Superior del Modal */}
               <div
                 style={{
                   display: 'flex',
+                  flexWrap: 'wrap',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  padding: '1.25rem 1.75rem',
+                  gap: '0.75rem',
+                  padding: '1.1rem 1.5rem',
                   borderBottom: '1px solid var(--border-subtle)',
                   backgroundColor: 'var(--bg-secondary)'
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <FileText size={18} style={{ color: 'var(--accent-gold)' }} />
+                  <FileText size={20} style={{ color: 'var(--accent-gold)' }} />
                   <div>
-                    <h3 style={{ fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>
+                    <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0 }}>
                       Portafolio en PDF — Sofia Muñoz
                     </h3>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                      Listo para guardar en PDF o imprimir (Tamaño A4)
+                    <span style={{ fontSize: '0.76rem', color: 'var(--text-secondary)' }}>
+                      Diseño resumido en 1 página con los colores y fotos del portafolio
                     </span>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                  {/* Botón Principal: Descarga Directa con jsPDF */}
                   <button
-                    onClick={handlePrint}
+                    onClick={handleDirectDownload}
+                    disabled={isGenerating}
                     className="btn-magnetic btn-gold"
                     style={{
                       padding: '0.55rem 1.15rem',
-                      fontSize: '0.82rem'
+                      fontSize: '0.84rem',
+                      opacity: isGenerating ? 0.8 : 1
                     }}
-                    data-cursor="Imprimir"
+                    data-cursor="Descargar"
                   >
-                    <Download size={15} />
-                    <span>Guardar PDF / Imprimir</span>
+                    {isGenerating ? (
+                      <>
+                        <Loader2 size={15} className="animate-spin" />
+                        <span>Creando PDF...</span>
+                      </>
+                    ) : downloaded ? (
+                      <>
+                        <Check size={15} />
+                        <span>¡PDF Descargado!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Download size={15} />
+                        <span>Descargar PDF Directo</span>
+                      </>
+                    )}
                   </button>
 
+                  {/* Botón Secundario: Imprimir */}
+                  <button
+                    onClick={handlePrint}
+                    className="btn-magnetic btn-outline"
+                    style={{
+                      padding: '0.55rem 0.95rem',
+                      fontSize: '0.82rem'
+                    }}
+                    title="Abrir vista de impresión"
+                  >
+                    <Printer size={15} />
+                    <span>Imprimir</span>
+                  </button>
+
+                  {/* Cerrar Modal */}
                   <button
                     onClick={onClose}
-                    aria-label="Cerrar modal"
+                    aria-label="Cerrar ventana"
                     style={{
                       width: '36px',
                       height: '36px',
-                      borderRadius: '2px',
+                      borderRadius: '50%',
                       backgroundColor: 'var(--bg-surface)',
                       border: '1px solid var(--border-subtle)',
                       color: 'var(--text-primary)',
@@ -398,75 +512,9 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                 </div>
               </div>
 
-              {/* Vista previa scrollable del contenido */}
-              <div style={{ padding: '2rem', overflowY: 'auto', flex: 1, color: 'var(--text-primary)' }}>
-                {/* Resumen del documento */}
-                <div
-                  style={{
-                    backgroundColor: 'rgba(59, 130, 246, 0.08)',
-                    border: '1px solid var(--border-blue)',
-                    borderRadius: 'var(--radius-md)',
-                    padding: '1.25rem',
-                    marginBottom: '1.5rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem'
-                  }}
-                >
-                  <Printer size={26} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
-                  <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                    Al hacer clic en <strong style={{ color: 'var(--accent-gold)' }}>Guardar PDF / Imprimir</strong>, el navegador abrirá el cuadro de diálogo oficial donde podrás seleccionar <em>"Guardar como PDF"</em> con diseño ejecutivo, tipografía nítida y sin fondos oscuros innecesarios.
-                  </div>
-                </div>
-
-                {/* Tarjeta Visual de Información */}
-                <div
-                  style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid var(--border-subtle)',
-                    borderRadius: 'var(--radius-lg)',
-                    padding: '1.5rem',
-                    marginBottom: '1.25rem'
-                  }}
-                >
-                  <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', marginBottom: '0.35rem' }}>
-                    {personalInfo.name}
-                  </h4>
-                  <p style={{ color: 'var(--accent-gold)', fontSize: '0.9rem', marginBottom: '1rem' }}>
-                    {personalInfo.headline} • 2026
-                  </p>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.85rem' }}>
-                    <div>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Correo</span>
-                      <div style={{ fontSize: '0.9rem', fontFamily: 'var(--font-mono)' }}>{personalInfo.contact.email}</div>
-                    </div>
-                    <div>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>WhatsApp</span>
-                      <div style={{ fontSize: '0.9rem', fontFamily: 'var(--font-mono)' }}>{personalInfo.contact.phoneFormatted}</div>
-                    </div>
-                    <div>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Disponibilidad</span>
-                      <div style={{ fontSize: '0.9rem', color: '#86efac' }}>Activa para roles comerciales</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Proyectos incluidos */}
-                <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                  <strong>Contenido incluido en el PDF:</strong>
-                  <ul style={{ marginTop: '0.5rem', paddingLeft: '1.25rem', lineHeight: 1.65 }}>
-                    <li>
-                      <strong style={{ color: 'var(--text-primary)' }}>MOVA — Traductor de Señas:</strong> Co-fundadora y encargada de marketing, traducción en 3 lenguas de señas y portada de revista (2026).
-                    </li>
-                    <li>
-                      <strong style={{ color: 'var(--text-primary)' }}>Meraki — Marca de Ropa:</strong> Embajadora de marca y creadora de contenido, videos para redes y atención a clientas (2026).
-                    </li>
-                    <li>
-                      <strong style={{ color: 'var(--accent-gold)' }}>Premios y Competencias 2026:</strong> 2do Lugar Nacional en el Torneo Kurios y presentación en la Universidad Metropolitana (UNIMET).
-                    </li>
-                  </ul>
-                </div>
+              {/* Vista previa en vivo de la hoja estilizada */}
+              <div style={{ padding: '1.25rem', overflowY: 'auto', flex: 1 }}>
+                <StyledSheetContent />
               </div>
             </motion.div>
           </div>
