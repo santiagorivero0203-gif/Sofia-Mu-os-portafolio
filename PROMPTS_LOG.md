@@ -298,3 +298,23 @@ Revisa y analiza el codigo hecho no debe de haber codigo sin uso ni funciones si
   2. **Compactación Estratégica de la Página para Lectura Rápida de Reclutadores:**
      - Fusión de **Perfil, Habilidades Clave y Recorrido 2026** en una sola sección ejecutiva de 2 columnas (`src/components/About.jsx`), retirando la sección separada `SkillsGrid.jsx` para ahorrar desplazamiento vertical sin perder información.
      - Reducción de los espaciados verticales (`padding`) y alturas innecesarias en `Hero.jsx`, `Projects.jsx`, `CompetitionsSection.jsx`, `About.jsx`, `ContactSection.jsx` y `Footer.jsx`, logrando una página ágil que un reclutador puede recorrer de principio a fin en segundos.
+
+---
+
+### Prompt 24 — Integración de Experiencias Interactivas de Producto (Simulador de Nodos MOVA, Abanico 3D Meraki y Vista Rápida CV)
+- **Fecha y Hora:** 2026-10-23 19:47:21 (-04:00)
+- **Contenido:**
+```text
+Analizando todo el material de Sofia Muñoz, tenemos una ventaja estratégica enorme: su perfil combina dos mundos visualmente muy ricos que rara vez se ven juntos en un portafolio de Asesora Comercial, Desarrollo de Negocios y Brand Ambassador:
+1. MOVA (app-lemon.vercel.app) — Tech & Innovación Social...
+2. Meraki (@meraki_marka) — Moda, Retail & Social Selling...
+[Incluye dirección de arte, experiencias interactivas de Nodos SVG de la mano en MOVA, tarjeta/abanico 3D de Meraki ("Querida Sofia"), selector Vista Editorial vs Vista Ejecutiva (CV), iconos SVG de doble flecha diagonal y botones magnéticos]
+```
+- **Acción realizada:**
+  1. **Creación de Experiencias Interactivas Vivas en `src/components/ProjectShowcases.jsx`:**
+     - **Caso 01 — MOVA (`MovaInteractiveShowcase`):** Combina las fotografías reales con el visualizador interactivo de nodos de articulación de la mano en SVG (`PUL`, `ÍND`, `MED`, `ANU`, `MEÑ`) con trazado animado `motion.path`, selector interactivo de los 3 mercados lingüísticos (`🇻🇪 LSV`, `🇺🇸 ASL`, `🇪🇸 LSE`) y frases rápidas (`💬 Hola`, `❤️ Gracias`, `⚠️ Ayuda`), adaptado a la paleta Azul Pastel y Amarillo Cálido.
+     - **Caso 02 — Meraki (`MerakiInteractiveShowcase`):** Combina un abanico fotográfico 3D interactivo de las 3 fotos reales de `@meraki_marka` con la tarjeta personalizada *"¡HOLI! ya llegué!! — Querida Sofia"* y los globos de lanzamiento en redes.
+  2. **Integración en `src/components/Projects.jsx` con Selector `Vista Visual` vs. `Vista Rápida (CV)`:**
+     - Permite al reclutador alternar entre las tarjetas interactivas con animaciones y una vista ejecutiva ultracompacta tipo CV con `layoutId`.
+  3. **Iconografía SVG de Doble Flecha Diagonal (`DiagonalArrowIcon`) y Botones con Atracción Magnética Suave:**
+     - Integrados en los llamados a la acción principales mantendo el lenguaje claro, la paleta Azul Pastel Claro (`#D9EAFA`) + Amarillo Cálido (`#FFE047`) y las secciones compactas.
