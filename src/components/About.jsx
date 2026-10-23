@@ -3,7 +3,7 @@
  * @description Sección "Sobre Mí" y trayectoria profesional de Sofia Muñoz.
  * Diseñada como una doble página editorial:
  * - Columna de Manifiesto Comercial y Pilares Estratégicos.
- * - Línea de Tiempo Interactiva (Timeline de Hitos 2024-2026).
+ * - Línea de Tiempo Interactiva (Timeline de Hitos 2026).
  * - Spotlight reactivo en tarjetas Bento de autor.
  */
 
@@ -25,10 +25,10 @@ import { useSpotlight } from '../hooks/useSpotlight';
 export const About = () => {
   const { handleMouseMove } = useSpotlight();
 
-  // Hitos de la trayectoria profesional
+  // Hitos de la trayectoria profesional iniciados en 2026
   const timelineMilestones = [
     {
-      year: '2024',
+      year: '2026',
       badge: 'Tecnología Social',
       title: 'Co-fundadora & Gerente de Marketing en MOVA',
       description:
@@ -36,7 +36,7 @@ export const About = () => {
       accent: 'var(--accent-blue)'
     },
     {
-      year: '2025',
+      year: '2026',
       badge: 'Moda & Retail',
       title: 'Embajadora de Marca & Social Selling en Meraki',
       description:
@@ -45,7 +45,7 @@ export const About = () => {
     },
     {
       year: '2026',
-      badge: 'Presente',
+      badge: 'Actualidad',
       title: 'Asesora Comercial & Alianzas Estratégicas',
       description:
         'Consultoría de ventas, prospección de clientes de alto valor, marketing de influencia y desarrollo de oportunidades comerciales orientadas a metas cuantificables.',

@@ -118,3 +118,14 @@ https://github.com/santiagorivero0203-gif/Sofia-Mu-os-portafolio
 Revisa que hayas hecho todo lo que te pedi.
 ```
 - **Acción realizada:** Auditoría cruzada exhaustiva punto por punto de todos los requerimientos y reglas solicitadas por el usuario a lo largo de la conversación, contrastándolos con la implementación real del proyecto.
+
+---
+
+### Prompt 12 — Corrección de Nomenclatura ('Creadora de Contenido') y Unificación Cronológica a 2026
+- **Fecha y Hora:** 2026-10-23 17:30:54 (-04:00)
+- **Contenido:**
+```text
+Y ahí en vez de decir “generadora de contenido” diga creadora de contenido.Las fechas todas comenzaron este año en 2026
+```
+*(Acompañado de capturas del modal de Meraki y de la sección de Evolución Profesional & Hitos).*
+- **Acción realizada:** Sustitución de "generadora de contenido" por "creadora de contenido" en todo el código y unificación de todas las fechas de inicio de proyectos (MOVA, Meraki y trayectoria en el timeline) al año 2026.
