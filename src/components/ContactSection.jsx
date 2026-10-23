@@ -236,7 +236,7 @@ export const ContactSection = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="Ej. María Pérez / Startup Inc."
+                    placeholder="Ej. María Pérez / Mi Marca"
                     value={senderName}
                     onChange={(e) => setSenderName(e.target.value)}
                     style={{
@@ -263,11 +263,11 @@ export const ContactSection = () => {
                       marginBottom: '0.4rem'
                     }}
                   >
-                    Nota o Asunto Específico
+                    Mensaje adicional (Opcional)
                   </label>
                   <input
                     type="text"
-                    placeholder="Ej. Campaña Q3 / Prospección de ventas..."
+                    placeholder="Ej. Quiero conversar sobre videos o ventas..."
                     value={senderNote}
                     onChange={(e) => setSenderNote(e.target.value)}
                     style={{

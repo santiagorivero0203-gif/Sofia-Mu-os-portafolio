@@ -197,7 +197,7 @@ export const ProjectModal = () => {
               {selectedProject.overview}
             </p>
 
-            {/* Enlace de Validación Externa */}
+            {/* Enlace Externo Claro */}
             {selectedProject.link && (
               <div style={{ marginTop: '1.5rem' }}>
                 <a
@@ -213,11 +213,11 @@ export const ProjectModal = () => {
                     fontSize: '0.86rem'
                   }}
                   onClick={() => trackEvent('external_link_click', { project: selectedProject.id, url: selectedProject.link })}
-                  data-cursor="Visitar"
+                  data-cursor="Abrir"
                 >
                   <ExternalLink size={16} />
                   <span>
-                    {selectedProject.id === 'mova' ? 'Abrir App MOVA en Vivo' : 'Ver Instagram @meraki_marka'}
+                    {selectedProject.id === 'mova' ? 'Ir a la página web de MOVA' : 'Ver Instagram de Meraki'}
                   </span>
                 </a>
               </div>
@@ -345,7 +345,7 @@ export const ProjectModal = () => {
             </div>
           </div>
 
-          {/* Galería de Evidencias Reales */}
+          {/* Galería de Fotos del Proyecto */}
           <div>
             <h3
               style={{
@@ -357,7 +357,7 @@ export const ProjectModal = () => {
                 paddingLeft: '0.75rem'
               }}
             >
-              Fotos y Evidencias ({selectedProject.gallery.length})
+              Fotos del proyecto ({selectedProject.gallery.length})
             </h3>
 
             <div

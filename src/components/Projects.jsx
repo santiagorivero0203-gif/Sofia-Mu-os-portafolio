@@ -110,10 +110,10 @@ export const Projects = () => {
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
-              data-cursor="Bento"
+              data-cursor="Tarjetas"
             >
               <LayoutGrid size={15} />
-              <span>Galería</span>
+              <span>Tarjetas</span>
             </button>
 
             <button
@@ -133,10 +133,10 @@ export const Projects = () => {
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
-              data-cursor="Índice"
+              data-cursor="Lista"
             >
               <List size={15} />
-              <span>Índice</span>
+              <span>Lista</span>
             </button>
           </div>
         </div>
@@ -419,7 +419,7 @@ export const Projects = () => {
                           fontWeight: 600
                         }}
                       >
-                        {project.gallery.length} Evidencias
+                        Ver {project.gallery.length} fotos
                       </span>
                       <div
                         style={{

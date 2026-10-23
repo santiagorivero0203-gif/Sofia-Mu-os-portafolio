@@ -215,3 +215,17 @@ Que significa el vet al lado del nombre de sofia quita eso,y oara que es el boto
   1. Eliminación de la etiqueta `VET` (sigla en inglés de *Venezuelan Time*) junto al nombre de Sofia en `Navbar.jsx` y en `ContactSection.jsx`.
   2. Simplificación total de `Navbar.jsx`: ahora la barra superior muestra únicamente el nombre **Sofia Muñoz** y el índice de secciones (*Proyectos, Premios, Sobre Mí, Habilidades, Contacto*), más el botón de menú en pantallas móviles.
   3. Reubicación de las acciones secundarias (descarga de PDF, contacto directo y botón de sonido opcional) hacia el pie de página (`Footer.jsx`) al final de la web.
+
+---
+
+### Prompt 19 — Eliminación Total de Tecnicismos Confusos ("Dossier", "Vercel", "Beta", etc.)
+- **Fecha y Hora:** 2026-10-23 18:34:06 (-04:00)
+- **Contenido:**
+```text
+Quita palabras complejas como dossier pdf,y evita confundir las cosas ,aparecen cosas como ver plataforma en vivo vercel que no tiene nada de sentido.
+```
+- **Acción realizada:**
+  1. Eliminación total de palabras rebuscadas o técnicas en toda la aplicación:
+     - Se eliminó `"Dossier"` / `"Dossier Ejecutivo"` en `PortfolioPDF.jsx`, `Hero.jsx` y `Footer.jsx`, reemplazándolo por **"Portafolio en PDF"** / **"Descargar PDF"**.
+     - Se eliminaron menciones técnicas como `"Vercel"`, `"Beta V2.0"`, `"en vivo"`, `"Social Selling"`, `"Retail"`, `"Pitch"`, `"Bento"` y `"Evidencias"` en `portfolioData.js`, `Hero.jsx`, `Projects.jsx`, `ProjectModal.jsx`, `CompetitionsSection.jsx`, `About.jsx`, `SkillsGrid.jsx`, `ContactSection.jsx` e `InteractiveReveal.jsx`.
+     - Ahora los botones y textos dicen frases 100% claras y cotidianas como **"Ir a la página web de MOVA"**, **"Ver Instagram de Meraki"**, **"Ver fotos"**, **"Tarjetas / Lista"** y **"Ventas por redes sociales"**.

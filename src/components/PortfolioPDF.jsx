@@ -355,10 +355,10 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                   <FileText size={18} style={{ color: 'var(--accent-gold)' }} />
                   <div>
                     <h3 style={{ fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>
-                      Dossier Ejecutivo — Sofia Muñoz
+                      Portafolio en PDF — Sofia Muñoz
                     </h3>
                     <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                      Formato optimizado para impresión y exportación en PDF (A4)
+                      Listo para guardar en PDF o imprimir (Tamaño A4)
                     </span>
                   </div>
                 </div>
@@ -452,18 +452,18 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                   </div>
                 </div>
 
-                {/* Casos incluidos */}
-                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                  <strong>Casos de estudio estructurados en el PDF:</strong>
-                  <ul style={{ marginTop: '0.5rem', paddingLeft: '1.25rem', lineHeight: 1.6 }}>
+                {/* Proyectos incluidos */}
+                <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                  <strong>Contenido incluido en el PDF:</strong>
+                  <ul style={{ marginTop: '0.5rem', paddingLeft: '1.25rem', lineHeight: 1.65 }}>
                     <li>
-                      <strong style={{ color: 'var(--text-primary)' }}>MOVA — Tecnología Social:</strong> Co-fundadora & Gerente de Marketing, traducción de lengua de señas (LSV/ASL/LSE), validación Beta V2.0 en Vercel y portada de revista de innovación (2026).
+                      <strong style={{ color: 'var(--text-primary)' }}>MOVA — Traductor de Señas:</strong> Co-fundadora y encargada de marketing, traducción en 3 lenguas de señas y portada de revista (2026).
                     </li>
                     <li>
-                      <strong style={{ color: 'var(--text-primary)' }}>Meraki — Moda & Retail:</strong> Embajadora de Marca & Creadora de Contenido, social selling, unboxing "Querida Sofia" y dinamización directa de ventas (2026).
+                      <strong style={{ color: 'var(--text-primary)' }}>Meraki — Marca de Ropa:</strong> Embajadora de marca y creadora de contenido, videos para redes y atención a clientas (2026).
                     </li>
                     <li>
-                      <strong style={{ color: 'var(--accent-gold)' }}>Torneo Kurios & BNC 2026:</strong> 2do Lugar Nacional en División Marketplace (Subcampeonas Nacionales) y defensa de modelo de negocio.
+                      <strong style={{ color: 'var(--accent-gold)' }}>Premios y Competencias 2026:</strong> 2do Lugar Nacional en el Torneo Kurios y presentación en la Universidad Metropolitana (UNIMET).
                     </li>
                   </ul>
                 </div>

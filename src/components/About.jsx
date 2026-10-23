@@ -30,33 +30,33 @@ export const About = () => {
   const timelineMilestones = [
     {
       year: '2026',
-      badge: 'Tecnología Social',
-      title: 'Co-fundadora & Marketing en MOVA',
+      badge: 'Inclusión y Tecnología',
+      title: 'Co-fundadora y Marketing en MOVA',
       description:
-        'Creación del mensaje de la marca, presencia en portada de revista y lanzamiento de la app web con soporte para 3 lenguas de señas.',
+        'Creación del mensaje de la marca, aparición en portada de revista y lanzamiento de la página web con traducción en 3 lenguas de señas.',
       accent: 'var(--accent-blue)',
       imageSrc: '/assets/mova/detection.jpg',
-      imageCaption: 'Demostración en vivo de detección de manos en MOVA'
+      imageCaption: 'Reconocimiento de las manos con la cámara en MOVA'
     },
     {
       year: '2026',
-      badge: 'Moda & Ventas',
-      title: 'Embajadora & Creadora de Contenido en Meraki',
+      badge: 'Moda y Ventas',
+      title: 'Embajadora y Creadora de Contenido en Meraki',
       description:
-        'Videos para redes (@meraki_marka), atención a clientas y detalles personalizados ("Querida Sofia") para impulsar las ventas.',
+        'Grabación de videos para Instagram (@meraki_marka), atención a clientas y entregas con detalles personalizados ("Querida Sofia").',
       accent: 'var(--accent-gold)',
       imageSrc: '/assets/meraki/unboxing.jpg',
-      imageCaption: 'Empaque y experiencia de entrega @meraki_marka'
+      imageCaption: 'Empaque y presentación de entrega de @meraki_marka'
     },
     {
       year: '2026',
       badge: 'Premio Nacional',
-      title: '2do Lugar Nacional en Kurios & BNC',
+      title: '2do Lugar Nacional en Torneo Kurios',
       description:
-        'Subcampeonas nacionales en la división comercial (Marketplace) defendiendo el modelo de negocio y ventas.',
+        'Ganadoras del 2do lugar nacional en la categoría comercial defendiendo la utilidad y propuesta de ventas del proyecto.',
       accent: 'var(--accent-gold)',
       imageSrc: '/assets/competitions/kurios_celebracion.jpg',
-      imageCaption: 'Celebración del 2do Lugar Nacional en Kurios Competition 2026'
+      imageCaption: 'Celebración del 2do Lugar Nacional en el Torneo Kurios 2026'
     }
   ];
 

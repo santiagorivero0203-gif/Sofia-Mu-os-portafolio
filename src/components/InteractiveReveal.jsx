@@ -321,37 +321,37 @@ export const ShutterShapeGallery = () => {
   const items = [
     {
       id: '01',
-      shapeLabel: '◆ FORMA 01',
+      shapeLabel: '◆ FOTO 01',
       title: 'Portada de Revista MOVA',
-      subtitle: 'Prensa & Innovación 2026',
-      description: 'Reportaje central sobre traducción de lengua de señas en tiempo real.',
+      subtitle: 'Prensa e Innovación 2026',
+      description: 'Reportaje especial sobre nuestra aplicación para traducir lengua de señas.',
       image: '/assets/mova/revista.jpg',
       accent: 'var(--accent-gold)'
     },
     {
       id: '02',
-      shapeLabel: '■ FORMA 02',
+      shapeLabel: '■ FOTO 02',
       title: '2do Lugar Nacional Kurios',
-      subtitle: 'División Marketplace & BNC',
-      description: 'Podio nacional defendiendo la viabilidad comercial y el modelo de negocio.',
+      subtitle: 'Torneo Nacional 2026',
+      description: 'Premio nacional tras presentar y defender nuestra propuesta comercial frente al jurado.',
       image: '/assets/competitions/kurios_podio_marketplace.jpg',
       accent: 'var(--accent-blue)'
     },
     {
       id: '03',
-      shapeLabel: '▲ FORMA 03',
-      title: 'Alianza "Querida Sofia"',
-      subtitle: 'Embajadora @meraki_marka',
-      description: 'Creación de contenido, modelaje y experiencia personalizada para clientas.',
+      shapeLabel: '▲ FOTO 03',
+      title: 'Carta "Querida Sofia"',
+      subtitle: 'Embajadora de Meraki',
+      description: 'Creación de videos, modelaje de prendas y atención cercana para clientas.',
       image: '/assets/meraki/querida_sofia.jpg',
       accent: 'var(--accent-gold)'
     },
     {
       id: '04',
-      shapeLabel: '◆ FORMA 04',
-      title: 'Pitch en Vivo UNIMET',
+      shapeLabel: '◆ FOTO 04',
+      title: 'Presentación en la UNIMET',
       subtitle: 'Universidad Metropolitana',
-      description: 'Negociación y defensa directa del proyecto ante jurados empresariales.',
+      description: 'Explicación directa del proyecto frente a profesores y evaluadores invitados.',
       image: '/assets/competitions/unimet_pitch_ejecutivo.jpg',
       accent: 'var(--accent-blue)'
     }

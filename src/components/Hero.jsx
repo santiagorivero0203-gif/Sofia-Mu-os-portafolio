@@ -34,22 +34,22 @@ export const Hero = ({ lenisInstance }) => {
     {
       shape: '◆',
       shortLabel: 'MOVA',
-      title: 'Caso Destacado: MOVA',
-      badge: 'Portada Prensa',
+      title: 'Proyecto: MOVA',
+      badge: 'Portada de Revista',
       src: '/assets/mova/revista.jpg'
     },
     {
       shape: '■',
       shortLabel: 'Meraki',
-      title: 'Embajadora: @meraki_marka',
-      badge: 'Moda & Ventas',
+      title: 'Embajadora: Meraki',
+      badge: 'Moda y Ventas',
       src: '/assets/meraki/clothing.jpg'
     },
     {
       shape: '▲',
       shortLabel: 'Premio',
       title: '2do Lugar Nacional Kurios',
-      badge: 'Marketplace 2026',
+      badge: 'Premio 2026',
       src: '/assets/competitions/kurios_podio_marketplace.jpg'
     }
   ];
@@ -201,7 +201,7 @@ export const Hero = ({ lenisInstance }) => {
               <ShapeImageTag
                 label="MOVA"
                 imageSrc="/assets/mova/interface.png"
-                caption="MOVA Beta V2.0 — Traductor de señas en tiempo real"
+                caption="Aplicación MOVA — Traductor de lengua de señas"
                 shape="diamond"
                 accent="blue"
               />
@@ -209,7 +209,7 @@ export const Hero = ({ lenisInstance }) => {
               <ShapeImageTag
                 label="Meraki"
                 imageSrc="/assets/meraki/querida_sofia.jpg"
-                caption="Alianza comercial y contenido para @meraki_marka"
+                caption="Imagen y contenido para la marca de ropa Meraki"
                 shape="square"
                 accent="gold"
               />{' '}
@@ -217,13 +217,13 @@ export const Hero = ({ lenisInstance }) => {
               <ShapeImageTag
                 label="2do Lugar Nacional"
                 imageSrc="/assets/competitions/kurios_diplomas_2do_lugar.jpg"
-                caption="2do Lugar División Marketplace — Torneo Kurios & BNC 2026"
+                caption="2do Lugar Nacional en el Torneo Kurios 2026"
                 shape="triangle"
                 accent="gold"
               />
               .
               <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontFamily: 'var(--font-mono)', marginTop: '0.45rem' }}>
-                ↑ Toca cualquiera de las formas para revelar su foto
+                ↑ Toca cualquiera de las formas para ver su foto
               </div>
             </motion.div>
 
@@ -300,7 +300,7 @@ export const Hero = ({ lenisInstance }) => {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
                 <Zap size={16} style={{ color: 'var(--accent-blue-sky)', flexShrink: 0 }} />
-                <span>App MOVA Activa en Web</span>
+                <span>Traductor de Lengua de Señas MOVA</span>
               </div>
             </motion.div>
           </div>
