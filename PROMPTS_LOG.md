@@ -318,3 +318,20 @@ Analizando todo el material de Sofia Muñoz, tenemos una ventaja estratégica en
      - Permite al reclutador alternar entre las tarjetas interactivas con animaciones y una vista ejecutiva ultracompacta tipo CV con `layoutId`.
   3. **Iconografía SVG de Doble Flecha Diagonal (`DiagonalArrowIcon`) y Botones con Atracción Magnética Suave:**
      - Integrados en los llamados a la acción principales mantendo el lenguaje claro, la paleta Azul Pastel Claro (`#D9EAFA`) + Amarillo Cálido (`#FFE047`) y las secciones compactas.
+
+---
+
+### Prompt 25 — Integración de la Fotografía Oficial de Presentación de Sofia Muñoz Reemplazando los Monogramas "SM"
+- **Fecha y Hora:** 2026-10-23 19:48:28 (-04:00)
+- **Contenido:**
+```text
+Esta es la foto de presentacion de ella que puedes utilizar, reemplaza los cuadros amarilo que dicen sm y pon esta foto.
+[Imagen adjunta: media_1792799263070_2c9a8e55.jpg]
+```
+- **Acción realizada:**
+  1. Almacenamiento de la fotografía oficial de presentación en `public/assets/sofia_perfil.jpg`.
+  2. Reemplazo de todos los cuadros/círculos amarillos con las letras `"SM"` por la fotografía real de Sofia Muñoz en:
+     - `src/components/Hero.jsx` (tanto en el avatar de cabecera de su tarjeta como en la foto principal de presentación inicial).
+     - `src/components/PortfolioPDF.jsx` (en la cabecera de la hoja previa e imprimible).
+     - `src/utils/generateStyledPDF.js` (incrustada directamente en la esquina superior izquierda del PDF descargable `Portafolio_Sofia_Munoz_2026.pdf`).
+     - `src/components/About.jsx` (junto a su biografía en la sección de Perfil y Habilidades).

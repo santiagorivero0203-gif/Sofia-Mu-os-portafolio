@@ -1,7 +1,6 @@
 /**
  * @file Hero.jsx
- * @description Sección principal compacta, luminosa y directa para reclutadores.
- * Presenta la propuesta de valor, píldoras con fotos interactivas, acciones directas y galería rápida.
+ * @description Sección principal compacta y luminosa con la fotografía de presentación de Sofia Muñoz.
  */
 
 import React, { useRef, useState } from 'react';
@@ -22,19 +21,28 @@ export const Hero = ({ lenisInstance }) => {
 
   const heroSlides = [
     {
+      shortLabel: 'Sofia',
+      title: 'Sofia Muñoz — Asesora Comercial & Contenido',
+      src: '/assets/sofia_perfil.jpg',
+      position: 'center 25%'
+    },
+    {
       shortLabel: 'MOVA',
       title: 'Proyecto MOVA — Portada de Revista',
-      src: '/assets/mova/revista.jpg'
+      src: '/assets/mova/revista.jpg',
+      position: 'center center'
     },
     {
       shortLabel: 'Meraki',
       title: 'Embajadora Meraki — Moda y Ventas',
-      src: '/assets/meraki/clothing.jpg'
+      src: '/assets/meraki/clothing.jpg',
+      position: 'center center'
     },
     {
-      shortLabel: 'Premio 2026',
+      shortLabel: 'Premio',
       title: '2do Lugar Nacional — Torneo Kurios',
-      src: '/assets/competitions/kurios_podio_marketplace.jpg'
+      src: '/assets/competitions/kurios_podio_marketplace.jpg',
+      position: 'center center'
     }
   ];
 
@@ -212,7 +220,7 @@ export const Hero = ({ lenisInstance }) => {
             </motion.div>
           </div>
 
-          {/* COLUMNA DERECHA: Tarjeta Visual Interactiva */}
+          {/* COLUMNA DERECHA: Tarjeta de Presentación con Foto de Sofia Muñoz */}
           <div style={{ gridColumn: 'span 5', display: 'flex', justifyContent: 'center' }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 16 }}
@@ -235,25 +243,22 @@ export const Hero = ({ lenisInstance }) => {
                 transition: 'transform 0.15s ease-out, box-shadow 0.25s ease'
               }}
             >
+              {/* Cabecera con Fotografía de Sofia en lugar del cuadro SM */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem', padding: '0 0.2rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <div
+                  <img
+                    src="/assets/sofia_perfil.jpg"
+                    alt="Sofia Muñoz"
                     style={{
-                      width: '38px',
-                      height: '38px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--accent-yellow-fill)',
-                      color: 'var(--text-primary)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontFamily: 'var(--font-display)',
-                      fontWeight: 700,
-                      fontSize: '0.98rem'
+                      width: '42px',
+                      height: '42px',
+                      borderRadius: '14px',
+                      objectFit: 'cover',
+                      objectPosition: 'center 22%',
+                      border: '2px solid var(--accent-yellow-fill)',
+                      flexShrink: 0
                     }}
-                  >
-                    SM
-                  </div>
+                  />
                   <div>
                     <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                       Sofia Muñoz
@@ -278,12 +283,13 @@ export const Hero = ({ lenisInstance }) => {
                 </span>
               </div>
 
+              {/* Visor Principal iniciando con la Foto de Presentación de Sofia */}
               <div
                 onClick={() => setActiveSlide((prev) => (prev + 1) % heroSlides.length)}
                 style={{
                   position: 'relative',
                   width: '100%',
-                  height: '215px',
+                  height: '240px',
                   borderRadius: '20px',
                   overflow: 'hidden',
                   marginBottom: '0.85rem',
@@ -306,6 +312,7 @@ export const Hero = ({ lenisInstance }) => {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
+                      objectPosition: heroSlides[activeSlide].position || 'center center',
                       display: 'block'
                     }}
                     loading="eager"
@@ -334,7 +341,7 @@ export const Hero = ({ lenisInstance }) => {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '0.45rem' }}>
+              <div style={{ display: 'flex', gap: '0.4rem' }}>
                 {heroSlides.map((slide, idx) => {
                   const isCurrent = activeSlide === idx;
                   return (
@@ -347,12 +354,12 @@ export const Hero = ({ lenisInstance }) => {
                       }}
                       style={{
                         flex: 1,
-                        padding: '0.45rem 0.5rem',
+                        padding: '0.42rem 0.4rem',
                         borderRadius: '999px',
                         backgroundColor: isCurrent ? 'var(--accent-yellow-fill)' : 'var(--bg-secondary)',
                         color: 'var(--text-primary)',
                         border: 'none',
-                        fontSize: '0.76rem',
+                        fontSize: '0.74rem',
                         fontWeight: isCurrent ? 700 : 600,
                         cursor: 'pointer',
                         transition: 'all 0.2s ease'

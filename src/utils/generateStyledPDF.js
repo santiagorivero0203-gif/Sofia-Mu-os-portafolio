@@ -1,9 +1,8 @@
 /**
  * @file generateStyledPDF.js
  * @description Motor de generación y edición vectorial de PDF con jsPDF.
- * Construye un documento A4 limpio y luminoso ("Portafolio_Sofia_Munoz_2026.pdf")
- * utilizando la paleta Azul Pastel Claro (#D9EAFA / #FFFFFF), Amarillo Cálido (#FFE047)
- * y tipografía Azul Marino (#142C4C), con tarjetas redondeadas y fotografías reales.
+ * Incrusta la foto oficial de presentación de Sofia Muñoz en la cabecera (reemplazando el monograma SM)
+ * junto con las fotografías de sus proyectos y competencias en formato A4.
  */
 
 import { personalInfo, projects, skillCategories, competitions } from '../data/portfolioData';
@@ -11,7 +10,7 @@ import { personalInfo, projects, skillCategories, competitions } from '../data/p
 /**
  * Convierte una imagen local en un DataURL JPEG optimizado con recorte "cover"
  */
-const loadImageAsCoverDataUrl = (url, targetWidth = 600, targetHeight = 340) => {
+const loadImageAsCoverDataUrl = (url, targetWidth = 600, targetHeight = 340, verticalFocus = 0.5) => {
   return new Promise((resolve) => {
     const img = new Image();
     img.crossOrigin = 'Anonymous';
@@ -37,11 +36,11 @@ const loadImageAsCoverDataUrl = (url, targetWidth = 600, targetHeight = 340) => 
           offsetX = -(drawWidth - targetWidth) / 2;
         } else {
           drawHeight = targetWidth / imgRatio;
-          offsetY = -(drawHeight - targetHeight) / 2;
+          offsetY = -(drawHeight - targetHeight) * verticalFocus;
         }
 
         ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-        resolve(canvas.toDataURL('image/jpeg', 0.88));
+        resolve(canvas.toDataURL('image/jpeg', 0.9));
       } catch {
         resolve(null);
       }
@@ -63,7 +62,6 @@ export const generateStyledPortfolioPDF = async () => {
     compress: true
   });
 
-  // Paleta Azul Pastel Claro, Tarjetas Blancas y Amarillo Cálido (RGB)
   const COLORS = {
     bgPastelBlue: [217, 234, 250],  // #D9EAFA (Fondo Azul Pastel Claro)
     bgSoftCloud: [234, 243, 253],   // #EAF3FD (Azul Nube Suave)
@@ -71,15 +69,15 @@ export const generateStyledPortfolioPDF = async () => {
     yellowFill: [255, 224, 71],     // #FFE047 (Amarillo Cálido)
     accentBlue: [37, 99, 235],      // #2563EB (Azul Destacado)
     textNavy: [20, 44, 76],         // #142C4C (Texto Principal)
-    textSecondary: [52, 82, 120],   // #345278 (Texto Secundario)
-    borderSoft: [195, 218, 244]     // #C3DAF4 (Borde Suave)
+    textSecondary: [52, 82, 120]    // #345278 (Texto Secundario)
   };
 
-  const [movaImg, merakiImg, kuriosImg, unimetImg] = await Promise.all([
-    loadImageAsCoverDataUrl('/assets/mova/revista.jpg', 560, 260),
-    loadImageAsCoverDataUrl('/assets/meraki/clothing.jpg', 560, 260),
-    loadImageAsCoverDataUrl('/assets/competitions/kurios_podio_marketplace.jpg', 480, 220),
-    loadImageAsCoverDataUrl('/assets/competitions/unimet_pitch_ejecutivo.jpg', 480, 220)
+  const [sofiaImg, movaImg, merakiImg, kuriosImg, unimetImg] = await Promise.all([
+    loadImageAsCoverDataUrl('/assets/sofia_perfil.jpg', 300, 300, 0.22),
+    loadImageAsCoverDataUrl('/assets/mova/revista.jpg', 560, 260, 0.5),
+    loadImageAsCoverDataUrl('/assets/meraki/clothing.jpg', 560, 260, 0.5),
+    loadImageAsCoverDataUrl('/assets/competitions/kurios_podio_marketplace.jpg', 480, 220, 0.5),
+    loadImageAsCoverDataUrl('/assets/competitions/unimet_pitch_ejecutivo.jpg', 480, 220, 0.5)
   ]);
 
   // 1. FONDO COMPLETO A4 EN AZUL PASTEL CLARO (#D9EAFA)
@@ -90,34 +88,33 @@ export const generateStyledPortfolioPDF = async () => {
   doc.setFillColor(...COLORS.cardWhite);
   doc.roundedRect(10, 10, 190, 38, 6, 6, 'F');
 
-  // Círculo Amarillo con Monograma "SM"
-  doc.setFillColor(...COLORS.yellowFill);
-  doc.circle(23, 23, 8, 'F');
-  doc.setFont('times', 'bold');
-  doc.setFontSize(14);
-  doc.setTextColor(...COLORS.textNavy);
-  doc.text('SM', 23, 24.8, { align: 'center' });
+  // Foto de Presentación de Sofia Muñoz en lugar del cuadro amarillo SM
+  if (sofiaImg) {
+    doc.setFillColor(...COLORS.yellowFill);
+    doc.roundedRect(14.3, 13.3, 23.4, 23.4, 3, 3, 'F');
+    doc.addImage(sofiaImg, 'JPEG', 15, 14, 22, 22);
+  }
 
   // Nombre y Rol
   doc.setFont('times', 'bold');
-  doc.setFontSize(20);
+  doc.setFontSize(19.5);
   doc.setTextColor(...COLORS.textNavy);
-  doc.text(personalInfo.name, 35, 20);
+  doc.text(personalInfo.name, 41, 19.5);
 
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.2);
+  doc.setFontSize(9);
   doc.setTextColor(...COLORS.accentBlue);
-  doc.text('Asesora de Ventas  •  Creadora de Contenido  •  Embajadora de Marca', 35, 26);
+  doc.text('Asesora de Ventas  •  Creadora de Contenido  •  Embajadora de Marca', 41, 25);
 
   // Resumen
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.5);
+  doc.setFontSize(8.3);
   doc.setTextColor(...COLORS.textSecondary);
   const bioLines = doc.splitTextToSize(
     `${personalInfo.statement} Conecto marcas con personas a través de comunicación cercana, contenido y ventas reales.`,
-    116
+    93
   );
-  doc.text(bioLines, 15, 36);
+  doc.text(bioLines, 41, 31);
 
   // Píldora Suave de Contacto Directo (Derecha)
   doc.setFillColor(...COLORS.bgSoftCloud);
@@ -166,7 +163,6 @@ export const generateStyledPortfolioPDF = async () => {
       doc.addImage(imgData, 'JPEG', x + 4, projCardsY + 4, cardWidth - 8, 35);
     }
 
-    // Píldora de Categoría
     doc.setFillColor(...COLORS.yellowFill);
     doc.roundedRect(x + 6, projCardsY + 6, 36, 5.8, 3, 3, 'F');
     doc.setFont('helvetica', 'bold');
@@ -272,7 +268,7 @@ export const generateStyledPortfolioPDF = async () => {
     doc.text(sumLines.slice(0, 4), textX, compCardsY + 28.5);
   });
 
-  // 5. HABILIDADES PRINCIPALES (3 TARJETAS LIMPIAS)
+  // 5. HABILIDADES PRINCIPALES
   const skillsSectionY = 232;
   doc.setFont('times', 'bold');
   doc.setFontSize(13);

@@ -1,6 +1,6 @@
 /**
  * @file PortfolioPDF.jsx
- * @description Vista previa y descarga directa en 1 clic del Portafolio en PDF.
+ * @description Vista previa y descarga directa en 1 clic del Portafolio en PDF con la foto real de Sofia Muñoz.
  */
 
 import React, { useState } from 'react';
@@ -45,7 +45,7 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
         fontFamily: 'var(--font-sans)'
       }}
     >
-      {/* 1. Cabecera Blanca Redondeada */}
+      {/* 1. Cabecera Blanca Redondeada con Foto de Sofia */}
       <div
         style={{
           backgroundColor: '#ffffff',
@@ -60,25 +60,20 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
           boxShadow: '0 8px 24px rgba(20, 44, 76, 0.05)'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', flex: '1 1 280px' }}>
-          <div
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.95rem', flex: '1 1 280px' }}>
+          <img
+            src="/assets/sofia_perfil.jpg"
+            alt={personalInfo.name}
             style={{
-              width: '46px',
-              height: '46px',
-              borderRadius: '50%',
-              backgroundColor: '#ffe047',
-              color: '#142c4c',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.2rem',
-              fontWeight: 700,
+              width: '58px',
+              height: '58px',
+              borderRadius: '16px',
+              objectFit: 'cover',
+              objectPosition: 'center 22%',
+              border: '2px solid #ffe047',
               flexShrink: 0
             }}
-          >
-            SM
-          </div>
+          />
           <div>
             <h2
               style={{

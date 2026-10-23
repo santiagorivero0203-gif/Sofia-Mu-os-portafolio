@@ -1,7 +1,7 @@
 /**
  * @file About.jsx
- * @description Sección ejecutiva compacta que integra "Sobre Mí", Habilidades Clave
- * y Recorrido 2026 en una sola vista de dos columnas para lectura rápida de reclutadores.
+ * @description Sección ejecutiva compacta que integra la foto de presentación de Sofia Muñoz,
+ * su perfil, Habilidades Clave y Recorrido 2026 en una sola vista de dos columnas.
  */
 
 import React from 'react';
@@ -41,7 +41,6 @@ export const About = () => {
   return (
     <section id="sobre-mi" style={{ padding: '2.5rem 0', position: 'relative' }}>
       <div className="site-container">
-        {/* Cabecera Compacta */}
         <div style={{ marginBottom: '1.5rem' }}>
           <div className="badge-pill status-active" style={{ marginBottom: '0.5rem' }}>
             <Sparkles size={14} />
@@ -63,9 +62,8 @@ export const About = () => {
           </h2>
         </div>
 
-        {/* Vista Compacta en 2 Columnas */}
         <div className="editorial-grid" style={{ alignItems: 'stretch', gap: '1.75rem' }}>
-          {/* COLUMNA IZQUIERDA: Perfil + Habilidades Clave */}
+          {/* COLUMNA IZQUIERDA: Foto de Presentación + Perfil + Habilidades Clave */}
           <div style={{ gridColumn: 'span 6', display: 'flex' }}>
             <div
               className="spotlight-card"
@@ -76,14 +74,30 @@ export const About = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                gap: '1.35rem',
+                gap: '1.25rem',
                 width: '100%'
               }}
             >
               <div>
-                <p style={{ fontSize: '0.98rem', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '1rem' }}>
-                  {personalInfo.bio}
-                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <img
+                    src="/assets/sofia_perfil.jpg"
+                    alt="Sofia Muñoz"
+                    style={{
+                      width: '68px',
+                      height: '68px',
+                      borderRadius: '20px',
+                      objectFit: 'cover',
+                      objectPosition: 'center 22%',
+                      border: '2px solid var(--accent-yellow-fill)',
+                      flexShrink: 0,
+                      boxShadow: '0 6px 16px rgba(20, 44, 76, 0.08)'
+                    }}
+                  />
+                  <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
+                    {personalInfo.bio}
+                  </p>
+                </div>
 
                 <p
                   style={{
@@ -91,41 +105,42 @@ export const About = () => {
                     fontStyle: 'italic',
                     color: 'var(--text-primary)',
                     lineHeight: 1.45,
-                    fontSize: '1.15rem',
+                    fontSize: '1.12rem',
                     backgroundColor: 'var(--bg-secondary)',
-                    padding: '1rem 1.25rem',
-                    borderRadius: '18px'
+                    padding: '0.9rem 1.15rem',
+                    borderRadius: '18px',
+                    margin: 0
                   }}
                 >
                   "{personalInfo.statement}"
                 </p>
               </div>
 
-              {/* Habilidades Clave Integradas */}
+              {/* Habilidades Clave */}
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.85rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.75rem' }}>
                   <Star size={16} style={{ color: 'var(--accent-blue)' }} />
-                  <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                  <h3 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                     Habilidades principales
                   </h3>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   {skillCategories.map((cat, idx) => (
                     <div key={idx}>
-                      <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--accent-blue)', marginBottom: '0.35rem' }}>
+                      <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--accent-blue)', marginBottom: '0.3rem' }}>
                         {cat.title}
                       </div>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.38rem' }}>
                         {cat.skills.map((skill, sIdx) => (
                           <span
                             key={sIdx}
                             style={{
-                              padding: '0.32rem 0.75rem',
+                              padding: '0.3rem 0.72rem',
                               borderRadius: '999px',
                               backgroundColor: 'var(--bg-secondary)',
                               color: 'var(--text-primary)',
-                              fontSize: '0.8rem',
+                              fontSize: '0.78rem',
                               fontWeight: 600
                             }}
                           >
@@ -151,7 +166,7 @@ export const About = () => {
                 width: '100%'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', marginBottom: '1.2rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', marginBottom: '1.15rem' }}>
                 <div
                   style={{
                     width: '34px',
