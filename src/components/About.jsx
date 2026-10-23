@@ -21,11 +21,12 @@ import {
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import { useSpotlight } from '../hooks/useSpotlight';
+import { ShapeDrawerReveal, ShutterShapeGallery } from './InteractiveReveal';
 
 export const About = () => {
   const { handleMouseMove } = useSpotlight();
 
-  // Hitos de la trayectoria profesional en 2026
+  // Hitos de la trayectoria profesional en 2026 con imagen asociada para revelar al tocar
   const timelineMilestones = [
     {
       year: '2026',
@@ -33,7 +34,9 @@ export const About = () => {
       title: 'Co-fundadora & Marketing en MOVA',
       description:
         'Creación del mensaje de la marca, presencia en portada de revista y lanzamiento de la app web con soporte para 3 lenguas de señas.',
-      accent: 'var(--accent-blue)'
+      accent: 'var(--accent-blue)',
+      imageSrc: '/assets/mova/detection.jpg',
+      imageCaption: 'Demostración en vivo de detección de manos en MOVA'
     },
     {
       year: '2026',
@@ -41,7 +44,9 @@ export const About = () => {
       title: 'Embajadora & Creadora de Contenido en Meraki',
       description:
         'Videos para redes (@meraki_marka), atención a clientas y detalles personalizados ("Querida Sofia") para impulsar las ventas.',
-      accent: 'var(--accent-gold)'
+      accent: 'var(--accent-gold)',
+      imageSrc: '/assets/meraki/unboxing.jpg',
+      imageCaption: 'Empaque y experiencia de entrega @meraki_marka'
     },
     {
       year: '2026',
@@ -49,7 +54,9 @@ export const About = () => {
       title: '2do Lugar Nacional en Kurios & BNC',
       description:
         'Subcampeonas nacionales en la división comercial (Marketplace) defendiendo el modelo de negocio y ventas.',
-      accent: 'var(--accent-gold)'
+      accent: 'var(--accent-gold)',
+      imageSrc: '/assets/competitions/kurios_celebracion.jpg',
+      imageCaption: 'Celebración del 2do Lugar Nacional en Kurios Competition 2026'
     }
   ];
 
@@ -249,6 +256,14 @@ export const About = () => {
                       <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                         {item.description}
                       </p>
+
+                      {/* Forma Geométrica Interactiva que al tocarla despliega la foto del hito */}
+                      <ShapeDrawerReveal
+                        buttonText="Toca para ver foto"
+                        imageSrc={item.imageSrc}
+                        caption={item.imageCaption}
+                        accentColor={item.accent}
+                      />
                     </div>
                   </motion.div>
                 ))}
@@ -256,6 +271,9 @@ export const About = () => {
             </div>
           </div>
         </div>
+
+        {/* Mosaico de Formas Geométricas Interactivas (Shutter Gallery) */}
+        <ShutterShapeGallery />
       </div>
     </section>
   );

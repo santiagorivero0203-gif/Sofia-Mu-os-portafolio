@@ -187,3 +187,18 @@ Busca palabras mas simples y directas para que no canse ver la pagina,revisa los
      - Se ajustaron las escalas tipográficas (`--text-hero`, `--text-h1`, `--text-h2`), `line-height` (`1.15`–`1.25`) y `padding-bottom` en contenedores de texto para evitar que las letras descendentes (`p`, `g`, `y`, `j`) o las cursivas de *Playfair Display* se corten.
      - Se mejoró el espaciado entre columnas (`gap: 2.5rem` a `3.5rem`) y el relleno interno de tarjetas y botones.
   2. Redacción directa, clara y ligera en todos los componentes (`portfolioData.js`, `Hero.jsx`, `Projects.jsx`, `CompetitionsSection.jsx`, `About.jsx`, `SkillsGrid.jsx`, `ContactSection.jsx`, `ProjectModal.jsx`) eliminando tecnicismos innecesarios y textos largos para facilitar una lectura rápida y agradable.
+
+---
+
+### Prompt 17 — Transiciones Interactivas y Formas Geométricas que Revelan Imágenes al Tocarlas
+- **Fecha y Hora:** 2026-10-23 18:23:11 (-04:00)
+- **Contenido:**
+```text
+Aparte quisiera que en algunas partes se incluyera algunos efectos de transicion. Tipo una forma en la que al tocarla salga una imagen , se creatico innova con eso
+```
+- **Acción realizada:**
+  1. Creación del módulo `src/components/InteractiveReveal.jsx` con tres mecánicas interactivas (compatibles con toque móvil y clic/hover en escritorio) bajo la estética Azul MOVA + Amarillo Vibrante y geometría recta:
+     - **`ShapeImagePill` (Cápsula Geométrica en Texto):** Pequeñas formas geométricas interactivas incrustadas junto a palabras clave (ej. en `Hero.jsx` y `About.jsx`) que al tocarlas despliegan una cortina `clip-path` con la fotografía real correspondiente.
+     - **`ShutterGalleryStrip` (Mosaico de Formas Expandibles):** Tira interactiva de bloques geométricos numerados (`01` a `04`) donde al tocar cada figura se abre como un obturador fotográfico revelando la imagen en alta definición.
+     - **`TimelinePhotoReveal` (Revelado en Línea de Tiempo):** En cada hito de `About.jsx` y tarjeta de `Projects.jsx`, tocar la figura geométrica despliega suavemente la foto de evidencia con animación de resorte y cortina arquitectónica.
+  2. Integración en `Hero.jsx` (selector geométrico interactivo de 4 momentos en la tarjeta principal + formas tocables en el texto), `About.jsx` (formas desplegables en cada hito de 2026 y galería de obturador) y `CompetitionsSection.jsx`.

@@ -38,6 +38,7 @@ Sofia portafolio/
 │   │   ├── ErrorBoundary.jsx          # Límite de error con interfaz de recuperación
 │   │   ├── Footer.jsx                 # Pie de página y scroll inercial al tope
 │   │   ├── Hero.jsx                   # Sección de aterrizaje, métricas y CTAs
+│   │   ├── InteractiveReveal.jsx      # Formas geométricas interactivas que revelan fotos al tocarlas
 │   │   ├── Navbar.jsx                 # Menú flotante con ScrollSpy y hora de Caracas
 │   │   ├── NoiseOverlay.jsx           # Textura de grano cinematográfico SVG
 │   │   ├── PortfolioPDF.jsx           # Dossier ejecutivo y exportación en PDF (A4)
@@ -110,7 +111,10 @@ El siguiente esquema representa cómo interactúan los componentes, el contexto 
 | **`PortfolioContext.jsx`** | `portfolioData.js`, `useCaracasTime`, `useClipboard`, `useSoundFeedback` | Estado central: proyectos filtrados, modal activo, navegación de proyectos, hora VET, sonido, métricas. |
 | **`App.jsx`** | `Lenis`, `PortfolioContext`, `ErrorBoundary`, `useScrollSpy`, Componentes UI | Inicializa Lenis, bloquea scroll cuando se abre un modal, renderiza el árbol envuelto en context. |
 | **`Navbar.jsx`** | `usePortfolio()`, `portfolioData.js` | Muestra enlaces, resalta sección activa vía `activeSection`, botón de sonido y WhatsApp. |
-| **`Hero.jsx`** | `usePortfolio()`, `portfolioData.js` | Título kinetic, propuesta de valor, badges y enlaces de acción inmediata. |
+| **`Hero.jsx`** | `usePortfolio()`, `portfolioData.js`, `InteractiveReveal.jsx` | Título editorial, formas tocables en texto (`ShapeImageTag`) y tarjeta con selector geométrico de imágenes. |
+| **`InteractiveReveal.jsx`** | `framer-motion`, `usePortfolio()` | Provee `ShapeImageTag`, `ShapeDrawerReveal` y `ShutterShapeGallery` con transiciones `clip-path`. |
+| **`CompetitionsSection.jsx`** | `portfolioData.js`, `useSpotlight`, `usePortfolio()` | Exhibe el 2do Lugar Nacional en Kurios & BNC 2026 y el Pitchday UNIMET con visor de fotos. |
+| **`PortfolioPDF.jsx`** | `portfolioData.js`, `framer-motion` | Genera el dossier ejecutivo imprimible en A4 (`@media print`) y modal de exportación PDF. |
 | **`Projects.jsx`** | `usePortfolio()`, `useSpotlight` | Muestra proyectos en Bento o Índice, gestiona filtros por categoría y barra de búsqueda. |
 | **`ProjectModal.jsx`** | `usePortfolio()` | Muestra caso completo, retos, soluciones, enlaces en vivo, navegación (`←`/`→`/`Esc`) y lightbox de fotos. |
 | **`ContactSection.jsx`** | `usePortfolio()`, `portfolioData.js` | Genera enlaces de WhatsApp y mailto pre-redactados según el tipo de oportunidad seleccionado; copia datos. |

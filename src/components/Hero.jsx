@@ -9,7 +9,7 @@
  */
 
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowDown,
   MessageCircle,
@@ -23,10 +23,38 @@ import {
 } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { personalInfo } from '../data/portfolioData';
+import { ShapeImageTag } from './InteractiveReveal';
 
 export const Hero = ({ lenisInstance }) => {
   const { sound, trackEvent, openPdfModal } = usePortfolio();
   const cardRef = useRef(null);
+
+  // Imágenes interactivas que se revelan al tocar las formas en la tarjeta derecha
+  const heroSlides = [
+    {
+      shape: '◆',
+      shortLabel: 'MOVA',
+      title: 'Caso Destacado: MOVA',
+      badge: 'Portada Prensa',
+      src: '/assets/mova/revista.jpg'
+    },
+    {
+      shape: '■',
+      shortLabel: 'Meraki',
+      title: 'Embajadora: @meraki_marka',
+      badge: 'Moda & Ventas',
+      src: '/assets/meraki/clothing.jpg'
+    },
+    {
+      shape: '▲',
+      shortLabel: 'Premio',
+      title: '2do Lugar Nacional Kurios',
+      badge: 'Marketplace 2026',
+      src: '/assets/competitions/kurios_podio_marketplace.jpg'
+    }
+  ];
+
+  const [activeSlide, setActiveSlide] = useState(0);
 
   // Estado para la inclinación 3D (Tilt) interactiva
   const [tiltStyle, setTiltStyle] = useState({ transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' });
@@ -156,21 +184,48 @@ export const Hero = ({ lenisInstance }) => {
               </span>
             </motion.h1>
 
-            {/* Resumen Breve y Directo */}
-            <motion.p
+            {/* Resumen Breve con Formas Interactivas que Revelan Fotos al Tocarlas */}
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               style={{
                 fontSize: 'var(--text-body)',
                 color: 'var(--text-secondary)',
-                maxWidth: '560px',
-                lineHeight: 1.65,
+                maxWidth: '580px',
+                lineHeight: 1.85,
                 marginBottom: '2.25rem'
               }}
             >
-              {personalInfo.statement}
-            </motion.p>
+              Conecto marcas con personas reales a través de ventas y contenido. Co-fundadora de{' '}
+              <ShapeImageTag
+                label="MOVA"
+                imageSrc="/assets/mova/interface.png"
+                caption="MOVA Beta V2.0 — Traductor de señas en tiempo real"
+                shape="diamond"
+                accent="blue"
+              />
+              , embajadora de{' '}
+              <ShapeImageTag
+                label="Meraki"
+                imageSrc="/assets/meraki/querida_sofia.jpg"
+                caption="Alianza comercial y contenido para @meraki_marka"
+                shape="square"
+                accent="gold"
+              />{' '}
+              y ganadora del{' '}
+              <ShapeImageTag
+                label="2do Lugar Nacional"
+                imageSrc="/assets/competitions/kurios_diplomas_2do_lugar.jpg"
+                caption="2do Lugar División Marketplace — Torneo Kurios & BNC 2026"
+                shape="triangle"
+                accent="gold"
+              />
+              .
+              <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontFamily: 'var(--font-mono)', marginTop: '0.45rem' }}>
+                ↑ Toca cualquiera de las formas para revelar su foto
+              </div>
+            </motion.div>
 
             {/* Botones de Acción Directos */}
             <motion.div
@@ -310,8 +365,52 @@ export const Hero = ({ lenisInstance }) => {
                 </span>
               </div>
 
-              {/* Preview Visual Editorial con Cortina */}
+              {/* Selector de Formas Geométricas para Cambiar la Imagen con Transición */}
               <div
+                style={{
+                  display: 'flex',
+                  gap: '0.45rem',
+                  marginBottom: '0.85rem'
+                }}
+              >
+                {heroSlides.map((slide, idx) => {
+                  const isCurrent = activeSlide === idx;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        sound.playClick();
+                        setActiveSlide(idx);
+                      }}
+                      style={{
+                        flex: 1,
+                        padding: '0.38rem 0.5rem',
+                        borderRadius: '2px',
+                        backgroundColor: isCurrent ? 'var(--accent-gold)' : 'var(--bg-surface)',
+                        color: isCurrent ? '#0b1528' : 'var(--text-secondary)',
+                        border: `1px solid ${isCurrent ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      data-cursor="Cambiar"
+                    >
+                      {slide.shape} {slide.shortLabel}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Preview Visual Editorial con Cortina Clip-Path al Tocar */}
+              <div
+                onClick={() => {
+                  sound.playClick();
+                  setActiveSlide((prev) => (prev + 1) % heroSlides.length);
+                }}
                 style={{
                   position: 'relative',
                   width: '100%',
@@ -322,18 +421,27 @@ export const Hero = ({ lenisInstance }) => {
                   border: '1px solid var(--border-subtle)',
                   backgroundColor: '#060b16'
                 }}
+                title="Toca la imagen para cambiar a la siguiente evidencia"
               >
-                <img
-                  src="/assets/mova/revista.jpg"
-                  alt="Sofia Muñoz — Innovación y Portada Editorial"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    filter: 'contrast(1.05)'
-                  }}
-                  loading="eager"
-                />
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={heroSlides[activeSlide].src}
+                    src={heroSlides[activeSlide].src}
+                    alt={heroSlides[activeSlide].title}
+                    initial={{ clipPath: 'inset(0 100% 0 0)', scale: 1.08 }}
+                    animate={{ clipPath: 'inset(0 0% 0 0)', scale: 1 }}
+                    exit={{ clipPath: 'inset(0 0 0 100%)', scale: 1.04 }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      filter: 'contrast(1.05)',
+                      display: 'block'
+                    }}
+                    loading="eager"
+                  />
+                </AnimatePresence>
                 <div
                   style={{
                     position: 'absolute',
@@ -349,7 +457,7 @@ export const Hero = ({ lenisInstance }) => {
                   }}
                 >
                   <span style={{ fontSize: '0.75rem', color: '#fff', fontWeight: 600 }}>
-                    Caso Destacado: MOVA
+                    {heroSlides[activeSlide].title}
                   </span>
                   <span
                     style={{
@@ -362,7 +470,7 @@ export const Hero = ({ lenisInstance }) => {
                       borderRadius: '0px'
                     }}
                   >
-                    Portada Prensa
+                    {heroSlides[activeSlide].badge}
                   </span>
                 </div>
               </div>
