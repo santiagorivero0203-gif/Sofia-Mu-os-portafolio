@@ -204,20 +204,20 @@ export const ProjectModal = () => {
                   href={selectedProject.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-magnetic btn-primary"
+                  className="btn-magnetic btn-gold"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    padding: '0.65rem 1.4rem',
-                    fontSize: '0.88rem'
+                    padding: '0.65rem 1.35rem',
+                    fontSize: '0.86rem'
                   }}
                   onClick={() => trackEvent('external_link_click', { project: selectedProject.id, url: selectedProject.link })}
                   data-cursor="Visitar"
                 >
                   <ExternalLink size={16} />
                   <span>
-                    {selectedProject.id === 'mova' ? 'Ver Plataforma Web en Vivo (Vercel)' : 'Visitar Perfil Oficial en Instagram'}
+                    {selectedProject.id === 'mova' ? 'Abrir App MOVA en Vivo' : 'Ver Instagram @meraki_marka'}
                   </span>
                 </a>
               </div>
@@ -236,15 +236,15 @@ export const ProjectModal = () => {
             {/* Retos Identificados */}
             <div
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                backgroundColor: 'var(--bg-secondary)',
                 border: '1px solid var(--border-subtle)',
-                borderRadius: 'var(--radius-lg)',
+                borderRadius: '2px',
                 padding: '1.5rem'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--accent-gold)' }}>
                 <Target size={18} />
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 600 }}>El Desafío Comercial</h3>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 600 }}>El Reto</h3>
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {selectedProject.challenges.map((item, i) => (
@@ -257,7 +257,7 @@ export const ProjectModal = () => {
                       marginBottom: '0.75rem',
                       fontSize: '0.9rem',
                       color: 'var(--text-secondary)',
-                      lineHeight: 1.5
+                      lineHeight: 1.55
                     }}
                   >
                     <span style={{ color: 'var(--accent-gold)', marginTop: '0.2rem' }}>•</span>
@@ -270,15 +270,15 @@ export const ProjectModal = () => {
             {/* Logros Clave */}
             <div
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                backgroundColor: 'var(--bg-secondary)',
                 border: '1px solid var(--border-subtle)',
-                borderRadius: 'var(--radius-lg)',
+                borderRadius: '2px',
                 padding: '1.5rem'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#22c55e' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--accent-gold)' }}>
                 <Award size={18} />
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 600 }}>Impacto & Resultados</h3>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 600 }}>Resultados Logrados</h3>
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {selectedProject.achievements.map((item, i) => (
@@ -291,10 +291,10 @@ export const ProjectModal = () => {
                       marginBottom: '0.75rem',
                       fontSize: '0.9rem',
                       color: 'var(--text-secondary)',
-                      lineHeight: 1.5
+                      lineHeight: 1.55
                     }}
                   >
-                    <CheckCircle size={15} style={{ color: '#22c55e', flexShrink: 0, marginTop: '0.2rem' }} />
+                    <CheckCircle size={15} style={{ color: 'var(--accent-gold)', flexShrink: 0, marginTop: '0.2rem' }} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -307,20 +307,20 @@ export const ProjectModal = () => {
             <h3
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.4rem',
+                fontSize: '1.35rem',
                 fontWeight: 500,
                 marginBottom: '1.25rem',
                 borderLeft: '3px solid var(--accent-gold)',
                 paddingLeft: '0.75rem'
               }}
             >
-              Contribución Estratégica & Liderazgo de Sofia
+              Qué hice en este proyecto
             </h3>
 
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
                 gap: '1rem'
               }}
             >
@@ -328,16 +328,16 @@ export const ProjectModal = () => {
                 <div
                   key={i}
                   style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                    backgroundColor: 'var(--bg-secondary)',
                     border: '1px solid var(--border-subtle)',
-                    borderRadius: 'var(--radius-md)',
+                    borderRadius: '2px',
                     padding: '1.25rem'
                   }}
                 >
-                  <h4 style={{ fontSize: '0.96rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                  <h4 style={{ fontSize: '0.96rem', fontWeight: 600, color: 'var(--accent-gold)', marginBottom: '0.4rem' }}>
                     {contrib.title}
                   </h4>
-                  <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
+                  <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
                     {contrib.description}
                   </p>
                 </div>
@@ -350,14 +350,14 @@ export const ProjectModal = () => {
             <h3
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.4rem',
+                fontSize: '1.35rem',
                 fontWeight: 500,
                 marginBottom: '1rem',
                 borderLeft: '3px solid var(--accent-gold)',
                 paddingLeft: '0.75rem'
               }}
             >
-              Evidencias Visuales & Validación en Medios ({selectedProject.gallery.length})
+              Fotos y Evidencias ({selectedProject.gallery.length})
             </h3>
 
             <div

@@ -41,17 +41,17 @@
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Escala Fluida con clamp() */
-  --text-hero: clamp(2.5rem, 5.8vw + 1rem, 6rem);
-  --text-h1: clamp(2.1rem, 4.2vw + 0.4rem, 4.2rem);
-  --text-h2: clamp(1.75rem, 3vw + 0.35rem, 3rem);
-  --text-h3: clamp(1.25rem, 1.6vw + 0.2rem, 1.75rem);
-  --text-body: clamp(0.92rem, 0.8vw + 0.3rem, 1.1rem);
+  /* Escala Fluida Equilibrada con clamp() (Sin desbordes ni cortes de letras) */
+  --text-hero: clamp(2.2rem, 3.8vw + 0.6rem, 3.85rem);
+  --text-h1: clamp(1.9rem, 3vw + 0.4rem, 3.1rem);
+  --text-h2: clamp(1.65rem, 2.4vw + 0.35rem, 2.5rem);
+  --text-h3: clamp(1.2rem, 1.4vw + 0.2rem, 1.5rem);
+  --text-body: clamp(0.95rem, 0.4vw + 0.8rem, 1.06rem);
   --text-caption: 0.85rem;
   --text-xs: 0.75rem;
 
   /* Espaciado y Geometría Editorial Arquitectónica (Evitando redondear todo) */
-  --container-max: 1320px;
+  --container-max: 1240px;
   --radius-sm: 0px;
   --radius-md: 2px;
   --radius-lg: 2px;
@@ -120,6 +120,7 @@ body {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
+  padding-right: 0.12em;
 }
 
 /* Grano Analógico SVG (Film Grain) */
@@ -250,19 +251,19 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.85rem 1.75rem;
+  gap: 0.55rem;
+  padding: 0.8rem 1.45rem;
   font-family: var(--font-sans);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   text-decoration: none;
   border-radius: var(--radius-md);
   transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   position: relative;
   cursor: pointer;
   border: 1px solid transparent;
+  line-height: 1.2;
 }
 
 .btn-primary {
@@ -311,10 +312,10 @@ body {
   gap: 0.45rem;
   padding: 0.35rem 0.75rem;
   font-family: var(--font-mono);
-  font-size: 0.73rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   border-radius: var(--radius-md);
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
@@ -339,11 +340,11 @@ body {
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-/* Máscaras de Texto (Mask Reveal) */
+/* Máscaras de Texto (Mask Reveal sin cortar descendentes) */
 .text-mask-wrapper {
   overflow: hidden;
-  display: inline-block;
-  vertical-align: bottom;
+  display: block;
+  padding-bottom: 0.12em;
 }
 
 .text-mask-inner {
@@ -351,24 +352,38 @@ body {
   transform: translateY(0);
 }
 
-/* Modales y Paneles con Blur */
+/* Modales y Paneles */
 .glass-panel {
-  background: rgba(18, 19, 24, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
 }
 
-/* Grillas Asimétricas Editoriales */
+/* Navegación Desktop */
+.desktop-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.desktop-nav-text {
+  display: inline;
+}
+
+/* Grillas Asimétricas Editoriales con Espaciado Amplio */
 .editorial-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 1.5rem;
+  gap: 3rem;
+  align-items: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .editorial-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .editorial-grid > * {
+    grid-column: span 1 !important;
   }
 }
 
@@ -433,7 +448,8 @@ body {
     padding: 0 1.25rem !important;
   }
 
-  .desktop-nav-links {
+  .desktop-nav-links,
+  .desktop-nav-text {
     display: none !important;
   }
 

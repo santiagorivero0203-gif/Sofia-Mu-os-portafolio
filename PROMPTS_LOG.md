@@ -172,3 +172,18 @@ Quisiera que usaras un color azul mas parecido a el de mova y un amarillo un poc
   1. Redefinición cromática inspirada directamente en la interfaz de MOVA (`#0B1528`, `#111F3A`, `#162849`, azul sólido `#2E6FF2`) combinada con un amarillo vibrante, puro y sólido (`#FFD60A` / `#FFCC00`).
   2. Eliminación total de degradados neón, resplandores difusos (`text-shadow`/`box-shadow` luminosos) y efectos genéricos de "AI slop".
   3. Reestructuración geométrica hacia un diseño editorial arquitectónico de esquinas rectas y micro-biseladas (`0px`, `2px`, `4px`), eliminando las píldoras (`9999px`) y bordes hiper-redondeados en tarjetas, botones, navbar, badges y modales.
+
+---
+
+### Prompt 16 — Simplificación de Textos, Corrección de Posicionamiento Tipográfico y Espaciados
+- **Fecha y Hora:** 2026-10-23 18:21:08 (-04:00)
+- **Contenido:**
+```text
+Busca palabras mas simples y directas para que no canse ver la pagina,revisa los espaciados y el posicionamiento de las letras ya que algunas no estan bien puestas.
+```
+- **Acción realizada:**
+  1. Corrección de posicionamiento de letras y espaciados:
+     - Se corrigió `.desktop-nav-links` en `Navbar.jsx` e `index.css` añadiendo `display: flex` explícito para que los enlaces del menú tengan separación real (`gap: 1.75rem`) y no queden pegados.
+     - Se ajustaron las escalas tipográficas (`--text-hero`, `--text-h1`, `--text-h2`), `line-height` (`1.15`–`1.25`) y `padding-bottom` en contenedores de texto para evitar que las letras descendentes (`p`, `g`, `y`, `j`) o las cursivas de *Playfair Display* se corten.
+     - Se mejoró el espaciado entre columnas (`gap: 2.5rem` a `3.5rem`) y el relleno interno de tarjetas y botones.
+  2. Redacción directa, clara y ligera en todos los componentes (`portfolioData.js`, `Hero.jsx`, `Projects.jsx`, `CompetitionsSection.jsx`, `About.jsx`, `SkillsGrid.jsx`, `ContactSection.jsx`, `ProjectModal.jsx`) eliminando tecnicismos innecesarios y textos largos para facilitar una lectura rápida y agradable.

@@ -25,97 +25,96 @@ import { useSpotlight } from '../hooks/useSpotlight';
 export const About = () => {
   const { handleMouseMove } = useSpotlight();
 
-  // Hitos de la trayectoria profesional iniciados en 2026
+  // Hitos de la trayectoria profesional en 2026
   const timelineMilestones = [
     {
       year: '2026',
       badge: 'Tecnología Social',
-      title: 'Co-fundadora & Gerente de Marketing en MOVA',
+      title: 'Co-fundadora & Marketing en MOVA',
       description:
-        'Liderazgo de la narrativa de valor ("Rompiendo el silencio"), estrategia de prensa con portada de revista y despliegue del producto Beta V2.0 en Vercel con soporte para 3 lenguas de señas.',
+        'Creación del mensaje de la marca, presencia en portada de revista y lanzamiento de la app web con soporte para 3 lenguas de señas.',
       accent: 'var(--accent-blue)'
     },
     {
       year: '2026',
-      badge: 'Moda & Retail',
-      title: 'Embajadora de Marca & Social Selling en Meraki',
+      badge: 'Moda & Ventas',
+      title: 'Embajadora & Creadora de Contenido en Meraki',
       description:
-        'Estrategia de social selling y modelaje audiovisual (@meraki_marka). Fidelización mediante unboxing personalizado ("Querida Sofia") y dinamización de ventas directa.',
-      accent: 'var(--accent-rose)'
+        'Videos para redes (@meraki_marka), atención a clientas y detalles personalizados ("Querida Sofia") para impulsar las ventas.',
+      accent: 'var(--accent-gold)'
     },
     {
       year: '2026',
-      badge: 'Actualidad',
-      title: 'Asesora Comercial & Alianzas Estratégicas',
+      badge: 'Premio Nacional',
+      title: '2do Lugar Nacional en Kurios & BNC',
       description:
-        'Consultoría de ventas, prospección de clientes de alto valor, marketing de influencia y desarrollo de oportunidades comerciales orientadas a metas cuantificables.',
+        'Subcampeonas nacionales en la división comercial (Marketplace) defendiendo el modelo de negocio y ventas.',
       accent: 'var(--accent-gold)'
     }
   ];
 
   return (
-    <section id="sobre-mi" style={{ padding: '6.5rem 0', position: 'relative' }}>
+    <section id="sobre-mi" style={{ padding: '6rem 0', position: 'relative' }}>
       <div className="site-container">
         {/* Cabecera de la Sección */}
-        <div style={{ marginBottom: '3.5rem' }}>
+        <div style={{ marginBottom: '3rem' }}>
           <div className="badge-pill" style={{ marginBottom: '0.85rem' }}>
             <Sparkles size={13} style={{ color: 'var(--accent-gold)' }} />
-            Perfil & Filosofía Profesional
+            Sobre Mí
           </div>
           <h2
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'var(--text-h2)',
-              lineHeight: 1.15,
+              lineHeight: 1.2,
               fontWeight: 500,
-              maxWidth: '850px'
+              maxWidth: '720px'
             }}
           >
-            Comercial por vocación,{' '}
+            Comunicación clara, trato cercano y{' '}
             <span className="italic-serif" style={{ color: 'var(--accent-gold)' }}>
-              estratega
-            </span>{' '}
-            por convicción.
+              enfoque en ventas.
+            </span>
           </h2>
         </div>
 
-        {/* Doble Columna Asimétrica */}
+        {/* Doble Columna con Buen Espaciado */}
         <div className="editorial-grid" style={{ alignItems: 'flex-start' }}>
-          {/* COLUMNA IZQUIERDA: Manifiesto y Pilares */}
-          <div style={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <p style={{ fontSize: '1.08rem', color: 'var(--text-secondary)', lineHeight: 1.75 }}>
+          {/* COLUMNA IZQUIERDA: Perfil y Pilares */}
+          <div style={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+            <p style={{ fontSize: '1.04rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
               {personalInfo.bio}
             </p>
 
-            {/* Tarjeta de Filosofía de Trabajo con Borde Dorado */}
+            {/* Tarjeta de Enfoque con Borde Amarillo */}
             <div
               className="spotlight-card"
               onMouseMove={handleMouseMove}
               style={{
-                padding: '1.75rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.02)',
-                borderColor: 'var(--border-gold)',
-                boxShadow: '0 15px 40px rgba(0,0,0,0.4)'
+                padding: '1.6rem',
+                backgroundColor: 'var(--bg-secondary)',
+                borderColor: 'var(--accent-gold)'
               }}
             >
               <div
                 style={{
-                  fontSize: '0.78rem',
+                  fontSize: '0.76rem',
                   fontFamily: 'var(--font-mono)',
                   color: 'var(--accent-gold)',
-                  marginBottom: '0.6rem',
+                  fontWeight: 700,
+                  marginBottom: '0.5rem',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.08em'
+                  letterSpacing: '0.06em'
                 }}
               >
-                Manifiesto Comercial
+                Mi Enfoque
               </div>
               <p
                 style={{
                   fontFamily: 'var(--font-display)',
                   fontStyle: 'italic',
                   color: 'var(--text-primary)',
-                  lineHeight: 1.6,
+                  lineHeight: 1.55,
                   fontSize: '1.15rem'
                 }}
               >
@@ -123,43 +122,43 @@ export const About = () => {
               </p>
             </div>
 
-            {/* Pilares Comerciales Clave */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
+            {/* Pilares Clave */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '1rem' }}>
               <div
                 style={{
                   padding: '1.25rem',
-                  borderRadius: 'var(--radius-md)',
+                  borderRadius: '2px',
                   backgroundColor: 'var(--bg-surface)',
                   border: '1px solid var(--border-subtle)'
                 }}
               >
-                <div style={{ color: 'var(--accent-blue)', marginBottom: '0.6rem' }}>
-                  <HeartHandshake size={22} />
+                <div style={{ color: 'var(--accent-blue-sky)', marginBottom: '0.5rem' }}>
+                  <HeartHandshake size={20} />
                 </div>
                 <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.35rem', color: 'var(--text-primary)' }}>
-                  Empatía Comercial
+                  Trato Cercano
                 </h3>
-                <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-                  Entiendo las necesidades auténticas del cliente para construir ofertas que cierren ventas y fidelicen.
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+                  Escucho lo que el cliente necesita para ofrecer soluciones reales y generar confianza.
                 </p>
               </div>
 
               <div
                 style={{
                   padding: '1.25rem',
-                  borderRadius: 'var(--radius-md)',
+                  borderRadius: '2px',
                   backgroundColor: 'var(--bg-surface)',
                   border: '1px solid var(--border-subtle)'
                 }}
               >
-                <div style={{ color: 'var(--accent-gold)', marginBottom: '0.6rem' }}>
-                  <Target size={22} />
+                <div style={{ color: 'var(--accent-gold)', marginBottom: '0.5rem' }}>
+                  <Target size={20} />
                 </div>
                 <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.35rem', color: 'var(--text-primary)' }}>
-                  Orientación a Metas
+                  Enfoque en Metas
                 </h3>
-                <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-                  Gestión rigurosa del embudo de conversión, manejo de objeciones y aceleración del ciclo de compra.
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+                  Trabajo cada contenido y conversación con un objetivo claro: concretar ventas.
                 </p>
               </div>
             </div>
@@ -171,15 +170,15 @@ export const About = () => {
               className="spotlight-card"
               onMouseMove={handleMouseMove}
               style={{
-                padding: '2.25rem',
+                padding: '2rem',
                 backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
                 <Calendar size={18} style={{ color: 'var(--accent-gold)' }} />
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.35rem', fontWeight: 500 }}>
-                  Evolución Profesional & Hitos
+                  Recorrido en 2026
                 </h3>
               </div>
 

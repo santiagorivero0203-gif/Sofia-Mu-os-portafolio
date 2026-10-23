@@ -68,9 +68,9 @@ export const Navbar = ({ lenisInstance }) => {
 
   const navLinks = [
     { id: 'proyectos', label: 'Proyectos' },
-    { id: 'competencias-premios', label: 'Logros 2026' },
+    { id: 'competencias-premios', label: 'Premios' },
     { id: 'sobre-mi', label: 'Sobre Mí' },
-    { id: 'habilidades', label: 'Competencias' },
+    { id: 'habilidades', label: 'Habilidades' },
     { id: 'contacto', label: 'Contacto' }
   ];
 
@@ -149,8 +149,9 @@ export const Navbar = ({ lenisInstance }) => {
         {/* Enlaces de Navegación Desktop */}
         <div
           style={{
+            display: 'flex',
             alignItems: 'center',
-            gap: '1.5rem'
+            gap: '1.75rem'
           }}
           className="desktop-nav-links"
         >
@@ -204,7 +205,7 @@ export const Navbar = ({ lenisInstance }) => {
           <button
             onClick={handlePdfClick}
             aria-label="Descargar portafolio en PDF"
-            title="Descargar dossier en PDF"
+            title="Descargar portafolio en PDF"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -216,15 +217,14 @@ export const Navbar = ({ lenisInstance }) => {
               color: '#ffffff',
               fontSize: '0.78rem',
               fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.04em',
+              letterSpacing: '0.02em',
               cursor: 'pointer',
               transition: 'all 0.2s ease'
             }}
             data-cursor="PDF"
           >
             <FileDown size={14} style={{ color: 'var(--accent-gold)' }} />
-            <span className="desktop-nav-links">PDF</span>
+            <span className="desktop-nav-text">PDF</span>
           </button>
 
           {/* Toggle de Micro-Sonido */}

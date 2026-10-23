@@ -65,13 +65,13 @@ export const Projects = () => {
           <div>
             <div className="badge-pill" style={{ marginBottom: '0.75rem' }}>
               <Award size={13} style={{ color: 'var(--accent-gold)' }} />
-              Casos Reales & Evidencias
+              Trabajo Real
             </div>
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'var(--text-h2)',
-                lineHeight: 1.1,
+                lineHeight: 1.18,
                 fontWeight: 500
               }}
             >
@@ -202,7 +202,7 @@ export const Projects = () => {
             />
             <input
               type="text"
-              placeholder="Buscar por rol, reto o tech..."
+              placeholder="Buscar proyecto..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
@@ -298,14 +298,14 @@ export const Projects = () => {
                 onMouseMove={handleMouseMove}
                 onClick={() => handleSelect(project)}
                 style={{
-                  padding: '1.75rem',
+                  padding: '2rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '520px',
+                  gap: '1.25rem',
                   cursor: 'pointer'
                 }}
-                data-cursor="Ver Caso"
+                data-cursor="Ver"
               >
                 {/* Cabecera de la Tarjeta */}
                 <div>
@@ -313,14 +313,14 @@ export const Projects = () => {
                     style={{
                       display: 'flex',
                       justifyContent: 'space-between',
-                      alignItems: 'flex-start',
-                      marginBottom: '1.25rem'
+                      alignItems: 'center',
+                      marginBottom: '1.1rem'
                     }}
                   >
                     <span
                       className="badge-pill"
                       style={{
-                        borderColor: project.accentColor ? `${project.accentColor}55` : 'var(--border-subtle)',
+                        borderColor: project.accentColor || 'var(--border-subtle)',
                         color: project.accentColor || 'var(--text-primary)'
                       }}
                     >
@@ -340,10 +340,10 @@ export const Projects = () => {
                   <h3
                     style={{
                       fontFamily: 'var(--font-display)',
-                      fontSize: '1.75rem',
+                      fontSize: '1.6rem',
                       fontWeight: 500,
-                      lineHeight: 1.2,
-                      marginBottom: '0.5rem'
+                      lineHeight: 1.25,
+                      marginBottom: '0.45rem'
                     }}
                   >
                     {project.title}
@@ -351,10 +351,10 @@ export const Projects = () => {
 
                   <p
                     style={{
-                      fontSize: '0.88rem',
+                      fontSize: '0.9rem',
                       color: 'var(--accent-gold)',
-                      fontWeight: 500,
-                      marginBottom: '0.85rem'
+                      fontWeight: 600,
+                      marginBottom: '0.75rem'
                     }}
                   >
                     {project.role}
@@ -362,14 +362,10 @@ export const Projects = () => {
 
                   <p
                     style={{
-                      fontSize: '0.92rem',
+                      fontSize: '0.95rem',
                       color: 'var(--text-secondary)',
                       lineHeight: 1.6,
-                      marginBottom: '1.5rem',
-                      display: '-webkit-box',
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden'
+                      marginBottom: '0.5rem'
                     }}
                   >
                     {project.tagline}

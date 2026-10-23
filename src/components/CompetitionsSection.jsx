@@ -29,46 +29,46 @@ export const CompetitionsSection = () => {
     <section id="competencias-premios" style={{ padding: '6.5rem 0', position: 'relative' }}>
       <div className="site-container">
         {/* Cabecera de la Sección */}
-        <div style={{ marginBottom: '3.5rem' }}>
+        <div style={{ marginBottom: '3rem' }}>
           <div className="badge-pill" style={{ marginBottom: '0.85rem' }}>
             <Trophy size={13} style={{ color: 'var(--accent-gold)' }} />
-            Validación Competitiva & Premios 2026
+            Premios & Competencias 2026
           </div>
           <h2
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'var(--text-h2)',
-              lineHeight: 1.15,
+              lineHeight: 1.2,
               fontWeight: 500,
-              maxWidth: '850px'
+              maxWidth: '750px'
             }}
           >
-            Competencias de innovación y{' '}
+            Competencias y{' '}
             <span className="italic-serif" style={{ color: 'var(--accent-gold)' }}>
-              reconocimientos
+              logros
             </span>{' '}
-            nacionales.
+            en 2026.
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.02rem', maxWidth: '680px', marginTop: '0.75rem' }}>
-            Evidencias reales de desempeño en torneos de tecnología, defensa de modelos comerciales ante jurados ejecutivos y validación de mercado.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: '600px', marginTop: '0.65rem', lineHeight: 1.6 }}>
+            Resultados reales defendiendo proyectos de tecnología y ventas frente a jurados nacionales.
           </p>
         </div>
 
-        {/* Grilla Bento de Competencias */}
+        {/* Grilla de Competencias */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
             gap: '2rem'
           }}
         >
           {competitions.map((comp, idx) => (
             <motion.div
               key={comp.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              transition={{ duration: 0.5, delay: idx * 0.12 }}
               className="spotlight-card"
               onMouseMove={handleMouseMove}
               style={{
@@ -76,14 +76,14 @@ export const CompetitionsSection = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                minHeight: '520px',
+                gap: '1.5rem',
                 backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)'
               }}
             >
               <div>
                 {/* Badges superiores */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.15rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                   <span
                     className="badge-pill"
                     style={{
@@ -105,7 +105,7 @@ export const CompetitionsSection = () => {
                 <h3
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: '1.65rem',
+                    fontSize: '1.5rem',
                     fontWeight: 500,
                     lineHeight: 1.25,
                     marginBottom: '0.4rem',
@@ -115,40 +115,40 @@ export const CompetitionsSection = () => {
                   {comp.title}
                 </h3>
 
-                <div style={{ fontSize: '0.92rem', color: 'var(--accent-gold)', fontWeight: 600, marginBottom: '0.75rem' }}>
+                <div style={{ fontSize: '0.95rem', color: 'var(--accent-gold)', fontWeight: 700, marginBottom: '0.6rem' }}>
                   {comp.award}
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '1.25rem' }}>
-                  <MapPin size={14} style={{ color: 'var(--accent-blue)' }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
+                  <MapPin size={14} style={{ color: 'var(--accent-blue-sky)', flexShrink: 0 }} />
                   <span>{comp.organization} • {comp.location}</span>
                 </div>
 
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+                <p style={{ fontSize: '0.94rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1rem' }}>
                   {comp.summary}
                 </p>
 
                 {/* Rol comercial específico */}
                 <div
                   style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                    borderRadius: 'var(--radius-md)',
+                    backgroundColor: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: '2px',
                     padding: '0.85rem 1rem',
-                    marginBottom: '1.5rem',
-                    fontSize: '0.84rem',
+                    fontSize: '0.86rem',
+                    lineHeight: 1.55,
                     color: 'var(--text-secondary)'
                   }}
                 >
-                  <strong style={{ color: 'var(--text-primary)' }}>Defensa de Sofia: </strong>
+                  <strong style={{ color: 'var(--accent-gold)' }}>Mi rol: </strong>
                   {comp.defense}
                 </div>
               </div>
 
               {/* Galería de Evidencias Reales */}
               <div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', marginBottom: '0.6rem' }}>
-                  Evidencias Fotográficas ({comp.gallery.length})
+                <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', marginBottom: '0.6rem' }}>
+                  Fotos del evento ({comp.gallery.length}) — Clic para ampliar
                 </div>
 
                 <div

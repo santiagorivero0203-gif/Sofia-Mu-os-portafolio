@@ -7,22 +7,22 @@
 export const personalInfo = {
   name: "Sofia Muñoz",
   headline: "Asesora Comercial & Creadora de Contenido",
-  subheadline: "Estrategia de Ventas | Social Selling | Embajadora de Marca",
-  statement: "Conecto necesidades reales con soluciones innovadoras a través de la comunicación estratégica, la empatía comercial y el liderazgo enfocado en resultados.",
-  bio: "Soy Sofia Muñoz, profesional orientada a objetivos con trayectoria en gerencia de marketing, prospección comercial, creación de contenido y liderazgo de proyectos tecnológicos y de retail. Combino visión analítica de negocio con sensibilidad comunicacional para acelerar la tracción comercial y fidelizar clientes a largo plazo.",
+  subheadline: "Ventas | Contenido | Embajadora de Marca",
+  statement: "Conecto marcas con personas reales a través de buena comunicación, empatía y enfoque directo en ventas.",
+  bio: "Soy Sofia Muñoz. Me especializo en ventas, creación de contenido y marketing para proyectos de tecnología y moda. Trabajo para que las marcas se entiendan rápido, conecten con su público y vendan más.",
   contact: {
     email: "sofiamunozvale@gmail.com",
     phone: "04242674572",
     phoneFormatted: "+58 424 2674572",
     whatsappUrl: "https://wa.me/584242674572?text=Hola%20Sofia,%20me%20gustar%C3%ADa%20conversar%20sobre%20una%20oportunidad%20comercial",
     location: "Venezuela",
-    availability: "Disponible para roles comerciales y alianzas estratégicas"
+    availability: "Disponible para ventas y alianzas"
   },
   stats: [
     { label: "Premio Nacional 2026", value: "2do Lugar", suffix: " (Kurios & BNC)" },
-    { label: "Proyectos Clave", value: "2", suffix: "" },
-    { label: "Idiomas Traducidos en MOVA", value: "3", suffix: " (LSV/ASL/LSE)" },
-    { label: "Enfoque Comercial", value: "100%", suffix: " orientado a metas" }
+    { label: "Proyectos Activos", value: "2", suffix: "" },
+    { label: "Idiomas en MOVA", value: "3", suffix: " (LSV/ASL/LSE)" },
+    { label: "Enfoque", value: "100%", suffix: " en resultados" }
   ]
 };
 
@@ -30,67 +30,67 @@ export const projects = [
   {
     id: "mova",
     title: "MOVA — Tecnología Social",
-    subtitle: "Aplicación de Traducción de Lenguaje de Señas",
-    tagline: "Rompiendo el silencio a través de visión artificial y empatía",
-    role: "Co-fundadora & Gerente de Marketing",
-    category: "Tecnología Social / Accesibilidad",
+    subtitle: "Traductor de Lenguaje de Señas en Tiempo Real",
+    tagline: "Traduce señas a texto y voz con la cámara para conectar a personas sordas y oyentes.",
+    role: "Co-fundadora & Marketing",
+    category: "Tecnología Social",
     year: "2026",
     link: "https://app-lemon.vercel.app",
     featuredCover: "/assets/mova/revista.jpg",
     accentColor: "#2e6ff2",
-    overview: "MOVA es una plataforma de impacto social que traduce en tiempo real el lenguaje de señas a texto y voz mediante algoritmos de visión por computadora. Creada para tender puentes directos de comunicación entre la comunidad no oyente y el entorno oyente.",
+    overview: "MOVA es una aplicación web que traduce el lenguaje de señas a texto y voz en vivo usando la cámara. Su meta es facilitar la comunicación diaria entre personas sordas y oyentes sin barreras.",
     challenges: [
-      "Superar las barreras de comunicación e inserción cotidiana para personas sordas o hipoacúsicas.",
-      "Introducir una tecnología innovadora y generar credibilidad ante usuarios, instituciones y potenciales patrocinadores.",
-      "Posicionar la marca en medios de comunicación para atraer tracción y alianzas estratégicas."
+      "Eliminar las barreras de comunicación diaria para personas sordas.",
+      "Explicar una tecnología nueva de forma sencilla para usuarios y aliados.",
+      "Dar a conocer el proyecto en medios y eventos para sumar apoyo."
     ],
     commercialContribution: [
       {
-        title: "Estrategia de Marca & Posicionamiento",
-        description: "Lideré la narrativa comercial, propuesta de valor ('Rompiendo el silencio') e identidad visual orientada a generar empatía y confianza institucional."
+        title: "Mensaje e Identidad",
+        description: "Creé el mensaje principal ('Rompiendo el silencio') y la imagen de la marca para transmitir cercanía y confianza."
       },
       {
-        title: "Relaciones Públicas & Prensa",
-        description: "Gestión de presencia mediática que derivó en portada de revista especializada sobre innovación juvenil y liderazgo tecnológico."
+        title: "Presencia en Prensa",
+        description: "Logramos aparecer en portada de revista destacando el impacto social y tecnológico del proyecto."
       },
       {
-        title: "Estrategia Multimercado",
-        description: "Impulsé la cobertura técnica para 3 lenguas de señas (LSV venezolana, ASL estadounidense y LSE española), triplicando el mercado potencial internacional."
+        title: "Alcance en 3 Idiomas",
+        description: "Impulsé la inclusión de 3 lenguas de señas (venezolana LSV, americana ASL y española LSE) para llegar a más personas."
       },
       {
-        title: "Pitch & Negociación Comercial",
-        description: "Presentación ejecutiva del producto ante encuentros y eventos con aliados clave para validar tracción de usuarios."
+        title: "Presentación y Ventas",
+        description: "Presenté el proyecto frente a jurados, instituciones y aliados para validar su uso real."
       }
     ],
     achievements: [
-      "Despliegue y validación de la versión BETA V2.0 en plataforma web Vercel.",
-      "Reconocimiento en medios impresos e informativos con portada y reportaje central.",
-      "Soporte validado para tres variantes del lenguaje de señas en vivo."
+      "Versión Beta V2.0 activa y funcionando en internet (Vercel).",
+      "Portada y reportaje central en revista de innovación.",
+      "Traducción en vivo para 3 lenguas de señas (LSV, ASL y LSE)."
     ],
     gallery: [
       {
         src: "/assets/mova/revista.jpg",
-        caption: "Portada de Revista Especial — '¡MOVA dijo presente! El camino de la innovación'",
+        caption: "Portada de Revista — '¡MOVA dijo presente! El camino de la innovación'",
         type: "press"
       },
       {
         src: "/assets/mova/interface.png",
-        caption: "Interfaz Principal del Producto en su versión Beta V2.0",
+        caption: "Pantalla principal de MOVA Beta V2.0",
         type: "ui"
       },
       {
         src: "/assets/mova/languages.png",
-        caption: "Estrategia Multilingüe — Selección entre LSV, ASL y LSE",
+        caption: "Selección de idioma: LSV, ASL y LSE",
         type: "ui"
       },
       {
         src: "/assets/mova/detection.jpg",
-        caption: "Demostración de Visión Artificial — Detección de articulaciones manuales en tiempo real",
+        caption: "Lectura de manos en vivo mediante cámara",
         type: "tech"
       },
       {
         src: "/assets/mova/preview.png",
-        caption: "Pantalla de Bienvenida y Acceso a la Plataforma",
+        caption: "Bienvenida y acceso rápido a la plataforma",
         type: "ui"
       }
     ]
@@ -98,57 +98,57 @@ export const projects = [
   {
     id: "meraki",
     title: "Meraki — Moda & Retail",
-    subtitle: "Marca Venezolana de Ropa y Estilo de Vida",
-    tagline: "Estrategia de social selling y embajada de marca con alta conversión",
+    subtitle: "Marca Venezolana de Ropa",
+    tagline: "Contenido cercano, modelaje y atención directa para impulsar las ventas en redes.",
     role: "Embajadora de Marca & Creadora de Contenido",
-    category: "Moda & Retail / Comercio Nacional",
+    category: "Moda & Ventas",
     year: "2026",
     link: "https://www.instagram.com/meraki_marka",
     featuredCover: "/assets/meraki/clothing.jpg",
     accentColor: "#ffd60a",
-    overview: "Meraki es una firma venezolana de moda contemporánea. A través de mi rol como embajadora y creadora de contenido, he articulado una estrategia de comunicación enfocada en social selling, construcción de comunidad y dinamización de ventas.",
+    overview: "Meraki es una marca venezolana de moda. Como embajadora y creadora de contenido, muestro las prendas en uso real, conecto con la comunidad y ayudo a convertir seguidores en compradoras.",
     challenges: [
-      "Destacar en un mercado de retail altamente competitivo mediante autenticidad y cercanía.",
-      "Convertir interacciones en redes sociales (reels, unboxings e historias) en compras efectivas.",
-      "Fidelizar a las compradoras conectando estilo de vida y valor de marca."
+      "Destacar en redes sociales con contenido natural y cercano.",
+      "Convertir vistas en reels e historias en ventas reales.",
+      "Hacer que cada clienta sienta una experiencia especial al recibir su compra."
     ],
     commercialContribution: [
       {
-        title: "Embajadora de Marca & Representación",
-        description: "Encarnación de la identidad y valores de la marca, transmitiendo sofisticación, calidez y estilo a través de presencia pública y medios digitales."
+        title: "Imagen de la Marca",
+        description: "Represento el estilo de Meraki en fotos, videos y eventos con frescura y autenticidad."
       },
       {
-        title: "Creación de Contenido para Conversión",
-        description: "Desarrollo y modelaje de formatos audiovisuales dinámicos (reels, styling tips, unboxings) diseñados para despertar deseo de compra."
+        title: "Videos que Venden",
+        description: "Grabo reels, ideas de outfits y unboxings pensados para mostrar cómo lucen las prendas y animar a comprar."
       },
       {
-        title: "Social Selling & Asesoría Directa",
-        description: "Resolución de inquietudes sobre tallas, outfits y combinación de prendas directamente en canales sociales, canalizando clientes al checkout."
+        title: "Asesoría por Redes",
+        description: "Respondo dudas de tallas y combinaciones en Instagram para facilitar el cierre de cada venta."
       },
       {
-        title: "Fidelización & Imagen Personalizada",
-        description: "Campañas personalizadas ('Querida Sofia') que humanizan la experiencia de unboxing y generan recomendación boca a boca."
+        title: "Experiencia 'Querida Sofia'",
+        description: "Impulsé detalles personalizados en las entregas que enamoran a las clientas y hacen que recomienden la marca."
       }
     ],
     achievements: [
-      "Incremento sostenido del engagement e intención de compra en lanzamientos de temporada.",
-      "Alianza comercial prolongada como imagen referencial de la marca.",
-      "Experiencias de unboxing que refuerzan la exclusividad del producto."
+      "Mayor interacción y mensajes de compra en cada nueva colección.",
+      "Alianza continua como imagen principal de @meraki_marka.",
+      "Unboxings personalizados que fortalecen la fidelidad de las clientas."
     ],
     gallery: [
       {
         src: "/assets/meraki/clothing.jpg",
-        caption: "Presentación Editorial de Colección y Prendas Meraki",
+        caption: "Colección y prendas de Meraki",
         type: "lifestyle"
       },
       {
         src: "/assets/meraki/querida_sofia.jpg",
-        caption: "Unboxing Personalizado — Carta de Alianza Comercial 'Querida Sofia'",
+        caption: "Detalle personalizado — Carta 'Querida Sofia'",
         type: "branding"
       },
       {
         src: "/assets/meraki/unboxing.jpg",
-        caption: "Packaging y Detalle de Entrega @meraki_marka",
+        caption: "Empaque y presentación de entrega @meraki_marka",
         type: "unboxing"
       }
     ]
@@ -157,36 +157,36 @@ export const projects = [
 
 export const skillCategories = [
   {
-    title: "Gestión Comercial & Ventas",
-    description: "Metodologías de prospección, cierre y retención de cuentas.",
+    title: "Ventas & Clientes",
+    description: "Trato directo con clientes, negociación y cierre de ventas.",
     skills: [
-      { name: "Prospección B2B / B2C", level: "Avanzado" },
-      { name: "Social Selling & Conversión", level: "Especialista" },
-      { name: "Negociación & Manejo de Objeciones", level: "Avanzado" },
-      { name: "Pitch Comercial & Presentaciones", level: "Avanzado" },
-      { name: "Fidelización & Customer Care", level: "Avanzado" }
+      { name: "Atención y Cierre de Ventas", level: "Avanzado" },
+      { name: "Ventas por Redes (Social Selling)", level: "Especialista" },
+      { name: "Negociación y Acuerdos", level: "Avanzado" },
+      { name: "Presentación de Proyectos (Pitch)", level: "Avanzado" },
+      { name: "Fidelización de Clientes", level: "Avanzado" }
     ]
   },
   {
-    title: "Estrategia & Posicionamiento",
-    description: "Creación de valor de marca, identidad y presencia de mercado.",
+    title: "Contenido & Marca",
+    description: "Comunicación clara para dar visibilidad y atraer público.",
     skills: [
-      { name: "Propuesta de Valor & Storytelling", level: "Especialista" },
-      { name: "Embajada de Marca & Influencer Marketing", level: "Especialista" },
-      { name: "Relaciones Públicas & Gestión de Prensa", level: "Avanzado" },
-      { name: "Investigación de Mercados & Usuario", level: "Intermedio" },
-      { name: "Estrategia Multimercado", level: "Intermedio" }
+      { name: "Creación de Contenido (Reels / Fotos)", level: "Especialista" },
+      { name: "Embajada de Marca", level: "Especialista" },
+      { name: "Comunicación y Prensa", level: "Avanzado" },
+      { name: "Ideas Comerciales", level: "Avanzado" },
+      { name: "Crecimiento en Redes", level: "Avanzado" }
     ]
   },
   {
-    title: "Herramientas & Habilidades Blandas",
-    description: "Ecosistema digital y competencias interpersonales de liderazgo.",
+    title: "Herramientas & Liderazgo",
+    description: "Organización diaria y trabajo en equipo.",
     skills: [
-      { name: "Liderazgo & Visión de Negocio", level: "Clave" },
-      { name: "Comunicación Asertiva & Empatía", level: "Clave" },
-      { name: "Canales Digitales (Instagram / WhatsApp)", level: "Dominio" },
-      { name: "CRM & Seguimiento de Clientes", level: "Dominio" },
-      { name: "Plataformas Web (Vercel, Notion, Canva)", level: "Dominio" }
+      { name: "Liderazgo de Equipos", level: "Clave" },
+      { name: "Empatía y Comunicación", level: "Clave" },
+      { name: "Instagram & WhatsApp Business", level: "Dominio" },
+      { name: "Seguimiento de Clientes", level: "Dominio" },
+      { name: "Canva, Notion & Web (Vercel)", level: "Dominio" }
     ]
   }
 ];
@@ -195,52 +195,52 @@ export const competitions = [
   {
     id: "kurios-bnc-2026",
     title: "Torneo Nacional de Robótica y Tecnología 2026",
-    organization: "Kurios Competition & Banco Nacional de Crédito (BNC)",
+    organization: "Kurios Competition & BNC",
     award: "2do Lugar — División Marketplace",
-    badge: "Subcampeonas Nacionales",
+    badge: "2do Lugar Nacional",
     team: "Team Consolación Caracas",
     location: "Caracas, Venezuela",
     year: "2026",
     accentColor: "var(--accent-gold)",
-    summary: "Subcampeonas nacionales en la división comercial y de mercado ante decenas de delegaciones de todo el país, validando la propuesta comercial, viabilidad de negocio y valor de impacto de la solución tecnológica.",
-    defense: "Lideré la estructuración de la propuesta de valor comercial, el pitch ante el jurado calificador y la argumentación estratégica de mercado.",
+    summary: "Ganamos el 2do lugar nacional en la categoría comercial (Marketplace), compitiendo contra equipos de todo el país y demostrando que el proyecto es útil, viable y rentable.",
+    defense: "Presenté el modelo de negocio y defendí la propuesta de ventas frente al jurado.",
     coverImage: "/assets/competitions/kurios_podio_marketplace.jpg",
     gallery: [
       {
         src: "/assets/competitions/kurios_podio_marketplace.jpg",
-        caption: "Podio Nacional — 2do Lugar División Marketplace (Kurios Competition: 'Donde las cosas pasan')"
+        caption: "Podio Nacional — 2do Lugar División Marketplace (Kurios Competition)"
       },
       {
         src: "/assets/competitions/kurios_diplomas_2do_lugar.jpg",
-        caption: "Entrega de Diplomas Oficiales y Medallas de Reconocimiento — Kurios & BNC 2026"
+        caption: "Diplomas y medallas del 2do lugar nacional — Kurios & BNC 2026"
       },
       {
         src: "/assets/competitions/kurios_celebracion.jpg",
-        caption: "Celebración del equipo tras el anuncio del 2do lugar nacional en la división Marketplace"
+        caption: "Celebración del equipo al recibir el 2do lugar nacional"
       }
     ]
   },
   {
     id: "pitchday-unimet-2026",
-    title: "Pitchday de Innovación & Emprendimiento UNIMET",
+    title: "Pitchday de Innovación UNIMET",
     organization: "Universidad Metropolitana (UNIMET)",
-    award: "Defensa Comercial Ejecutiva",
-    badge: "Pitch & Negociación",
-    team: "Delegación Nuestra Señora de la Consolación",
+    award: "Presentación Comercial",
+    badge: "Pitch en Vivo",
+    team: "Colegio Nuestra Señora de la Consolación",
     location: "Campus UNIMET, Caracas",
     year: "2026",
     accentColor: "var(--accent-blue)",
-    summary: "Jornada de pitch ejecutivo en el campus de la Universidad Metropolitana ante evaluadores corporativos, mentores de negocio e inversionistas del ecosistema de innovación.",
-    defense: "Defensa presencial de la propuesta de valor comercial ante evaluadores del sector empresarial, resolviendo preguntas críticas de monetización y adopción de usuarios.",
+    summary: "Presentación en vivo del proyecto en la Universidad Metropolitana frente a jurados empresariales, explicando su valor comercial y cómo llevarlo al mercado.",
+    defense: "Explicación directa cara a cara con evaluadores, respondiendo preguntas sobre ventas y alcance del producto.",
     coverImage: "/assets/competitions/unimet_pitch_ejecutivo.jpg",
     gallery: [
       {
         src: "/assets/competitions/unimet_pitch_ejecutivo.jpg",
-        caption: "Pitch Directo — Sofia Muñoz en plena defensa y negociación comercial con evaluador corporativo"
+        caption: "Sofia Muñoz presentando y defendiendo el proyecto ante el jurado en la UNIMET"
       },
       {
         src: "/assets/competitions/unimet_campus_letras.jpg",
-        caption: "Delegación en el emblemático campus de la Universidad Metropolitana (UNIMET) en Caracas"
+        caption: "Equipo en el campus de la Universidad Metropolitana (UNIMET)"
       }
     ]
   }

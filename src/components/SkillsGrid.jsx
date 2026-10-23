@@ -29,27 +29,27 @@ export const SkillsGrid = () => {
   return (
     <section id="habilidades" style={{ padding: '6rem 0', backgroundColor: 'rgba(255, 255, 255, 0.01)', borderTop: '1px solid var(--border-subtle)' }}>
       <div className="site-container">
-        <div style={{ marginBottom: '3.5rem', textAlign: 'center', maxWidth: '700px', margin: '0 auto 3.5rem auto' }}>
-          <div className="badge-pill" style={{ marginBottom: '1rem' }}>
+        <div style={{ marginBottom: '3rem', textAlign: 'center', maxWidth: '640px', margin: '0 auto 3rem auto' }}>
+          <div className="badge-pill" style={{ marginBottom: '0.85rem' }}>
             <Star size={13} style={{ color: 'var(--accent-gold)' }} />
-            Competencias de Alto Rendimiento
+            Habilidades
           </div>
           <h2
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'var(--text-h2)',
-              lineHeight: 1.15,
+              lineHeight: 1.2,
               fontWeight: 500,
-              marginBottom: '0.75rem'
+              marginBottom: '0.65rem'
             }}
           >
-            Habilidades para el{' '}
+            En qué puedo{' '}
             <span className="italic-serif" style={{ color: 'var(--accent-gold)' }}>
-              rol comercial
+              aportar valor
             </span>
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>
-            Un equilibrio sólido entre técnica comercial, desarrollo de audiencias y herramientas de gestión digital.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem', lineHeight: 1.6 }}>
+            Ventas directas, creación de contenido para redes y manejo de herramientas digitales.
           </p>
         </div>
 

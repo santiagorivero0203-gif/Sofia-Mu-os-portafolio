@@ -36,24 +36,24 @@ export const ContactSection = () => {
     trackEvent
   } = usePortfolio();
 
-  // Opciones de tipo de propuesta comercial
+  // Opciones simples de contacto
   const opportunityTypes = [
-    'Asesoría Comercial & Ventas',
-    'Embajadora de Marca & Social Selling',
-    'Alianza Estratégica & Marketing',
-    'Consultoría o Charla'
+    'Ventas & Asesoría Comercial',
+    'Embajadora de Marca & Contenido',
+    'Alianzas & Proyectos',
+    'Consulta General'
   ];
 
   const [selectedOpportunity, setSelectedOpportunity] = useState(opportunityTypes[0]);
   const [senderName, setSenderName] = useState('');
   const [senderNote, setSenderNote] = useState('');
 
-  // Generador de mensaje profesional pre-formateado
+  // Generador de mensaje directo y natural
   const buildMessage = () => {
     const greeting = caracasTime.greeting || 'Hola';
-    const author = senderName.trim() ? `en nombre de ${senderName.trim()}` : '';
-    const note = senderNote.trim() ? ` Detalle: "${senderNote.trim()}".` : '';
-    return `${greeting} Sofia, te contacto desde tu portafolio web ${author} para evaluar una oportunidad en "${selectedOpportunity}".${note} ¿Podríamos coordinar una breve llamada?`;
+    const author = senderName.trim() ? `, soy ${senderName.trim()}` : '';
+    const note = senderNote.trim() ? ` ${senderNote.trim()}` : '';
+    return `${greeting} Sofia${author}. Vi tu portafolio y me gustaría hablarte sobre "${selectedOpportunity}".${note}`;
   };
 
   // Enlace codificado para WhatsApp
@@ -127,34 +127,33 @@ export const ContactSection = () => {
               </div>
             </div>
 
-            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2.25rem' }}>
               <h2
                 style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: 'var(--text-h1)',
-                  lineHeight: 1.1,
+                  lineHeight: 1.18,
                   fontWeight: 500,
-                  marginBottom: '1.25rem'
+                  marginBottom: '1rem'
                 }}
               >
-                ¿Construimos la próxima{' '}
+                ¿Trabajamos{' '}
                 <span className="italic-serif" style={{ color: 'var(--accent-gold)' }}>
-                  oportunidad
-                </span>{' '}
-                juntos?
+                  juntos?
+                </span>
               </h2>
 
-              <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.65, margin: '0 auto', maxWidth: '680px' }}>
-                Conéctate directamente conmigo para evaluar asesorías comerciales, representación de marca, alianzas o liderazgo en proyectos.
+              <p style={{ fontSize: '1.02rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: '0 auto', maxWidth: '560px' }}>
+                Escríbeme por WhatsApp o correo para hablar sobre ventas, creación de contenido o representación de tu marca.
               </p>
             </div>
 
-            {/* Selector de Tipo de Oportunidad */}
-            <div style={{ marginBottom: '2rem' }}>
+            {/* Selector de Tema */}
+            <div style={{ marginBottom: '1.75rem' }}>
               <label
                 style={{
                   display: 'block',
-                  fontSize: '0.85rem',
+                  fontSize: '0.8rem',
                   color: 'var(--text-muted)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -163,7 +162,7 @@ export const ContactSection = () => {
                   textAlign: 'center'
                 }}
               >
-                1. Selecciona el Tipo de Propuesta
+                Elige el tema de tu mensaje:
               </label>
 
               <div

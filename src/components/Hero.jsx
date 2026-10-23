@@ -77,14 +77,14 @@ export const Hero = ({ lenisInstance }) => {
     trackEvent('hero_whatsapp_click');
   };
 
-  // Palabras para la cinta ticker editorial
+  // Palabras clave directas para la cinta inferior
   const tickerItems = [
-    'ESTRATEGIA COMERCIAL',
-    'SOCIAL SELLING',
-    'MOVA VISIÓN ARTIFICIAL',
+    'ASESORÍA COMERCIAL',
+    'VENTAS EN REDES',
+    'MOVA — TRADUCTOR DE SEÑAS',
     'EMBAJADORA MERAKI',
-    'LIDERAZGO & PROSPECCIÓN',
-    'FIDELIZACIÓN B2B / B2C',
+    '2DO LUGAR NACIONAL KURIOS 2026',
+    'ATENCIÓN AL CLIENTE',
     'CREACIÓN DE CONTENIDO'
   ];
 
@@ -95,27 +95,27 @@ export const Hero = ({ lenisInstance }) => {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        paddingTop: '7.5rem',
+        justifyContent: 'space-between',
+        paddingTop: '8rem',
         paddingBottom: '2rem',
         position: 'relative',
         overflow: 'hidden'
       }}
     >
-      <div className="site-container" style={{ width: '100%', marginBottom: '3.5rem' }}>
+      <div className="site-container" style={{ width: '100%', margin: 'auto 0', paddingBottom: '3rem' }}>
         <div className="editorial-grid" style={{ alignItems: 'center' }}>
-          {/* COLUMNA IZQUIERDA: Tipografía Cinética y Propuesta de Valor */}
+          {/* COLUMNA IZQUIERDA: Mensaje Claro y Directo */}
           <div style={{ gridColumn: 'span 7' }}>
-            {/* Badge de Disponibilidad y Autoridad */}
+            {/* Etiquetas de Estado */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               style={{
-                marginBottom: '1.75rem',
+                marginBottom: '1.5rem',
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '0.75rem',
+                gap: '0.65rem',
                 alignItems: 'center'
               }}
             >
@@ -126,81 +126,63 @@ export const Hero = ({ lenisInstance }) => {
 
               <div className="badge-pill">
                 <Award size={13} style={{ color: 'var(--accent-gold)' }} />
-                <span>Co-fundadora MOVA & Embajadora Meraki</span>
+                <span>Co-fundadora de MOVA & Embajadora Meraki</span>
               </div>
             </motion.div>
 
-            {/* Título Principal Kinetic con Máscaras de Texto */}
-            <div style={{ marginBottom: '1.75rem' }}>
-              <div className="text-mask-wrapper" style={{ display: 'block', overflow: 'hidden' }}>
-                <motion.h1
-                  initial={{ y: '110%' }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-                  style={{
-                    fontSize: 'var(--text-hero)',
-                    lineHeight: 1.05,
-                    fontWeight: 500,
-                    letterSpacing: '-0.03em',
-                    margin: 0
-                  }}
-                >
-                  Impulsando el valor de marcas mediante
-                </motion.h1>
-              </div>
-
-              <div className="text-mask-wrapper" style={{ display: 'block', overflow: 'hidden', marginTop: '0.2rem' }}>
-                <motion.div
-                  initial={{ y: '110%' }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.28 }}
-                  style={{
-                    fontSize: 'var(--text-hero)',
-                    lineHeight: 1.05,
-                    letterSpacing: '-0.03em'
-                  }}
-                >
-                  <span
-                    className="italic-serif"
-                    style={{
-                      color: 'var(--accent-gold)',
-                      fontWeight: 400
-                    }}
-                  >
-                    estrategia comercial
-                  </span>{' '}
-                  y narrativa.
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Declaración de Valor Profesional */}
-            <motion.p
+            {/* Título Principal Claro, Bien Espaciado y sin Cortes */}
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
+              style={{
+                fontSize: 'var(--text-hero)',
+                lineHeight: 1.16,
+                fontWeight: 600,
+                letterSpacing: '-0.02em',
+                marginBottom: '1.35rem',
+                maxWidth: '640px'
+              }}
+            >
+              Hago que las marcas conecten con personas y logren{' '}
+              <span
+                className="italic-serif"
+                style={{
+                  color: 'var(--accent-gold)',
+                  fontWeight: 400
+                }}
+              >
+                ventas reales.
+              </span>
+            </motion.h1>
+
+            {/* Resumen Breve y Directo */}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               style={{
                 fontSize: 'var(--text-body)',
                 color: 'var(--text-secondary)',
-                maxWidth: '640px',
-                lineHeight: 1.7,
-                marginBottom: '2.5rem'
+                maxWidth: '560px',
+                lineHeight: 1.65,
+                marginBottom: '2.25rem'
               }}
             >
-              "{personalInfo.statement}"
+              {personalInfo.statement}
             </motion.p>
 
-            {/* Botones de Conversión con Físicas Magnéticas */}
+            {/* Botones de Acción Directos */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '1rem',
+                gap: '0.85rem',
                 alignItems: 'center',
-                marginBottom: '2.5rem'
+                marginBottom: '2.25rem'
               }}
             >
               <a
@@ -211,18 +193,18 @@ export const Hero = ({ lenisInstance }) => {
                 className="btn-magnetic btn-gold"
                 data-cursor="WhatsApp"
               >
-                <MessageCircle size={18} />
-                <span>Iniciar Conversación Comercial</span>
-                <ArrowUpRight size={16} />
+                <MessageCircle size={17} />
+                <span>Hablar por WhatsApp</span>
+                <ArrowUpRight size={15} />
               </a>
 
               <a
                 href="#proyectos"
                 onClick={scrollToProjects}
                 className="btn-magnetic btn-outline"
-                data-cursor="Explorar"
+                data-cursor="Ver"
               >
-                <span>Ver Casos de Estudio</span>
+                <span>Ver Proyectos</span>
                 <ArrowDown size={15} />
               </a>
 
@@ -237,33 +219,33 @@ export const Hero = ({ lenisInstance }) => {
                 data-cursor="PDF"
               >
                 <FileDown size={15} style={{ color: 'var(--accent-gold)' }} />
-                <span>Dossier PDF</span>
+                <span>Descargar PDF</span>
               </button>
             </motion.div>
 
-            {/* Micro-píldoras de Impacto Comercial */}
+            {/* Puntos Clave Cortos */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '1.25rem',
+                gap: '1.5rem',
                 alignItems: 'center'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-                <ShieldCheck size={16} style={{ color: 'var(--accent-gold)' }} />
-                <span>Validación en Vercel & Prensa</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
+                <ShieldCheck size={16} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
+                <span>2do Lugar Nacional Kurios 2026</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-                <TrendingUp size={16} style={{ color: 'var(--accent-gold)' }} />
-                <span>Social Selling para Retail</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
+                <TrendingUp size={16} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
+                <span>Ventas y Contenido en Redes</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-                <Zap size={16} style={{ color: 'var(--accent-blue-sky)' }} />
-                <span>Visión Artificial en Tiempo Real</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
+                <Zap size={16} style={{ color: 'var(--accent-blue-sky)', flexShrink: 0 }} />
+                <span>App MOVA Activa en Web</span>
               </div>
             </motion.div>
           </div>
@@ -390,26 +372,26 @@ export const Hero = ({ lenisInstance }) => {
                 style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(2, 1fr)',
-                  gap: '0.75rem',
+                  gap: '1rem',
                   borderTop: '1px solid var(--border-subtle)',
                   paddingTop: '1.25rem'
                 }}
               >
                 <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                    BETA V2.0
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    2do Lugar
                   </div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                    Producto Validado en Vercel
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
+                    Torneo Kurios & BNC 2026
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.35rem', fontWeight: 700, color: 'var(--accent-gold)' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--accent-gold)' }}>
                     3 Idiomas
                   </div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                    Traducción LSV / ASL / LSE
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
+                    Señas LSV / ASL / LSE
                   </div>
                 </div>
               </div>
