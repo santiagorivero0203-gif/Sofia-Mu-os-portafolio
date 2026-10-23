@@ -1,12 +1,17 @@
 /**
  * @file App.jsx
- * @description Componente raíz de la aplicación para el portafolio de Sofia Muñoz.
- * Sincroniza el scroll suave inercial de Lenis, físicas de resortes con Motion,
- * preloader cinematográfico y control de modales sin desbordamiento.
+ * @description Orquestador raíz de la aplicación para el portafolio de Sofia Muñoz.
+ * Integra:
+ * - Capa de ErrorBoundary para tolerancia ante fallos de renderizado.
+ * - Proveedor de contexto global PortfolioProvider.
+ * - Desplazamiento inercial ultra-fluido con Lenis y sincronización de ScrollSpy.
+ * - Preloader cinematográfico inicial y cursor contextual.
  */
 
 import React, { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
+import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { NoiseOverlay } from './components/NoiseOverlay';
 import { CustomCursor } from './components/CustomCursor';
 import { Preloader } from './components/Preloader';
@@ -18,12 +23,24 @@ import { SkillsGrid } from './components/SkillsGrid';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
+import { useScrollSpy } from './hooks/useScrollSpy';
 
-export const App = () => {
+/**
+ * Componente interno conectado al contexto para coordinar scroll inercial y navegación activa
+ */
+const AppContent = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedProject, setSelectedProject] = useState(null);
   const [lenis, setLenis] = useState(null);
   const lenisRef = useRef(null);
+
+  const { selectedProject, setActiveSection } = usePortfolio();
+
+  // ScrollSpy para detectar la sección activa en el menú
+  useScrollSpy(
+    ['inicio', 'proyectos', 'sobre-mi', 'habilidades', 'contacto'],
+    setActiveSection,
+    180
+  );
 
   // Inicialización de Lenis Smooth Scroll
   useEffect(() => {
@@ -54,7 +71,7 @@ export const App = () => {
     };
   }, []);
 
-  // Control de scroll cuando se abre/cierra un modal
+  // Bloqueo del scroll suave cuando el modal de proyecto se encuentra activo
   useEffect(() => {
     if (lenisRef.current) {
       if (selectedProject) {
@@ -84,7 +101,7 @@ export const App = () => {
       {/* Contenido Principal */}
       <main>
         <Hero lenisInstance={lenis} />
-        <Projects onSelectProject={(project) => setSelectedProject(project)} />
+        <Projects />
         <About />
         <SkillsGrid />
         <ContactSection />
@@ -93,12 +110,19 @@ export const App = () => {
       {/* Pie de Página */}
       <Footer lenisInstance={lenis} />
 
-      {/* Modal Detallado de Proyecto */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      {/* Modal Detallado de Proyecto con Controles y Lightbox */}
+      <ProjectModal />
     </div>
+  );
+};
+
+export const App = () => {
+  return (
+    <ErrorBoundary>
+      <PortfolioProvider>
+        <AppContent />
+      </PortfolioProvider>
+    </ErrorBoundary>
   );
 };
 

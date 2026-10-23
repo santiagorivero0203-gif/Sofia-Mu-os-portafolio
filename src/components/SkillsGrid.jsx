@@ -8,8 +8,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, Star, Briefcase, BarChart3, Wrench } from 'lucide-react';
 import { skillCategories } from '../data/portfolioData';
+import { useSpotlight } from '../hooks/useSpotlight';
 
 export const SkillsGrid = () => {
+  const { handleMouseMove } = useSpotlight();
+
   const getCategoryIcon = (index) => {
     switch (index) {
       case 0:
@@ -61,6 +64,7 @@ export const SkillsGrid = () => {
             <motion.div
               key={catIdx}
               className="spotlight-card"
+              onMouseMove={handleMouseMove}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

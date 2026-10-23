@@ -358,3 +358,57 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Marquesina Infinita Editorial (Ticker) */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  user-select: none;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  animation: marquee-scroll 28s linear infinite;
+  min-width: 100%;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Efecto 3D Tilt Perspectivado */
+.tilt-card-wrapper {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.tilt-card-inner {
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Clip Path Reveal Utilities */
+.clip-reveal {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clip-reveal-hidden {
+  clip-path: inset(100% 0 0 0);
+}
+
