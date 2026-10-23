@@ -23,6 +23,7 @@ import { SkillsGrid } from './components/SkillsGrid';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
+import { PortfolioPDF } from './components/PortfolioPDF';
 import { useScrollSpy } from './hooks/useScrollSpy';
 
 /**
@@ -33,7 +34,7 @@ const AppContent = () => {
   const [lenis, setLenis] = useState(null);
   const lenisRef = useRef(null);
 
-  const { selectedProject, setActiveSection } = usePortfolio();
+  const { selectedProject, isPdfOpen, closePdfModal, setActiveSection } = usePortfolio();
 
   // ScrollSpy para detectar la sección activa en el menú
   useScrollSpy(
@@ -71,10 +72,10 @@ const AppContent = () => {
     };
   }, []);
 
-  // Bloqueo del scroll suave cuando el modal de proyecto se encuentra activo
+  // Bloqueo del scroll suave cuando el modal de proyecto o de PDF se encuentra activo
   useEffect(() => {
     if (lenisRef.current) {
-      if (selectedProject) {
+      if (selectedProject || isPdfOpen) {
         lenisRef.current.stop();
         document.body.style.overflow = 'hidden';
       } else {
@@ -82,10 +83,10 @@ const AppContent = () => {
         document.body.style.overflow = '';
       }
     }
-  }, [selectedProject]);
+  }, [selectedProject, isPdfOpen]);
 
   return (
-    <div className="relative min-h-screen bg-[#0b0c10] text-[#f5f4f0]">
+    <div className="relative min-h-screen bg-[#0a0e17] text-[#f8fafc]">
       {/* Capa de Grano Analógico SVG */}
       <NoiseOverlay />
 
@@ -112,6 +113,9 @@ const AppContent = () => {
 
       {/* Modal Detallado de Proyecto con Controles y Lightbox */}
       <ProjectModal />
+
+      {/* Dossier Ejecutivo Imprimible y Modal de Exportación en PDF */}
+      <PortfolioPDF isOpen={isPdfOpen} onClose={closePdfModal} />
     </div>
   );
 };

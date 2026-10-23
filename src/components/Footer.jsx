@@ -4,12 +4,12 @@
  */
 
 import React from 'react';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, FileDown } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { personalInfo } from '../data/portfolioData';
 
 export const Footer = ({ lenisInstance }) => {
-  const { sound, caracasTime } = usePortfolio();
+  const { sound, caracasTime, openPdfModal, trackEvent } = usePortfolio();
 
   const scrollToTop = () => {
     sound.playClick();
@@ -18,6 +18,12 @@ export const Footer = ({ lenisInstance }) => {
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  };
+
+  const handlePdfClick = () => {
+    sound.playModalOpen();
+    trackEvent('pdf_modal_open', { origin: 'footer' });
+    openPdfModal();
   };
 
   return (
@@ -47,7 +53,7 @@ export const Footer = ({ lenisInstance }) => {
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
             <span
               style={{
                 fontSize: '0.8rem',
@@ -57,6 +63,27 @@ export const Footer = ({ lenisInstance }) => {
             >
               Caracas: {caracasTime.timeString}
             </span>
+
+            <button
+              onClick={handlePdfClick}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                padding: '0.45rem 0.95rem',
+                borderRadius: 'var(--radius-full)',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid var(--border-blue)',
+                color: 'var(--accent-blue-sky)',
+                fontSize: '0.82rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <FileDown size={14} />
+              <span>Dossier PDF</span>
+            </button>
 
             <button
               onClick={scrollToTop}

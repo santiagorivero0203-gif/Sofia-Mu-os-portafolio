@@ -91,10 +91,10 @@ export const ContactSection = () => {
         <div
           className="spotlight-card"
           style={{
-            padding: 'clamp(2.5rem, 5vw, 4.5rem)',
-            background: 'linear-gradient(135deg, rgba(18, 19, 25, 0.96), rgba(11, 12, 16, 0.98))',
+            padding: 'clamp(2rem, 5vw, 4.5rem)',
+            background: 'linear-gradient(135deg, rgba(15, 21, 36, 0.96), rgba(10, 14, 23, 0.98))',
             borderColor: 'var(--border-gold)',
-            boxShadow: '0 30px 90px rgba(0, 0, 0, 0.7)'
+            boxShadow: '0 30px 90px rgba(0, 0, 0, 0.7), 0 0 35px rgba(59, 130, 246, 0.08)'
           }}
         >
           <div style={{ maxWidth: '840px', margin: '0 auto' }}>

@@ -39,6 +39,7 @@ Sofia portafolio/
 │   │   ├── Hero.jsx                   # Sección de aterrizaje, métricas y CTAs
 │   │   ├── Navbar.jsx                 # Menú flotante con ScrollSpy y hora de Caracas
 │   │   ├── NoiseOverlay.jsx           # Textura de grano cinematográfico SVG
+│   │   ├── PortfolioPDF.jsx           # Dossier ejecutivo y exportación en PDF (A4)
 │   │   ├── Preloader.jsx              # Contador 0-100% y telón con curva Bézier
 │   │   ├── ProjectModal.jsx           # Modal de proyectos con navegación y lightbox
 │   │   ├── Projects.jsx               # Galería Bento + Índice con Spotlight reactivo

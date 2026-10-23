@@ -6,27 +6,35 @@
  */
 
 :root {
-  /* Paleta Cromática Off-Tone */
-  --bg-primary: #0b0c10;
-  --bg-secondary: #121318;
-  --bg-surface: rgba(255, 255, 255, 0.03);
-  --bg-surface-hover: rgba(255, 255, 255, 0.06);
-  --bg-surface-active: rgba(255, 255, 255, 0.09);
+  /* Paleta Cromática: Azul Zafiro & Amarillo Ámbar (Profesionalismo & Creatividad) */
+  --bg-primary: #0a0e17;
+  --bg-secondary: #0f1524;
+  --bg-surface: rgba(18, 26, 44, 0.65);
+  --bg-surface-hover: rgba(28, 38, 62, 0.85);
+  --bg-surface-active: rgba(37, 99, 235, 0.12);
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.18);
-  --border-gold: rgba(212, 175, 55, 0.45);
+  --border-subtle: rgba(59, 130, 246, 0.12);
+  --border-hover: rgba(59, 130, 246, 0.28);
+  --border-gold: rgba(245, 158, 11, 0.42);
+  --border-blue: rgba(59, 130, 246, 0.35);
 
-  --text-primary: #f5f4f0;
-  --text-secondary: #a7a9b8;
-  --text-muted: #6e7185;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 
-  --accent-gold: #d4af37;
-  --accent-gold-soft: rgba(212, 175, 55, 0.15);
+  /* Amarillos & Oros (Creatividad, Optimismo & Valor Comercial) */
+  --accent-gold: #f59e0b;
+  --accent-gold-hover: #fbbf24;
+  --accent-gold-soft: rgba(245, 158, 11, 0.14);
+  --accent-yellow-light: #fef08a;
+
+  /* Azules (Profesionalismo, Estrategia & Tecnología) */
   --accent-blue: #3b82f6;
-  --accent-blue-soft: rgba(59, 130, 246, 0.15);
+  --accent-blue-deep: #1d4ed8;
+  --accent-blue-soft: rgba(59, 130, 246, 0.14);
+  --accent-blue-sky: #38bdf8;
   --accent-rose: #e0a990;
-  --accent-rose-soft: rgba(224, 169, 144, 0.15);
+  --accent-rose-soft: rgba(224, 169, 144, 0.14);
 
   /* Tipografías Editoriales */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -34,11 +42,11 @@
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Escala Fluida con clamp() */
-  --text-hero: clamp(2.75rem, 6.5vw + 1rem, 6.5rem);
-  --text-h1: clamp(2.25rem, 4.5vw + 0.5rem, 4.5rem);
-  --text-h2: clamp(1.85rem, 3.2vw + 0.4rem, 3.2rem);
-  --text-h3: clamp(1.35rem, 1.8vw + 0.2rem, 1.85rem);
-  --text-body: clamp(0.95rem, 0.85vw + 0.35rem, 1.125rem);
+  --text-hero: clamp(2.5rem, 5.8vw + 1rem, 6rem);
+  --text-h1: clamp(2.1rem, 4.2vw + 0.4rem, 4.2rem);
+  --text-h2: clamp(1.75rem, 3vw + 0.35rem, 3rem);
+  --text-h3: clamp(1.25rem, 1.6vw + 0.2rem, 1.75rem);
+  --text-body: clamp(0.92rem, 0.8vw + 0.3rem, 1.1rem);
   --text-caption: 0.85rem;
   --text-xs: 0.75rem;
 
@@ -218,9 +226,10 @@ body {
   border-radius: inherit;
   background: radial-gradient(
     480px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-    rgba(212, 175, 55, 0.18),
-    rgba(255, 255, 255, 0.05) 30%,
-    transparent 70%
+    rgba(245, 158, 11, 0.22),
+    rgba(59, 130, 246, 0.14) 35%,
+    rgba(255, 255, 255, 0.03) 55%,
+    transparent 75%
   );
   opacity: 0;
   pointer-events: none;
@@ -411,4 +420,91 @@ body {
 .clip-reveal-hidden {
   clip-path: inset(100% 0 0 0);
 }
+
+/* ==========================================================================
+   ADAPTACIONES MÓVILES (MOBILE FIRST & RESPONSIVE PERFECTION)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .site-container {
+    padding: 0 1.25rem !important;
+  }
+
+  .desktop-nav-links {
+    display: none !important;
+  }
+
+  .mobile-nav-trigger {
+    display: flex !important;
+  }
+
+  section {
+    padding: 4.5rem 0 !important;
+  }
+
+  #inicio {
+    padding-top: 6.25rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .btn-magnetic {
+    padding: 0.75rem 1.35rem;
+    font-size: 0.88rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   ESTILOS DE IMPRESIÓN Y DESCARGA EN PDF (@media print)
+   ========================================================================== */
+.print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1.2cm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ocultar elementos de UI interactiva */
+  .noise-overlay,
+  .custom-cursor-dot,
+  .custom-cursor-ring,
+  header,
+  footer,
+  #contacto,
+  .marquee-container,
+  .no-print,
+  button,
+  .btn-magnetic,
+  .spotlight-card::before {
+    display: none !important;
+  }
+
+  main {
+    display: none !important;
+  }
+
+  /* Mostrar únicamente el documento Dossier PDF estructurado */
+  .print-only {
+    display: block !important;
+  }
+
+  .pdf-dossier {
+    color: #0f172a !important;
+    background: #ffffff !important;
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+}
+
 

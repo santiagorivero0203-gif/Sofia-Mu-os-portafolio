@@ -2,32 +2,44 @@
  * @file Navbar.jsx
  * @description Barra de navegación flotante con estética editorial y desenfoque glassmorphism.
  * Integra:
+ * - Soporte responsivo para móviles con menú desplegable táctil.
+ * - Acceso directo para descargar el portafolio en PDF (Dossier Ejecutivo).
  * - Indicador de sección activa sincronizado mediante ScrollSpy.
- * - Desplazamiento inercial suave con Lenis.
- * - Conmutador de retroalimentación sonora (Web Audio).
- * - Indicador de disponibilidad y hora local oficial de Caracas (VET).
+ * - Conmutador de audio sintetizado (Web Audio) y hora oficial de Caracas (VET).
  */
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { MessageCircle, ArrowUpRight, Volume2, VolumeX, Clock } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  MessageCircle,
+  ArrowUpRight,
+  Volume2,
+  VolumeX,
+  FileDown,
+  Menu,
+  X,
+  Clock
+} from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { personalInfo } from '../data/portfolioData';
 
 export const Navbar = ({ lenisInstance }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const {
     activeSection,
     caracasTime,
     soundEnabled,
     toggleSound,
     sound,
+    openPdfModal,
     trackEvent
   } = usePortfolio();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -36,14 +48,22 @@ export const Navbar = ({ lenisInstance }) => {
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     sound.playClick();
+    setMobileMenuOpen(false);
     trackEvent('nav_click', { targetId });
 
     if (lenisInstance) {
-      lenisInstance.scrollTo(targetId, { offset: -80, duration: 1.2 });
+      lenisInstance.scrollTo(targetId, { offset: -70, duration: 1.2 });
     } else {
       const el = document.querySelector(targetId);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handlePdfClick = () => {
+    sound.playModalOpen();
+    setMobileMenuOpen(false);
+    trackEvent('pdf_modal_open', { origin: 'navbar' });
+    openPdfModal();
   };
 
   const navLinks = [
@@ -57,7 +77,7 @@ export const Navbar = ({ lenisInstance }) => {
     <header
       style={{
         position: 'fixed',
-        top: '1.25rem',
+        top: '1rem',
         left: 0,
         right: 0,
         zIndex: 50,
@@ -76,16 +96,16 @@ export const Navbar = ({ lenisInstance }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '1.25rem',
-          padding: '0.65rem 1.25rem',
+          gap: '1rem',
+          padding: '0.6rem 1.15rem',
           borderRadius: 'var(--radius-full)',
-          background: scrolled ? 'rgba(12, 13, 17, 0.88)' : 'rgba(18, 19, 25, 0.65)',
+          background: scrolled ? 'rgba(10, 14, 23, 0.92)' : 'rgba(15, 21, 36, 0.75)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           border: '1px solid var(--border-subtle)',
-          boxShadow: scrolled ? '0 10px 30px rgba(0, 0, 0, 0.4)' : 'none',
+          boxShadow: scrolled ? '0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.08)' : 'none',
           transition: 'background 0.3s ease, box-shadow 0.3s ease',
-          maxWidth: '1040px',
+          maxWidth: '1060px',
           width: '100%'
         }}
       >
@@ -116,25 +136,24 @@ export const Navbar = ({ lenisInstance }) => {
             className="badge-pill status-active"
             style={{
               display: 'inline-flex',
-              padding: '0.2rem 0.6rem',
-              fontSize: '0.72rem',
+              padding: '0.2rem 0.55rem',
+              fontSize: '0.7rem',
               gap: '0.35rem'
             }}
-            title={`Hora local: ${caracasTime.timeString}`}
+            title={`Hora oficial en Caracas: ${caracasTime.timeString}`}
           >
             <span className="status-dot"></span>
             <span>VET</span>
           </span>
         </a>
 
-        {/* Enlaces de Navegación con ScrollSpy */}
+        {/* Enlaces de Navegación Desktop */}
         <div
           style={{
-            display: 'flex',
             alignItems: 'center',
             gap: '1.5rem'
           }}
-          className="nav-links"
+          className="desktop-nav-links"
         >
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
@@ -180,18 +199,43 @@ export const Navbar = ({ lenisInstance }) => {
           })}
         </div>
 
-        {/* Acciones de la Cabecera: Toggle de Sonido y Botón WhatsApp */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        {/* Acciones de la Cabecera */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          {/* Botón Descargar Dossier PDF */}
+          <button
+            onClick={handlePdfClick}
+            aria-label="Descargar portafolio en PDF"
+            title="Descargar dossier en PDF"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: '0.45rem 0.85rem',
+              borderRadius: 'var(--radius-full)',
+              backgroundColor: 'rgba(59, 130, 246, 0.12)',
+              border: '1px solid var(--border-blue)',
+              color: 'var(--accent-blue-sky)',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+            data-cursor="PDF"
+          >
+            <FileDown size={14} />
+            <span className="desktop-nav-links">PDF</span>
+          </button>
+
           {/* Toggle de Micro-Sonido */}
           <button
             onClick={toggleSound}
-            aria-label={soundEnabled ? 'Silenciar sonidos de interfaz' : 'Activar sonidos de interfaz'}
+            aria-label={soundEnabled ? 'Silenciar interfaz' : 'Activar sonido'}
             title={soundEnabled ? 'Sonidos activos' : 'Sonidos desactivados'}
             style={{
-              width: '36px',
-              height: '36px',
+              width: '34px',
+              height: '34px',
               borderRadius: '50%',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              backgroundColor: 'rgba(255, 255, 255, 0.04)',
               border: '1px solid var(--border-subtle)',
               color: soundEnabled ? 'var(--accent-gold)' : 'var(--text-muted)',
               display: 'flex',
@@ -202,28 +246,170 @@ export const Navbar = ({ lenisInstance }) => {
             }}
             data-cursor="Audio"
           >
-            {soundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
+            {soundEnabled ? <Volume2 size={15} /> : <VolumeX size={15} />}
           </button>
 
-          {/* Botón directo de WhatsApp */}
+          {/* Botón directo de WhatsApp (Desktop) */}
           <a
             href={personalInfo.contact.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-magnetic btn-primary"
+            className="btn-magnetic btn-primary desktop-nav-links"
             style={{
-              padding: '0.5rem 1.1rem',
-              fontSize: '0.84rem'
+              padding: '0.45rem 0.95rem',
+              fontSize: '0.82rem',
+              backgroundColor: 'var(--text-primary)',
+              color: 'var(--bg-primary)'
             }}
             onClick={() => trackEvent('whatsapp_click', { origin: 'navbar' })}
             data-cursor="Chat"
           >
-            <MessageCircle size={15} style={{ color: '#22c55e' }} />
+            <MessageCircle size={14} style={{ color: '#22c55e' }} />
             <span>Contactar</span>
-            <ArrowUpRight size={14} />
+            <ArrowUpRight size={13} />
           </a>
+
+          {/* Disparador de Menú Móvil */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
+            aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid var(--border-subtle)',
+              color: 'var(--text-primary)',
+              display: 'none',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+            className="mobile-nav-trigger"
+          >
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
       </motion.nav>
+
+      {/* Menú Desplegable Móvil */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.96 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              pointerEvents: 'auto',
+              position: 'absolute',
+              top: '4.2rem',
+              left: '1rem',
+              right: '1rem',
+              backgroundColor: 'rgba(10, 14, 23, 0.96)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              border: '1px solid var(--border-gold)',
+              borderRadius: 'var(--radius-lg)',
+              padding: '1.5rem',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.85)',
+              zIndex: 49
+            }}
+          >
+            {/* Lista de enlaces móviles */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
+              {navLinks.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={(e) => handleNavClick(e, `#${link.id}`)}
+                  style={{
+                    color: activeSection === link.id ? 'var(--accent-gold)' : 'var(--text-primary)',
+                    textDecoration: 'none',
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
+                    padding: '0.4rem 0',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Acciones en Menú Móvil */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <button
+                onClick={handlePdfClick}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  padding: '0.75rem',
+                  borderRadius: 'var(--radius-full)',
+                  backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                  border: '1px solid var(--border-blue)',
+                  color: 'var(--accent-blue-sky)',
+                  fontWeight: 600,
+                  fontSize: '0.9rem',
+                  cursor: 'pointer'
+                }}
+              >
+                <FileDown size={16} />
+                <span>Descargar Portafolio (PDF)</span>
+              </button>
+
+              <a
+                href={personalInfo.contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  sound.playClick();
+                  setMobileMenuOpen(false);
+                }}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  padding: '0.75rem',
+                  borderRadius: 'var(--radius-full)',
+                  backgroundColor: '#22c55e',
+                  color: '#000',
+                  fontWeight: 700,
+                  fontSize: '0.9rem',
+                  textDecoration: 'none'
+                }}
+              >
+                <MessageCircle size={16} />
+                <span>Contactar por WhatsApp</span>
+                <ArrowUpRight size={14} />
+              </a>
+            </div>
+
+            <div
+              style={{
+                marginTop: '1.25rem',
+                paddingTop: '0.75rem',
+                borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                display: 'flex',
+                justifyContent: 'space-between',
+                fontSize: '0.75rem',
+                color: 'var(--text-muted)'
+              }}
+            >
+              <span>Caracas, Venezuela (VET)</span>
+              <span>{caracasTime.timeString}</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

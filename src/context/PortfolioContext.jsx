@@ -65,6 +65,19 @@ export const PortfolioProvider = ({ children }) => {
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'table'
   const [selectedProjectId, setSelectedProjectId] = useState(null);
 
+  // Estado del modal de Dossier PDF
+  const [isPdfOpen, setIsPdfOpen] = useState(false);
+
+  const openPdfModal = useCallback(() => {
+    sound.playModalOpen();
+    setIsPdfOpen(true);
+  }, [sound]);
+
+  const closePdfModal = useCallback(() => {
+    sound.playClick();
+    setIsPdfOpen(false);
+  }, [sound]);
+
   // Sección activa en el scroll
   const [activeSection, setActiveSection] = useState('inicio');
 
@@ -187,6 +200,11 @@ export const PortfolioProvider = ({ children }) => {
     prevProject,
     currentProjectIndex,
     totalProjects: rawProjects.length,
+
+    // Modal de Dossier PDF
+    isPdfOpen,
+    openPdfModal,
+    closePdfModal,
 
     // Scroll & Navegación
     activeSection,

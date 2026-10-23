@@ -18,13 +18,14 @@ import {
   TrendingUp,
   ArrowUpRight,
   ShieldCheck,
-  Zap
+  Zap,
+  FileDown
 } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { personalInfo } from '../data/portfolioData';
 
 export const Hero = ({ lenisInstance }) => {
-  const { sound, trackEvent } = usePortfolio();
+  const { sound, trackEvent, openPdfModal } = usePortfolio();
   const cardRef = useRef(null);
 
   // Estado para la inclinación 3D (Tilt) interactiva
@@ -226,6 +227,25 @@ export const Hero = ({ lenisInstance }) => {
                 <span>Ver Casos de Estudio</span>
                 <ArrowDown size={15} />
               </a>
+
+              <button
+                type="button"
+                onClick={() => {
+                  sound.playModalOpen();
+                  trackEvent('pdf_modal_open', { origin: 'hero' });
+                  openPdfModal();
+                }}
+                className="btn-magnetic btn-outline"
+                style={{
+                  borderColor: 'var(--border-blue)',
+                  color: 'var(--accent-blue-sky)',
+                  backgroundColor: 'rgba(59, 130, 246, 0.08)'
+                }}
+                data-cursor="PDF"
+              >
+                <FileDown size={15} />
+                <span>Dossier PDF</span>
+              </button>
             </motion.div>
 
             {/* Micro-píldoras de Impacto Comercial */}
