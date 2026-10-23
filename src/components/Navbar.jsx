@@ -1,41 +1,20 @@
 /**
  * @file Navbar.jsx
- * @description Barra de navegación flotante con estética editorial y desenfoque glassmorphism.
- * Integra:
- * - Soporte responsivo para móviles con menú desplegable táctil.
- * - Acceso directo para descargar el portafolio en PDF (Dossier Ejecutivo).
- * - Indicador de sección activa sincronizado mediante ScrollSpy.
- * - Conmutador de audio sintetizado (Web Audio) y hora oficial de Caracas (VET).
+ * @description Barra de navegación superior limpia y minimalista.
+ * Muestra exclusivamente el nombre de Sofia Muñoz y el índice de navegación
+ * (con menú desplegable para pantallas móviles), manteniendo las acciones secundarias en el pie de página.
  */
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  MessageCircle,
-  ArrowUpRight,
-  Volume2,
-  VolumeX,
-  FileDown,
-  Menu,
-  X,
-  Clock
-} from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
-import { personalInfo } from '../data/portfolioData';
 
 export const Navbar = ({ lenisInstance }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const {
-    activeSection,
-    caracasTime,
-    soundEnabled,
-    toggleSound,
-    sound,
-    openPdfModal,
-    trackEvent
-  } = usePortfolio();
+  const { activeSection, sound, trackEvent } = usePortfolio();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,13 +36,6 @@ export const Navbar = ({ lenisInstance }) => {
       const el = document.querySelector(targetId);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handlePdfClick = () => {
-    sound.playModalOpen();
-    setMobileMenuOpen(false);
-    trackEvent('pdf_modal_open', { origin: 'navbar' });
-    openPdfModal();
   };
 
   const navLinks = [
@@ -89,69 +61,48 @@ export const Navbar = ({ lenisInstance }) => {
       }}
     >
       <motion.nav
-        initial={{ y: -30, opacity: 0 }}
+        initial={{ y: -25, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
         style={{
           pointerEvents: 'auto',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '1rem',
-          padding: '0.65rem 1.25rem',
+          gap: '1.5rem',
+          padding: '0.75rem 1.5rem',
           borderRadius: '2px',
           background: scrolled ? '#0b1528' : '#101e38',
           border: '1px solid var(--border-subtle)',
           boxShadow: scrolled ? '4px 4px 0px #060b16' : 'none',
           transition: 'background 0.25s ease, box-shadow 0.25s ease',
-          maxWidth: '1120px',
+          maxWidth: '960px',
           width: '100%'
         }}
       >
-        {/* Identidad / Marca personal */}
+        {/* Nombre Limpio de Sofia Muñoz */}
         <a
           href="#inicio"
           onClick={(e) => handleNavClick(e, '#inicio')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.6rem',
             textDecoration: 'none',
-            color: 'var(--text-primary)'
+            color: 'var(--text-primary)',
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.25rem',
+            fontWeight: 600,
+            letterSpacing: '-0.02em'
           }}
           data-cursor="Inicio"
         >
-          <span
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.2rem',
-              fontWeight: 600,
-              letterSpacing: '-0.02em'
-            }}
-          >
-            Sofia Muñoz
-          </span>
-          <span
-            className="badge-pill status-active"
-            style={{
-              display: 'inline-flex',
-              padding: '0.2rem 0.55rem',
-              fontSize: '0.7rem',
-              gap: '0.35rem'
-            }}
-            title={`Hora oficial en Caracas: ${caracasTime.timeString}`}
-          >
-            <span className="status-dot"></span>
-            <span>VET</span>
-          </span>
+          Sofia Muñoz
         </a>
 
-        {/* Enlaces de Navegación Desktop */}
+        {/* Índice de Navegación (Desktop) */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '1.75rem'
+            gap: '2rem'
           }}
           className="desktop-nav-links"
         >
@@ -166,10 +117,10 @@ export const Navbar = ({ lenisInstance }) => {
                   position: 'relative',
                   color: isActive ? 'var(--accent-gold)' : 'var(--text-secondary)',
                   textDecoration: 'none',
-                  fontSize: '0.86rem',
+                  fontSize: '0.9rem',
                   fontWeight: isActive ? 600 : 500,
                   transition: 'color 0.2s ease',
-                  padding: '0.25rem 0'
+                  padding: '0.2rem 0'
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) e.target.style.color = 'var(--text-primary)';
@@ -189,7 +140,7 @@ export const Navbar = ({ lenisInstance }) => {
                       right: 0,
                       height: '2px',
                       backgroundColor: 'var(--accent-gold)',
-                      borderRadius: '2px'
+                      borderRadius: '0px'
                     }}
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
@@ -199,102 +150,32 @@ export const Navbar = ({ lenisInstance }) => {
           })}
         </div>
 
-        {/* Acciones de la Cabecera */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          {/* Botón Descargar Dossier PDF */}
-          <button
-            onClick={handlePdfClick}
-            aria-label="Descargar portafolio en PDF"
-            title="Descargar portafolio en PDF"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              padding: '0.45rem 0.85rem',
-              borderRadius: '2px',
-              backgroundColor: 'var(--bg-surface)',
-              border: '1px solid var(--accent-blue)',
-              color: '#ffffff',
-              fontSize: '0.78rem',
-              fontWeight: 700,
-              letterSpacing: '0.02em',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease'
-            }}
-            data-cursor="PDF"
-          >
-            <FileDown size={14} style={{ color: 'var(--accent-gold)' }} />
-            <span className="desktop-nav-text">PDF</span>
-          </button>
-
-          {/* Toggle de Micro-Sonido */}
-          <button
-            onClick={toggleSound}
-            aria-label={soundEnabled ? 'Silenciar interfaz' : 'Activar sonido'}
-            title={soundEnabled ? 'Sonidos activos' : 'Sonidos desactivados'}
-            style={{
-              width: '34px',
-              height: '34px',
-              borderRadius: '2px',
-              backgroundColor: 'var(--bg-surface)',
-              border: '1px solid var(--border-subtle)',
-              color: soundEnabled ? 'var(--accent-gold)' : 'var(--text-muted)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease'
-            }}
-            data-cursor="Audio"
-          >
-            {soundEnabled ? <Volume2 size={15} /> : <VolumeX size={15} />}
-          </button>
-
-          {/* Botón directo de WhatsApp (Desktop) */}
-          <a
-            href={personalInfo.contact.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-magnetic btn-gold desktop-nav-links"
-            style={{
-              padding: '0.45rem 0.95rem',
-              fontSize: '0.78rem'
-            }}
-            onClick={() => trackEvent('whatsapp_click', { origin: 'navbar' })}
-            data-cursor="Chat"
-          >
-            <MessageCircle size={14} />
-            <span>Contactar</span>
-            <ArrowUpRight size={13} />
-          </a>
-
-          {/* Disparador de Menú Móvil */}
-          <button
-            onClick={() => {
-              sound.playClick();
-              setMobileMenuOpen(!mobileMenuOpen);
-            }}
-            aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            style={{
-              width: '36px',
-              height: '36px',
-              borderRadius: '2px',
-              backgroundColor: 'var(--bg-surface)',
-              border: '1px solid var(--border-subtle)',
-              color: 'var(--text-primary)',
-              display: 'none',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer'
-            }}
-            className="mobile-nav-trigger"
-          >
-            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
-        </div>
+        {/* Botón para abrir el Índice en Móviles */}
+        <button
+          onClick={() => {
+            sound.playClick();
+            setMobileMenuOpen(!mobileMenuOpen);
+          }}
+          aria-label={mobileMenuOpen ? 'Cerrar índice' : 'Abrir índice'}
+          style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: '2px',
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border-subtle)',
+            color: 'var(--text-primary)',
+            display: 'none',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer'
+          }}
+          className="mobile-nav-trigger"
+        >
+          {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </motion.nav>
 
-      {/* Menú Desplegable Móvil */}
+      {/* Índice Desplegable para Móviles */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -311,13 +192,12 @@ export const Navbar = ({ lenisInstance }) => {
               backgroundColor: '#0b1528',
               border: '1px solid var(--accent-gold)',
               borderRadius: '2px',
-              padding: '1.5rem',
+              padding: '1.25rem 1.5rem',
               boxShadow: '8px 8px 0px #060b16',
               zIndex: 49
             }}
           >
-            {/* Lista de enlaces móviles */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
               {navLinks.map((link) => (
                 <a
                   key={link.id}
@@ -326,8 +206,8 @@ export const Navbar = ({ lenisInstance }) => {
                   style={{
                     color: activeSection === link.id ? 'var(--accent-gold)' : 'var(--text-primary)',
                     textDecoration: 'none',
-                    fontSize: '1.1rem',
-                    fontWeight: 700,
+                    fontSize: '1.05rem',
+                    fontWeight: 600,
                     padding: '0.4rem 0',
                     borderBottom: '1px solid var(--border-subtle)'
                   }}
@@ -335,76 +215,6 @@ export const Navbar = ({ lenisInstance }) => {
                   {link.label}
                 </a>
               ))}
-            </div>
-
-            {/* Acciones en Menú Móvil */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <button
-                onClick={handlePdfClick}
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
-                  padding: '0.75rem',
-                  borderRadius: '2px',
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1px solid var(--accent-blue)',
-                  color: '#ffffff',
-                  fontWeight: 700,
-                  fontSize: '0.88rem',
-                  textTransform: 'uppercase',
-                  cursor: 'pointer'
-                }}
-              >
-                <FileDown size={16} style={{ color: 'var(--accent-gold)' }} />
-                <span>Descargar Portafolio (PDF)</span>
-              </button>
-
-              <a
-                href={personalInfo.contact.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  sound.playClick();
-                  setMobileMenuOpen(false);
-                }}
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
-                  padding: '0.75rem',
-                  borderRadius: '2px',
-                  backgroundColor: 'var(--accent-gold)',
-                  color: '#0b1528',
-                  fontWeight: 800,
-                  fontSize: '0.88rem',
-                  textTransform: 'uppercase',
-                  textDecoration: 'none'
-                }}
-              >
-                <MessageCircle size={16} />
-                <span>Contactar por WhatsApp</span>
-                <ArrowUpRight size={14} />
-              </a>
-            </div>
-
-            <div
-              style={{
-                marginTop: '1.25rem',
-                paddingTop: '0.75rem',
-                borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-                display: 'flex',
-                justifyContent: 'space-between',
-                fontSize: '0.75rem',
-                color: 'var(--text-muted)'
-              }}
-            >
-              <span>Caracas, Venezuela (VET)</span>
-              <span>{caracasTime.timeString}</span>
             </div>
           </motion.div>
         )}

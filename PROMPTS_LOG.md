@@ -202,3 +202,16 @@ Aparte quisiera que en algunas partes se incluyera algunos efectos de transicion
      - **`ShutterGalleryStrip` (Mosaico de Formas Expandibles):** Tira interactiva de bloques geométricos numerados (`01` a `04`) donde al tocar cada figura se abre como un obturador fotográfico revelando la imagen en alta definición.
      - **`TimelinePhotoReveal` (Revelado en Línea de Tiempo):** En cada hito de `About.jsx` y tarjeta de `Projects.jsx`, tocar la figura geométrica despliega suavemente la foto de evidencia con animación de resorte y cortina arquitectónica.
   2. Integración en `Hero.jsx` (selector geométrico interactivo de 4 momentos en la tarjeta principal + formas tocables en el texto), `About.jsx` (formas desplegables en cada hito de 2026 y galería de obturador) y `CompetitionsSection.jsx`.
+
+---
+
+### Prompt 18 — Simplificación Minimalista de la Barra Superior (Solo Nombre e Índice)
+- **Fecha y Hora:** 2026-10-23 18:31:22 (-04:00)
+- **Contenido:**
+```text
+Que significa el vet al lado del nombre de sofia quita eso,y oara que es el boton de sonido,Sinceramente lo unico que veo necesario de esa barra es el indice y el nombre, lo otro puede aparecer hasta abajo de la pag
+```
+- **Acción realizada:**
+  1. Eliminación de la etiqueta `VET` (sigla en inglés de *Venezuelan Time*) junto al nombre de Sofia en `Navbar.jsx` y en `ContactSection.jsx`.
+  2. Simplificación total de `Navbar.jsx`: ahora la barra superior muestra únicamente el nombre **Sofia Muñoz** y el índice de secciones (*Proyectos, Premios, Sobre Mí, Habilidades, Contacto*), más el botón de menú en pantallas móviles.
+  3. Reubicación de las acciones secundarias (descarga de PDF, contacto directo y botón de sonido opcional) hacia el pie de página (`Footer.jsx`) al final de la web.

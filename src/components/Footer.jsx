@@ -1,15 +1,16 @@
 /**
  * @file Footer.jsx
- * @description Pie de página minimalista con créditos editoriales, hora oficial y control de retorno inercial.
+ * @description Pie de página completo con las acciones de descarga en PDF, contacto rápido,
+ * control opcional de sonido de interfaz y botón de retorno arriba.
  */
 
 import React from 'react';
-import { ArrowUp, FileDown } from 'lucide-react';
+import { ArrowUp, FileDown, MessageCircle, Volume2, VolumeX } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { personalInfo } from '../data/portfolioData';
 
 export const Footer = ({ lenisInstance }) => {
-  const { sound, caracasTime, openPdfModal, trackEvent } = usePortfolio();
+  const { sound, soundEnabled, toggleSound, caracasTime, openPdfModal, trackEvent } = usePortfolio();
 
   const scrollToTop = () => {
     sound.playClick();
@@ -45,61 +46,99 @@ export const Footer = ({ lenisInstance }) => {
           }}
         >
           <div>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 600 }}>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 600 }}>
               {personalInfo.name}
             </div>
-            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-              © {new Date().getFullYear()} — Portafolio Profesional & Comercial. Todos los derechos reservados.
+            <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+              © 2026 — Portafolio Profesional & Comercial • Hora local en Caracas: {caracasTime.timeString}
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <span
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+            {/* Botón opcional de efectos de sonido al tocar botones */}
+            <button
+              onClick={toggleSound}
+              title="Activa o silencia los pequeños sonidos al tocar botones"
               style={{
-                fontSize: '0.8rem',
-                color: 'var(--text-muted)',
-                fontFamily: 'var(--font-mono)'
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.5rem 0.85rem',
+                borderRadius: '2px',
+                backgroundColor: 'var(--bg-surface)',
+                border: '1px solid var(--border-subtle)',
+                color: soundEnabled ? 'var(--accent-gold)' : 'var(--text-muted)',
+                fontSize: '0.78rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
               }}
             >
-              Caracas: {caracasTime.timeString}
-            </span>
+              {soundEnabled ? <Volume2 size={14} /> : <VolumeX size={14} />}
+              <span>{soundEnabled ? 'Sonido: Activo' : 'Sonido: Silencio'}</span>
+            </button>
 
+            {/* Botón de WhatsApp */}
+            <a
+              href={personalInfo.contact.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('whatsapp_click', { origin: 'footer' })}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                padding: '0.5rem 0.95rem',
+                borderRadius: '2px',
+                backgroundColor: 'var(--accent-gold)',
+                border: '1px solid var(--accent-gold)',
+                color: '#0b1528',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                textDecoration: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <MessageCircle size={14} />
+              <span>WhatsApp</span>
+            </a>
+
+            {/* Botón Descargar PDF */}
             <button
               onClick={handlePdfClick}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                padding: '0.5rem 1rem',
+                padding: '0.5rem 0.95rem',
                 borderRadius: '2px',
                 backgroundColor: 'var(--accent-blue)',
                 border: '1px solid var(--accent-blue)',
                 color: '#ffffff',
                 fontSize: '0.8rem',
                 fontWeight: 700,
-                textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
             >
               <FileDown size={14} style={{ color: 'var(--accent-gold)' }} />
-              <span>Dossier PDF</span>
+              <span>Descargar PDF</span>
             </button>
 
+            {/* Volver arriba */}
             <button
               onClick={scrollToTop}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.5rem 1rem',
+                gap: '0.45rem',
+                padding: '0.5rem 0.95rem',
                 borderRadius: '2px',
                 backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
                 color: 'var(--text-primary)',
                 fontSize: '0.8rem',
                 fontWeight: 600,
-                textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
@@ -115,7 +154,7 @@ export const Footer = ({ lenisInstance }) => {
               }}
               data-cursor="Arriba"
             >
-              <span>Volver arriba</span>
+              <span>Subir</span>
               <ArrowUp size={14} />
             </button>
           </div>

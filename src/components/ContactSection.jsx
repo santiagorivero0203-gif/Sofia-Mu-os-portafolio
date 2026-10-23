@@ -123,7 +123,7 @@ export const ContactSection = () => {
                 }}
               >
                 <Clock size={13} style={{ color: 'var(--accent-gold)' }} />
-                <span>Caracas {caracasTime.timeString} (VET)</span>
+                <span>Caracas, Venezuela ({caracasTime.timeString})</span>
               </div>
             </div>
 

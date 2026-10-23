@@ -75,7 +75,7 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
             <div style={{ fontWeight: 600, color: '#0f172a' }}>Contacto Directo:</div>
             <div>{personalInfo.contact.email}</div>
             <div>{personalInfo.contact.phoneFormatted}</div>
-            <div>Caracas, Venezuela (VET)</div>
+            <div>Caracas, Venezuela</div>
             <div style={{ color: '#16a34a', fontWeight: 600, marginTop: '0.2rem' }}>
               Disponible para alianzas & ventas
             </div>
