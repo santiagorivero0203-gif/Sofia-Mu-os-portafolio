@@ -1,75 +1,44 @@
 /**
  * @file index.css
- * @description Sistema de diseño editorial limpio, luminoso y suave para el portafolio de Sofia Muñoz.
+ * @description Sistema de diseño limpio, luminoso y sin reglas huérfanas para el portafolio de Sofia Muñoz.
  * Paleta: Azul Pastel Claro (#D9EAFA / #EAF3FD), tarjetas blancas translúcidas,
  * tipografía azul marino profundo (#142C4C) y acentos en amarillo cálido (#FFE047).
  */
 
 :root {
-  /* Paleta Cromática: Azul Pastel Claro, Luminoso y Aireado + Amarillo Cálido */
   --bg-primary: #d9eafa;
   --bg-secondary: #eaf3fd;
-  --bg-surface: rgba(255, 255, 255, 0.82);
+  --bg-surface: rgba(255, 255, 255, 0.84);
   --bg-surface-hover: rgba(255, 255, 255, 0.96);
-  --bg-surface-active: #ffffff;
 
-  /* Bordes muy suaves para evitar subdivisiones visuales bruscas */
   --border-subtle: rgba(45, 85, 135, 0.12);
-  --border-hover: rgba(45, 85, 135, 0.26);
-  --border-gold: #f5b800;
-  --border-blue: #6aa6f8;
 
-  /* Tipografía Azul Marino Profundo para lectura cómoda sobre fondo pastel claro */
   --text-primary: #142c4c;
   --text-secondary: #345278;
   --text-muted: #5b799e;
 
-  /* Amarillo Cálido y Dorado Legible */
   --accent-yellow-fill: #ffe047;
   --accent-yellow-hover: #ffd41f;
   --accent-gold: #b87400;
-  --accent-gold-hover: #9e6300;
-  --accent-gold-soft: rgba(255, 224, 71, 0.35);
-
-  /* Subtonos de Azul Pastel y Cielo */
   --accent-blue: #2563eb;
-  --accent-blue-deep: #1d4ed8;
-  --accent-blue-soft: rgba(59, 130, 246, 0.14);
-  --accent-blue-sky: #2563eb;
-  --accent-rose: #b87400;
-  --accent-rose-soft: rgba(255, 224, 71, 0.3);
 
-  /* Tipografías Editoriales */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Escala Fluida Equilibrada con clamp() */
-  --text-hero: clamp(2.2rem, 3.8vw + 0.6rem, 3.85rem);
-  --text-h1: clamp(1.9rem, 3vw + 0.4rem, 3.1rem);
-  --text-h2: clamp(1.65rem, 2.4vw + 0.35rem, 2.5rem);
-  --text-h3: clamp(1.2rem, 1.4vw + 0.2rem, 1.5rem);
-  --text-body: clamp(0.95rem, 0.4vw + 0.8rem, 1.06rem);
-  --text-caption: 0.85rem;
-  --text-xs: 0.75rem;
+  --text-hero: clamp(2.1rem, 3.6vw + 0.5rem, 3.55rem);
+  --text-h1: clamp(1.85rem, 2.8vw + 0.4rem, 2.9rem);
+  --text-h2: clamp(1.55rem, 2.2vw + 0.3rem, 2.25rem);
+  --text-body: clamp(0.94rem, 0.35vw + 0.8rem, 1.04rem);
 
-  /* Curvas Suaves y Amigables (Sin rigidez cuadrada) */
-  --container-max: 1200px;
-  --radius-sm: 12px;
-  --radius-md: 16px;
+  --container-max: 1160px;
   --radius-lg: 24px;
-  --radius-xl: 30px;
   --radius-full: 9999px;
 
-  /* Transiciones y Físicas */
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-fast: 200ms;
-  --duration-normal: 400ms;
-  --duration-slow: 800ms;
 }
 
-/* Reset y Reglas Base */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -87,14 +56,13 @@ html {
 
 body {
   overflow-x: hidden;
-  background: linear-gradient(180deg, #d9eafa 0%, #e4f0fc 50%, #d9eafa 100%);
+  background: linear-gradient(180deg, #d9eafa 0%, #e5f1fd 50%, #d9eafa 100%);
   color: var(--text-primary);
   min-height: 100vh;
   position: relative;
-  line-height: 1.6;
+  line-height: 1.58;
 }
 
-/* Barra de scroll limpia en tonos pastel */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -109,17 +77,6 @@ body {
   background: rgba(20, 44, 76, 0.38);
 }
 
-/* Tipografía de Utilidad */
-.font-display {
-  font-family: var(--font-display);
-}
-.font-sans {
-  font-family: var(--font-sans);
-}
-.font-mono {
-  font-family: var(--font-mono);
-}
-
 .italic-serif {
   font-family: var(--font-display);
   font-style: italic;
@@ -127,7 +84,7 @@ body {
   padding-right: 0.12em;
 }
 
-/* Grano Analógico SVG Muy Sutil */
+/* Grano Analógico Sutil */
 .noise-overlay {
   position: fixed;
   inset: 0;
@@ -135,7 +92,7 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.025;
+  opacity: 0.024;
 }
 
 /* Cursor Contextual Personalizado */
@@ -201,7 +158,6 @@ body {
   }
 }
 
-/* Contenedor Principal */
 .site-container {
   max-width: var(--container-max);
   margin: 0 auto;
@@ -210,19 +166,19 @@ body {
 
 @media (min-width: 768px) {
   .site-container {
-    padding: 0 3rem;
+    padding: 0 2.5rem;
   }
 }
 
-/* Tarjeta Pastel Suave y Redondeada (Sin bordes pesados ni subdivisiones) */
+/* Tarjeta Pastel Suave y Redondeada */
 .spotlight-card {
   position: relative;
   background: var(--bg-surface);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-lg);
-  box-shadow: 0 12px 34px rgba(20, 44, 76, 0.06);
+  box-shadow: 0 10px 30px rgba(20, 44, 76, 0.06);
   overflow: hidden;
   transition: border-color 0.25s ease, transform 0.35s var(--ease-editorial), background-color 0.25s ease, box-shadow 0.25s ease;
 }
@@ -248,21 +204,21 @@ body {
 }
 
 .spotlight-card:hover {
-  border-color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.96);
   background: var(--bg-surface-hover);
-  box-shadow: 0 18px 42px rgba(20, 44, 76, 0.11);
+  box-shadow: 0 16px 38px rgba(20, 44, 76, 0.1);
   transform: translateY(-2px);
 }
 
-/* Botón Redondeado en Píldora Suave */
+/* Botones en Píldora Suave */
 .btn-magnetic {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 0.82rem 1.55rem;
+  gap: 0.5rem;
+  padding: 0.75rem 1.45rem;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   text-decoration: none;
@@ -289,7 +245,7 @@ body {
 }
 
 .btn-outline {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.6);
   color: var(--text-primary);
   border: 1px solid rgba(45, 85, 135, 0.16);
 }
@@ -305,12 +261,12 @@ body {
   color: var(--text-primary);
   font-weight: 800;
   border: 1px solid rgba(245, 184, 0, 0.45);
-  box-shadow: 0 8px 20px rgba(245, 184, 0, 0.22);
+  box-shadow: 0 8px 20px rgba(245, 184, 0, 0.2);
 }
 
 .btn-gold:hover {
   background: var(--accent-yellow-hover);
-  box-shadow: 0 12px 26px rgba(245, 184, 0, 0.32);
+  box-shadow: 0 12px 26px rgba(245, 184, 0, 0.3);
   transform: translateY(-2px);
 }
 
@@ -318,14 +274,14 @@ body {
 .badge-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.38rem 0.9rem;
+  gap: 0.4rem;
+  padding: 0.34rem 0.85rem;
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   line-height: 1.2;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.9);
   color: var(--text-secondary);
   box-shadow: 0 4px 12px rgba(20, 44, 76, 0.04);
@@ -345,116 +301,38 @@ body {
   background-color: var(--text-primary);
 }
 
-/* Máscaras de Texto */
-.text-mask-wrapper {
-  overflow: hidden;
-  display: block;
-  padding-bottom: 0.12em;
-}
-
-.text-mask-inner {
-  display: inline-block;
-  transform: translateY(0);
-}
-
-/* Modales y Paneles */
-.glass-panel {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-}
-
 /* Navegación Desktop */
 .desktop-nav-links {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 0.35rem;
 }
 
-.desktop-nav-text {
-  display: inline;
-}
-
-/* Grillas Asimétricas Editoriales con Espaciado Amplio */
+/* Grilla Editorial */
 .editorial-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 3rem;
+  gap: 2.25rem;
   align-items: center;
 }
 
 @media (max-width: 960px) {
   .editorial-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 1.75rem;
   }
   .editorial-grid > * {
     grid-column: span 1 !important;
   }
 }
 
-/* Marquesina Infinita Editorial (Ticker) */
-.marquee-container {
-  overflow: hidden;
-  white-space: nowrap;
-  display: flex;
-  user-select: none;
-  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-}
-
-.marquee-content {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  animation: marquee-scroll 28s linear infinite;
-  min-width: 100%;
-}
-
-.marquee-content:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marquee-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Efecto 3D Tilt Perspectivado */
-.tilt-card-wrapper {
-  perspective: 1200px;
-  transform-style: preserve-3d;
-}
-
-.tilt-card-inner {
-  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* Clip Path Reveal Utilities */
-.clip-reveal {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.clip-reveal-hidden {
-  clip-path: inset(100% 0 0 0);
-}
-
-/* ==========================================================================
-   ADAPTACIONES MÓVILES (MOBILE FIRST & RESPONSIVE PERFECTION)
-   ========================================================================== */
+/* Adaptaciones Móviles */
 @media (max-width: 768px) {
   .site-container {
-    padding: 0 1.25rem !important;
+    padding: 0 1.15rem !important;
   }
 
-  .desktop-nav-links,
-  .desktop-nav-text {
+  .desktop-nav-links {
     display: none !important;
   }
 
@@ -463,25 +341,23 @@ body {
   }
 
   section {
-    padding: 4rem 0 !important;
+    padding: 2rem 0 !important;
   }
 
   #inicio {
-    padding-top: 6.25rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 5.25rem !important;
+    padding-bottom: 1.5rem !important;
   }
 
   .btn-magnetic {
-    padding: 0.78rem 1.35rem;
-    font-size: 0.88rem;
+    padding: 0.72rem 1.25rem;
+    font-size: 0.86rem;
     width: 100%;
     justify-content: center;
   }
 }
 
-/* ==========================================================================
-   ESTILOS DE IMPRESIÓN Y DESCARGA EN PDF (@media print)
-   ========================================================================== */
+/* Estilos de Impresión (@media print) */
 .print-only {
   display: none;
 }
@@ -500,15 +376,12 @@ body {
     print-color-adjust: exact !important;
   }
 
-  /* Ocultar elementos de UI interactiva */
   .noise-overlay,
   .custom-cursor-dot,
   .custom-cursor-ring,
   header,
   footer,
   #contacto,
-  .marquee-container,
-  .no-print,
   button,
   .btn-magnetic,
   .spotlight-card::before {
@@ -519,7 +392,6 @@ body {
     display: none !important;
   }
 
-  /* Mostrar únicamente el Portafolio PDF con Estilo */
   .print-only {
     display: block !important;
   }

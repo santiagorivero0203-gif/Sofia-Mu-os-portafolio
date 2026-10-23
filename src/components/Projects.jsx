@@ -1,7 +1,6 @@
 /**
  * @file Projects.jsx
- * @description Exhibición limpia y directa de los proyectos principales de Sofia Muñoz (MOVA y Meraki).
- * Sin barras de búsqueda ni subdivisiones innecesarias: tarjetas redondeadas, aireadas y fáciles de explorar.
+ * @description Exhibición compacta y directa de los proyectos principales de Sofia Muñoz (MOVA y Meraki).
  */
 
 import React from 'react';
@@ -12,20 +11,14 @@ import { projects } from '../data/portfolioData';
 import { useSpotlight } from '../hooks/useSpotlight';
 
 export const Projects = () => {
-  const { openProjectModal, trackEvent } = usePortfolio();
+  const { openProjectModal } = usePortfolio();
   const { handleMouseMove } = useSpotlight();
 
-  const handleSelect = (project) => {
-    trackEvent('project_open', { projectId: project.id, title: project.title });
-    openProjectModal(project);
-  };
-
   return (
-    <section id="proyectos" style={{ padding: '4.5rem 0', position: 'relative' }}>
+    <section id="proyectos" style={{ padding: '2.5rem 0', position: 'relative' }}>
       <div className="site-container">
-        {/* Cabecera Limpia sin líneas divisorias */}
-        <div style={{ marginBottom: '2.5rem' }}>
-          <div className="badge-pill status-active" style={{ marginBottom: '0.75rem' }}>
+        <div style={{ marginBottom: '1.5rem' }}>
+          <div className="badge-pill status-active" style={{ marginBottom: '0.5rem' }}>
             <Award size={14} />
             <span>Proyectos Destacados</span>
           </div>
@@ -45,42 +38,40 @@ export const Projects = () => {
           </h2>
         </div>
 
-        {/* Grilla Limpia de 2 Tarjetas Redondeadas */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))',
-            gap: '2rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '1.75rem'
           }}
         >
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
               layoutId={`card-${project.id}`}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: index * 0.12 }}
+              transition={{ duration: 0.45, delay: index * 0.1 }}
               className="spotlight-card"
               onMouseMove={handleMouseMove}
-              onClick={() => handleSelect(project)}
+              onClick={() => openProjectModal(project)}
               style={{
-                padding: '1.5rem',
+                padding: '1.35rem',
                 borderRadius: '28px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                gap: '1.35rem',
+                gap: '1.1rem',
                 cursor: 'pointer'
               }}
               data-cursor="Ver"
             >
-              {/* Fotografía Principal Redondeada sin barras superpuestas */}
               <div
                 style={{
                   position: 'relative',
                   width: '100%',
-                  height: '250px',
+                  height: '205px',
                   borderRadius: '20px',
                   overflow: 'hidden',
                   backgroundColor: 'var(--bg-secondary)'
@@ -88,7 +79,7 @@ export const Projects = () => {
               >
                 <motion.img
                   whileHover={{ scale: 1.04 }}
-                  transition={{ duration: 0.45, ease: 'easeOut' }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
                   src={project.featuredCover}
                   alt={project.title}
                   style={{
@@ -102,14 +93,14 @@ export const Projects = () => {
                 <span
                   style={{
                     position: 'absolute',
-                    top: '0.85rem',
-                    left: '0.85rem',
+                    top: '0.75rem',
+                    left: '0.75rem',
                     backgroundColor: 'rgba(255, 255, 255, 0.92)',
                     backdropFilter: 'blur(8px)',
                     color: 'var(--text-primary)',
-                    padding: '0.35rem 0.85rem',
+                    padding: '0.3rem 0.8rem',
                     borderRadius: '999px',
-                    fontSize: '0.76rem',
+                    fontSize: '0.74rem',
                     fontWeight: 700,
                     boxShadow: '0 4px 12px rgba(20, 44, 76, 0.08)'
                   }}
@@ -118,14 +109,13 @@ export const Projects = () => {
                 </span>
               </div>
 
-              {/* Contenido Unificado sin Cajas Internas */}
-              <div style={{ padding: '0 0.35rem 0.25rem 0.35rem' }}>
+              <div style={{ padding: '0 0.25rem 0.15rem 0.25rem' }}>
                 <div
                   style={{
-                    fontSize: '0.84rem',
+                    fontSize: '0.82rem',
                     color: 'var(--accent-blue)',
                     fontWeight: 700,
-                    marginBottom: '0.35rem'
+                    marginBottom: '0.25rem'
                   }}
                 >
                   {project.role} • {project.year}
@@ -134,10 +124,10 @@ export const Projects = () => {
                 <h3
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: '1.6rem',
+                    fontSize: '1.45rem',
                     fontWeight: 600,
-                    lineHeight: 1.22,
-                    marginBottom: '0.6rem',
+                    lineHeight: 1.2,
+                    marginBottom: '0.45rem',
                     color: 'var(--text-primary)'
                   }}
                 >
@@ -146,10 +136,10 @@ export const Projects = () => {
 
                 <p
                   style={{
-                    fontSize: '0.96rem',
+                    fontSize: '0.92rem',
                     color: 'var(--text-secondary)',
-                    lineHeight: 1.65,
-                    marginBottom: '1.25rem'
+                    lineHeight: 1.55,
+                    marginBottom: '1rem'
                   }}
                 >
                   {project.tagline}
@@ -159,12 +149,12 @@ export const Projects = () => {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.45rem',
-                    padding: '0.55rem 1.15rem',
+                    gap: '0.4rem',
+                    padding: '0.48rem 1.05rem',
                     borderRadius: '999px',
                     backgroundColor: 'var(--accent-yellow-fill)',
                     color: 'var(--text-primary)',
-                    fontSize: '0.84rem',
+                    fontSize: '0.82rem',
                     fontWeight: 700
                   }}
                 >

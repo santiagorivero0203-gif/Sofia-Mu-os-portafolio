@@ -1,6 +1,6 @@
 /**
  * @file ContactSection.jsx
- * @description Sección de contacto limpia, sin cajas anidadas y con elementos suavemente redondeados.
+ * @description Sección de contacto compacta y directa para escribir a Sofia Muñoz en 1 clic.
  */
 
 import React, { useState } from 'react';
@@ -21,9 +21,7 @@ export const ContactSection = () => {
     copiedEmail,
     copyEmail,
     copiedPhone,
-    copyPhone,
-    sound,
-    trackEvent
+    copyPhone
   } = usePortfolio();
 
   const opportunityTypes = [
@@ -55,36 +53,19 @@ export const ContactSection = () => {
     return `mailto:${personalInfo.contact.email}?subject=${subject}&body=${body}`;
   };
 
-  const handleWhatsAppSubmit = () => {
-    trackEvent('contact_submit_whatsapp', {
-      opportunity: selectedOpportunity,
-      hasSenderName: Boolean(senderName.trim())
-    });
-    sound.playSuccess();
-  };
-
-  const handleEmailSubmit = () => {
-    trackEvent('contact_submit_email', {
-      opportunity: selectedOpportunity,
-      hasSenderName: Boolean(senderName.trim())
-    });
-    sound.playSuccess();
-  };
-
   return (
-    <section id="contacto" style={{ padding: '4.5rem 0', position: 'relative' }}>
+    <section id="contacto" style={{ padding: '2.5rem 0 2rem 0', position: 'relative' }}>
       <div className="site-container">
         <div
           className="spotlight-card"
           style={{
-            padding: 'clamp(2rem, 5vw, 3.75rem)',
-            borderRadius: '32px',
+            padding: 'clamp(1.75rem, 4vw, 2.75rem)',
+            borderRadius: '30px',
             backgroundColor: 'rgba(255, 255, 255, 0.88)'
           }}
         >
-          <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-            {/* Disponibilidad */}
-            <div style={{ marginBottom: '1.25rem' }}>
+          <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
+            <div style={{ marginBottom: '0.85rem' }}>
               <div className="badge-pill status-active">
                 <span className="status-dot"></span>
                 <span>{personalInfo.contact.availability}</span>
@@ -94,10 +75,10 @@ export const ContactSection = () => {
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'var(--text-h1)',
+                fontSize: 'var(--text-h2)',
                 lineHeight: 1.18,
                 fontWeight: 600,
-                marginBottom: '0.75rem',
+                marginBottom: '0.5rem',
                 color: 'var(--text-primary)'
               }}
             >
@@ -107,7 +88,7 @@ export const ContactSection = () => {
               </span>
             </h2>
 
-            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: '0 auto 2rem auto', maxWidth: '520px' }}>
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: '0 auto 1.35rem auto', maxWidth: '500px' }}>
               Elige un tema y escríbeme directo por WhatsApp o correo electrónico.
             </p>
 
@@ -116,9 +97,9 @@ export const ContactSection = () => {
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '0.55rem',
+                gap: '0.45rem',
                 justifyContent: 'center',
-                marginBottom: '1.75rem'
+                marginBottom: '1.25rem'
               }}
             >
               {opportunityTypes.map((type) => {
@@ -127,14 +108,11 @@ export const ContactSection = () => {
                   <button
                     key={type}
                     type="button"
-                    onClick={() => {
-                      sound.playClick();
-                      setSelectedOpportunity(type);
-                    }}
+                    onClick={() => setSelectedOpportunity(type)}
                     style={{
-                      padding: '0.58rem 1.15rem',
+                      padding: '0.48rem 1rem',
                       borderRadius: '999px',
-                      fontSize: '0.86rem',
+                      fontSize: '0.82rem',
                       fontWeight: isSelected ? 700 : 600,
                       backgroundColor: isSelected ? 'var(--accent-yellow-fill)' : 'var(--bg-secondary)',
                       border: 'none',
@@ -149,29 +127,29 @@ export const ContactSection = () => {
               })}
             </div>
 
-            {/* Inputs Redondeados Directos (Sin caja contenedora extra) */}
+            {/* Campos Opcionales Redondeados */}
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                gap: '0.9rem',
-                marginBottom: '1.5rem',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '0.75rem',
+                marginBottom: '1.25rem',
                 textAlign: 'left'
               }}
             >
               <input
                 type="text"
-                placeholder="Tu nombre o marca (opcional)"
+                placeholder="Tu nombre o empresa (opcional)"
                 value={senderName}
                 onChange={(e) => setSenderName(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '0.85rem 1.15rem',
+                  padding: '0.75rem 1.05rem',
                   borderRadius: '16px',
                   backgroundColor: 'var(--bg-secondary)',
                   border: '1px solid transparent',
                   color: 'var(--text-primary)',
-                  fontSize: '0.92rem',
+                  fontSize: '0.88rem',
                   outline: 'none',
                   fontFamily: 'var(--font-sans)'
                 }}
@@ -184,52 +162,50 @@ export const ContactSection = () => {
                 onChange={(e) => setSenderNote(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '0.85rem 1.15rem',
+                  padding: '0.75rem 1.05rem',
                   borderRadius: '16px',
                   backgroundColor: 'var(--bg-secondary)',
                   border: '1px solid transparent',
                   color: 'var(--text-primary)',
-                  fontSize: '0.92rem',
+                  fontSize: '0.88rem',
                   outline: 'none',
                   fontFamily: 'var(--font-sans)'
                 }}
               />
             </div>
 
-            {/* Botones Principales Redondeados */}
+            {/* Botones Principales */}
             <div
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                gap: '0.9rem',
-                marginBottom: '2rem'
+                gap: '0.75rem',
+                marginBottom: '1.35rem'
               }}
             >
               <a
                 href={generateWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={handleWhatsAppSubmit}
                 className="btn-magnetic btn-gold"
-                style={{ minWidth: '220px' }}
+                style={{ minWidth: '210px' }}
                 data-cursor="WhatsApp"
               >
-                <MessageCircle size={18} />
+                <MessageCircle size={17} />
                 <span>Enviar por WhatsApp</span>
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={15} />
               </a>
 
               <a
                 href={generateMailtoUrl()}
-                onClick={handleEmailSubmit}
                 className="btn-magnetic btn-primary"
-                style={{ minWidth: '220px' }}
+                style={{ minWidth: '210px' }}
                 data-cursor="Email"
               >
-                <Mail size={18} />
+                <Mail size={17} />
                 <span>Abrir en Correo</span>
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={15} />
               </a>
             </div>
 
@@ -240,7 +216,7 @@ export const ContactSection = () => {
                 flexWrap: 'wrap',
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: '0.85rem'
+                gap: '0.65rem'
               }}
             >
               <button
@@ -249,21 +225,21 @@ export const ContactSection = () => {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.55rem 1.1rem',
+                  gap: '0.45rem',
+                  padding: '0.48rem 0.95rem',
                   borderRadius: '999px',
                   backgroundColor: copiedEmail ? 'var(--accent-yellow-fill)' : 'var(--bg-secondary)',
                   border: 'none',
                   color: 'var(--text-primary)',
-                  fontSize: '0.84rem',
+                  fontSize: '0.8rem',
                   fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all 0.2s ease'
                 }}
               >
-                <Mail size={14} />
+                <Mail size={13} />
                 <span>{personalInfo.contact.email}</span>
-                {copiedEmail ? <Check size={14} /> : <Copy size={14} />}
+                {copiedEmail ? <Check size={13} /> : <Copy size={13} />}
               </button>
 
               <button
@@ -272,21 +248,21 @@ export const ContactSection = () => {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.55rem 1.1rem',
+                  gap: '0.45rem',
+                  padding: '0.48rem 0.95rem',
                   borderRadius: '999px',
                   backgroundColor: copiedPhone ? 'var(--accent-yellow-fill)' : 'var(--bg-secondary)',
                   border: 'none',
                   color: 'var(--text-primary)',
-                  fontSize: '0.84rem',
+                  fontSize: '0.8rem',
                   fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all 0.2s ease'
                 }}
               >
-                <Phone size={14} />
+                <Phone size={13} />
                 <span>{personalInfo.contact.phoneFormatted}</span>
-                {copiedPhone ? <Check size={14} /> : <Copy size={14} />}
+                {copiedPhone ? <Check size={13} /> : <Copy size={13} />}
               </button>
             </div>
           </div>

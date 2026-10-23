@@ -1,7 +1,6 @@
 /**
  * @file CompetitionsSection.jsx
- * @description Sección de competencias nacionales y presentaciones en 2026.
- * Estructura limpia, sin cajas anidadas y con fotografías suavemente redondeadas.
+ * @description Sección compacta de competencias nacionales y presentaciones en 2026.
  */
 
 import React, { useState } from 'react';
@@ -9,25 +8,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Award, MapPin, X } from 'lucide-react';
 import { competitions } from '../data/portfolioData';
 import { useSpotlight } from '../hooks/useSpotlight';
-import { usePortfolio } from '../context/PortfolioContext';
 
 export const CompetitionsSection = () => {
   const { handleMouseMove } = useSpotlight();
-  const { sound, trackEvent } = usePortfolio();
   const [activeImage, setActiveImage] = useState(null);
 
-  const handleImageClick = (img) => {
-    sound.playModalOpen();
-    trackEvent('competition_image_zoom', { caption: img.caption });
-    setActiveImage(img);
-  };
-
   return (
-    <section id="competencias-premios" style={{ padding: '4.5rem 0', position: 'relative' }}>
+    <section id="competencias-premios" style={{ padding: '2.5rem 0', position: 'relative' }}>
       <div className="site-container">
-        {/* Cabecera Limpia */}
-        <div style={{ marginBottom: '2.5rem' }}>
-          <div className="badge-pill status-active" style={{ marginBottom: '0.75rem' }}>
+        <div style={{ marginBottom: '1.5rem' }}>
+          <div className="badge-pill status-active" style={{ marginBottom: '0.5rem' }}>
             <Trophy size={14} />
             <span>Premios 2026</span>
           </div>
@@ -47,34 +37,33 @@ export const CompetitionsSection = () => {
           </h2>
         </div>
 
-        {/* Grilla de Competencias sin Cajas Internas */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))',
-            gap: '2rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '1.75rem'
           }}
         >
           {competitions.map((comp, idx) => (
             <motion.div
               key={comp.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.12 }}
+              transition={{ duration: 0.45, delay: idx * 0.1 }}
               className="spotlight-card"
               onMouseMove={handleMouseMove}
               style={{
-                padding: '1.85rem',
+                padding: '1.5rem',
                 borderRadius: '28px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                gap: '1.35rem'
+                gap: '1.1rem'
               }}
             >
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                   <span
                     className="badge-pill"
                     style={{
@@ -88,7 +77,7 @@ export const CompetitionsSection = () => {
                     <span>{comp.badge}</span>
                   </span>
 
-                  <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                     {comp.year}
                   </span>
                 </div>
@@ -96,50 +85,49 @@ export const CompetitionsSection = () => {
                 <h3
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: '1.5rem',
+                    fontSize: '1.38rem',
                     fontWeight: 600,
-                    lineHeight: 1.25,
-                    marginBottom: '0.35rem',
+                    lineHeight: 1.22,
+                    marginBottom: '0.3rem',
                     color: 'var(--text-primary)'
                   }}
                 >
                   {comp.title}
                 </h3>
 
-                <div style={{ fontSize: '0.94rem', color: 'var(--accent-blue)', fontWeight: 700, marginBottom: '0.45rem' }}>
+                <div style={{ fontSize: '0.9rem', color: 'var(--accent-blue)', fontWeight: 700, marginBottom: '0.35rem' }}>
                   {comp.award}
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '0.9rem' }}>
-                  <MapPin size={14} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '0.65rem' }}>
+                  <MapPin size={13} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
                   <span>{comp.organization}</span>
                 </div>
 
-                <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
-                  {comp.summary} {comp.defense}
+                <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.58 }}>
+                  {comp.summary}
                 </p>
               </div>
 
-              {/* Galería Redondeada de Fotos del Evento */}
               <div
                 style={{
                   display: 'grid',
                   gridTemplateColumns: `repeat(${comp.gallery.length}, 1fr)`,
-                  gap: '0.75rem'
+                  gap: '0.65rem'
                 }}
               >
                 {comp.gallery.map((img, i) => (
                   <div
                     key={i}
-                    onClick={() => handleImageClick(img)}
+                    onClick={() => setActiveImage(img)}
                     style={{
                       position: 'relative',
-                      height: '125px',
-                      borderRadius: '18px',
+                      height: '110px',
+                      borderRadius: '16px',
                       overflow: 'hidden',
                       cursor: 'zoom-in',
                       backgroundColor: 'var(--bg-secondary)',
-                      boxShadow: '0 6px 16px rgba(20, 44, 76, 0.06)'
+                      boxShadow: '0 4px 12px rgba(20, 44, 76, 0.06)'
                     }}
                     title="Toca para ampliar"
                     data-cursor="Ampliar"
@@ -165,7 +153,6 @@ export const CompetitionsSection = () => {
         </div>
       </div>
 
-      {/* Lightbox Modal Suave */}
       <AnimatePresence>
         {activeImage && (
           <div
@@ -190,8 +177,8 @@ export const CompetitionsSection = () => {
                 position: 'absolute',
                 top: '1.5rem',
                 right: '1.5rem',
-                width: '44px',
-                height: '44px',
+                width: '42px',
+                height: '42px',
                 borderRadius: '50%',
                 backgroundColor: '#ffffff',
                 border: 'none',
@@ -224,7 +211,7 @@ export const CompetitionsSection = () => {
             <p
               style={{
                 marginTop: '1rem',
-                fontSize: '0.95rem',
+                fontSize: '0.94rem',
                 color: '#ffffff',
                 textAlign: 'center',
                 maxWidth: '680px'

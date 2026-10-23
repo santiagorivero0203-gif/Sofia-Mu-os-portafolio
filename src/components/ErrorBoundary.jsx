@@ -1,7 +1,6 @@
 /**
  * @file ErrorBoundary.jsx
- * @description Límite de error de React con diseño refinado acorde a la estética del portafolio.
- * Captura excepciones imprevistas en el árbol de componentes y ofrece una acción de recuperación.
+ * @description Límite de error de React acorde a la paleta Azul Pastel Claro y Amarillo Cálido.
  */
 
 import React from 'react';
@@ -10,11 +9,11 @@ import { RefreshCw, AlertTriangle } from 'lucide-react';
 export class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
-    return { hasError: true, error };
+  static getDerivedStateFromError() {
+    return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
@@ -22,7 +21,7 @@ export class ErrorBoundary extends React.Component {
   }
 
   handleReset = () => {
-    this.setState({ hasError: false, error: null });
+    this.setState({ hasError: false });
     window.location.reload();
   };
 
@@ -35,58 +34,57 @@ export class ErrorBoundary extends React.Component {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#0b0c10',
-            color: '#f5f4f0',
+            backgroundColor: '#d9eafa',
+            color: '#142c4c',
             padding: '2rem',
             textAlign: 'center'
           }}
         >
           <div
             style={{
-              maxWidth: '520px',
-              padding: '2.5rem',
-              borderRadius: '24px',
-              backgroundColor: 'rgba(255, 255, 255, 0.03)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.6)'
+              maxWidth: '480px',
+              padding: '2.25rem',
+              borderRadius: '28px',
+              backgroundColor: '#ffffff',
+              boxShadow: '0 20px 50px rgba(20, 44, 76, 0.12)'
             }}
           >
             <div
               style={{
-                width: '56px',
-                height: '56px',
+                width: '52px',
+                height: '52px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(239, 68, 68, 0.15)',
-                color: '#f87171',
+                backgroundColor: '#ffe047',
+                color: '#142c4c',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                margin: '0 auto 1.5rem auto'
+                margin: '0 auto 1.25rem auto'
               }}
             >
-              <AlertTriangle size={28} />
+              <AlertTriangle size={24} />
             </div>
 
             <h2
               style={{
                 fontFamily: 'var(--font-display, serif)',
-                fontSize: '1.75rem',
-                marginBottom: '0.75rem',
-                fontWeight: 500
+                fontSize: '1.6rem',
+                marginBottom: '0.6rem',
+                fontWeight: 600
               }}
             >
-              Interrupción Temporal
+              Recarga necesaria
             </h2>
 
             <p
               style={{
-                fontSize: '0.95rem',
-                color: 'rgba(255, 255, 255, 0.7)',
+                fontSize: '0.94rem',
+                color: '#345278',
                 lineHeight: 1.6,
-                marginBottom: '2rem'
+                marginBottom: '1.5rem'
               }}
             >
-              Ha ocurrido un detalle inesperado al procesar la vista. Puedes reiniciar la interfaz de forma segura.
+              Ocurrió un inconveniente temporal al mostrar la vista. Haz clic abajo para recargar la página.
             </p>
 
             <button
@@ -95,18 +93,18 @@ export class ErrorBoundary extends React.Component {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                padding: '0.8rem 1.75rem',
+                padding: '0.75rem 1.5rem',
                 borderRadius: '9999px',
-                backgroundColor: '#d4af37',
-                color: '#000',
+                backgroundColor: '#ffe047',
+                color: '#142c4c',
                 border: 'none',
-                fontWeight: 600,
+                fontWeight: 700,
                 fontSize: '0.9rem',
                 cursor: 'pointer'
               }}
             >
               <RefreshCw size={16} />
-              <span>Restablecer Portafolio</span>
+              <span>Recargar Portafolio</span>
             </button>
           </div>
         </div>

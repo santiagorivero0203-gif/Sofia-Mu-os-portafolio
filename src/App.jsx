@@ -1,11 +1,7 @@
 /**
  * @file App.jsx
- * @description Orquestador raíz de la aplicación para el portafolio de Sofia Muñoz.
- * Integra:
- * - Capa de ErrorBoundary para tolerancia ante fallos de renderizado.
- * - Proveedor de contexto global PortfolioProvider.
- * - Desplazamiento inercial ultra-fluido con Lenis y sincronización de ScrollSpy.
- * - Preloader cinematográfico inicial y cursor contextual.
+ * @description Orquestador raíz del portafolio de Sofia Muñoz.
+ * Estructura compacta de 4 secciones clave para lectura ágil de reclutadores.
  */
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -20,16 +16,12 @@ import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
 import { CompetitionsSection } from './components/CompetitionsSection';
 import { About } from './components/About';
-import { SkillsGrid } from './components/SkillsGrid';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { PortfolioPDF } from './components/PortfolioPDF';
 import { useScrollSpy } from './hooks/useScrollSpy';
 
-/**
- * Componente interno conectado al contexto para coordinar scroll inercial y navegación activa
- */
 const AppContent = () => {
   const [loading, setLoading] = useState(true);
   const [lenis, setLenis] = useState(null);
@@ -37,22 +29,20 @@ const AppContent = () => {
 
   const { selectedProject, isPdfOpen, closePdfModal, setActiveSection } = usePortfolio();
 
-  // ScrollSpy para detectar la sección activa en el menú
   useScrollSpy(
-    ['inicio', 'proyectos', 'competencias-premios', 'sobre-mi', 'habilidades', 'contacto'],
+    ['inicio', 'proyectos', 'competencias-premios', 'sobre-mi', 'contacto'],
     setActiveSection,
-    180
+    160
   );
 
-  // Inicialización de Lenis Smooth Scroll
   useEffect(() => {
     const lenisInstance = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.95,
+      wheelMultiplier: 1,
       touchMultiplier: 1.4,
       infinite: false
     });
@@ -73,7 +63,6 @@ const AppContent = () => {
     };
   }, []);
 
-  // Bloqueo del scroll suave cuando el modal de proyecto o de PDF se encuentra activo
   useEffect(() => {
     if (lenisRef.current) {
       if (selectedProject || isPdfOpen) {
@@ -87,36 +76,23 @@ const AppContent = () => {
   }, [selectedProject, isPdfOpen]);
 
   return (
-    <div className="relative min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-      {/* Capa de Grano Analógico SVG */}
+    <div style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', minHeight: '100vh' }}>
       <NoiseOverlay />
-
-      {/* Cursor Contextual Personalizado */}
       <CustomCursor />
-
-      {/* Pantalla de Carga Inicial Cinematográfica */}
       {loading && <Preloader onFinish={() => setLoading(false)} />}
 
-      {/* Navegación Flotante */}
       <Navbar lenisInstance={lenis} />
 
-      {/* Contenido Principal */}
       <main>
         <Hero lenisInstance={lenis} />
         <Projects />
         <CompetitionsSection />
         <About />
-        <SkillsGrid />
         <ContactSection />
       </main>
 
-      {/* Pie de Página */}
       <Footer lenisInstance={lenis} />
-
-      {/* Modal Detallado de Proyecto con Controles y Lightbox */}
       <ProjectModal />
-
-      {/* Dossier Ejecutivo Imprimible y Modal de Exportación en PDF */}
       <PortfolioPDF isOpen={isPdfOpen} onClose={closePdfModal} />
     </div>
   );

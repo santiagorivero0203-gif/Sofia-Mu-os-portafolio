@@ -22,8 +22,7 @@ export const ProjectModal = () => {
     nextProject,
     prevProject,
     currentProjectIndex,
-    totalProjects,
-    trackEvent
+    totalProjects
   } = usePortfolio();
 
   const [activeImageZoom, setActiveImageZoom] = useState(null);
@@ -55,27 +54,26 @@ export const ProjectModal = () => {
           style={{
             position: 'relative',
             width: '100%',
-            maxWidth: '940px',
+            maxWidth: '900px',
             maxHeight: '90vh',
             overflowY: 'auto',
             backgroundColor: '#eaf3fd',
             border: '1px solid rgba(255, 255, 255, 0.95)',
             borderRadius: '28px',
-            padding: '2.25rem',
+            padding: '2rem',
             color: 'var(--text-primary)',
             boxShadow: '0 25px 60px rgba(20, 44, 76, 0.22)'
           }}
         >
-          {/* Barra Superior Limpia */}
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: '1.75rem'
+              marginBottom: '1.5rem'
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
               <button
                 onClick={prevProject}
                 aria-label="Proyecto anterior"
@@ -83,13 +81,13 @@ export const ProjectModal = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.3rem',
-                  padding: '0.5rem 1rem',
+                  padding: '0.45rem 0.95rem',
                   borderRadius: '999px',
                   backgroundColor: '#ffffff',
                   border: 'none',
                   color: 'var(--text-primary)',
                   cursor: 'pointer',
-                  fontSize: '0.82rem',
+                  fontSize: '0.8rem',
                   fontWeight: 600,
                   boxShadow: '0 4px 12px rgba(20, 44, 76, 0.06)'
                 }}
@@ -98,7 +96,7 @@ export const ProjectModal = () => {
                 <span>Anterior</span>
               </button>
 
-              <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 700, padding: '0 0.35rem' }}>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700, padding: '0 0.3rem' }}>
                 {currentProjectIndex + 1} / {totalProjects}
               </span>
 
@@ -109,13 +107,13 @@ export const ProjectModal = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.3rem',
-                  padding: '0.5rem 1rem',
+                  padding: '0.45rem 0.95rem',
                   borderRadius: '999px',
                   backgroundColor: '#ffffff',
                   border: 'none',
                   color: 'var(--text-primary)',
                   cursor: 'pointer',
-                  fontSize: '0.82rem',
+                  fontSize: '0.8rem',
                   fontWeight: 600,
                   boxShadow: '0 4px 12px rgba(20, 44, 76, 0.06)'
                 }}
@@ -129,8 +127,8 @@ export const ProjectModal = () => {
               onClick={closeProjectModal}
               aria-label="Cerrar ventana"
               style={{
-                width: '40px',
-                height: '40px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '50%',
                 backgroundColor: '#ffffff',
                 border: 'none',
@@ -146,9 +144,8 @@ export const ProjectModal = () => {
             </button>
           </div>
 
-          {/* Cabecera del Proyecto */}
-          <div style={{ marginBottom: '2rem' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center', marginBottom: '0.75rem' }}>
+          <div style={{ marginBottom: '1.65rem' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center', marginBottom: '0.65rem' }}>
               <span className="badge-pill status-active">{selectedProject.category}</span>
               <span className="badge-pill">{selectedProject.role}</span>
             </div>
@@ -156,28 +153,27 @@ export const ProjectModal = () => {
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.85rem, 3vw, 2.6rem)',
+                fontSize: 'clamp(1.75rem, 2.8vw, 2.4rem)',
                 fontWeight: 600,
                 lineHeight: 1.18,
-                marginBottom: '0.65rem'
+                marginBottom: '0.55rem'
               }}
             >
               {selectedProject.title}
             </h2>
 
-            <p style={{ fontSize: '1.04rem', color: 'var(--text-secondary)', lineHeight: 1.7, maxWidth: '780px' }}>
+            <p style={{ fontSize: '0.98rem', color: 'var(--text-secondary)', lineHeight: 1.65, maxWidth: '760px' }}>
               {selectedProject.overview}
             </p>
 
             {selectedProject.link && (
-              <div style={{ marginTop: '1.25rem' }}>
+              <div style={{ marginTop: '1.1rem' }}>
                 <a
                   href={selectedProject.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-magnetic btn-gold"
-                  style={{ padding: '0.65rem 1.35rem', fontSize: '0.86rem' }}
-                  onClick={() => trackEvent('external_link_click', { project: selectedProject.id, url: selectedProject.link })}
+                  style={{ padding: '0.6rem 1.25rem', fontSize: '0.84rem' }}
                 >
                   <ExternalLink size={16} />
                   <span>
@@ -188,48 +184,46 @@ export const ProjectModal = () => {
             )}
           </div>
 
-          {/* Bloque Unificado de Logros y Aportes */}
           <div
             style={{
               backgroundColor: 'rgba(255, 255, 255, 0.85)',
-              borderRadius: '24px',
-              padding: '1.75rem',
-              marginBottom: '2rem'
+              borderRadius: '22px',
+              padding: '1.5rem',
+              marginBottom: '1.65rem'
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
-              <Award size={19} style={{ color: 'var(--accent-gold)' }} />
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 700 }}>Aportes y resultados logrados</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.85rem', color: 'var(--text-primary)' }}>
+              <Award size={18} style={{ color: 'var(--accent-gold)' }} />
+              <h3 style={{ fontSize: '1.08rem', fontWeight: 700 }}>Aportes y resultados logrados</h3>
             </div>
 
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '0.85rem' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '0.75rem' }}>
               {selectedProject.achievements.map((item, i) => (
                 <li
                   key={i}
                   style={{
                     display: 'flex',
                     alignItems: 'flex-start',
-                    gap: '0.6rem',
-                    fontSize: '0.94rem',
+                    gap: '0.55rem',
+                    fontSize: '0.9rem',
                     color: 'var(--text-secondary)',
-                    lineHeight: 1.55
+                    lineHeight: 1.5
                   }}
                 >
-                  <CheckCircle size={16} style={{ color: 'var(--accent-blue)', flexShrink: 0, marginTop: '0.2rem' }} />
+                  <CheckCircle size={15} style={{ color: 'var(--accent-blue)', flexShrink: 0, marginTop: '0.2rem' }} />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Galería de Fotos Redondeadas */}
           <div>
             <h3
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.35rem',
+                fontSize: '1.25rem',
                 fontWeight: 600,
-                marginBottom: '1rem'
+                marginBottom: '0.85rem'
               }}
             >
               Fotos del proyecto ({selectedProject.gallery.length})
@@ -238,8 +232,8 @@ export const ProjectModal = () => {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                gap: '1rem'
+                gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                gap: '0.85rem'
               }}
             >
               {selectedProject.gallery.map((img, i) => (
@@ -248,12 +242,12 @@ export const ProjectModal = () => {
                   onClick={() => setActiveImageZoom(img)}
                   style={{
                     position: 'relative',
-                    borderRadius: '20px',
+                    borderRadius: '18px',
                     overflow: 'hidden',
                     backgroundColor: '#ffffff',
                     cursor: 'zoom-in',
                     aspectRatio: '16/10',
-                    boxShadow: '0 6px 18px rgba(20, 44, 76, 0.08)'
+                    boxShadow: '0 6px 16px rgba(20, 44, 76, 0.07)'
                   }}
                 >
                   <img
@@ -274,7 +268,6 @@ export const ProjectModal = () => {
           </div>
         </motion.div>
 
-        {/* Visor de Imagen Ampliada */}
         <AnimatePresence>
           {activeImageZoom && (
             <div
@@ -294,12 +287,13 @@ export const ProjectModal = () => {
             >
               <button
                 onClick={() => setActiveImageZoom(null)}
+                aria-label="Cerrar imagen"
                 style={{
                   position: 'absolute',
                   top: '1.5rem',
                   right: '1.5rem',
-                  width: '44px',
-                  height: '44px',
+                  width: '42px',
+                  height: '42px',
                   borderRadius: '50%',
                   backgroundColor: '#ffffff',
                   border: 'none',
@@ -331,7 +325,7 @@ export const ProjectModal = () => {
               <p
                 style={{
                   marginTop: '1rem',
-                  fontSize: '0.95rem',
+                  fontSize: '0.94rem',
                   color: '#ffffff',
                   textAlign: 'center',
                   maxWidth: '680px'

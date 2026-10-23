@@ -1,14 +1,12 @@
 /**
  * @file PortfolioPDF.jsx
- * @description Vista previa y descarga directa del Portafolio en PDF con estilo Azul Pastel Claro,
- * tarjetas blancas redondeadas y acentos en Amarillo Cálido (#FFE047).
+ * @description Vista previa y descarga directa en 1 clic del Portafolio en PDF.
  */
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Download,
-  Printer,
   X,
   FileText,
   Check,
@@ -18,22 +16,17 @@ import {
 } from 'lucide-react';
 import { personalInfo, projects, skillCategories, competitions } from '../data/portfolioData';
 import { generateStyledPortfolioPDF } from '../utils/generateStyledPDF';
-import { usePortfolio } from '../context/PortfolioContext';
 
 export const PortfolioPDF = ({ isOpen, onClose }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
-  const { sound, trackEvent } = usePortfolio();
 
   const handleDirectDownload = async () => {
     try {
       setIsGenerating(true);
-      sound.playClick();
-      trackEvent('pdf_direct_download');
       await generateStyledPortfolioPDF();
       setIsGenerating(false);
       setDownloaded(true);
-      sound.playSuccess();
       setTimeout(() => setDownloaded(false), 3500);
     } catch (err) {
       console.error('Error generando PDF:', err);
@@ -42,17 +35,12 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
     }
   };
 
-  const handlePrint = () => {
-    sound.playClick();
-    window.print();
-  };
-
   const StyledSheetContent = () => (
     <div
       style={{
         backgroundColor: '#d9eafa',
         color: '#142c4c',
-        padding: '1.5rem',
+        padding: '1.35rem',
         borderRadius: '24px',
         fontFamily: 'var(--font-sans)'
       }}
@@ -61,9 +49,9 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
       <div
         style={{
           backgroundColor: '#ffffff',
-          borderRadius: '22px',
-          padding: '1.35rem',
-          marginBottom: '1.25rem',
+          borderRadius: '20px',
+          padding: '1.2rem',
+          marginBottom: '1rem',
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'space-between',
@@ -72,11 +60,11 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
           boxShadow: '0 8px 24px rgba(20, 44, 76, 0.05)'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: '1 1 300px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', flex: '1 1 280px' }}>
           <div
             style={{
-              width: '50px',
-              height: '50px',
+              width: '46px',
+              height: '46px',
               borderRadius: '50%',
               backgroundColor: '#ffe047',
               color: '#142c4c',
@@ -84,7 +72,7 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
               alignItems: 'center',
               justifyContent: 'center',
               fontFamily: 'var(--font-display)',
-              fontSize: '1.3rem',
+              fontSize: '1.2rem',
               fontWeight: 700,
               flexShrink: 0
             }}
@@ -95,7 +83,7 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.55rem',
+                fontSize: '1.45rem',
                 fontWeight: 700,
                 margin: 0,
                 lineHeight: 1.15,
@@ -106,15 +94,15 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
             </h2>
             <div
               style={{
-                fontSize: '0.82rem',
+                fontSize: '0.8rem',
                 fontWeight: 700,
                 color: '#2563eb',
-                marginTop: '0.2rem'
+                marginTop: '0.15rem'
               }}
             >
               Asesora de Ventas • Creadora de Contenido • Embajadora de Marca
             </div>
-            <p style={{ fontSize: '0.86rem', color: '#345278', margin: '0.3rem 0 0 0', lineHeight: 1.45 }}>
+            <p style={{ fontSize: '0.84rem', color: '#345278', margin: '0.25rem 0 0 0', lineHeight: 1.4 }}>
               {personalInfo.statement}
             </p>
           </div>
@@ -123,17 +111,17 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
         <div
           style={{
             backgroundColor: '#eaf3fd',
-            borderRadius: '18px',
-            padding: '0.85rem 1.1rem',
-            fontSize: '0.8rem',
-            minWidth: '215px'
+            borderRadius: '16px',
+            padding: '0.75rem 1rem',
+            fontSize: '0.78rem',
+            minWidth: '210px'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.25rem', color: '#142c4c', fontWeight: 600 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem', color: '#142c4c', fontWeight: 600 }}>
             <Mail size={13} style={{ color: '#2563eb' }} />
             <span>{personalInfo.contact.email}</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.45rem', color: '#142c4c', fontWeight: 600 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.4rem', color: '#142c4c', fontWeight: 600 }}>
             <Phone size={13} style={{ color: '#2563eb' }} />
             <span>WhatsApp: {personalInfo.contact.phoneFormatted}</span>
           </div>
@@ -142,8 +130,8 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
               backgroundColor: '#ffe047',
               color: '#142c4c',
               fontWeight: 700,
-              fontSize: '0.72rem',
-              padding: '0.25rem 0.65rem',
+              fontSize: '0.7rem',
+              padding: '0.2rem 0.6rem',
               borderRadius: '999px',
               textAlign: 'center'
             }}
@@ -154,26 +142,26 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
       </div>
 
       {/* 2. Proyectos Destacados */}
-      <div style={{ marginBottom: '1.25rem' }}>
-        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', margin: '0 0 0.75rem 0', color: '#142c4c' }}>
+      <div style={{ marginBottom: '1rem' }}>
+        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', margin: '0 0 0.6rem 0', color: '#142c4c' }}>
           Proyectos Destacados (2026)
         </h3>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '0.85rem' }}>
           {projects.map((proj) => (
             <div
               key={proj.id}
               style={{
                 backgroundColor: '#ffffff',
-                borderRadius: '20px',
-                padding: '1rem',
+                borderRadius: '18px',
+                padding: '0.9rem',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '0.6rem',
+                gap: '0.5rem',
                 boxShadow: '0 6px 18px rgba(20, 44, 76, 0.04)'
               }}
             >
-              <div style={{ position: 'relative', height: '120px', borderRadius: '14px', overflow: 'hidden' }}>
+              <div style={{ position: 'relative', height: '110px', borderRadius: '12px', overflow: 'hidden' }}>
                 <img
                   src={proj.featuredCover}
                   alt={proj.title}
@@ -182,13 +170,13 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                 <span
                   style={{
                     position: 'absolute',
-                    top: '0.5rem',
-                    left: '0.5rem',
+                    top: '0.45rem',
+                    left: '0.45rem',
                     backgroundColor: '#ffe047',
                     color: '#142c4c',
-                    fontSize: '0.68rem',
+                    fontSize: '0.66rem',
                     fontWeight: 700,
-                    padding: '0.2rem 0.6rem',
+                    padding: '0.18rem 0.55rem',
                     borderRadius: '999px'
                   }}
                 >
@@ -197,18 +185,18 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
               </div>
 
               <div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.12rem', fontWeight: 700, color: '#142c4c' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.08rem', fontWeight: 700, color: '#142c4c' }}>
                   {proj.title}
                 </div>
-                <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#2563eb', marginBottom: '0.3rem' }}>
+                <div style={{ fontSize: '0.76rem', fontWeight: 700, color: '#2563eb', marginBottom: '0.25rem' }}>
                   {proj.role} • {proj.year}
                 </div>
-                <p style={{ fontSize: '0.82rem', color: '#345278', lineHeight: 1.45, margin: '0 0 0.45rem 0' }}>
+                <p style={{ fontSize: '0.8rem', color: '#345278', lineHeight: 1.4, margin: '0 0 0.4rem 0' }}>
                   {proj.overview}
                 </p>
-                <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '0.78rem', color: '#142c4c', lineHeight: 1.45 }}>
+                <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '0.76rem', color: '#142c4c', lineHeight: 1.4 }}>
                   {proj.achievements.map((ach, i) => (
-                    <li key={i} style={{ marginBottom: '0.15rem' }}>
+                    <li key={i} style={{ marginBottom: '0.1rem' }}>
                       {ach}
                     </li>
                   ))}
@@ -220,21 +208,21 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
       </div>
 
       {/* 3. Premios y Competencias */}
-      <div style={{ marginBottom: '1.25rem' }}>
-        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', margin: '0 0 0.75rem 0', color: '#142c4c' }}>
+      <div style={{ marginBottom: '1rem' }}>
+        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', margin: '0 0 0.6rem 0', color: '#142c4c' }}>
           Premios y Competencias (2026)
         </h3>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '0.85rem' }}>
           {competitions.map((comp) => (
             <div
               key={comp.id}
               style={{
                 backgroundColor: '#ffffff',
-                borderRadius: '20px',
-                padding: '0.9rem',
+                borderRadius: '18px',
+                padding: '0.8rem',
                 display: 'flex',
-                gap: '0.85rem',
+                gap: '0.75rem',
                 alignItems: 'center',
                 boxShadow: '0 6px 18px rgba(20, 44, 76, 0.04)'
               }}
@@ -243,10 +231,10 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                 src={comp.coverImage}
                 alt={comp.title}
                 style={{
-                  width: '84px',
-                  height: '84px',
+                  width: '76px',
+                  height: '76px',
                   objectFit: 'cover',
-                  borderRadius: '14px',
+                  borderRadius: '12px',
                   flexShrink: 0
                 }}
               />
@@ -256,22 +244,22 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                     display: 'inline-block',
                     backgroundColor: '#ffe047',
                     color: '#142c4c',
-                    fontSize: '0.66rem',
+                    fontSize: '0.64rem',
                     fontWeight: 700,
-                    padding: '0.15rem 0.55rem',
+                    padding: '0.12rem 0.5rem',
                     borderRadius: '999px',
-                    marginBottom: '0.25rem'
+                    marginBottom: '0.2rem'
                   }}
                 >
                   {comp.badge}
                 </span>
-                <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#142c4c', lineHeight: 1.2 }}>
+                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#142c4c', lineHeight: 1.2 }}>
                   {comp.title}
                 </div>
-                <div style={{ fontSize: '0.76rem', color: '#2563eb', fontWeight: 700, margin: '0.15rem 0' }}>
+                <div style={{ fontSize: '0.74rem', color: '#2563eb', fontWeight: 700, margin: '0.1rem 0' }}>
                   {comp.award}
                 </div>
-                <p style={{ fontSize: '0.76rem', color: '#345278', lineHeight: 1.4, margin: 0 }}>
+                <p style={{ fontSize: '0.74rem', color: '#345278', lineHeight: 1.35, margin: 0 }}>
                   {comp.summary}
                 </p>
               </div>
@@ -282,33 +270,33 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
 
       {/* 4. Habilidades Principales */}
       <div>
-        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', margin: '0 0 0.75rem 0', color: '#142c4c' }}>
+        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', margin: '0 0 0.6rem 0', color: '#142c4c' }}>
           Habilidades Principales
         </h3>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '0.85rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
           {skillCategories.map((cat, idx) => (
             <div
               key={idx}
               style={{
                 backgroundColor: '#ffffff',
-                borderRadius: '18px',
-                padding: '0.9rem',
+                borderRadius: '16px',
+                padding: '0.8rem',
                 boxShadow: '0 6px 18px rgba(20, 44, 76, 0.04)'
               }}
             >
-              <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#2563eb', marginBottom: '0.5rem' }}>
+              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#2563eb', marginBottom: '0.4rem' }}>
                 {cat.title}
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem' }}>
                 {cat.skills.map((s, si) => (
                   <span
                     key={si}
                     style={{
-                      fontSize: '0.74rem',
+                      fontSize: '0.72rem',
                       backgroundColor: '#eaf3fd',
                       color: '#142c4c',
-                      padding: '0.22rem 0.6rem',
+                      padding: '0.2rem 0.55rem',
                       borderRadius: '999px',
                       fontWeight: 600
                     }}
@@ -355,7 +343,7 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
               style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '920px',
+                maxWidth: '900px',
                 maxHeight: '92vh',
                 display: 'flex',
                 flexDirection: 'column',
@@ -366,7 +354,6 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                 boxShadow: '0 24px 60px rgba(20, 44, 76, 0.25)'
               }}
             >
-              {/* Barra Superior del Modal */}
               <div
                 style={{
                   display: 'flex',
@@ -374,37 +361,37 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   gap: '0.75rem',
-                  padding: '1.1rem 1.5rem',
+                  padding: '1rem 1.4rem',
                   backgroundColor: '#ffffff'
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <FileText size={20} style={{ color: 'var(--accent-blue)' }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+                  <FileText size={19} style={{ color: 'var(--accent-blue)' }} />
                   <div>
-                    <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0, color: 'var(--text-primary)' }}>
+                    <h3 style={{ fontSize: '1.02rem', fontWeight: 700, margin: 0, color: 'var(--text-primary)' }}>
                       Portafolio en PDF — Sofia Muñoz
                     </h3>
-                    <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
-                      Resumen visual en 1 página con la paleta azul pastel y amarillo
+                    <span style={{ fontSize: '0.76rem', color: 'var(--text-secondary)' }}>
+                      Resumen ejecutivo en 1 página A4 listo para descargar
                     </span>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
                   <button
                     onClick={handleDirectDownload}
                     disabled={isGenerating}
                     className="btn-magnetic btn-gold"
                     style={{
-                      padding: '0.55rem 1.2rem',
+                      padding: '0.5rem 1.15rem',
                       fontSize: '0.84rem',
                       opacity: isGenerating ? 0.8 : 1
                     }}
                   >
                     {isGenerating ? (
                       <>
-                        <Loader2 size={15} className="animate-spin" />
-                        <span>Creando PDF...</span>
+                        <Loader2 size={15} />
+                        <span>Generando PDF...</span>
                       </>
                     ) : downloaded ? (
                       <>
@@ -414,29 +401,17 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                     ) : (
                       <>
                         <Download size={15} />
-                        <span>Descargar PDF Directo</span>
+                        <span>Descargar PDF</span>
                       </>
                     )}
-                  </button>
-
-                  <button
-                    onClick={handlePrint}
-                    className="btn-magnetic btn-outline"
-                    style={{
-                      padding: '0.55rem 1rem',
-                      fontSize: '0.82rem'
-                    }}
-                  >
-                    <Printer size={15} />
-                    <span>Imprimir</span>
                   </button>
 
                   <button
                     onClick={onClose}
                     aria-label="Cerrar ventana"
                     style={{
-                      width: '38px',
-                      height: '38px',
+                      width: '36px',
+                      height: '36px',
                       borderRadius: '50%',
                       backgroundColor: 'var(--bg-secondary)',
                       border: 'none',
@@ -452,7 +427,7 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                 </div>
               </div>
 
-              <div style={{ padding: '1.25rem', overflowY: 'auto', flex: 1 }}>
+              <div style={{ padding: '1.15rem', overflowY: 'auto', flex: 1 }}>
                 <StyledSheetContent />
               </div>
             </motion.div>
