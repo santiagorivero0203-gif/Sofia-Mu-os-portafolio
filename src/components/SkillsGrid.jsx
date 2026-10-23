@@ -82,7 +82,7 @@ export const SkillsGrid = () => {
                     style={{
                       width: '42px',
                       height: '42px',
-                      borderRadius: '2px',
+                      borderRadius: '10px',
                       backgroundColor: 'var(--bg-secondary)',
                       border: '1px solid var(--border-subtle)',
                       display: 'flex',
@@ -124,8 +124,8 @@ export const SkillsGrid = () => {
                         style={{
                           fontSize: '0.75rem',
                           fontFamily: 'var(--font-mono)',
-                          padding: '0.2rem 0.55rem',
-                          borderRadius: '2px',
+                          padding: '0.2rem 0.65rem',
+                          borderRadius: '999px',
                           backgroundColor: 'var(--bg-secondary)',
                           border: '1px solid var(--border-subtle)',
                           color: 'var(--accent-gold)',

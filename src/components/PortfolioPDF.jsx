@@ -333,11 +333,11 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
                 maxHeight: '90vh',
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: '#0b1528',
+                backgroundColor: 'var(--bg-primary)',
                 border: '1px solid var(--accent-gold)',
-                borderRadius: '2px',
+                borderRadius: '18px',
                 overflow: 'hidden',
-                boxShadow: '10px 10px 0px #060b16'
+                boxShadow: '0 24px 60px rgba(20, 40, 68, 0.5)'
               }}
             >
               {/* Barra Superior del Modal */}

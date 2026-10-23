@@ -134,7 +134,7 @@ export const About = () => {
               <div
                 style={{
                   padding: '1.25rem',
-                  borderRadius: '2px',
+                  borderRadius: '12px',
                   backgroundColor: 'var(--bg-surface)',
                   border: '1px solid var(--border-subtle)'
                 }}
@@ -153,7 +153,7 @@ export const About = () => {
               <div
                 style={{
                   padding: '1.25rem',
-                  borderRadius: '2px',
+                  borderRadius: '12px',
                   backgroundColor: 'var(--bg-surface)',
                   border: '1px solid var(--border-subtle)'
                 }}
@@ -212,13 +212,13 @@ export const About = () => {
                     transition={{ duration: 0.5, delay: idx * 0.15 }}
                     style={{ display: 'flex', gap: '1.25rem', position: 'relative' }}
                   >
-                    {/* Punto cuadrado arquitectónico del timeline */}
+                    {/* Punto circular del timeline */}
                     <div
                       style={{
                         width: '24px',
                         height: '24px',
-                        borderRadius: '2px',
-                        backgroundColor: 'var(--bg-primary)',
+                        borderRadius: '50%',
+                        backgroundColor: 'var(--bg-secondary)',
                         border: `2px solid ${item.accent}`,
                         display: 'flex',
                         alignItems: 'center',
@@ -228,7 +228,7 @@ export const About = () => {
                         marginTop: '2px'
                       }}
                     >
-                      <div style={{ width: '8px', height: '8px', borderRadius: '0px', backgroundColor: item.accent }} />
+                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: item.accent }} />
                     </div>
 
                     {/* Contenido del hito */}

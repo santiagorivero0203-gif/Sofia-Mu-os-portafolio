@@ -94,7 +94,7 @@ export const ContactSection = () => {
             padding: 'clamp(2rem, 5vw, 4.5rem)',
             backgroundColor: 'var(--bg-secondary)',
             borderColor: 'var(--accent-gold)',
-            boxShadow: '10px 10px 0px #060b16'
+            boxShadow: '0 20px 50px rgba(24, 48, 82, 0.35)'
           }}
         >
           <div style={{ maxWidth: '840px', margin: '0 auto' }}>
@@ -184,13 +184,13 @@ export const ContactSection = () => {
                         setSelectedOpportunity(type);
                       }}
                       style={{
-                        padding: '0.55rem 1.1rem',
-                        borderRadius: '2px',
+                        padding: '0.55rem 1.15rem',
+                        borderRadius: '999px',
                         fontSize: '0.84rem',
                         fontWeight: isSelected ? 700 : 500,
                         backgroundColor: isSelected ? 'var(--accent-gold)' : 'var(--bg-surface)',
                         border: `1px solid ${isSelected ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                        color: isSelected ? '#0b1528' : 'var(--text-secondary)',
+                        color: isSelected ? '#1c3557' : 'var(--text-secondary)',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease'
                       }}
@@ -208,7 +208,7 @@ export const ContactSection = () => {
               style={{
                 backgroundColor: 'var(--bg-primary)',
                 border: '1px solid var(--border-subtle)',
-                borderRadius: '2px',
+                borderRadius: '14px',
                 padding: '1.5rem',
                 marginBottom: '2.5rem'
               }}
@@ -242,7 +242,7 @@ export const ContactSection = () => {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.9rem',
-                      borderRadius: '2px',
+                      borderRadius: '8px',
                       backgroundColor: 'var(--bg-secondary)',
                       border: '1px solid var(--border-subtle)',
                       color: 'var(--text-primary)',
@@ -273,7 +273,7 @@ export const ContactSection = () => {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.9rem',
-                      borderRadius: '2px',
+                      borderRadius: '8px',
                       backgroundColor: 'var(--bg-secondary)',
                       border: '1px solid var(--border-subtle)',
                       color: 'var(--text-primary)',
@@ -287,9 +287,9 @@ export const ContactSection = () => {
               {/* Vista Previa del Mensaje Estructurado */}
               <div
                 style={{
-                  backgroundColor: '#060b16',
+                  backgroundColor: 'var(--bg-secondary)',
                   border: '1px solid var(--border-subtle)',
-                  borderRadius: '2px',
+                  borderRadius: '8px',
                   padding: '0.85rem 1rem',
                   fontSize: '0.84rem',
                   color: 'var(--text-secondary)',
@@ -367,10 +367,10 @@ export const ContactSection = () => {
                   alignItems: 'center',
                   gap: '0.6rem',
                   padding: '0.65rem 1.25rem',
-                  borderRadius: '2px',
+                  borderRadius: '999px',
                   backgroundColor: copiedEmail ? 'var(--accent-gold)' : 'var(--bg-surface)',
                   border: `1px solid ${copiedEmail ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                  color: copiedEmail ? '#0b1528' : 'var(--text-primary)',
+                  color: copiedEmail ? '#1c3557' : 'var(--text-primary)',
                   fontSize: '0.86rem',
                   fontWeight: copiedEmail ? 700 : 500,
                   cursor: 'pointer',
@@ -378,10 +378,10 @@ export const ContactSection = () => {
                 }}
                 data-cursor="Copiar"
               >
-                <Mail size={15} style={{ color: copiedEmail ? '#0b1528' : 'var(--accent-gold)' }} />
+                <Mail size={15} style={{ color: copiedEmail ? '#1c3557' : 'var(--accent-gold)' }} />
                 <span style={{ fontFamily: 'var(--font-mono)' }}>{personalInfo.contact.email}</span>
                 {copiedEmail ? <Check size={14} /> : <Copy size={14} />}
-                <span style={{ fontSize: '0.78rem', color: copiedEmail ? '#0b1528' : 'var(--text-muted)' }}>
+                <span style={{ fontSize: '0.78rem', color: copiedEmail ? '#1c3557' : 'var(--text-muted)' }}>
                   {copiedEmail ? '¡Copiado!' : 'Copiar'}
                 </span>
               </button>
@@ -395,7 +395,7 @@ export const ContactSection = () => {
                     alignItems: 'center',
                     gap: '0.5rem',
                     padding: '0.65rem 1.1rem',
-                    borderRadius: '2px',
+                    borderRadius: '999px',
                     backgroundColor: 'var(--bg-surface)',
                     border: '1px solid var(--border-subtle)',
                     color: 'var(--text-primary)',
@@ -415,10 +415,10 @@ export const ContactSection = () => {
                   style={{
                     width: '38px',
                     height: '38px',
-                    borderRadius: '2px',
+                    borderRadius: '50%',
                     backgroundColor: copiedPhone ? 'var(--accent-gold)' : 'var(--bg-surface)',
                     border: `1px solid ${copiedPhone ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
-                    color: copiedPhone ? '#0b1528' : 'var(--text-primary)',
+                    color: copiedPhone ? '#1c3557' : 'var(--text-primary)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

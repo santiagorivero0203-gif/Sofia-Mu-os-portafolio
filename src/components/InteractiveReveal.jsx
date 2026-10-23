@@ -35,8 +35,8 @@ export const ShapeImageTag = ({
   const { sound, trackEvent } = usePortfolio();
 
   const isGold = accent === 'gold';
-  const mainColor = isGold ? 'var(--accent-gold)' : 'var(--accent-blue)';
-  const textColor = isGold ? '#0b1528' : '#ffffff';
+  const mainColor = isGold ? 'var(--accent-gold)' : 'var(--accent-blue-sky)';
+  const textColor = '#1c3557';
 
   const handleToggle = (e) => {
     e.stopPropagation();
@@ -77,15 +77,15 @@ export const ShapeImageTag = ({
           alignItems: 'center',
           gap: '0.4rem',
           padding: '0.2rem 0.6rem',
-          backgroundColor: isOpen ? mainColor : 'var(--bg-surface)',
+          backgroundColor: isOpen ? mainColor : 'var(--bg-secondary)',
           color: isOpen ? textColor : 'var(--text-primary)',
           border: `1px solid ${mainColor}`,
-          borderRadius: '2px',
+          borderRadius: '6px',
           fontFamily: 'var(--font-mono)',
           fontSize: '0.78rem',
           fontWeight: 700,
           cursor: 'pointer',
-          boxShadow: isOpen ? '3px 3px 0px #060b16' : 'none',
+          boxShadow: isOpen ? '0 6px 16px rgba(24, 48, 82, 0.35)' : 'none',
           transition: 'all 0.2s ease',
           lineHeight: 1.3
         }}
@@ -142,16 +142,16 @@ export const ShapeImageTag = ({
               bottom: 'calc(100% + 10px)',
               left: '0',
               width: '260px',
-              backgroundColor: '#0b1528',
+              backgroundColor: 'var(--bg-secondary)',
               border: `2px solid ${mainColor}`,
-              borderRadius: '2px',
-              boxShadow: '8px 8px 0px #060b16',
+              borderRadius: '12px',
+              boxShadow: '0 18px 40px rgba(20, 40, 68, 0.45)',
               zIndex: 80,
               overflow: 'hidden',
               cursor: 'pointer'
             }}
           >
-            <div style={{ position: 'relative', width: '100%', height: '155px', backgroundColor: '#060b16' }}>
+            <div style={{ position: 'relative', width: '100%', height: '155px', backgroundColor: 'var(--bg-primary)' }}>
               <img
                 src={imageSrc}
                 alt={caption}
@@ -234,11 +234,11 @@ export const ShapeDrawerReveal = ({
           display: 'inline-flex',
           alignItems: 'center',
           gap: '0.55rem',
-          padding: '0.4rem 0.8rem',
+          padding: '0.4rem 0.85rem',
           backgroundColor: revealed ? accentColor : 'var(--bg-secondary)',
-          color: revealed ? '#0b1528' : 'var(--text-primary)',
+          color: revealed ? '#1c3557' : 'var(--text-primary)',
           border: `1px solid ${revealed ? accentColor : 'var(--border-subtle)'}`,
-          borderRadius: '2px',
+          borderRadius: '8px',
           fontSize: '0.78rem',
           fontFamily: 'var(--font-mono)',
           fontWeight: 700,
@@ -254,7 +254,7 @@ export const ShapeDrawerReveal = ({
           style={{
             width: '8px',
             height: '8px',
-            backgroundColor: revealed ? '#0b1528' : accentColor,
+            backgroundColor: revealed ? '#1c3557' : accentColor,
             display: 'inline-block'
           }}
         />
@@ -273,10 +273,10 @@ export const ShapeDrawerReveal = ({
             <div
               style={{
                 border: `1px solid ${accentColor}`,
-                borderRadius: '2px',
-                backgroundColor: '#060b16',
+                borderRadius: '10px',
+                backgroundColor: 'var(--bg-primary)',
                 overflow: 'hidden',
-                boxShadow: '5px 5px 0px #060b16'
+                boxShadow: '0 10px 24px rgba(24, 48, 82, 0.3)'
               }}
             >
               <img
@@ -370,8 +370,8 @@ export const ShutterShapeGallery = () => {
         padding: '2rem',
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
-        borderRadius: '2px',
-        boxShadow: '8px 8px 0px #060b16'
+        borderRadius: '16px',
+        boxShadow: '0 16px 38px rgba(24, 48, 82, 0.3)'
       }}
     >
       {/* Cabecera explicativa simple */}
@@ -418,9 +418,9 @@ export const ShutterShapeGallery = () => {
                   alignItems: 'center',
                   gap: '0.45rem',
                   padding: '0.5rem 0.9rem',
-                  borderRadius: '2px',
+                  borderRadius: '8px',
                   backgroundColor: isSelected ? 'var(--accent-gold)' : 'var(--bg-surface)',
-                  color: isSelected ? '#0b1528' : 'var(--text-secondary)',
+                  color: isSelected ? '#1c3557' : 'var(--text-secondary)',
                   border: `1px solid ${isSelected ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.78rem',
@@ -451,9 +451,9 @@ export const ShutterShapeGallery = () => {
           style={{
             position: 'relative',
             height: '290px',
-            backgroundColor: '#060b16',
+            backgroundColor: 'var(--bg-primary)',
             border: '2px solid var(--accent-gold)',
-            borderRadius: '2px',
+            borderRadius: '12px',
             overflow: 'hidden'
           }}
         >

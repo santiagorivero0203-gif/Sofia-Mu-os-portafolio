@@ -6,35 +6,35 @@
  */
 
 :root {
-  /* Paleta Cromática: Azul Institucional MOVA & Amarillo Vibrante Sólido (Sin Degradados Neón / Cero AI Slop) */
-  --bg-primary: #0b1528;
-  --bg-secondary: #101e38;
-  --bg-surface: #132342;
-  --bg-surface-hover: #182b52;
-  --bg-surface-active: #1e3563;
+  /* Paleta Cromática: Azul Pastel Suave & Amarillo Luminoso (Cálida, Clara y Profesional) */
+  --bg-primary: #345b8c;
+  --bg-secondary: #2b4e7a;
+  --bg-surface: #3e689c;
+  --bg-surface-hover: #4875ad;
+  --bg-surface-active: #5282bd;
 
-  --border-subtle: #243b67;
-  --border-hover: #3b5a94;
-  --border-gold: #ffd60a;
-  --border-blue: #2e6ff2;
+  --border-subtle: rgba(190, 220, 255, 0.34);
+  --border-hover: rgba(255, 225, 53, 0.75);
+  --border-gold: #ffe135;
+  --border-blue: #8cc0ff;
 
-  --text-primary: #f4f7fc;
-  --text-secondary: #b0c0de;
-  --text-muted: #7289b5;
+  --text-primary: #ffffff;
+  --text-secondary: #e6f0fd;
+  --text-muted: #C2D9F7;
 
-  /* Amarillo Vibrante Sólido (Creatividad, Energía & Conversión Comercial) */
-  --accent-gold: #ffd60a;
-  --accent-gold-hover: #ffe03d;
-  --accent-gold-soft: rgba(255, 214, 10, 0.1);
-  --accent-yellow-light: #fff078;
+  /* Amarillo Luminoso y Pastel Cálido (Creatividad & Energía) */
+  --accent-gold: #ffe135;
+  --accent-gold-hover: #ffea66;
+  --accent-gold-soft: rgba(255, 225, 53, 0.18);
+  --accent-yellow-light: #fff394;
 
-  /* Azul Institucional MOVA (Profesionalismo, Estrategia & Tecnología) */
-  --accent-blue: #2e6ff2;
-  --accent-blue-deep: #1b4fd8;
-  --accent-blue-soft: rgba(46, 111, 242, 0.14);
-  --accent-blue-sky: #6ea0ff;
-  --accent-rose: #ffd60a;
-  --accent-rose-soft: rgba(255, 214, 10, 0.12);
+  /* Subtonos de Azul Pastel y Cielo */
+  --accent-blue: #68a8ff;
+  --accent-blue-deep: #4a90f0;
+  --accent-blue-soft: rgba(104, 168, 255, 0.22);
+  --accent-blue-sky: #a6ceff;
+  --accent-rose: #ffe135;
+  --accent-rose-soft: rgba(255, 225, 53, 0.18);
 
   /* Tipografías Editoriales */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -50,13 +50,13 @@
   --text-caption: 0.85rem;
   --text-xs: 0.75rem;
 
-  /* Espaciado y Geometría Editorial Arquitectónica (Evitando redondear todo) */
+  /* Jerarquía de Formas Equilibrada (Combinando curvas suaves, píldoras y bordes estructurados) */
   --container-max: 1240px;
-  --radius-sm: 0px;
-  --radius-md: 2px;
-  --radius-lg: 2px;
-  --radius-xl: 4px;
-  --radius-full: 2px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
 
   /* Transiciones y Físicas */
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
@@ -243,10 +243,10 @@ body {
 .spotlight-card:hover {
   border-color: var(--accent-gold);
   background: var(--bg-surface-hover);
-  box-shadow: 6px 6px 0px #060b16;
+  box-shadow: 0 14px 32px rgba(24, 48, 82, 0.35);
 }
 
-/* Botón Magnético / Editorial Rectangular */
+/* Botón Magnético / Editorial con Curva Equilibrada (10px) */
 .btn-magnetic {
   display: inline-flex;
   align-items: center;
@@ -267,19 +267,20 @@ body {
 }
 
 .btn-primary {
-  background: var(--accent-blue);
+  background: var(--bg-secondary);
   color: #ffffff;
-  border-color: var(--accent-blue);
+  border-color: var(--border-blue);
 }
 
 .btn-primary:hover {
-  background: var(--accent-blue-deep);
-  box-shadow: 4px 4px 0px var(--accent-gold);
-  transform: translate(-2px, -2px);
+  background: #234269;
+  border-color: var(--accent-gold);
+  box-shadow: 0 8px 20px rgba(24, 48, 82, 0.35);
+  transform: translateY(-2px);
 }
 
 .btn-outline {
-  background: var(--bg-secondary);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--text-primary);
   border: 1px solid var(--border-subtle);
 }
@@ -287,37 +288,36 @@ body {
 .btn-outline:hover {
   border-color: var(--accent-gold);
   color: var(--accent-gold);
-  background: var(--bg-surface);
-  box-shadow: 4px 4px 0px #060b16;
-  transform: translate(-2px, -2px);
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
 }
 
 .btn-gold {
   background: var(--accent-gold);
-  color: #0b1528;
+  color: #1c3557;
   font-weight: 800;
   border: 1px solid var(--accent-gold);
 }
 
 .btn-gold:hover {
   background: var(--accent-gold-hover);
-  box-shadow: 4px 4px 0px #2e6ff2;
-  transform: translate(-2px, -2px);
+  box-shadow: 0 8px 20px rgba(24, 48, 82, 0.3);
+  transform: translateY(-2px);
 }
 
-/* Etiquetas Editoriales Rectangulares (Sin píldoras redondeadas) */
+/* Etiquetas tipo Píldora Suave (donde la forma redondeada luce mejor) */
 .badge-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.35rem 0.75rem;
+  padding: 0.35rem 0.85rem;
   font-family: var(--font-mono);
   font-size: 0.74rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   line-height: 1.2;
-  border-radius: var(--radius-md);
-  background: var(--bg-secondary);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.1);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
 }
@@ -325,13 +325,13 @@ body {
 .badge-pill.status-active {
   border-color: var(--accent-gold);
   color: var(--accent-gold);
-  background: rgba(255, 214, 10, 0.08);
+  background: rgba(255, 225, 53, 0.14);
 }
 
 .status-dot {
   width: 7px;
   height: 7px;
-  border-radius: 0px;
+  border-radius: 50%;
   background-color: var(--accent-gold);
 }
 

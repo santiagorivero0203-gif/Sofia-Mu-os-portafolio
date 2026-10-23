@@ -35,7 +35,7 @@ export const Preloader = ({ onFinish }) => {
     <AnimatePresence>
       {!isCompleted && (
         <motion.div
-          className="fixed inset-0 z-[100000] flex flex-col justify-between p-8 md:p-16 bg-[#0b1528] text-[#f4f7fc]"
+          className="fixed inset-0 z-[100000] flex flex-col justify-between p-8 md:p-16"
           style={{
             position: 'fixed',
             inset: 0,
@@ -44,9 +44,9 @@ export const Preloader = ({ onFinish }) => {
             flexDirection: 'column',
             justifyContent: 'space-between',
             padding: '2.5rem',
-            backgroundColor: '#0b1528',
-            color: '#f4f7fc',
-            borderBottom: '2px solid var(--accent-gold)'
+            backgroundColor: 'var(--bg-secondary)',
+            color: 'var(--text-primary)',
+            borderBottom: '3px solid var(--accent-gold)'
           }}
           initial={{ y: 0 }}
           exit={{

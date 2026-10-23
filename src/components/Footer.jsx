@@ -63,8 +63,8 @@ export const Footer = ({ lenisInstance }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.4rem',
-                padding: '0.5rem 0.85rem',
-                borderRadius: '2px',
+                padding: '0.5rem 0.9rem',
+                borderRadius: '8px',
                 backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
                 color: soundEnabled ? 'var(--accent-gold)' : 'var(--text-muted)',
@@ -88,11 +88,11 @@ export const Footer = ({ lenisInstance }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                padding: '0.5rem 0.95rem',
-                borderRadius: '2px',
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
                 backgroundColor: 'var(--accent-gold)',
                 border: '1px solid var(--accent-gold)',
-                color: '#0b1528',
+                color: '#1c3557',
                 fontSize: '0.8rem',
                 fontWeight: 700,
                 textDecoration: 'none',
@@ -110,10 +110,10 @@ export const Footer = ({ lenisInstance }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                padding: '0.5rem 0.95rem',
-                borderRadius: '2px',
-                backgroundColor: 'var(--accent-blue)',
-                border: '1px solid var(--accent-blue)',
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
+                backgroundColor: 'var(--bg-secondary)',
+                border: '1px solid var(--border-blue)',
                 color: '#ffffff',
                 fontSize: '0.8rem',
                 fontWeight: 700,
@@ -132,8 +132,8 @@ export const Footer = ({ lenisInstance }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                padding: '0.5rem 0.95rem',
-                borderRadius: '2px',
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
                 backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
                 color: 'var(--text-primary)',
@@ -143,7 +143,7 @@ export const Footer = ({ lenisInstance }) => {
                 transition: 'all 0.2s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#0b1528';
+                e.currentTarget.style.color = '#1c3557';
                 e.currentTarget.style.backgroundColor = 'var(--accent-gold)';
                 e.currentTarget.style.borderColor = 'var(--accent-gold)';
               }}

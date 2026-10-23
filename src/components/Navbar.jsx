@@ -71,10 +71,12 @@ export const Navbar = ({ lenisInstance }) => {
           justifyContent: 'space-between',
           gap: '1.5rem',
           padding: '0.75rem 1.5rem',
-          borderRadius: '2px',
-          background: scrolled ? '#0b1528' : '#101e38',
+          borderRadius: '14px',
+          background: scrolled ? 'rgba(43, 78, 122, 0.94)' : 'rgba(62, 104, 156, 0.88)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
           border: '1px solid var(--border-subtle)',
-          boxShadow: scrolled ? '4px 4px 0px #060b16' : 'none',
+          boxShadow: scrolled ? '0 10px 28px rgba(24, 48, 82, 0.28)' : 'none',
           transition: 'background 0.25s ease, box-shadow 0.25s ease',
           maxWidth: '960px',
           width: '100%'
@@ -160,7 +162,7 @@ export const Navbar = ({ lenisInstance }) => {
           style={{
             width: '36px',
             height: '36px',
-            borderRadius: '2px',
+            borderRadius: '8px',
             backgroundColor: 'var(--bg-surface)',
             border: '1px solid var(--border-subtle)',
             color: 'var(--text-primary)',
@@ -189,11 +191,11 @@ export const Navbar = ({ lenisInstance }) => {
               top: '4.2rem',
               left: '1rem',
               right: '1rem',
-              backgroundColor: '#0b1528',
+              backgroundColor: 'var(--bg-secondary)',
               border: '1px solid var(--accent-gold)',
-              borderRadius: '2px',
+              borderRadius: '14px',
               padding: '1.25rem 1.5rem',
-              boxShadow: '8px 8px 0px #060b16',
+              boxShadow: '0 18px 40px rgba(24, 48, 82, 0.45)',
               zIndex: 49
             }}
           >

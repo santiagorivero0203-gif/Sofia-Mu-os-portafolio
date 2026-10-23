@@ -229,3 +229,19 @@ Quita palabras complejas como dossier pdf,y evita confundir las cosas ,aparecen 
      - Se eliminó `"Dossier"` / `"Dossier Ejecutivo"` en `PortfolioPDF.jsx`, `Hero.jsx` y `Footer.jsx`, reemplazándolo por **"Portafolio en PDF"** / **"Descargar PDF"**.
      - Se eliminaron menciones técnicas como `"Vercel"`, `"Beta V2.0"`, `"en vivo"`, `"Social Selling"`, `"Retail"`, `"Pitch"`, `"Bento"` y `"Evidencias"` en `portfolioData.js`, `Hero.jsx`, `Projects.jsx`, `ProjectModal.jsx`, `CompetitionsSection.jsx`, `About.jsx`, `SkillsGrid.jsx`, `ContactSection.jsx` e `InteractiveReveal.jsx`.
      - Ahora los botones y textos dicen frases 100% claras y cotidianas como **"Ir a la página web de MOVA"**, **"Ver Instagram de Meraki"**, **"Ver fotos"**, **"Tarjetas / Lista"** y **"Ventas por redes sociales"**.
+
+---
+
+### Prompt 20 — Paleta Azul Más Pastel y Equilibrio Inteligente de Formas (Curvas vs. Rectas)
+- **Fecha y Hora:** 2026-10-23 18:35:02 (-04:00)
+- **Contenido:**
+```text
+Y aun creo que el color es muy oscuro quisiera un azul mas pastel, y cuando dije que no hagas todo rounded no es lit todo revisa que queda mejor con una o con otra forma, las animaciones me estan gustando por ahora.
+```
+- **Acción realizada:**
+  1. **Paleta Azul Pastel Luminosa (`index.css` y componentes):**
+     - Se eliminaron los tonos azul marino casi negros (`#0b1528`, `#060b16`) y se adoptó una paleta **Azul Pastel / Aciano Suave** (`--bg-primary: #345B8C`, `--bg-secondary: #2B4E7A`, `--bg-surface: #3E689C`, `--bg-surface-hover: #4875AD`, bordes azul cielo pastel `#8CC0FF` y textos en blanco puro `#FFFFFF` y azul hielo `#E6F0FD`), combinada con amarillo luminoso (`#FFE135`).
+  2. **Jerarquía de Formas Intencional (Combinando curvas y rectas según cada elemento):**
+     - **Elementos circulares / píldora (`50%` / `999px`):** Puntos de estado (`.status-dot`), etiquetas pequeñas (`.badge-pill`), botones de cierre (`X`), íconos flotantes (`ArrowUpRight`) y filtros rápidos.
+     - **Contenedores con curva editorial suave (`14px`–`18px`):** Tarjetas principales de proyectos (`.spotlight-card`), barra de navegación (`14px`), modales y marcos de fotos principales.
+     - **Elementos estructurados / geométricos (`6px`–`10px` y figuras):** Botones de acción principales (`10px`), bloques de citas, inputs y las figuras geométricas interactivas (`InteractiveReveal.jsx`) que conservan sus rombos, cuadrados y triángulos con las animaciones de cortina que le gustaron al usuario.

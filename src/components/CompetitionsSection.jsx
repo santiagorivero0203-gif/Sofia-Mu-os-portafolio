@@ -87,9 +87,9 @@ export const CompetitionsSection = () => {
                   <span
                     className="badge-pill"
                     style={{
-                      borderColor: comp.id.includes('kurios') ? 'var(--accent-gold)' : 'var(--accent-blue)',
-                      color: comp.id.includes('kurios') ? '#0b1528' : '#ffffff',
-                      backgroundColor: comp.id.includes('kurios') ? 'var(--accent-gold)' : 'var(--accent-blue)',
+                      borderColor: comp.id.includes('kurios') ? 'var(--accent-gold)' : 'var(--accent-blue-sky)',
+                      color: '#1c3557',
+                      backgroundColor: comp.id.includes('kurios') ? 'var(--accent-gold)' : 'var(--accent-blue-sky)',
                       fontWeight: 700
                     }}
                   >
@@ -133,7 +133,7 @@ export const CompetitionsSection = () => {
                   style={{
                     backgroundColor: 'var(--bg-secondary)',
                     border: '1px solid var(--border-subtle)',
-                    borderRadius: '2px',
+                    borderRadius: '10px',
                     padding: '0.85rem 1rem',
                     fontSize: '0.86rem',
                     lineHeight: 1.55,
@@ -165,11 +165,11 @@ export const CompetitionsSection = () => {
                       style={{
                         position: 'relative',
                         height: '110px',
-                        borderRadius: 'var(--radius-sm)',
+                        borderRadius: '10px',
                         overflow: 'hidden',
                         cursor: 'zoom-in',
                         border: '1px solid var(--border-subtle)',
-                        backgroundColor: '#000'
+                        backgroundColor: 'var(--bg-primary)'
                       }}
                       data-cursor="Zoom"
                     >
@@ -234,10 +234,10 @@ export const CompetitionsSection = () => {
                 right: '1.5rem',
                 width: '44px',
                 height: '44px',
-                borderRadius: '2px',
+                borderRadius: '50%',
                 backgroundColor: 'var(--accent-gold)',
                 border: '1px solid var(--accent-gold)',
-                color: '#0b1528',
+                color: '#1c3557',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

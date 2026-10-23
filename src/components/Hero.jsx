@@ -319,26 +319,26 @@ export const Hero = ({ lenisInstance }) => {
                 position: 'relative',
                 width: '100%',
                 maxWidth: '420px',
-                borderRadius: '2px',
-                backgroundColor: '#101e38',
+                borderRadius: '18px',
+                backgroundColor: 'var(--bg-secondary)',
                 border: '1px solid var(--accent-gold)',
-                boxShadow: '8px 8px 0px #060b16',
-                padding: '2rem',
+                boxShadow: '0 18px 42px rgba(24, 48, 82, 0.35)',
+                padding: '1.85rem',
                 transition: 'transform 0.15s ease-out, box-shadow 0.25s ease',
                 cursor: 'pointer'
               }}
               data-cursor="Sofia"
             >
               {/* Encabezado de la Tarjeta */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div
                     style={{
                       width: '44px',
                       height: '44px',
-                      borderRadius: '2px',
+                      borderRadius: '12px',
                       backgroundColor: 'var(--accent-gold)',
-                      color: '#0b1528',
+                      color: '#1c3557',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -360,7 +360,7 @@ export const Hero = ({ lenisInstance }) => {
                   </div>
                 </div>
 
-                <span className="badge-pill" style={{ fontSize: '0.7rem', borderColor: 'var(--accent-blue)', color: '#fff' }}>
+                <span className="badge-pill" style={{ fontSize: '0.7rem', borderColor: 'var(--border-blue)', color: '#fff' }}>
                   '26
                 </span>
               </div>
@@ -386,10 +386,10 @@ export const Hero = ({ lenisInstance }) => {
                       }}
                       style={{
                         flex: 1,
-                        padding: '0.38rem 0.5rem',
-                        borderRadius: '2px',
+                        padding: '0.4rem 0.5rem',
+                        borderRadius: '8px',
                         backgroundColor: isCurrent ? 'var(--accent-gold)' : 'var(--bg-surface)',
-                        color: isCurrent ? '#0b1528' : 'var(--text-secondary)',
+                        color: isCurrent ? '#1c3557' : 'var(--text-secondary)',
                         border: `1px solid ${isCurrent ? 'var(--accent-gold)' : 'var(--border-subtle)'}`,
                         fontFamily: 'var(--font-mono)',
                         fontSize: '0.72rem',
@@ -415,13 +415,13 @@ export const Hero = ({ lenisInstance }) => {
                   position: 'relative',
                   width: '100%',
                   height: '220px',
-                  borderRadius: '2px',
+                  borderRadius: '12px',
                   overflow: 'hidden',
-                  marginBottom: '1.5rem',
+                  marginBottom: '1.35rem',
                   border: '1px solid var(--border-subtle)',
-                  backgroundColor: '#060b16'
+                  backgroundColor: 'var(--bg-primary)'
                 }}
-                title="Toca la imagen para cambiar a la siguiente evidencia"
+                title="Toca la imagen para cambiar a la siguiente foto"
               >
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -436,7 +436,7 @@ export const Hero = ({ lenisInstance }) => {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      filter: 'contrast(1.05)',
+                      filter: 'contrast(1.03)',
                       display: 'block'
                     }}
                     loading="eager"
@@ -448,7 +448,7 @@ export const Hero = ({ lenisInstance }) => {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    backgroundColor: 'rgba(11, 21, 40, 0.92)',
+                    backgroundColor: 'rgba(43, 78, 122, 0.92)',
                     borderTop: '1px solid var(--border-subtle)',
                     padding: '0.55rem 0.75rem',
                     display: 'flex',
@@ -463,11 +463,11 @@ export const Hero = ({ lenisInstance }) => {
                     style={{
                       fontSize: '0.7rem',
                       fontFamily: 'var(--font-mono)',
-                      color: '#0b1528',
+                      color: '#1c3557',
                       backgroundColor: 'var(--accent-gold)',
                       fontWeight: 700,
-                      padding: '0.15rem 0.5rem',
-                      borderRadius: '0px'
+                      padding: '0.15rem 0.55rem',
+                      borderRadius: '999px'
                     }}
                   >
                     {heroSlides[activeSlide].badge}

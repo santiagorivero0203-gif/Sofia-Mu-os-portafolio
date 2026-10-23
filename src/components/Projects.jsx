@@ -82,15 +82,15 @@ export const Projects = () => {
             </h2>
           </div>
 
-          {/* Switch de Modo Galería / Lista */}
+          {/* Switch de Modo Galería / Lista (Forma de Píldora Suave) */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               backgroundColor: 'var(--bg-secondary)',
               border: '1px solid var(--border-subtle)',
-              borderRadius: '2px',
-              padding: '0.2rem'
+              borderRadius: '999px',
+              padding: '0.25rem'
             }}
           >
             <button
@@ -100,13 +100,12 @@ export const Projects = () => {
                 alignItems: 'center',
                 gap: '0.4rem',
                 padding: '0.45rem 1rem',
-                borderRadius: '2px',
+                borderRadius: '999px',
                 border: 'none',
                 background: viewMode === 'grid' ? 'var(--accent-gold)' : 'transparent',
-                color: viewMode === 'grid' ? '#0b1528' : 'var(--text-secondary)',
+                color: viewMode === 'grid' ? '#1c3557' : 'var(--text-secondary)',
                 fontSize: '0.82rem',
                 fontWeight: 700,
-                textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
@@ -123,13 +122,12 @@ export const Projects = () => {
                 alignItems: 'center',
                 gap: '0.4rem',
                 padding: '0.45rem 1rem',
-                borderRadius: '2px',
+                borderRadius: '999px',
                 border: 'none',
                 background: viewMode === 'table' ? 'var(--accent-gold)' : 'transparent',
-                color: viewMode === 'table' ? '#0b1528' : 'var(--text-secondary)',
+                color: viewMode === 'table' ? '#1c3557' : 'var(--text-secondary)',
                 fontSize: '0.82rem',
                 fontWeight: 700,
-                textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease'
               }}
@@ -152,7 +150,7 @@ export const Projects = () => {
             marginBottom: '2.5rem'
           }}
         >
-          {/* Categorías */}
+          {/* Categorías (Píldoras Suaves) */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {categories.map((cat) => {
               const isActive = selectedCategory === cat;
@@ -161,16 +159,14 @@ export const Projects = () => {
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
                   style={{
-                    padding: '0.45rem 0.95rem',
-                    borderRadius: '2px',
-                    fontSize: '0.8rem',
+                    padding: '0.45rem 1rem',
+                    borderRadius: '999px',
+                    fontSize: '0.82rem',
                     fontWeight: isActive ? 700 : 500,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.03em',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                     backgroundColor: isActive ? 'var(--accent-gold)' : 'var(--bg-secondary)',
-                    color: isActive ? '#0b1528' : 'var(--text-secondary)',
+                    color: isActive ? '#1c3557' : 'var(--text-secondary)',
                     border: `1px solid ${isActive ? 'var(--accent-gold)' : 'var(--border-subtle)'}`
                   }}
                   data-cursor="Filtro"
@@ -181,7 +177,7 @@ export const Projects = () => {
             })}
           </div>
 
-          {/* Input de Búsqueda Rápida */}
+          {/* Input de Búsqueda Rápida (Bordes estructurados de 10px) */}
           <div
             style={{
               position: 'relative',
@@ -208,7 +204,7 @@ export const Projects = () => {
               style={{
                 width: '100%',
                 padding: '0.5rem 2rem 0.5rem 2.25rem',
-                borderRadius: '2px',
+                borderRadius: '10px',
                 backgroundColor: 'var(--bg-secondary)',
                 border: '1px solid var(--border-subtle)',
                 color: 'var(--text-primary)',
@@ -403,7 +399,7 @@ export const Projects = () => {
                         bottom: 0,
                         left: 0,
                         right: 0,
-                        backgroundColor: 'rgba(11, 21, 40, 0.92)',
+                        backgroundColor: 'rgba(43, 78, 122, 0.92)',
                         borderTop: '1px solid var(--border-subtle)',
                         padding: '0.6rem 0.85rem',
                         display: 'flex',
@@ -423,14 +419,14 @@ export const Projects = () => {
                       </span>
                       <div
                         style={{
-                          width: '30px',
-                          height: '30px',
-                          borderRadius: '2px',
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '50%',
                           backgroundColor: 'var(--accent-gold)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          color: '#0b1528'
+                          color: '#1c3557'
                         }}
                       >
                         <ArrowUpRight size={16} />

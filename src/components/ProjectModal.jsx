@@ -49,7 +49,8 @@ export const ProjectModal = () => {
           alignItems: 'center',
           justifyContent: 'center',
           padding: '1.5rem',
-          backgroundColor: 'rgba(6, 11, 22, 0.92)'
+          backgroundColor: 'rgba(30, 56, 91, 0.88)',
+          backdropFilter: 'blur(8px)'
         }}
         onClick={closeProjectModal}
       >
@@ -65,12 +66,12 @@ export const ProjectModal = () => {
             maxWidth: '1020px',
             maxHeight: '90vh',
             overflowY: 'auto',
-            backgroundColor: '#0b1528',
+            backgroundColor: 'var(--bg-primary)',
             border: '1px solid var(--accent-gold)',
-            borderRadius: '2px',
+            borderRadius: '18px',
             padding: '2.25rem',
             color: 'var(--text-primary)',
-            boxShadow: '10px 10px 0px #060b16'
+            boxShadow: '0 24px 60px rgba(20, 40, 68, 0.5)'
           }}
         >
           {/* Barra Superior de Control: Navegación de Proyectos + Botón Cerrar */}
@@ -93,8 +94,8 @@ export const ProjectModal = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.3rem',
-                  padding: '0.45rem 0.85rem',
-                  borderRadius: '2px',
+                  padding: '0.45rem 0.9rem',
+                  borderRadius: '999px',
                   backgroundColor: 'var(--bg-surface)',
                   border: '1px solid var(--border-subtle)',
                   color: 'var(--text-primary)',
@@ -119,8 +120,8 @@ export const ProjectModal = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.3rem',
-                  padding: '0.45rem 0.85rem',
-                  borderRadius: '2px',
+                  padding: '0.45rem 0.9rem',
+                  borderRadius: '999px',
                   backgroundColor: 'var(--bg-surface)',
                   border: '1px solid var(--border-subtle)',
                   color: 'var(--text-primary)',
@@ -135,7 +136,7 @@ export const ProjectModal = () => {
               </button>
             </div>
 
-            {/* Botón de Cerrar */}
+            {/* Botón de Cerrar Circular */}
             <button
               onClick={closeProjectModal}
               aria-label="Cerrar modal (Esc)"
@@ -143,10 +144,10 @@ export const ProjectModal = () => {
               style={{
                 width: '38px',
                 height: '38px',
-                borderRadius: '2px',
+                borderRadius: '50%',
                 backgroundColor: 'var(--accent-gold)',
                 border: '1px solid var(--accent-gold)',
-                color: '#0b1528',
+                color: '#1c3557',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
