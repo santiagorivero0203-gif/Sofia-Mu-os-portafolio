@@ -12,7 +12,7 @@ import {
   CheckCircle,
   ChevronRight,
   ChevronLeft
-} from 'lucide-react';
+} from './Icons';
 import { usePortfolio } from '../context/PortfolioContext';
 
 export const ProjectModal = () => {
@@ -253,6 +253,8 @@ export const ProjectModal = () => {
                   <img
                     src={img.src}
                     alt={img.caption}
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       width: '100%',
                       height: '100%',
@@ -340,3 +342,5 @@ export const ProjectModal = () => {
     </AnimatePresence>
   );
 };
+
+export default ProjectModal;

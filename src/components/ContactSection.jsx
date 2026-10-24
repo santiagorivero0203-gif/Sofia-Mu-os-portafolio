@@ -11,7 +11,7 @@ import {
   Copy,
   Check,
   ArrowUpRight
-} from 'lucide-react';
+} from './Icons';
 import { usePortfolio } from '../context/PortfolioContext';
 import { personalInfo } from '../data/portfolioData';
 

@@ -8,7 +8,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Award, ExternalLink } from 'lucide-react';
+import { Award, ExternalLink } from './Icons';
 import { usePortfolio } from '../context/PortfolioContext';
 import { projects } from '../data/portfolioData';
 import { useSpotlight } from '../hooks/useSpotlight';

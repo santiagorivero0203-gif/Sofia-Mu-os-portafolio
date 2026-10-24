@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Calendar, Star } from 'lucide-react';
+import { Sparkles, Calendar, Star } from './Icons';
 import { personalInfo, skillCategories } from '../data/portfolioData';
 import { useSpotlight } from '../hooks/useSpotlight';
 import { ShapeDrawerReveal } from './InteractiveReveal';
@@ -83,6 +83,8 @@ export const About = () => {
                   <img
                     src="/assets/sofia_perfil.jpg"
                     alt="Sofia Muñoz"
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       width: '68px',
                       height: '68px',

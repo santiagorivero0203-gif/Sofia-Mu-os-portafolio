@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, X } from 'lucide-react';
+import { Eye, X } from './Icons';
 
 /**
  * 1. ShapeImageTag
@@ -134,6 +134,8 @@ export const ShapeImageTag = ({
               <img
                 src={imageSrc}
                 alt={caption}
+                loading="lazy"
+                decoding="async"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -237,6 +239,8 @@ export const ShapeDrawerReveal = ({
               <img
                 src={imageSrc}
                 alt={caption}
+                loading="lazy"
+                decoding="async"
                 style={{
                   width: '100%',
                   maxHeight: '175px',

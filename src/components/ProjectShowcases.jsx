@@ -167,6 +167,8 @@ export const MovaInteractiveShowcase = () => {
             <img
               src="/assets/mova/revista.jpg"
               alt="MOVA Portada de Revista"
+              loading="lazy"
+              decoding="async"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
             <div
@@ -468,6 +470,8 @@ export const MerakiInteractiveShowcase = () => {
                 animate={{ clipPath: 'inset(0 0% 0 0)', scale: 1 }}
                 exit={{ clipPath: 'inset(0 0 0 100%)', scale: 1.02 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                loading="lazy"
+                decoding="async"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
             </AnimatePresence>

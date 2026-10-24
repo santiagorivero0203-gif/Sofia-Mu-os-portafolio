@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Award, MapPin, X } from 'lucide-react';
+import { Trophy, Award, MapPin, X } from './Icons';
 import { competitions } from '../data/portfolioData';
 import { useSpotlight } from '../hooks/useSpotlight';
 
@@ -135,6 +135,8 @@ export const CompetitionsSection = () => {
                     <img
                       src={img.src}
                       alt={img.caption}
+                      loading="lazy"
+                      decoding="async"
                       style={{
                         width: '100%',
                         height: '100%',

@@ -10,7 +10,7 @@ import {
   MessageCircle,
   ArrowUpRight,
   FileDown
-} from 'lucide-react';
+} from './Icons';
 import { usePortfolio } from '../context/PortfolioContext';
 import { personalInfo } from '../data/portfolioData';
 import { ShapeImageTag } from './InteractiveReveal';
@@ -316,6 +316,8 @@ export const Hero = ({ lenisInstance }) => {
                       display: 'block'
                     }}
                     loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
                   />
                 </AnimatePresence>
 

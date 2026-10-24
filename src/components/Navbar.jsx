@@ -6,7 +6,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from './Icons';
 import { usePortfolio } from '../context/PortfolioContext';
 
 export const Navbar = ({ lenisInstance }) => {

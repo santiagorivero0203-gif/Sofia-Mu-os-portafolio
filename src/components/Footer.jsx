@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { ArrowUp, FileDown } from 'lucide-react';
+import { ArrowUp, FileDown } from './Icons';
 import { usePortfolio } from '../context/PortfolioContext';
 import { personalInfo } from '../data/portfolioData';
 

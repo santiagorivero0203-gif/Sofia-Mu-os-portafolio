@@ -13,17 +13,19 @@ import {
   Loader2,
   Mail,
   Phone
-} from 'lucide-react';
+} from './Icons';
 import { personalInfo, projects, skillCategories, competitions } from '../data/portfolioData';
-import { generateStyledPortfolioPDF } from '../utils/generateStyledPDF';
 
 export const PortfolioPDF = ({ isOpen, onClose }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
+  if (!isOpen) return null;
+
   const handleDirectDownload = async () => {
     try {
       setIsGenerating(true);
+      const { generateStyledPortfolioPDF } = await import('../utils/generateStyledPDF');
       await generateStyledPortfolioPDF();
       setIsGenerating(false);
       setDownloaded(true);
@@ -432,3 +434,5 @@ export const PortfolioPDF = ({ isOpen, onClose }) => {
     </>
   );
 };
+
+export default PortfolioPDF;

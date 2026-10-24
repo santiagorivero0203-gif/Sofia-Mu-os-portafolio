@@ -335,3 +335,18 @@ Esta es la foto de presentacion de ella que puedes utilizar, reemplaza los cuadr
      - `src/components/PortfolioPDF.jsx` (en la cabecera de la hoja previa e imprimible).
      - `src/utils/generateStyledPDF.js` (incrustada directamente en la esquina superior izquierda del PDF descargable `Portafolio_Sofia_Munoz_2026.pdf`).
      - `src/components/About.jsx` (junto a su biografía en la sección de Perfil y Habilidades).
+
+---
+
+### Prompt 26 — Optimización Extrema de Velocidad de Carga y Rendimiento Inicial
+- **Fecha y Hora:** 2026-10-23 20:00:43 (-04:00)
+- **Contenido:**
+```text
+La pagina carga muy lento arregla eso
+```
+- **Acción realizada:**
+  1. **Eliminación de la pantalla de bloqueo inicial (`Preloader.jsx`):** Se retiró el contador artificial que obligaba a esperar más de 2 segundos antes de mostrar el contenido; ahora la página se muestra de forma instantánea.
+  2. **Reemplazo del paquete pesado `lucide-react` (~1,500 módulos) por `src/components/Icons.jsx`:** Se creó un módulo ligero con únicamente los iconos SVG utilizados en el portafolio, reduciendo los módulos procesados por Vite de **2,618 a ~60** y acelerando radicalmente la carga tanto en desarrollo como en producción.
+  3. **Carga diferida (`React.lazy` + `Suspense`) de Modales y PDF (`ProjectModal` y `PortfolioPDF`):** El generador de PDF (`jspdf`) y los modales ya no se descargan ni renderizan imágenes ocultas al abrir la página, sino únicamente cuando el usuario hace clic en ellos.
+  4. **Eliminación de filtros pesados en GPU (`NoiseOverlay.jsx`, `CustomCursor.jsx` y `backdrop-filter` repetidos):** Se retiró el filtro SVG `<feTurbulence>` a pantalla completa y el cursor animado por JS para liberar el hilo principal.
+  5. **Precarga de imagen principal (`preload` de `sofia_perfil.jpg`) y `loading="lazy"` + `decoding="async"`** en las imágenes secundarias.

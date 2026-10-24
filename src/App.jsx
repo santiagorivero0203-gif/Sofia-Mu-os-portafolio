@@ -1,16 +1,14 @@
 /**
  * @file App.jsx
- * @description Orquestador raíz del portafolio de Sofia Muñoz.
- * Estructura compacta de 4 secciones clave para lectura ágil de reclutadores.
+ * @description Orquestador raíz optimizado del portafolio de Sofia Muñoz.
+ * Carga instantánea sin pantallas de bloqueo artificiales, sin filtros pesados de pantalla completa
+ * y con carga diferida (lazy loading) de modales y motor PDF.
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import Lenis from 'lenis';
 import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { NoiseOverlay } from './components/NoiseOverlay';
-import { CustomCursor } from './components/CustomCursor';
-import { Preloader } from './components/Preloader';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
@@ -18,12 +16,13 @@ import { CompetitionsSection } from './components/CompetitionsSection';
 import { About } from './components/About';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { ProjectModal } from './components/ProjectModal';
-import { PortfolioPDF } from './components/PortfolioPDF';
 import { useScrollSpy } from './hooks/useScrollSpy';
 
+// Carga diferida de modales secundarios para acelerar el renderizado inicial
+const ProjectModal = lazy(() => import('./components/ProjectModal'));
+const PortfolioPDF = lazy(() => import('./components/PortfolioPDF'));
+
 const AppContent = () => {
-  const [loading, setLoading] = useState(true);
   const [lenis, setLenis] = useState(null);
   const lenisRef = useRef(null);
 
@@ -37,7 +36,7 @@ const AppContent = () => {
 
   useEffect(() => {
     const lenisInstance = new Lenis({
-      duration: 1.1,
+      duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
@@ -77,10 +76,6 @@ const AppContent = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', minHeight: '100vh' }}>
-      <NoiseOverlay />
-      <CustomCursor />
-      {loading && <Preloader onFinish={() => setLoading(false)} />}
-
       <Navbar lenisInstance={lenis} />
 
       <main>
@@ -92,8 +87,11 @@ const AppContent = () => {
       </main>
 
       <Footer lenisInstance={lenis} />
-      <ProjectModal />
-      <PortfolioPDF isOpen={isPdfOpen} onClose={closePdfModal} />
+
+      <Suspense fallback={null}>
+        {selectedProject && <ProjectModal />}
+        {isPdfOpen && <PortfolioPDF isOpen={isPdfOpen} onClose={closePdfModal} />}
+      </Suspense>
     </div>
   );
 };

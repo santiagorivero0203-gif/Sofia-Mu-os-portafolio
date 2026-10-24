@@ -84,80 +84,6 @@ body {
   padding-right: 0.12em;
 }
 
-/* Grano Analógico Sutil */
-.noise-overlay {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.024;
-}
-
-/* Cursor Contextual Personalizado */
-.custom-cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background: var(--text-primary);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10001;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s ease, transform 0.15s ease;
-}
-
-.custom-cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(20, 44, 76, 0.3);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: width 0.3s var(--ease-spring), height 0.3s var(--ease-spring), border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.custom-cursor-ring.is-hovering {
-  width: 68px;
-  height: 68px;
-  background: var(--accent-yellow-fill);
-  border-color: transparent;
-  box-shadow: 0 8px 24px rgba(20, 44, 76, 0.15);
-}
-
-.custom-cursor-ring .cursor-text {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-primary);
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 0.2s ease, transform 0.2s var(--ease-spring);
-}
-
-.custom-cursor-ring.is-hovering .cursor-text {
-  opacity: 1;
-  transform: scale(1);
-}
-
-@media (pointer: coarse) {
-  .custom-cursor-dot, .custom-cursor-ring {
-    display: none !important;
-  }
-}
-
 .site-container {
   max-width: var(--container-max);
   margin: 0 auto;
@@ -170,13 +96,11 @@ body {
   }
 }
 
-/* Tarjeta Pastel Suave y Redondeada */
+/* Tarjeta Pastel Suave y Redondeada (optimizada sin blur pesado repetitivo) */
 .spotlight-card {
   position: relative;
-  background: var(--bg-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.92);
   border-radius: var(--radius-lg);
   box-shadow: 0 10px 30px rgba(20, 44, 76, 0.06);
   overflow: hidden;
